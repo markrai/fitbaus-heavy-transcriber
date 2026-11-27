@@ -72,6 +72,17 @@ Converter mathml-subset-v3 supports common explicit delimiters, set symbols, Mat
     python -m stem.prioritize work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v3
     python -m stem.diagnose work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v3/diagnostics.json
 
+## Original Wikidata TeX recovery (S.0E.3)
+
+    python -m stem.recover work/stem-candidates/<snapshot-sha256> --output work/stem-original-tex/wikidata --max-batches 2
+    python -m stem.recover work/stem-candidates/<snapshot-sha256> --output work/stem-original-tex/wikidata
+
+Unlike the SPARQL MathML export, the Wikidata entity API exposes original P2534 mathematical string values. This explicit online stage uses the verified snapshot only to select distinct potentially named entity IDs. It retrieves current claims and entity revision IDs, not historical claims from the acquisition date. It does not assert a one-to-one match between original snapshot rows and current statements. Deprecated and non-value statements are counted but excluded from candidate exports; preferred and normal statements remain separate. Source labels are from the original snapshot.
+
+Requests are sequential, in fixed batches of up to 25 IDs with a one-second minimum delay before each request, a bounded response size, maxlag and bounded retry handling for HTTP 429/503 and API maxlag. Completed raw JSON responses are retained with their request IDs and SHA-256 in atomic batch checkpoints. Rerun the same command and output directory to resume; --max-batches limits newly fetched batches, not cached ones. Use one process per output directory. A mismatched plan or damaged checkpoint fails closed. Partial reports explicitly mark complete=false; a stopped run may leave the previous report in place until resumed.
+
+The output includes plan.json, batches/, original-tex.jsonl and recovery.json. Each candidate records the statement ID, entity revision, rank, exact formula, source snapshot digest and response digest. Original TeX is retained even when it fails the current lexical screen; empty, oversized or replacement-character values are deferred and remain in raw checkpoints. Nothing is admitted or rendered. The original snapshot and MathML exports remain unchanged. Do not commit the downloaded corpus. No GPU or additional package is required.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
