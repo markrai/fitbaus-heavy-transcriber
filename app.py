@@ -7,7 +7,7 @@ from pathlib import Path
 import threading
 import webbrowser
 
-from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError
+from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg
 
 
 class Workbench:
@@ -63,7 +63,18 @@ class Workbench:
                         atomic_json(self.history_path, self.history)
                 except Exception as error:
                     with self.lock:
-                        self.jobs[item].update(state="Failed", error=type(error).__name__)
+                        stage = self.jobs[item]["state"]
+                        if isinstance(error, WorkbenchError):
+                            detail = str(error)
+                        elif isinstance(error, SourceError):
+                            detail = "Audiobookshelf: " + error.code
+                        elif isinstance(error, FileNotFoundError):
+                            detail = "Required file or executable not found"
+                        else:
+                            detail = type(error).__name__
+                        message = stage + ": " + detail
+                        self.jobs[item].update(state="Failed", error=message)
+                    print("Transcription failed: " + message, flush=True)
         finally:
             with self.lock:
                 self.running = False
@@ -170,6 +181,11 @@ def main():
         print("Audiobookshelf credentials travel over unencrypted HTTP; use only a trusted LAN.")
         if input("Continue? [y/N]: ").strip().lower() != "y":
             return
+    try:
+        require_ffmpeg()
+    except WorkbenchError as error:
+        print(str(error))
+        return 1
     vega = Vega(args.ssh_host, args.remote_dir)
     config = vega.configuration()
     try:
