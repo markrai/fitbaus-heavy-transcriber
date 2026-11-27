@@ -1,0 +1,228 @@
+{
+  "schema": "fitbaus.stem.dictionary/v1",
+  "entries": [
+    {
+      "id": "physics.mass_energy",
+      "name": "Mass-energy equivalence",
+      "category": "relativity",
+      "latex": "E=mc^2",
+      "aliases": [
+        "e equals m c squared",
+        "e equals mc squared",
+        "e equals m c square",
+        "energy equals mass times the speed of light squared"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.newton_second",
+      "name": "Newton's second law",
+      "category": "mechanics",
+      "latex": "F=ma",
+      "aliases": [
+        "f equals m a",
+        "f equals ma",
+        "force equals mass times acceleration"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.momentum",
+      "name": "Linear momentum",
+      "category": "mechanics",
+      "latex": "p=mv",
+      "aliases": [
+        "p equals m v",
+        "p equals mv",
+        "momentum equals mass times velocity"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.kinetic_energy",
+      "name": "Kinetic energy",
+      "category": "mechanics",
+      "latex": "K=\\frac{1}{2}mv^2",
+      "aliases": [
+        "k equals one half m v squared",
+        "kinetic energy equals one half mass times velocity squared"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.ohm",
+      "name": "Ohm's law",
+      "category": "electricity",
+      "latex": "V=IR",
+      "aliases": [
+        "v equals i r",
+        "v equals ir",
+        "voltage equals current times resistance"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.electric_power",
+      "name": "Electric power",
+      "category": "electricity",
+      "latex": "P=IV",
+      "aliases": [
+        "p equals i v",
+        "p equals iv",
+        "power equals current times voltage"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.ideal_gas",
+      "name": "Ideal gas law",
+      "category": "thermodynamics",
+      "latex": "PV=nRT",
+      "aliases": [
+        "p v equals n r t",
+        "pv equals nrt"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.frequency",
+      "name": "Wave speed",
+      "category": "mechanics",
+      "latex": "v=f\\lambda",
+      "aliases": [
+        "v equals f lambda",
+        "wave speed equals frequency times wavelength"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "geometry.pythagoras",
+      "name": "Pythagorean theorem",
+      "category": "geometry",
+      "latex": "a^2+b^2=c^2",
+      "aliases": [
+        "a squared plus b squared equals c squared"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "geometry.circle_area",
+      "name": "Circle area",
+      "category": "geometry",
+      "latex": "A=\\pi r^2",
+      "aliases": [
+        "area equals pi r squared",
+        "area equals pie r squared",
+        "a equals pi r squared",
+        "a equals pie r square"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "geometry.circle_circumference",
+      "name": "Circle circumference",
+      "category": "geometry",
+      "latex": "C=2\\pi r",
+      "aliases": [
+        "circumference equals two pi r",
+        "c equals two pi r"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "geometry.sphere_volume",
+      "name": "Sphere volume",
+      "category": "geometry",
+      "latex": "V=\\frac{4}{3}\\pi r^3",
+      "aliases": [
+        "volume equals four thirds pi r cubed",
+        "v equals four thirds pi r cubed"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "algebra.euler",
+      "name": "Euler's identity",
+      "category": "algebra",
+      "latex": "e^{i\\pi}+1=0",
+      "aliases": [
+        "e raised to the power of i pi plus one equals zero",
+        "e to the power of i pi plus one equals zero"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "algebra.quadratic",
+      "name": "Quadratic formula",
+      "category": "algebra",
+      "latex": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
+      "aliases": [
+        "x equals negative b plus or minus the square root of b squared minus four a c all divided by two a"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "calculus.exponential_integral",
+      "name": "Exponential integral identity",
+      "category": "calculus",
+      "latex": "\\int_0^\\infty e^{-x}\\,dx=1",
+      "aliases": [
+        "the integral from zero to infinity of e to the power of negative x d x equals one",
+        "integral from zero to infinity of e to the power of negative x d x equals one"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "calculus.basel",
+      "name": "Basel sum",
+      "category": "calculus",
+      "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^2}=\\frac{\\pi^2}{6}",
+      "aliases": [
+        "the sum from n equals one to infinity of one over n squared equals pi squared over six"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "calculus.sine_limit",
+      "name": "Sine limit",
+      "category": "calculus",
+      "latex": "\\lim_{x\\to0}\\frac{\\sin x}{x}=1",
+      "aliases": [
+        "the limit as x approaches zero of sine x divided by x equals one"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.heat_equation",
+      "name": "One-dimensional heat equation",
+      "category": "thermodynamics",
+      "latex": "\\frac{\\partial u}{\\partial t}=\\alpha\\frac{\\partial^2u}{\\partial x^2}",
+      "aliases": [
+        "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.lorentz",
+      "name": "Lorentz factor",
+      "category": "relativity",
+      "latex": "\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^2}{c^2}}}",
+      "aliases": [
+        "gamma equals one divided by the square root of the quantity one minus v squared divided by c squared"
+      ],
+      "source": "curated"
+    },
+    {
+      "id": "physics.planck",
+      "name": "Photon energy",
+      "category": "quantum",
+      "latex": "E=hf",
+      "aliases": [
+        "e equals h f",
+        "e equals hf",
+        "photon energy equals planck constant times frequency"
+      ],
+      "source": "curated"
+    }
+  ]
+}

@@ -45,3 +45,7 @@ VEGA's existing prepared-transcript quotas still apply. Full-book imports are li
 ```
 
 Tests use fake source, inference and SSH adapters; they do not need GPU weights or your audiobook library. Actual NVIDIA runtime, SSH transport and audiobook playback must be qualified on the target workstation.
+
+## Experimental STEM foundation
+
+See [STEM dictionary and corpus acquisition](stem/README.md) for the offline recognition foundation. This is a development component; normal transcription and publishing are unchanged.

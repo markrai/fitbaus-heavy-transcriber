@@ -1,0 +1,36 @@
+{
+  "schema": "fitbaus.stem.sources/v1",
+  "sources": [
+    {
+      "id": "curated",
+      "status": "admitted",
+      "provenance": "Independently authored standard mathematical expressions and spoken aliases; no imported corpus text."
+    },
+    {
+      "id": "wikidata",
+      "status": "candidate_only",
+      "url": "https://www.wikidata.org/wiki/Property:P2534",
+      "license": "CC0-1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "notes": "Acquire an immutable local snapshot with its SHA-256. Review formulas and author spoken aliases before admission."
+    },
+    {
+      "id": "formulaeval",
+      "status": "pending_review",
+      "url": "https://huggingface.co/datasets/Stephen-Lee/FormulaEval_datasets",
+      "notes": "Confirm dataset and upstream rights, pinned revision, attribution and redistribution terms."
+    },
+    {
+      "id": "mathbridge",
+      "status": "pending_review",
+      "url": "https://github.com/MathBridge/MathBridge",
+      "notes": "Confirm dataset release license and upstream rights before ingestion."
+    },
+    {
+      "id": "speech2latex",
+      "status": "pending_review",
+      "url": "https://huggingface.co/datasets/marsianin500/Speech2Latex",
+      "notes": "Review attribution, source rights and exact revision before ingestion."
+    }
+  ]
+}
