@@ -1,12 +1,13 @@
 import argparse
 import getpass
+import warnings
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import threading
 import webbrowser
 
-from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json
+from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError
 
 
 class Workbench:
@@ -136,6 +137,25 @@ class Handler(BaseHTTPRequestHandler):
             self.json({"error": "Cannot start: select known books and wait for the current batch"}, 400)
 
 
+def authenticate(address, source_id):
+    print("Audiobookshelf authentication")
+    print("  1) Username and password (default)")
+    print("  2) API key or access token")
+    choice = input("Choose [1/2]: ").strip()
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", getpass.GetPassWarning)
+        if choice in ("", "1"):
+            username = input("Audiobookshelf username: ").strip()
+            password = getpass.getpass("Audiobookshelf password: ")
+            try:
+                return Library.login(address, source_id, username, password)
+            finally:
+                del password
+        if choice == "2":
+            return Library(address, source_id, getpass.getpass("Audiobookshelf API key or access token: "))
+    raise ValueError("Invalid authentication choice")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--abs-url", required=True)
@@ -152,8 +172,12 @@ def main():
             return
     vega = Vega(args.ssh_host, args.remote_dir)
     config = vega.configuration()
-    token = getpass.getpass("Audiobookshelf API key or access token: ")
-    library = Library(args.abs_url, config["source_id"], token)
+    try:
+        library = authenticate(args.abs_url, config["source_id"])
+        library.authorized(library.source.check_access)
+    except (ValueError, SourceError, getpass.GetPassWarning, EOFError, KeyboardInterrupt):
+        print("Audiobookshelf authentication failed or cancelled. Check your credentials and server access.")
+        return 1
     with ThreadingHTTPServer(("127.0.0.1", args.port), Handler) as server:
         server.host = f"127.0.0.1:{args.port}"
         server.workbench = Workbench(library, vega, config["profile"], args.work_dir.resolve())
@@ -167,4 +191,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
