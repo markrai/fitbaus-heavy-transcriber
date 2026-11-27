@@ -83,6 +83,21 @@ Requests are sequential, in fixed batches of up to 25 IDs with a one-second mini
 
 The output includes plan.json, batches/, original-tex.jsonl and recovery.json. Each candidate records the statement ID, entity revision, rank, exact formula, source snapshot digest and response digest. Original TeX is retained even when it fails the current lexical screen; empty, oversized or replacement-character values are deferred and remain in raw checkpoints. Nothing is admitted or rendered. The original snapshot and MathML exports remain unchanged. Do not commit the downloaded corpus. No GPU or additional package is required.
 
+## Maintainer renderer qualification (S.0F.1)
+
+Research: MathJax 4.1.3 and its matching New Computer Modern font are selected for offline SVG typesetting; resvg-js 2.6.2 rasterizes sanitized SVG into transparent PNG. See https://docs.mathjax.org/en/v4.0/server/components.html, https://docs.mathjax.org/en/latest/web/convert.html, https://docs.mathjax.org/en/latest/options/input/tex.html and https://github.com/thx/resvg-js. MathJax's optional Speech Rule Engine is a possible future deterministic alias seed, not enabled here.
+
+The renderer is a maintainer tool, not an application installation prerequisite. Direct npm versions are exact; the initial dependency lockfile must be reviewed and committed before release qualification. The Windows smoke workflow uploads its generated lockfile for review. Until then, dependency resolution is not fully reproducible.
+
+    npm --prefix stem/renderer install --ignore-scripts --no-audit --no-fund
+    python -m stem.renderer_smoke
+    python -m stem.qualify_render work/stem-original-tex/wikidata --output work/stem-render/pilot --limit 100
+    python -m stem.qualify_render work/stem-original-tex/wikidata --output work/stem-render/wikidata
+
+The input is a completed recovery directory. The tool checks formula digests and statement counts, deduplicates exact TeX, uses a conservative explicit command and environment allowlist, loads only selected MathJax packages with no dynamic TeX extension requests, and rejects unknown glyph text, unsafe SVG tags and attributes, and styling-dependent constructs. SVG paths are normalized to white on transparent background for the dark bike UI. Separate bounded subprocess batches render SVG then PNG; timed-out batches split to isolate single formulas. Node heap limits are not a full OS sandbox. Use a restricted, network-isolated maintainer environment for final qualification; installation itself requires npm access. Rendering success does not establish mathematical fidelity. The worker and SVG policy require live qualification before being considered safe for any public input.
+
+The report includes formula and dependency-lock digests, outcomes and completeness, results.jsonl links candidates to source statements, assets/ is content-addressed, and gallery.html shows a deterministic sample of up to 100 successful PNG renders. Use a new output directory for each run. Nothing is admitted to the dictionary. Only approved, versioned dictionary records and assets should be distributed, with license notices; end users must not acquire or render the corpus. No runtime or APK changes.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
