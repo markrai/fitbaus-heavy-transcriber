@@ -6,12 +6,13 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / ".upstream"))
 
-from transcriber.audiobookshelf import Audiobookshelf, SourceConfig, identifier, valid_bearer
+from transcriber.audiobookshelf import Audiobookshelf, SourceConfig, SourceError, identifier, valid_bearer
 from transcriber.contract import TranscriptWindow, Cue, MAX_WINDOW_MS, SCHEMA
 from transcriber.engine import normalize_segments, FORMATS, BYTES_PER_MS
 
@@ -65,18 +66,46 @@ class Vega:
 
 
 class Library:
-    def __init__(self, address, source_id, token):
-        if not valid_bearer(token):
-            raise ValueError("Invalid Audiobookshelf token")
+    def __init__(self, address, source_id, token, refresh=None):
         self.source = Audiobookshelf(SourceConfig(source_id, address))
-        self.token = token
+        self._set_session(token, refresh)
+        self._lock = threading.Lock()
+
+    @classmethod
+    def login(cls, address, source_id, username, password):
+        source = Audiobookshelf(SourceConfig(source_id, address))
+        token, refresh = source.login_session(username, password)
+        return cls(address, source_id, token, refresh)
+
+    def _set_session(self, token, refresh):
+        if not valid_bearer(token) or (refresh is not None and not valid_bearer(refresh)):
+            raise ValueError("Invalid Audiobookshelf credential")
+        self._session = (token, refresh)
+
+    def authorized(self, action):
+        with self._lock:
+            session = self._session
+        try:
+            return action(session[0])
+        except SourceError as error:
+            if error.code != "unauthorized":
+                raise
+        with self._lock:
+            if self._session is session:
+                if session[1] is None:
+                    raise SourceError("unauthorized")
+                self._set_session(*self.source.refresh_session(session[1]))
+            token = self._session[0]
+        return action(token)
 
     def get_json(self, path):
-        with self.source._get(path, self.token) as response:
-            if response.headers.get_content_type() != "application/json":
-                raise ValueError("Unexpected library response")
-            data = b"".join(self.source._chunks(response, 4 * 1024 * 1024, time.monotonic() + 30))
-        return json.loads(data)
+        def fetch(token):
+            with self.source._get(path, token) as response:
+                if response.headers.get_content_type() != "application/json":
+                    raise ValueError("Unexpected library response")
+                data = b"".join(self.source._chunks(response, 4 * 1024 * 1024, time.monotonic() + 30))
+            return json.loads(data)
+        return self.authorized(fetch)
 
     def books(self):
         result = {}
@@ -109,11 +138,13 @@ class Library:
 
     def cover(self, item_id):
         identifier(item_id)
-        with self.source._get(f"/api/items/{item_id}/cover?width=256", self.token) as response:
-            kind = response.headers.get_content_type()
-            if kind not in ("image/jpeg", "image/png", "image/webp"):
-                raise ValueError("Unsupported cover")
-            return kind, b"".join(self.source._chunks(response, 1024 * 1024, time.monotonic() + 15))
+        def fetch(token):
+            with self.source._get(f"/api/items/{item_id}/cover?width=256", token) as response:
+                kind = response.headers.get_content_type()
+                if kind not in ("image/jpeg", "image/png", "image/webp"):
+                    raise ValueError("Unsupported cover")
+                return kind, b"".join(self.source._chunks(response, 1024 * 1024, time.monotonic() + 15))
+        return self.authorized(fetch)
 
 
 def atomic_json(path, data):
@@ -174,9 +205,9 @@ class GpuEngine:
 
 
 def process_book(library, vega, engine, profile, item_id, root, report):
-    source, token = library.source, library.token
+    source = library.source
     report("Checking audio revision", 0, 0)
-    manifest = source.manifest(item_id, token)
+    manifest = library.authorized(lambda token: source.manifest(item_id, token))
     identity, duration = manifest.identity, manifest.duration_ms
     if not 0 < duration <= MAX_BOOK_MS:
         raise ValueError("Book exceeds import duration limit")
@@ -204,9 +235,11 @@ def process_book(library, vega, engine, profile, item_id, root, report):
                         if shutil.disk_usage(directory).free < track.size + 256 * 1024 * 1024:
                             raise RuntimeError("Insufficient temporary disk space")
                         destination = Path(scratch) / track.file_id
-                        with destination.open("w+b") as target:
-                            with source.materialize_track(identity, track.file_id, token, directory, target=target):
-                                pass
+                        def download(token):
+                            with destination.open("w+b") as target:
+                                with source.materialize_track(identity, track.file_id, token, directory, target=target):
+                                    pass
+                        library.authorized(download)
                         files[track.file_id] = destination
                     report("Transcribing on GPU", start, duration)
                     pcm = decode(files[track.file_id], left - track.offset_ms, right - track.offset_ms)
@@ -222,12 +255,14 @@ def process_book(library, vega, engine, profile, item_id, root, report):
                 if track.offset_ms + track.duration_ms <= end and track.file_id in files:
                     files.pop(track.file_id).unlink()
     report("Publishing to VEGA", duration, duration)
-    current = source.manifest(item_id, token)
-    if current.identity != identity or current.duration_ms != duration:
-        raise ValueError("Audio revision changed; select the book again")
     bundle = {"schema": BUNDLE_SCHEMA, "profile": profile, "source_id": identity.source_id,
               "item_id": identity.item_id, "audio_revision": identity.audio_revision,
               "duration_ms": duration, "windows": windows}
-    result = vega.publish(token, bundle)
+    def publish(token):
+        current = source.manifest(item_id, token)
+        if current.identity != identity or current.duration_ms != duration:
+            raise ValueError("Audio revision changed; select the book again")
+        return vega.publish(token, bundle)
+    result = library.authorized(publish)
     atomic_json(directory / "published.json", result)
     report("Imported", duration, duration)
