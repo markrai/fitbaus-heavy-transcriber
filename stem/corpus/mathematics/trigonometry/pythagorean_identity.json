@@ -21,15 +21,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e812695680192c541ed87a53b9d42a40f895446e96f1a81ac993407f534d50c6",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The point (cos x,sin x) lies on the Euclidean unit circle centered at the origin. Its squared distance from the origin is one, giving the identity.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

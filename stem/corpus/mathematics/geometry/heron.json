@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/8-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "60478334fdb79e4cb4518de8880b4104771d265de1665c16cbd1eac7f3ceba70",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Let C be the included angle between sides a and b. The area K is ab sin(C)/2, and cos(C)=(a^2+b^2-c^2)/(2ab). Therefore 16K^2=4a^2b^2-(a^2+b^2-c^2)^2=(a+b+c)(a+b-c)(a-b+c)(-a+b+c)=16s(s-c)(s-b)(s-a). All factors are positive by the triangle inequalities, so take the positive square root.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/8-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

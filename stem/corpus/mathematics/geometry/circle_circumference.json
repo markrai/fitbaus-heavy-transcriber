@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#geometry.circle_circumference"
+        },
+        {
+          "source_id": "openstax_precalculus_2e_reference",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/5-1-angles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "1d8171df1e399c88758885722c58f14dbd2fbbf49ec222567ba7a5c73957a682",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "By the definition of pi for a positive-radius Euclidean circle, circumference divided by diameter equals pi. Diameter equals 2r, so C=2 pi r.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/5-1-angles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

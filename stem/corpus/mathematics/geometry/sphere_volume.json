@@ -13,12 +13,12 @@
       "id": "standard",
       "latex": "V=\\frac{4}{3}\\pi r^3",
       "conditions": [
-        "Volume enclosed by a sphere in Euclidean three-dimensional space; radius nonnegative."
+        "Volume of the solid ball enclosed by a Euclidean sphere of radius r>0; the radius-zero degenerate ball has zero volume."
       ],
       "symbols": {
         "V": "Enclosed volume",
         "r": "Radius",
-        "\\pi": "Ratio of circumference to diameter"
+        "\\pi": "Mathematical constant pi"
       },
       "spoken_aliases": [
         "volume equals four thirds pi r cubed",
@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#geometry.sphere_volume"
+        },
+        {
+          "source_id": "openstax_prealgebra_2e_reference",
+          "locator": "https://openstax.org/books/prealgebra-2e/pages/c-geometric-formulas"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "4fa40f006f8e3910e40816a893c52278953428e7d290187fad9780067ae23fce",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Slice the solid ball perpendicular to an axis through its center. At axial coordinate z the disk has squared radius r^2-z^2. Integrating pi(r^2-z^2) from -r to r gives pi[r^2 z-z^3/3] at those bounds, or 4 pi r^3/3. The zero-radius limit is zero.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/prealgebra-2e/pages/c-geometric-formulas. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

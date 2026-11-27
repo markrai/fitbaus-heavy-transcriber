@@ -21,15 +21,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "0b6bd2570480bcd1e5e855b1eeb8f754ceb146edaffc74a289ffd5af5de5166f",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Set both angles equal to x in the sine addition identity and combine its two identical terms.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

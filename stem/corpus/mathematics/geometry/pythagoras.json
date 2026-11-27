@@ -27,13 +27,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#geometry.pythagoras"
+        },
+        {
+          "source_id": "openstax_intermediate_algebra_2e_reference",
+          "locator": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "8ab9fc5c5c1c502f7f8b11726b83adfd27f023521561fa9b7fa600bb95d4301d",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Place four congruent right triangles of legs a,b inside a square of side a+b so their hypotenuses form the boundary of a central square of side c. The central angles are right angles because the acute angles of each triangle are complementary. Comparing areas gives (a+b)^2=4(ab/2)+c^2, hence a^2+b^2=c^2.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

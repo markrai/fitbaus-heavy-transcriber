@@ -132,6 +132,22 @@
       "url": "https://openstax.org/books/calculus-volume-2/pages/1-introduction",
       "provenance": "Bibliographic citation only; independently authored standard mathematical facts and proofs. No permission to import or redistribute textbook content is implied.",
       "notes": "Web sections checked 2026-11-27. Textbook material remains outside the corpus; the original source record remains pending_review for adaptation or redistribution. Reference-only admission is distinct from content admission."
+    },
+    {
+      "id": "openstax_intermediate_algebra_2e_reference",
+      "status": "admitted",
+      "title": "Intermediate Algebra 2e",
+      "url": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles",
+      "provenance": "Bibliographic citation only; independently authored standard mathematical facts and proofs. No permission to import or redistribute textbook content is implied.",
+      "notes": "Reference-only admission, checked 2026-11-27. Any content reuse requires separate rights review."
+    },
+    {
+      "id": "openstax_prealgebra_2e_reference",
+      "status": "admitted",
+      "title": "Prealgebra 2e",
+      "url": "https://openstax.org/books/prealgebra-2e/pages/preface",
+      "provenance": "Bibliographic citation only; independently authored standard mathematical facts and proofs. No permission to import or redistribute textbook content is implied.",
+      "notes": "Reference-only admission, checked 2026-11-27. Any content reuse requires separate rights review."
     }
   ]
 }

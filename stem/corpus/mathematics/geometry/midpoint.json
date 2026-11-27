@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)",
       "conditions": [
-        "Endpoints in a Cartesian plane."
+        "Endpoints of a line segment in a Cartesian plane; coincident endpoints are allowed."
       ],
       "symbols": {
         "M": "Midpoint",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_intermediate_algebra_2e",
+          "source_id": "openstax_intermediate_algebra_2e_reference",
           "locator": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "3cef884b75e4900e3549f9a5bff02d9170b6655be7b7b3089b42a87e83d55409",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For endpoint vectors P and Q, M=P+(Q-P)/2=(P+Q)/2 lies on the segment and is equally distant from the endpoints. Evaluating each coordinate yields the stated ordered pair.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

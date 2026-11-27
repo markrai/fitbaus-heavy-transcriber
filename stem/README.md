@@ -35,6 +35,12 @@ Review the 13 algebra concepts and their 14 representations by direct derivation
 
 Reference-only registry entries use a separate _reference ID, admitted solely for bibliographic citation to independently authored mathematical facts. The corresponding original textbook source records remain pending_review for any content reuse. This is not permission to redistribute textbook content. Other subjects retain their existing pending reviews.
 
+## Geometry and trigonometry mathematical review (S.0F.2D.2)
+
+Review 15 concepts and 17 representations, with independently written derivations, textbook cross-checks and content-bound mathematical review records. Preserve every existing formula, representation ID and spoken alias. Clarify the disk and solid-ball domains, orthonormal coordinates and coincident endpoints. Confirm the tangent addition denominator conditions, the positive square root in Heron's formula and the nondegenerate triangle requirement for the laws of sines and cosines. The four migrated geometry concepts gain external reference locators while retaining original provenance.
+
+The cumulative proposed mathematical approvals are 31 of 107 representations. Recognition and rendering remain unqualified. Bibliographic-only reference admission does not grant permission to reuse textbook content.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
