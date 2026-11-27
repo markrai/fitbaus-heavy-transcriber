@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.midpoint",
+  "name": "Midpoint of a segment",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "coordinates"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)",
+      "conditions": [
+        "Endpoints in a Cartesian plane."
+      ],
+      "symbols": {
+        "M": "Midpoint",
+        "x_1": "First x coordinate",
+        "x_2": "Second x coordinate",
+        "y_1": "First y coordinate",
+        "y_2": "Second y coordinate"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_intermediate_algebra_2e",
+          "locator": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.product_rule",
+  "name": "Product rule of differentiation",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "(uv)'=u'v+uv'",
+      "conditions": [
+        "Both functions differentiable at the point; derivatives with respect to the same variable."
+      ],
+      "symbols": {
+        "u": "First function",
+        "v": "Second function"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.integration_parts",
+  "name": "Integration by parts",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "integration"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\int u\\,dv=uv-\\int v\\,du",
+      "conditions": [
+        "u and v continuously differentiable on an interval; indefinite integrals interpreted up to additive constants."
+      ],
+      "symbols": {
+        "u": "First function",
+        "v": "Second function",
+        "du": "Differential of u",
+        "dv": "Differential of v"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_2",
+          "locator": "https://openstax.org/books/calculus-volume-2/pages/3-1-integration-by-parts"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

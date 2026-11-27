@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "probability.conditional_probability",
+  "name": "Conditional probability",
+  "discipline": "mathematics",
+  "subject": "probability",
+  "tags": [
+    "events"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}",
+      "conditions": [
+        "A and B events on the same probability space, P(B)>0."
+      ],
+      "symbols": {
+        "P": "Probability measure",
+        "A": "Event of interest",
+        "B": "Conditioning event"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/3-1-terminology"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

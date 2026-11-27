@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.binomial_theorem",
+  "name": "Binomial theorem",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "polynomials"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "(a+b)^n=\\sum_{k=0}^{n}\\binom{n}{k}a^{n-k}b^k",
+      "conditions": [
+        "n is a nonnegative integer; a and b commute; zero powers in the polynomial are interpreted as one."
+      ],
+      "symbols": {
+        "a": "First summand",
+        "b": "Second summand",
+        "n": "Exponent",
+        "k": "Summation index"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

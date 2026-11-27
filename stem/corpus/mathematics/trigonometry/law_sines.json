@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "trigonometry.law_sines",
+  "name": "Law of sines",
+  "discipline": "mathematics",
+  "subject": "trigonometry",
+  "tags": [
+    "triangles"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}",
+      "conditions": [
+        "Nondegenerate Euclidean triangle; each angle is opposite the corresponding side."
+      ],
+      "symbols": {
+        "a": "Side opposite A",
+        "b": "Side opposite B",
+        "c": "Side opposite C",
+        "A": "Angle opposite a",
+        "B": "Angle opposite b",
+        "C": "Angle opposite c"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/8-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

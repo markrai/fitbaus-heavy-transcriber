@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.arithmetic_series",
+  "name": "Arithmetic series",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "sequences"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "S_n=\\frac{n(a_1+a_n)}{2}",
+      "conditions": [
+        "n is a positive integer; terms form an arithmetic sequence."
+      ],
+      "symbols": {
+        "S_n": "Sum of first n terms",
+        "a_1": "First term",
+        "a_n": "Last term in sum",
+        "n": "Term count"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

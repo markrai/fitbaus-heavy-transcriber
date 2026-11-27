@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.log_quotient",
+  "name": "Logarithm quotient rule",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "logarithms"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\log_b(x/y)=\\log_b x-\\log_b y",
+      "conditions": [
+        "Real x and y positive; real base b positive and not equal to one."
+      ],
+      "symbols": {
+        "x": "Numerator",
+        "y": "Denominator",
+        "b": "Logarithm base"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_college_algebra_2e",
+          "locator": "https://openstax.org/books/college-algebra-2e/pages/6-5-logarithmic-properties"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

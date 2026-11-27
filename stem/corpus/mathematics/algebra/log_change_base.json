@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.log_change_base",
+  "name": "Logarithm change of base",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "logarithms"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\log_b x=\\frac{\\ln x}{\\ln b}",
+      "conditions": [
+        "Real x and b positive; b not equal to one."
+      ],
+      "symbols": {
+        "x": "Argument",
+        "b": "Logarithm base"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_college_algebra_2e",
+          "locator": "https://openstax.org/books/college-algebra-2e/pages/6-5-logarithmic-properties"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.quotient_rule",
+  "name": "Quotient rule of differentiation",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}",
+      "conditions": [
+        "Both functions differentiable at the point; denominator v nonzero; common differentiation variable."
+      ],
+      "symbols": {
+        "u": "Numerator function",
+        "v": "Denominator function"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

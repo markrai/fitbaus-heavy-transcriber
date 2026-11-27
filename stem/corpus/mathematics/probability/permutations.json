@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "probability.permutations",
+  "name": "Ordered selections without replacement",
+  "discipline": "mathematics",
+  "subject": "probability",
+  "tags": [
+    "counting"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P(n,k)=\\frac{n!}{(n-k)!}",
+      "conditions": [
+        "Integers n and k satisfy 0 <= k <= n; distinct items, no replacement."
+      ],
+      "symbols": {
+        "P": "Number of ordered selections",
+        "n": "Number of available items",
+        "k": "Number selected"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

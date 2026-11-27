@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.arithmetic_sequence",
+  "name": "Arithmetic sequence",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "sequences"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "a_n=a_1+(n-1)d",
+      "conditions": [
+        "Positive integer n; constant difference d."
+      ],
+      "symbols": {
+        "a_n": "Term at index n",
+        "a_1": "First term",
+        "n": "Term index",
+        "d": "Common difference"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

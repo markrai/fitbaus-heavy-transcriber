@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "statistics.z_score",
+  "name": "Standard score",
+  "discipline": "mathematics",
+  "subject": "statistics",
+  "tags": [
+    "descriptive_statistics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "z=\\frac{x-\\mu}{\\sigma}",
+      "conditions": [
+        "Finite population mean and strictly positive finite standard deviation; normality not required for standardization."
+      ],
+      "symbols": {
+        "z": "Standard score",
+        "x": "Observation",
+        "\\mu": "Population mean",
+        "\\sigma": "Population standard deviation"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/6-formula-review"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

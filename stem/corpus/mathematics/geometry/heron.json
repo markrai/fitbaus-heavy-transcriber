@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.heron",
+  "name": "Heron's formula",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "triangles"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "A=\\sqrt{s(s-a)(s-b)(s-c)}",
+      "conditions": [
+        "Nondegenerate Euclidean triangle with positive side lengths satisfying strict triangle inequalities; s=(a+b+c)/2."
+      ],
+      "symbols": {
+        "A": "Triangle area",
+        "s": "Semiperimeter",
+        "a": "Side length",
+        "b": "Side length",
+        "c": "Side length"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/8-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

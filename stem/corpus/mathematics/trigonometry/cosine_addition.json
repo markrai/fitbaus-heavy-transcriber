@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "trigonometry.cosine_addition",
+  "name": "Cosine addition identity",
+  "discipline": "mathematics",
+  "subject": "trigonometry",
+  "tags": [
+    "identities"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\cos(a+b)=\\cos a\\cos b-\\sin a\\sin b",
+      "conditions": [
+        "Real angles a and b in consistent units."
+      ],
+      "symbols": {
+        "a": "First angle",
+        "b": "Second angle"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

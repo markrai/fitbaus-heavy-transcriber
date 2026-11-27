@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "statistics.discrete_variance",
+  "name": "Discrete probability variance",
+  "discipline": "mathematics",
+  "subject": "statistics",
+  "tags": [
+    "moments"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\sigma^2=\\sum_{i=1}^{n}(x_i-\\mu)^2P(X=x_i)",
+      "conditions": [
+        "Finite discrete support; mu=E[X], probabilities sum to one."
+      ],
+      "symbols": {
+        "\\sigma": "Population standard deviation",
+        "\\mu": "Expected value",
+        "X": "Random variable",
+        "x_i": "Possible value",
+        "i": "Summation index",
+        "n": "Support size",
+        "P": "Probability measure"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "probability.poisson_distribution",
+  "name": "Poisson probability mass function",
+  "discipline": "mathematics",
+  "subject": "probability",
+  "tags": [
+    "distributions"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P(X=k)=\\frac{e^{-\\lambda}\\lambda^k}{k!}",
+      "conditions": [
+        "X Poisson with positive mean lambda; k nonnegative integer."
+      ],
+      "symbols": {
+        "P": "Probability measure",
+        "X": "Event count",
+        "k": "Specified count",
+        "\\lambda": "Mean count",
+        "e": "Base of natural logarithms"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-formula-review"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

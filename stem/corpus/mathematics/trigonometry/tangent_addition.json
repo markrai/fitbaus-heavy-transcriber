@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "trigonometry.tangent_addition",
+  "name": "Tangent addition identity",
+  "discipline": "mathematics",
+  "subject": "trigonometry",
+  "tags": [
+    "identities"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\tan(a+b)=\\frac{\\tan a+\\tan b}{1-\\tan a\\tan b}",
+      "conditions": [
+        "Real angles with cos(a), cos(b), and cos(a+b) nonzero."
+      ],
+      "symbols": {
+        "a": "First angle",
+        "b": "Second angle"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
