@@ -1,0 +1,49 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.ideal_gas",
+  "name": "Ideal gas law",
+  "discipline": "physics",
+  "subject": "thermodynamics",
+  "tags": [
+    "gases"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "PV=nRT",
+      "conditions": [
+        "Ideal gas in equilibrium; absolute temperature and pressure, consistent units."
+      ],
+      "symbols": {
+        "P": "Absolute pressure",
+        "V": "Volume",
+        "n": "Amount of substance in moles",
+        "R": "Molar gas constant",
+        "T": "Absolute temperature"
+      },
+      "spoken_aliases": [
+        "p v equals n r t",
+        "pv equals nrt"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.ideal_gas"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

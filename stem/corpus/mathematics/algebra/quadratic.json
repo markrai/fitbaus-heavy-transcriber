@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.quadratic",
+  "name": "Quadratic formula",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "polynomials"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
+      "conditions": [
+        "Roots of ax^2+bx+c=0 with a nonzero; for real coefficients, real roots require nonnegative discriminant; complex roots are allowed otherwise."
+      ],
+      "symbols": {
+        "x": "Root",
+        "a": "Quadratic coefficient",
+        "b": "Linear coefficient",
+        "c": "Constant coefficient"
+      },
+      "spoken_aliases": [
+        "x equals negative b plus or minus the square root of b squared minus four a c all divided by two a"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#algebra.quadratic"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

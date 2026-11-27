@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.electric_power",
+  "name": "Electric power",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "circuits"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P=IV",
+      "conditions": [
+        "Instantaneous electrical power with consistent passive sign convention; not necessarily average AC power."
+      ],
+      "symbols": {
+        "P": "Instantaneous power",
+        "I": "Instantaneous current",
+        "V": "Instantaneous voltage"
+      },
+      "spoken_aliases": [
+        "p equals i v",
+        "p equals iv",
+        "power equals current times voltage"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.electric_power"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

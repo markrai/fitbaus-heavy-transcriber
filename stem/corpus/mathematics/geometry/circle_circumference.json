@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.circle_circumference",
+  "name": "Circle circumference",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "circles"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "C=2\\pi r",
+      "conditions": [
+        "Euclidean circle of positive radius."
+      ],
+      "symbols": {
+        "C": "Circumference",
+        "r": "Radius",
+        "\\pi": "Ratio of circumference to diameter"
+      },
+      "spoken_aliases": [
+        "circumference equals two pi r",
+        "c equals two pi r"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#geometry.circle_circumference"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

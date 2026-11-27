@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.lorentz",
+  "name": "Lorentz factor",
+  "discipline": "physics",
+  "subject": "relativity",
+  "tags": [
+    "special_relativity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^2}{c^2}}}",
+      "conditions": [
+        "Special relativity; relative speed is nonnegative and strictly below the vacuum speed of light."
+      ],
+      "symbols": {
+        "\\gamma": "Lorentz factor",
+        "v": "Relative speed",
+        "c": "Speed of light in vacuum"
+      },
+      "spoken_aliases": [
+        "gamma equals one divided by the square root of the quantity one minus v squared divided by c squared"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.lorentz"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

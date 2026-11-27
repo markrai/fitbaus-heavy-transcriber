@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.kinetic_energy",
+  "name": "Kinetic energy",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "energy"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "K=\\frac{1}{2}mv^2",
+      "conditions": [
+        "Nonrelativistic translational kinetic energy, constant mass."
+      ],
+      "symbols": {
+        "K": "Kinetic energy",
+        "m": "Mass",
+        "v": "Speed"
+      },
+      "spoken_aliases": [
+        "k equals one half m v squared",
+        "kinetic energy equals one half mass times velocity squared"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.kinetic_energy"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

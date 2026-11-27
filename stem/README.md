@@ -9,6 +9,14 @@ This package is independent of the normal transcription workflow. No corpus is d
 
 The curated seed has 20 independently authored entries. Each has a stable ID, category, name, LaTeX and explicit spoken aliases. The compiler rejects conflicting aliases and unapproved sources and emits a deterministic content digest. The matcher only accepts a complete sentence-like expression, optionally following a limited explicit introduction. Matching is deliberately conservative, case-insensitive for spoken aliases and not a general mathematical parser. It does not match cross-cue expressions, infer equations from topics, or repair mathematical errors. Offsets are Python Unicode code-point offsets into unchanged source text. LaTeX screening is lexical and structural, not a proof of mathematical correctness or a full renderer security boundary.
 
+## Structured authoring corpus (S.0F.2A)
+
+The 20 seed concepts now also exist as one file per concept under corpus/mathematics and corpus/physics. Their original IDs, exact TeX and spoken aliases are preserved. Conditions and symbol meanings are initial drafts, with separate pending mathematical and recognition reviews. The existing curated.json remains unchanged and is the only dictionary loaded by the prototype matcher.
+
+    python -m stem.corpus_model
+
+The validator reports deterministic content identity and review counts, checks normalized alias collisions, stable IDs, directory metadata, references and review digests. See corpus/CONTRIBUTING.md and corpus/schema.json. The authoring corpus is not a production release; successful validation does not establish mathematical correctness or renderability. NMFT and Wikidata remain discovery sources only. New authoring entries will not affect recognition until the production compiler and qualification gates are implemented.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.pythagoras",
+  "name": "Pythagorean theorem",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "triangles"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "a^2+b^2=c^2",
+      "conditions": [
+        "Right triangle in Euclidean geometry; c is the hypotenuse."
+      ],
+      "symbols": {
+        "a": "Leg length",
+        "b": "Leg length",
+        "c": "Hypotenuse length"
+      },
+      "spoken_aliases": [
+        "a squared plus b squared equals c squared"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#geometry.pythagoras"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
