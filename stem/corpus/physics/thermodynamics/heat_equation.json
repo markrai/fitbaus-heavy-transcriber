@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.heat_equation",
+  "name": "One-dimensional heat equation",
+  "discipline": "physics",
+  "subject": "thermodynamics",
+  "tags": [
+    "heat_transfer"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{\\partial u}{\\partial t}=\\alpha\\frac{\\partial^2u}{\\partial x^2}",
+      "conditions": [
+        "One spatial dimension, constant thermal diffusivity, no internal heat source, homogeneous medium."
+      ],
+      "symbols": {
+        "u": "Temperature field",
+        "t": "Time",
+        "x": "Spatial coordinate",
+        "\\alpha": "Thermal diffusivity"
+      },
+      "spoken_aliases": [
+        "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.heat_equation"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.mass_energy",
+  "name": "Mass-energy equivalence",
+  "discipline": "physics",
+  "subject": "relativity",
+  "tags": [
+    "rest_energy"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "E=mc^2",
+      "conditions": [
+        "Rest energy of a body with invariant mass m; c is the vacuum speed of light."
+      ],
+      "symbols": {
+        "E": "Rest energy",
+        "m": "Invariant mass",
+        "c": "Speed of light in vacuum"
+      },
+      "spoken_aliases": [
+        "e equals m c squared",
+        "e equals mc squared",
+        "e equals m c square",
+        "energy equals mass times the speed of light squared"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.mass_energy"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

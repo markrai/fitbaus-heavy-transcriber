@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.newton_second",
+  "name": "Newton's second law",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "dynamics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "F=ma",
+      "conditions": [
+        "Classical mechanics in an inertial frame, constant mass; scalar components along the same axis."
+      ],
+      "symbols": {
+        "F": "Net force component",
+        "m": "Mass",
+        "a": "Acceleration component"
+      },
+      "spoken_aliases": [
+        "f equals m a",
+        "f equals ma",
+        "force equals mass times acceleration"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.newton_second"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

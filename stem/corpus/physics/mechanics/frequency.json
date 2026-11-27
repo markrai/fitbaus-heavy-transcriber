@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.frequency",
+  "name": "Wave speed",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "waves"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "v=f\\lambda",
+      "conditions": [
+        "Periodic wave with wavelength and frequency measured in the same frame; v is phase speed."
+      ],
+      "symbols": {
+        "v": "Phase speed",
+        "f": "Frequency",
+        "\\lambda": "Wavelength"
+      },
+      "spoken_aliases": [
+        "v equals f lambda",
+        "wave speed equals frequency times wavelength"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.frequency"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

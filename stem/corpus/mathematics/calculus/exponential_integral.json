@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.exponential_integral",
+  "name": "Exponential integral identity",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "integration"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\int_0^\\infty e^{-x}\\,dx=1",
+      "conditions": [
+        "Improper integral on the nonnegative real line."
+      ],
+      "symbols": {
+        "x": "Integration variable",
+        "e": "Base of natural logarithms"
+      },
+      "spoken_aliases": [
+        "the integral from zero to infinity of e to the power of negative x d x equals one",
+        "integral from zero to infinity of e to the power of negative x d x equals one"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#calculus.exponential_integral"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

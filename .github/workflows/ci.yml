@@ -23,4 +23,5 @@ jobs:
           git -C .upstream checkout --detach adb1e9530ef8f03758138703ebd737ff8e2bfe24
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - run: python -m compileall -q app.py heavy.py stem tests
+      - run: python -m stem.corpus_model
       - run: python -m unittest discover -s tests -v

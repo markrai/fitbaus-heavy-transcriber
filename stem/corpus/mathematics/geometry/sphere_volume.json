@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.sphere_volume",
+  "name": "Sphere volume",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "solids"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "V=\\frac{4}{3}\\pi r^3",
+      "conditions": [
+        "Volume enclosed by a sphere in Euclidean three-dimensional space; radius nonnegative."
+      ],
+      "symbols": {
+        "V": "Enclosed volume",
+        "r": "Radius",
+        "\\pi": "Ratio of circumference to diameter"
+      },
+      "spoken_aliases": [
+        "volume equals four thirds pi r cubed",
+        "v equals four thirds pi r cubed"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#geometry.sphere_volume"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

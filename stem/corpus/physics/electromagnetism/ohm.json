@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.ohm",
+  "name": "Ohm's law",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "circuits"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "V=IR",
+      "conditions": [
+        "Ohmic element at fixed physical conditions; consistent voltage and current sign convention."
+      ],
+      "symbols": {
+        "V": "Voltage across the element",
+        "I": "Current through the element",
+        "R": "Resistance"
+      },
+      "spoken_aliases": [
+        "v equals i r",
+        "v equals ir",
+        "voltage equals current times resistance"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.ohm"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

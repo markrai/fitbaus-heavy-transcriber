@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.planck",
+  "name": "Photon energy",
+  "discipline": "physics",
+  "subject": "quantum_mechanics",
+  "tags": [
+    "photons"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "E=hf",
+      "conditions": [
+        "Photon of frequency f measured in the same frame as its energy."
+      ],
+      "symbols": {
+        "E": "Photon energy",
+        "h": "Planck constant",
+        "f": "Frequency"
+      },
+      "spoken_aliases": [
+        "e equals h f",
+        "e equals hf",
+        "photon energy equals planck constant times frequency"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.planck"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

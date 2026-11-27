@@ -1,0 +1,48 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.momentum",
+  "name": "Linear momentum",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "dynamics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "p=mv",
+      "conditions": [
+        "Nonrelativistic mechanics; scalar momentum and velocity components along the same axis."
+      ],
+      "symbols": {
+        "p": "Momentum component",
+        "m": "Mass",
+        "v": "Velocity component"
+      },
+      "spoken_aliases": [
+        "p equals m v",
+        "p equals mv",
+        "momentum equals mass times velocity"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#physics.momentum"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

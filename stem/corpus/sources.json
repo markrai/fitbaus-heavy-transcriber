@@ -31,6 +31,13 @@
       "status": "pending_review",
       "url": "https://huggingface.co/datasets/marsianin500/Speech2Latex",
       "notes": "Review attribution, source rights and exact revision before ingestion."
+    },
+    {
+      "id": "nmft",
+      "status": "candidate_only",
+      "url": "https://huggingface.co/datasets/ddrg/named_math_formulas",
+      "license": "CC-BY-4.0",
+      "notes": "Discovery and research material only. Positive templates contain known errors; no templates imported. Verify pinned revision, attribution and redistribution rights before adaptation."
     }
   ]
 }

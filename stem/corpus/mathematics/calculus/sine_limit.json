@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.sine_limit",
+  "name": "Sine limit",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "limits"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\lim_{x\\to0}\\frac{\\sin x}{x}=1",
+      "conditions": [
+        "Real x tending to zero, with the angle measured in radians."
+      ],
+      "symbols": {
+        "x": "Angle in radians"
+      },
+      "spoken_aliases": [
+        "the limit as x approaches zero of sine x divided by x equals one"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#calculus.sine_limit"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

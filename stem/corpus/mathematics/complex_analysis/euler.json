@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.euler",
+  "name": "Euler's identity",
+  "discipline": "mathematics",
+  "subject": "complex_analysis",
+  "tags": [
+    "identities"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "e^{i\\pi}+1=0",
+      "conditions": [
+        "Complex exponential with i the imaginary unit."
+      ],
+      "symbols": {
+        "e": "Base of natural logarithms",
+        "i": "Imaginary unit",
+        "\\pi": "Pi"
+      },
+      "spoken_aliases": [
+        "e raised to the power of i pi plus one equals zero",
+        "e to the power of i pi plus one equals zero"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#algebra.euler"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

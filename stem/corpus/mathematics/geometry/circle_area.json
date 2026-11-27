@@ -1,0 +1,49 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.circle_area",
+  "name": "Circle area",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "circles"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "A=\\pi r^2",
+      "conditions": [
+        "Euclidean circle of nonnegative radius."
+      ],
+      "symbols": {
+        "A": "Area",
+        "r": "Radius",
+        "\\pi": "Ratio of circumference to diameter"
+      },
+      "spoken_aliases": [
+        "area equals pi r squared",
+        "area equals pie r squared",
+        "a equals pi r squared",
+        "a equals pie r square"
+      ],
+      "references": [
+        {
+          "source_id": "curated",
+          "locator": "stem/corpus/curated.json#geometry.circle_area"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
