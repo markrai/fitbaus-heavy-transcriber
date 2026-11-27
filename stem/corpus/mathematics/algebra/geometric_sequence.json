@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "b578660f9ac6294fa0affd8eb2c19c9588184307097bb36808735355d637cdff",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Induction: at n=1 the zeroth power gives a_1. Multiply a_1 r^(n-1) by r to obtain a_1 r^n at the next index. This also covers r=0 with the declared zeroth-power convention.",
+          "Reference cross-check of the standard identity: https://openstax.org/books/precalculus-2e/pages/11-key-equations. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

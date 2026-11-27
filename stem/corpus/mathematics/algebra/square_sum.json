@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_college_algebra_2e",
+          "source_id": "openstax_college_algebra_2e_reference",
           "locator": "https://openstax.org/books/college-algebra-2e/pages/1-4-polynomials"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "a1adb6f089fd340c7047117a038476baec9a20bfe3180669c9e1aa8b56e95890",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Distribute (a+b)(a+b)=a^2+ab+ba+b^2. Commutativity combines the middle terms to 2ab.",
+          "Reference cross-check of the standard identity: https://openstax.org/books/college-algebra-2e/pages/1-4-polynomials. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

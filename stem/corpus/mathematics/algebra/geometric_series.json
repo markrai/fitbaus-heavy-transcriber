@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "28d0c6edca0a3f30b50c7f61287130e9413bf0c3af780e8bc51310a1282136d6",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Write S=1+r+...+r^n. Subtract rS from S to cancel all intermediate powers, obtaining (1-r)S=1-r^(n+1). Divide by 1-r, which is nonzero.",
+          "Reference cross-check of the standard identity: https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
@@ -53,15 +59,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "b1b9dd144d4cece0c8cb27f7e15d9c3513ad98434487d5ea02dc814d9d97d88a",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The finite identity gives S_n=(1-r^(n+1))/(1-r). Since |r|<1, r^(n+1) tends to zero, including for complex r. The denominator is nonzero and the limit is 1/(1-r).",
+          "Reference cross-check of the standard identity: https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

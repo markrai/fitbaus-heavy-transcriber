@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
       "conditions": [
-        "Roots of ax^2+bx+c=0 with a nonzero; for real coefficients, real roots require nonnegative discriminant; complex roots are allowed otherwise."
+        "Roots of ax^2+bx+c=0 over the complex numbers with a nonzero. For real coefficients, real roots exist exactly when the discriminant is nonnegative."
       ],
       "symbols": {
         "x": "Root",
@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#algebra.quadratic"
+        },
+        {
+          "source_id": "openstax_college_algebra_2e_reference",
+          "locator": "https://openstax.org/books/college-algebra-2e/pages/2-5-quadratic-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "1980d9879849edabddc98d63540f73c9f8d9b54ec3c2d58bb57534e64a419244",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Multiply ax^2+bx+c=0 by 4a, add b^2 and complete the square: (2ax+b)^2=b^2-4ac. Take both square roots over the complex numbers and divide by 2a. For real coefficients the sign of the discriminant determines whether the roots are real.",
+          "Reference cross-check of the standard identity: https://openstax.org/books/college-algebra-2e/pages/2-5-quadratic-equations. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
