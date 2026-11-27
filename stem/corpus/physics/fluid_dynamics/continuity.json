@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.continuity",
+  "name": "Incompressible flow continuity",
+  "discipline": "physics",
+  "subject": "fluid_dynamics",
+  "tags": [
+    "fluids"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "A_1v_1=A_2v_2",
+      "conditions": [
+        "Steady incompressible flow in a single conduit with no leaks or branches; speeds are cross-section-averaged normal speeds."
+      ],
+      "symbols": {
+        "A_1": "First cross-sectional area",
+        "A_2": "Second cross-sectional area",
+        "v_1": "First mean flow speed",
+        "v_2": "Second mean flow speed"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/14-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.work_energy",
+  "name": "Work-energy theorem",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "energy"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "W_{\\mathrm{net}}=\\Delta K",
+      "conditions": [
+        "Classical particle mechanics in an inertial frame; net work by all forces and change in translational kinetic energy."
+      ],
+      "symbols": {
+        "W_{\\mathrm{net}}": "Total work by all forces",
+        "\\Delta K": "Final minus initial kinetic energy"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/7-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

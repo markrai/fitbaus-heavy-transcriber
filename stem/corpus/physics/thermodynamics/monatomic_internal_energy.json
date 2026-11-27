@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.monatomic_internal_energy",
+  "name": "Monatomic ideal gas internal energy",
+  "discipline": "physics",
+  "subject": "thermodynamics",
+  "tags": [
+    "gases"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "U=\\frac{3}{2}nRT",
+      "conditions": [
+        "Classical monatomic ideal gas in equilibrium with only translational degrees of freedom contributing; internal energy reference chosen accordingly."
+      ],
+      "symbols": {
+        "U": "Internal energy",
+        "n": "Amount of substance in moles",
+        "R": "Molar gas constant",
+        "T": "Absolute temperature"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

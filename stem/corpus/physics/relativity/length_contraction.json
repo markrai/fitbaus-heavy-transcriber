@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.length_contraction",
+  "name": "Special-relativistic length contraction",
+  "discipline": "physics",
+  "subject": "relativity",
+  "tags": [
+    "special_relativity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "L=\\frac{L_0}{\\gamma}",
+      "conditions": [
+        "Inertially moving rod measured along motion with endpoints simultaneous in observing frame; gamma=(1-v^2/c^2)^(-1/2); relative speed below c."
+      ],
+      "symbols": {
+        "L": "Length in observing frame",
+        "L_0": "Proper length",
+        "\\gamma": "Lorentz factor"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/5-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

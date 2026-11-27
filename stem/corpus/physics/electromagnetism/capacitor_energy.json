@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.capacitor_energy",
+  "name": "Energy stored in a capacitor",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "circuits"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "U=\\frac{1}{2}CV^2",
+      "conditions": [
+        "Linear ideal capacitor with constant capacitance; energy zero at zero charge."
+      ],
+      "symbols": {
+        "U": "Stored electrostatic energy",
+        "C": "Capacitance",
+        "V": "Voltage across capacitor"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/8-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.capacitance",
+  "name": "Capacitance",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "circuits"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "C=\\frac{Q}{V}",
+      "conditions": [
+        "Linear two-conductor capacitor with fixed geometry and dielectric; nonzero potential difference; Q is signed charge of conductor whose potential defines V."
+      ],
+      "symbols": {
+        "C": "Capacitance",
+        "Q": "Charge on reference conductor",
+        "V": "Potential of reference conductor minus other conductor"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/8-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

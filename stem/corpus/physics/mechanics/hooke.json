@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.hooke",
+  "name": "Hooke's law for a spring",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "oscillations"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "F=-kx",
+      "conditions": [
+        "Ideal linear spring within its elastic range; displacement measured from equilibrium along spring axis."
+      ],
+      "symbols": {
+        "F": "Restoring force component",
+        "k": "Positive spring constant",
+        "x": "Signed displacement from equilibrium"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/15-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

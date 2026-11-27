@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.thermal_expansion",
+  "name": "Linear thermal expansion",
+  "discipline": "physics",
+  "subject": "thermodynamics",
+  "tags": [
+    "materials"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\Delta L=\\alpha L_0\\Delta T",
+      "conditions": [
+        "Free unconstrained expansion along a direction; small relative length change and approximately constant linear expansion coefficient."
+      ],
+      "symbols": {
+        "\\Delta L": "Length change",
+        "\\alpha": "Linear thermal expansion coefficient",
+        "L_0": "Initial length",
+        "\\Delta T": "Temperature change"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/1-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

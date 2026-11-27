@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.coulomb",
+  "name": "Coulomb's law",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "electrostatics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "F=\\frac{1}{4\\pi\\epsilon_0}\\frac{|q_1q_2|}{r^2}",
+      "conditions": [
+        "Force magnitude between stationary point charges in vacuum, SI units; separation positive. Like signs repel, opposite signs attract."
+      ],
+      "symbols": {
+        "F": "Electrostatic force magnitude",
+        "\\epsilon_0": "Vacuum permittivity",
+        "\\pi": "Pi",
+        "q_1": "First charge",
+        "q_2": "Second charge",
+        "r": "Separation"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/5-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.electric_field",
+  "name": "Electric field definition",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "electrostatics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\mathbf E=\\frac{\\mathbf F}{q}",
+      "conditions": [
+        "Force on a nonzero sufficiently small test charge at rest so magnetic force is absent and source distribution is not perturbed."
+      ],
+      "symbols": {
+        "\\mathbf E": "Electric field vector",
+        "\\mathbf F": "Electric force on test charge",
+        "q": "Signed test charge"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/5-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

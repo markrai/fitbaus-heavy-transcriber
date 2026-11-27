@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.spring_period",
+  "name": "Mass-spring oscillation period",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "oscillations"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "T=2\\pi\\sqrt{\\frac{m}{k}}",
+      "conditions": [
+        "Undamped ideal linear oscillator with positive mass and spring constant."
+      ],
+      "symbols": {
+        "T": "Oscillation period",
+        "m": "Oscillating mass",
+        "k": "Spring constant",
+        "\\pi": "Pi"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/15-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

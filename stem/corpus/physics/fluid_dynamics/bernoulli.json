@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.bernoulli",
+  "name": "Bernoulli's equation",
+  "discipline": "physics",
+  "subject": "fluid_dynamics",
+  "tags": [
+    "fluids"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "p+\\frac{1}{2}\\rho v^2+\\rho gh=\\mathrm{constant}",
+      "conditions": [
+        "Steady inviscid incompressible flow along one streamline, uniform gravity, no energy added or removed between the points."
+      ],
+      "symbols": {
+        "p": "Static pressure",
+        "\\rho": "Fluid mass density",
+        "v": "Local flow speed",
+        "g": "Gravitational acceleration magnitude",
+        "h": "Elevation relative to a datum"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/14-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.work",
+  "name": "Mechanical work by a constant force",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "energy"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "W=Fd\\cos\\theta",
+      "conditions": [
+        "Constant force acting during a straight displacement; theta is the angle between force and displacement."
+      ],
+      "symbols": {
+        "W": "Work done by the force",
+        "F": "Force magnitude",
+        "d": "Displacement magnitude",
+        "\\theta": "Angle between force and displacement"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/7-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

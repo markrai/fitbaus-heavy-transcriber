@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.de_broglie",
+  "name": "De Broglie wavelength",
+  "discipline": "physics",
+  "subject": "quantum_mechanics",
+  "tags": [
+    "matter_waves"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\lambda=\\frac{h}{p}",
+      "conditions": [
+        "Momentum eigenstate or well-defined nonzero momentum magnitude in a specified frame; wavelength measured in same frame."
+      ],
+      "symbols": {
+        "\\lambda": "De Broglie wavelength",
+        "h": "Planck constant",
+        "p": "Momentum magnitude"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
