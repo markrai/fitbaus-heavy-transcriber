@@ -14,6 +14,19 @@ COMMANDS = frozenset({
     "hbar", "pm", "mp", "times", "cdot", "int", "sum", "lim", "infty",
     "to", "sin", "cos", "tan", "log", "ln", "partial", "leq", "geq",
     "neq", "approx", "propto", "left", "right",
+    "Gamma", "Lambda", "Leftrightarrow", "Phi", "Pi", "Psi", "Rightarrow",
+    "Theta", "Upsilon", "Xi", "arccos", "arcsin", "arctan", "ast",
+    "cap", "cdots", "chi", "circ", "cong", "cosh", "cot",
+    "csc", "cup", "det", "div", "emptyset", "epsilon", "equiv",
+    "eta", "exists", "exp", "forall", "gcd", "gg", "in",
+    "inf", "iota", "kappa", "land", "ldots", "leftarrow", "leftrightarrow",
+    "ll", "lor", "mathbb", "mathbf", "mathcal", "mathfrak", "mathit",
+    "mathrm", "mathsf", "mathtt", "max", "mid", "min", "nabla",
+    "neg", "ni", "notin", "nu", "oint", "oplus", "otimes",
+    "parallel", "perp", "phi", "prod", "psi", "sec", "sim",
+    "simeq", "sinh", "subset", "subseteq", "sup", "supset", "supseteq",
+    "tanh", "tau", "upsilon", "varepsilon", "varphi", "varrho", "varsigma",
+    "vartheta", "xi", "zeta",
 })
 
 
