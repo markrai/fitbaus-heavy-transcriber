@@ -16,7 +16,7 @@ QUERY = """SELECT DISTINCT ?item ?itemLabel ?formula WHERE {
   ?item wdt:P2534 ?formula.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 } ORDER BY ?item ?formula"""
-MAX_BYTES = 16 * 1024 * 1024
+MAX_BYTES = 128 * 1024 * 1024
 MAX_ATTEMPTS = 3
 MAX_TOTAL_WAIT = 120
 USER_AGENT = "FitBausHeavyTranscriber/1.0 (https://github.com/markrai/fitbaus-heavy-transcriber)"
@@ -74,7 +74,7 @@ def fetch_snapshot():
 
 def store_snapshot(output, raw, *, acquisition):
     if len(raw) > MAX_BYTES:
-        raise AcquisitionError("Corpus snapshot exceeds limit")
+        raise AcquisitionError(f"Corpus snapshot exceeds {MAX_BYTES // (1024 * 1024)} MiB limit; use a smaller query export.")
     try:
         payload = json.loads(raw)
         bindings = payload["results"]["bindings"]

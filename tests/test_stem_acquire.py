@@ -75,6 +75,17 @@ class StemAcquisitionTests(unittest.TestCase):
             self.assertEqual((output / first["sha256"] / "snapshot.json").read_bytes(), RAW)
         opener.assert_not_called()
 
+    @patch("stem.acquire.MAX_BYTES", len(RAW))
+    def test_snapshot_size_boundary(self):
+        with tempfile.TemporaryDirectory() as root:
+            output = Path(root) / "candidates"
+            self.assertEqual(acquire.store_snapshot(output, RAW, acquisition="local_export")["rows"], 1)
+            with self.assertRaisesRegex(acquire.AcquisitionError, "exceeds"):
+                acquire.store_snapshot(output, RAW + b" ", acquisition="local_export")
+
+    def test_full_corpus_limit(self):
+        self.assertEqual(acquire.MAX_BYTES, 128 * 1024 * 1024)
+
     def test_invalid_snapshot_writes_nothing(self):
         with tempfile.TemporaryDirectory() as root:
             output = Path(root) / "candidates"

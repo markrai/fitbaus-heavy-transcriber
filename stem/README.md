@@ -17,7 +17,7 @@ This explicit online command captures a Wikidata P2534 query response with its e
 
 If Wikidata responds with HTTP 429 or 503, the acquisition command respects Retry-After and uses bounded retries (at most three attempts and 120 seconds of total retry sleep). Longer requested cooldowns stop the command rather than retrying prematurely. If no Retry-After is provided, the fallback delay starts at 60 seconds. Do not repeatedly restart the command while throttled.
 
-Alternatively, open the [Wikidata Query Service](https://query.wikidata.org/) after the cooldown, run the query below, and download the results as SPARQL JSON:
+Alternatively, open the [Wikidata Query Service](https://query.wikidata.org/) after the cooldown, run the query below, and download the results using **JSON file (verbose)**, which retains the SPARQL results bindings. Online and local snapshots are bounded to 128 MiB; this is an offline workstation acquisition limit, not a runtime dictionary or transcript limit.
 
     SELECT DISTINCT ?item ?itemLabel ?formula WHERE {
       ?item wdt:P2534 ?formula.
