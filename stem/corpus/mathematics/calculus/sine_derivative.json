@@ -21,15 +21,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f66a966c49f2f08fb9981530e00a0fe6d16587d596f77c804c8ee8640e303010",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Use sin(x+h)=sin(x)cos(h)+cos(x)sin(h). Divide the difference by h and apply sin(h)/h=1 and (cos(h)-1)/h=0 in the limit, giving cos(x).",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

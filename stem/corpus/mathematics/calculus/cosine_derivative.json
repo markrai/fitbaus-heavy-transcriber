@@ -21,15 +21,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f7fa5ea9f302160744279e7091a20a97f872f5a02685fd7a65d077a03f46bfd3",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Use cos(x+h)=cos(x)cos(h)-sin(x)sin(h). Divide the difference by h. The limits sin(h)/h=1 and (cos(h)-1)/h=0 in radians give -sin(x). The second limit follows from cos(h)-1=-2sin(h/2)^2.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

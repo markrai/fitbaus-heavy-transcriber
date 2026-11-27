@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "f(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^n",
       "conditions": [
-        "f analytic at a; x in the interval of convergence where the series represents f; f^(0)=f."
+        "f is real analytic on a connected open real interval containing a and x. The distance |x-a| is strictly less than the Taylor series radius of convergence at a; boundary equality is not asserted. The order-zero derivative is f itself."
       ],
       "symbols": {
         "f": "Analytic function",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f02717d8c8dc4f88fdfccc56f09a89da9955d8791907c6945bd193c8bdfe39e6",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Real analyticity near a gives a convergent power series equal to f near a. Termwise differentiation identifies coefficient n as f^(n)(a)/n!. The series defines a real-analytic function throughout its open convergence interval. On its intersection with the stated connected interval of analyticity, the real-analytic identity theorem extends equality from the neighborhood of a to x. No boundary equality is asserted.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

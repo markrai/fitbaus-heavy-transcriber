@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a)",
       "conditions": [
-        "f continuous on [a,b], a less than b, and F an antiderivative on the interval."
+        "Real f continuous on [a,b], a<b; F continuous on [a,b] and differentiable on (a,b) with F'=f there."
       ],
       "symbols": {
         "a": "Lower endpoint",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "7190091d97d8b17779161f7308d2a313a5c90e57fae82748d6db1a3865f27ecf",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Define G(x) as the integral of f from a to x. Continuity implies G'=f in the interior by the accumulation derivative theorem. Thus F-G has derivative zero and is constant by the mean-value theorem. Evaluate at a and b, using G(a)=0 and continuity at both endpoints.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
@@ -57,15 +63,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "0ed5bfe3997a829a4598fc4fca179da55da70c56e830d41bb6d21447f8f78fd2",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For nonzero h, the difference quotient of the accumulation function is the oriented integral of f from x to x+h divided by h. Subtract f(x); the absolute error is bounded by the supremum of |f(t)-f(x)| on the segment. Continuity makes that bound tend to zero for either sign of h.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

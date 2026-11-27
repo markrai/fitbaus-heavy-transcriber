@@ -22,15 +22,25 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
+        },
+        {
+          "source_id": "openstax_calculus_1_reference",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-9-derivatives-of-exponential-and-logarithmic-functions"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "01cd94bcf112323d9958f15f8dea32959667b23c72b0f8d254c2fb8bfa559a81",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For x>0, define x^n=exp(n ln x). Differentiate using the chain rule: exp(n ln x)n/x=nx^(n-1). This proof includes n=0 since x is strictly positive.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules; https://openstax.org/books/calculus-volume-1/pages/3-9-derivatives-of-exponential-and-logarithmic-functions. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

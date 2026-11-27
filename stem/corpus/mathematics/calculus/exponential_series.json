@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "aa1d8869184272e31150554cf725f09bf23cbe682b120fedf8039893d184ce5a",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Every derivative of exp(x) is exp(x), with value one at zero. The Taylor remainder on the segment joining zero and x is at most exp(|x|)|x|^(N+1)/(N+1)!, tending to zero for every fixed real x.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

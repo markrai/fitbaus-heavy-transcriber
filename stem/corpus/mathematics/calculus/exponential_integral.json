@@ -27,13 +27,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#calculus.exponential_integral"
+        },
+        {
+          "source_id": "openstax_calculus_2_reference",
+          "locator": "https://openstax.org/books/calculus-volume-2/pages/3-7-improper-integrals"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "9c56167258688a7dfd08eab7c146e473d62cc1b076ee8ff8fe3308ff241fa977",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For finite R>0, the antiderivative -exp(-x) gives the integral from zero to R as 1-exp(-R). Take R to positive infinity; exp(-R) tends to zero. This proves convergence and the value one.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-2/pages/3-7-improper-integrals. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

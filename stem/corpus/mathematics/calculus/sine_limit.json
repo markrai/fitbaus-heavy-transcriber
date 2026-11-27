@@ -25,13 +25,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#calculus.sine_limit"
+        },
+        {
+          "source_id": "openstax_calculus_1_reference",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-5-derivatives-of-trigonometric-functions"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f3fb2065e2b571c4018c873608d38247f3164a8d6769bdaf4d7ba84d91a2e197",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For 0<x<pi/2 in radians, comparing areas of the inscribed triangle, unit-circle sector and tangent triangle gives sin(x)<x<tan(x). Hence cos(x)<sin(x)/x<1. The squeeze theorem yields the right limit one, and evenness of sin(x)/x gives the same left limit.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-5-derivatives-of-trigonometric-functions. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

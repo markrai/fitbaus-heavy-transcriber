@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\int u\\,dv=uv-\\int v\\,du",
       "conditions": [
-        "u and v continuously differentiable on an interval; indefinite integrals interpreted up to additive constants."
+        "Real u and v continuously differentiable on the same interval; du=u' dx and dv=v' dx for a shared real variable x. Indefinite integrals are interpreted up to an additive constant."
       ],
       "symbols": {
         "u": "First function",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/3-1-integration-by-parts"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "ecfcbc343731babdbaacea6fff9d64f6a0374fa62668e8c87387c515f2836c5c",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The product rule gives d(uv)=u dv+v du. Rearrange and integrate on the interval. Differentiating the right-hand side recovers u v', so the two antiderivatives differ by at most a constant.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-2/pages/3-1-integration-by-parts. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

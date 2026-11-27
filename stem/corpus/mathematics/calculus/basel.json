@@ -26,13 +26,27 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#calculus.basel"
+        },
+        {
+          "source_id": "nist_dlmf_reference",
+          "locator": "https://dlmf.nist.gov/25.2.E1"
+        },
+        {
+          "source_id": "nist_dlmf_reference",
+          "locator": "https://dlmf.nist.gov/25.6.E1"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "51da8db613c946be4d7e2c648b0eb124535908e352f56f6c119f130c601a0fec",
+        "method": [
+          "reference_evaluation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The series converges by the integral comparison with 1/x^2. NIST DLMF 25.2.1 identifies its sum with zeta(2) because Re(2)>1; DLMF 25.6.1 gives zeta(2)=pi^2/6. This is an exact reference-based verification, not a new proof of the zeta evaluation.",
+          "Reference cross-check: https://dlmf.nist.gov/25.2.E1; https://dlmf.nist.gov/25.6.E1. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

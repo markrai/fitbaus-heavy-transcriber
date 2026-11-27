@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_2",
+          "source_id": "openstax_calculus_2_reference",
           "locator": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "4d5f761f473009373927d9b39831fa371f4bec99a428b9a767b519042f749702",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The derivatives of sine cycle through sine, cosine, negative sine and negative cosine. At zero the even derivatives vanish and the derivative of order 2n+1 is (-1)^n. Taylor's remainder is bounded by |x|^(N+1)/(N+1)! for real x and tends to zero.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e0275737e889d65f6ecff54a98db2a9078722bbb3eddd9a4da52437b9b14aad7",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Write the quotient difference over v(x+h)v(x). Its numerator is v(x)(u(x+h)-u(x))-u(x)(v(x+h)-v(x)). Divide by h and take the limit using continuity and v(x) nonzero; the result is (u'v-uv')/v^2.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
