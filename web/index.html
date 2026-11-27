@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FitBaus Heavy Transcriber</title>
+<link rel="stylesheet" href="/style.css">
+<script defer src="/app.js"></script>
+</head>
+<body>
+<main>
+<header><div class="brand">FITBAUS / GPU WORKBENCH</div><h1>Heavy Transcriber</h1><p>Prepare selected audiobooks on your GPU and publish their transcripts to VEGA.</p></header>
+<div class="details"><div><small>MODEL</small><strong>Whisper Large-v3</strong></div><div><small>COMPUTE</small><strong>CUDA · FP16 · Beam 5</strong></div><div><small>TRANSFER</small><strong>VEGA · SSH</strong></div></div>
+<section>
+<div class="section-header"><h2>Audiobook library</h2><button id="refresh" class="secondary">Refresh</button></div>
+<label class="search"><span>Find a book</span><input id="search" type="search" placeholder="Search title or author"></label>
+<div id="books" aria-live="polite"><p>Loading library…</p></div>
+<div class="actions"><span id="count">0 selected</span><button id="start" disabled>Transcribe selected</button></div>
+<p id="error" role="alert"></p>
+</section>
+<section><div class="section-header"><h2>Current batch</h2><span id="batch-state">Idle</span></div><div id="jobs"><p class="muted">Select books to get started.</p></div></section>
+<footer>Audio stays on your local network. Only completed, validated transcripts are imported.</footer>
+</main>
+</body>
+</html>
