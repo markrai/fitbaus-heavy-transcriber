@@ -40,7 +40,10 @@ class MathMLTests(unittest.TestCase):
     def test_rejects_unsupported_or_semantically_significant_markup(self):
         cases = (
             "<mfrac><mi>x</mi></mfrac>",
-            "<mi mathvariant='bold'>x</mi>",
+            "<mi mathvariant='bold-italic'>x</mi>",
+            "<mi mathvariant='normal'>α</mi>",
+            "<mi mathvariant='double-struck'>a</mi>",
+            "<mi mathvariant='bold'>xy</mi>",
             "<mfrac linethickness='0'><mi>x</mi><mi>y</mi></mfrac>",
             "<mstyle scriptlevel='1'><mi>x</mi></mstyle>",
             "<mtable><mtr><mtd><mi>x</mi></mtd></mtr></mtable>",
@@ -54,6 +57,28 @@ class MathMLTests(unittest.TestCase):
         for case in cases:
             with self.subTest(case=case), self.assertRaises(ConversionError):
                 convert_mathml(math(case))
+
+    def test_supported_styles_are_preserved(self):
+        cases = [
+            ("<mi mathvariant='bold'>x</mi>", r"\mathbf{x}"),
+            ("<mi mathvariant='normal'>Re</mi>", r"\mathrm{Re}"),
+            ("<mi mathvariant='normal'>sin</mi>", r"\sin"),
+            ("<mi mathvariant='double-struck'>R</mi>", r"\mathbb{R}"),
+            ("<mi mathvariant='script'>L</mi>", r"\mathcal{L}"),
+            ("<mi mathvariant='fraktur'>g</mi>", r"\mathfrak{g}"),
+            ("<mi data-mjx-texclass='ORD'>x</mi>", "x"),
+        ]
+        for body, expected in cases:
+            with self.subTest(body=body):
+                self.assertEqual(convert_mathml(math(body)), expected)
+
+    def test_extended_symbols_and_functions(self):
+        self.assertEqual(convert_mathml(math("<mi>ε</mi><mo>∈</mo><mi>Γ</mi>")),
+                         r"\varepsilon\in\Gamma")
+        self.assertEqual(convert_mathml(math("<mi>exp</mi><mo>(</mo><mi>ξ</mi><mo>)</mo>")),
+                         r"\exp(\xi)")
+        self.assertEqual(convert_mathml(math("<mi>A</mi><mo>⊆</mo><mi>B</mi>")),
+                         r"A\subseteq B")
 
     def test_xml_security_and_bounds(self):
         for source in (

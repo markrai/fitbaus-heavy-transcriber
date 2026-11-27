@@ -56,6 +56,15 @@ This stage reads the verified original snapshot, not the potentially stale conve
 
 The new output directory contains named.jsonl (screened candidates with review flags), rejected-named.jsonl (every named conversion failure, with its reason), deferred.jsonl (source row references for all other records), prioritization.json (counts, converter version and ranked rejection reasons) and prioritization.md (human-readable summary). Every source row belongs to exactly one partition. Original formulas remain in the immutable source snapshot; source digest, formula digest and row index retain provenance. Exact LaTeX duplicates are flagged but never silently merged. Name and entity collision flags cover screened named candidates only. No source formula or alias is admitted, and no GPU, model, network or third-party dependency is required. A new output directory is required after converter upgrades.
 
+## Prioritized MathML expansion (S.0E.1)
+
+Converter mathml-subset-v2 adds explicit ASCII identifier style mappings (including upright, bold, blackboard bold and script where supported), additional Greek symbols, operators and named functions. Unknown styles and metadata remain rejected. The lexical allowlist has been extended only for explicit commands emitted by the converter; this is still not a renderer security boundary. Complex tables, under/over notation, arbitrary text and spacing remain deferred. Existing candidates must be regenerated after converter changes.
+
+    python -m stem.prioritize work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v2
+    python -m stem.diagnose work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v2/diagnostics.json
+
+Diagnostics inventories bounded attribute and token value frequencies across parsed, rejected named MathML records. Counts describe all encountered values in those rows, not exclusively the offending value. The first-rejection summary remains distinct. The report is deterministic, offline, and review-only. A new output path is required.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.

@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 from .dictionary import validate_latex
 
-VERSION = "mathml-subset-v1"
+VERSION = "mathml-subset-v2"
 NS = "{http://www.w3.org/1998/Math/MathML}"
 MAX_XML_BYTES = 65536
 MAX_NODES = 1024
@@ -14,6 +14,31 @@ GREEK = {
     "λ": r"\lambda", "θ": r"\theta", "σ": r"\sigma", "μ": r"\mu",
     "ρ": r"\rho", "ω": r"\omega", "π": r"\pi", "Δ": r"\Delta",
     "Σ": r"\Sigma", "Ω": r"\Omega", "ℏ": r"\hbar",
+    "ε": r"\varepsilon",
+    "ζ": r"\zeta",
+    "η": r"\eta",
+    "ι": r"\iota",
+    "κ": r"\kappa",
+    "ν": r"\nu",
+    "ξ": r"\xi",
+    "τ": r"\tau",
+    "υ": r"\upsilon",
+    "φ": r"\varphi",
+    "χ": r"\chi",
+    "ψ": r"\psi",
+    "ϵ": r"\epsilon",
+    "ϑ": r"\vartheta",
+    "ϕ": r"\phi",
+    "ϱ": r"\varrho",
+    "ς": r"\varsigma",
+    "Γ": r"\Gamma",
+    "Θ": r"\Theta",
+    "Λ": r"\Lambda",
+    "Ξ": r"\Xi",
+    "Π": r"\Pi",
+    "Υ": r"\Upsilon",
+    "Φ": r"\Phi",
+    "Ψ": r"\Psi",
 }
 OPERATORS = {
     "−": "-", "×": r"\times", "·": r"\cdot", "⋅": r"\cdot",
@@ -21,8 +46,57 @@ OPERATORS = {
     "≠": r"\neq", "≈": r"\approx", "∝": r"\propto", "→": r"\to",
     "∞": r"\infty", "∂": r"\partial", "∫": r"\int", "∑": r"\sum",
     "\u2062": r"\cdot",
+    "÷": r"\div",
+    "∗": r"\ast",
+    "∏": r"\prod",
+    "∮": r"\oint",
+    "∇": r"\nabla",
+    "∈": r"\in",
+    "∉": r"\notin",
+    "∋": r"\ni",
+    "∅": r"\emptyset",
+    "∪": r"\cup",
+    "∩": r"\cap",
+    "⊂": r"\subset",
+    "⊃": r"\supset",
+    "⊆": r"\subseteq",
+    "⊇": r"\supseteq",
+    "≡": r"\equiv",
+    "∼": r"\sim",
+    "≃": r"\simeq",
+    "≅": r"\cong",
+    "≪": r"\ll",
+    "≫": r"\gg",
+    "↔": r"\leftrightarrow",
+    "←": r"\leftarrow",
+    "⇒": r"\Rightarrow",
+    "⇔": r"\Leftrightarrow",
+    "∀": r"\forall",
+    "∃": r"\exists",
+    "¬": r"\neg",
+    "∧": r"\land",
+    "∨": r"\lor",
+    "⊗": r"\otimes",
+    "⊕": r"\oplus",
+    "∘": r"\circ",
+    "⊥": r"\perp",
+    "∥": r"\parallel",
+    "…": r"\ldots",
+    "⋯": r"\cdots",
+    "∣": r"\mid",
 }
-FUNCTIONS = {"sin", "cos", "tan", "log", "ln", "lim"}
+FUNCTIONS = {"sin", "cos", "tan", "log", "ln", "lim",
+             "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "cot", "sec", "csc", "exp", "min", "max", "sup", "inf", "det", "gcd"}
+IDENTIFIER_STYLES = {
+    "normal": "mathrm",
+    "bold": "mathbf",
+    "italic": "mathit",
+    "double-struck": "mathbb",
+    "script": "mathcal",
+    "fraktur": "mathfrak",
+    "sans-serif": "mathsf",
+    "monospace": "mathtt",
+}
 WRAPPERS = {"math", "mrow", "mstyle"}
 ARITY = {"mfrac": 2, "msup": 2, "msub": 2, "msubsup": 3, "mroot": 2}
 
@@ -68,7 +142,9 @@ def attributes(node, tag):
             continue
         if tag in {"math", "mstyle"} and key == "scriptlevel" and value == "0":
             continue
-        if tag == "mrow" and key == "data-mjx-texclass" and value == "ORD":
+        if tag in {"mrow", "mi"} and key == "data-mjx-texclass" and value == "ORD":
+            continue
+        if tag == "mi" and key == "mathvariant" and value in IDENTIFIER_STYLES:
             continue
         if tag == "mo" and key == "stretchy" and value == "false":
             continue
@@ -97,6 +173,17 @@ def token(node, tag):
     if tag == "mn" and re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", value):
         return value
     if tag == "mi":
+        variant = node.get("mathvariant")
+        if variant is not None:
+            if variant == "normal" and value in FUNCTIONS:
+                return "\\" + value
+            if not re.fullmatch(r"[A-Za-z]+", value):
+                raise ConversionError("unsupported_styled_identifier")
+            if variant != "normal" and len(value) != 1:
+                raise ConversionError("unsupported_styled_identifier")
+            if variant in {"double-struck", "script"} and not re.fullmatch(r"[A-Z]", value):
+                raise ConversionError("unsupported_styled_identifier")
+            return "\\" + IDENTIFIER_STYLES[variant] + "{" + value + "}"
         if value in GREEK:
             return GREEK[value]
         if value in FUNCTIONS:
@@ -106,6 +193,8 @@ def token(node, tag):
         if value == "∞":
             return r"\infty"
     if tag == "mo":
+        if value in GREEK:
+            return GREEK[value]
         if value in OPERATORS:
             return OPERATORS[value]
         if re.fullmatch(r"[=+\-*/(),.<>|!:]", value):
