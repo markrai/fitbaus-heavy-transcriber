@@ -59,6 +59,7 @@ def diagnose(directory):
         "converter": VERSION,
         "rejected_named_mathml_rows": examined,
         "parsed_rejected_rows": parsed,
+        "source_replacement_character_rows": reasons["source_replacement_character"],
         "first_rejection_reasons": counts(reasons),
         "attribute_values": {k: counts(v) for k, v in sorted(attributes.items())},
         "token_values": {k: counts(v) for k, v in sorted(tokens.items())},

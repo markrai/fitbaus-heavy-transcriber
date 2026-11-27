@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 from .dictionary import validate_latex
 
-VERSION = "mathml-subset-v2"
+VERSION = "mathml-subset-v3"
 NS = "{http://www.w3.org/1998/Math/MathML}"
 MAX_XML_BYTES = 65536
 MAX_NODES = 1024
@@ -84,9 +84,64 @@ OPERATORS = {
     "…": r"\ldots",
     "⋯": r"\cdots",
     "∣": r"\mid",
+    "[": r"\lbrack",
+    "]": r"\rbrack",
+    "{": r"\lbrace",
+    "}": r"\rbrace",
+    "⟨": r"\langle",
+    "⟩": r"\rangle",
+    "‖": r"\Vert",
+    "⌊": r"\lfloor",
+    "⌋": r"\rfloor",
+    "⌈": r"\lceil",
+    "⌉": r"\rceil",
+    "⟹": r"\Longrightarrow",
+    "⟺": r"\Longleftrightarrow",
+    "↦": r"\mapsto",
+    "∖": r"\setminus",
+    "⋃": r"\bigcup",
+    "⋂": r"\bigcap",
+    "⋆": r"\star",
+    "†": r"\dagger",
+    "↑": r"\uparrow",
+    "↓": r"\downarrow",
+    "⋮": r"\vdots",
+    "⋱": r"\ddots",
+    "∄": r"\nexists",
+    "⊤": r"\top",
+    "⊖": r"\ominus",
+    "∬": r"\iint",
+    "∭": r"\iiint",
+    "⊢": r"\vdash",
+    "⊨": r"\models",
+    "∴": r"\therefore",
+    "∵": r"\because",
+    "∉": r"\notin",
+    "⊊": r"\subsetneq",
+    "≺": r"\prec",
+    "≻": r"\succ",
+    "⪯": r"\preceq",
+    "⪰": r"\succeq",
+    "⪽": r"\leqslant",
+    "⪾": r"\geqslant",
+    "ℓ": r"\ell",
+    "ℵ": r"\aleph",
 }
 FUNCTIONS = {"sin", "cos", "tan", "log", "ln", "lim",
              "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "cot", "sec", "csc", "exp", "min", "max", "sup", "inf", "det", "gcd"}
+FUNCTIONS.update({"deg", "dim", "hom", "ker", "arg", "Pr", "lg"})
+BLACKBOARD = {"ℝ": "R", "ℤ": "Z", "ℂ": "C", "ℕ": "N", "ℙ": "P", "ℚ": "Q", "ℍ": "H"}
+TEX_CLASSES = {"ORD": "mathord", "INNER": "mathinner", "OPEN": "mathopen",
+               "CLOSE": "mathclose", "OP": "mathop", "REL": "mathrel",
+               "BIN": "mathbin", "PUNCT": "mathpunct"}
+SPACES = {"0.167em": r"\,", "-0.167em": r"\!", "0.278em": r"\;",
+          "1em": r"\quad", "2em": r"\qquad", "0.333em": r"\,\,",
+          "0.444em": r"\;\,"}
+ACCENTS = {"¯": "bar", "‾": "overline", "̂": "hat", "˙": "dot",
+           "¨": "ddot", "⃗": "vec"}
+LIMIT_OPERATORS = {r"\sum", r"\prod", r"\bigcup", r"\bigcap", r"\int",
+                   r"\oint", r"\iint", r"\iiint", r"\lim", r"\min",
+                   r"\max", r"\sup", r"\inf"}
 IDENTIFIER_STYLES = {
     "normal": "mathrm",
     "bold": "mathbf",
@@ -98,7 +153,8 @@ IDENTIFIER_STYLES = {
     "monospace": "mathtt",
 }
 WRAPPERS = {"math", "mrow", "mstyle"}
-ARITY = {"mfrac": 2, "msup": 2, "msub": 2, "msubsup": 3, "mroot": 2}
+ARITY = {"mfrac": 2, "msup": 2, "msub": 2, "msubsup": 3, "mroot": 2,
+         "mover": 2, "munder": 2, "munderover": 3}
 
 
 class ConversionError(ValueError):
@@ -130,6 +186,8 @@ def parse_mathml(source):
         if nodes > MAX_NODES or depth > MAX_DEPTH:
             raise ConversionError("xml_structure_limit")
         local_name(node.tag)
+        if any("\ufffd" in value for value in (node.text or "", node.tail or "", *node.attrib.values())):
+            raise ConversionError("source_replacement_character")
         stack.extend((child, depth + 1) for child in node)
     return root
 
@@ -142,11 +200,19 @@ def attributes(node, tag):
             continue
         if tag in {"math", "mstyle"} and key == "scriptlevel" and value == "0":
             continue
-        if tag in {"mrow", "mi"} and key == "data-mjx-texclass" and value == "ORD":
+        if tag in {"mrow", "mi", "mo"} and key == "data-mjx-texclass" and value in TEX_CLASSES:
             continue
         if tag == "mi" and key == "mathvariant" and value in IDENTIFIER_STYLES:
             continue
         if tag == "mo" and key == "stretchy" and value == "false":
+            continue
+        if tag == "mo" and key in {"lspace", "rspace"} and value in {"0", "0.278em", "2.5pt"}:
+            continue
+        if tag == "mo" and key == "movablelimits" and value == "false":
+            continue
+        if tag == "mspace" and key == "width" and value in SPACES:
+            continue
+        if tag == "mtext" and key == "mathvariant" and value == "normal":
             continue
         raise ConversionError("unsupported_attribute:" + tag + ":" + key)
 
@@ -172,8 +238,23 @@ def token(node, tag):
         raise ConversionError("empty_token")
     if tag == "mn" and re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", value):
         return value
+    if tag == "mtext":
+        if re.fullmatch(r"[A-Za-z0-9 .,():;!+/-]{1,128}", node.text or ""):
+            return r"\text{" + node.text + "}"
+        raise ConversionError("unsupported_text")
     if tag == "mi":
         variant = node.get("mathvariant")
+        if value in BLACKBOARD and variant in {None, "normal", "double-struck"}:
+            return r"\mathbb{" + BLACKBOARD[value] + "}"
+        if value in OPERATORS and variant is None:
+            return OPERATORS[value]
+        if node.get("data-mjx-texclass") == "OP" and variant in {None, "normal"}:
+            if value in FUNCTIONS:
+                return "\\" + value
+            if re.fullmatch(r"[A-Za-z]{1,32}", value):
+                return r"\operatorname{" + value + "}"
+        if value in {"ℓ", "ℵ"} and variant is None:
+            return OPERATORS[value]
         if variant is not None:
             if variant == "normal" and value in FUNCTIONS:
                 return "\\" + value
@@ -193,20 +274,55 @@ def token(node, tag):
         if value == "∞":
             return r"\infty"
     if tag == "mo":
+        if value in FUNCTIONS:
+            return "\\" + value
+        if value == ":=":
+            return ":="
         if value in GREEK:
             return GREEK[value]
         if value in OPERATORS:
             return OPERATORS[value]
-        if re.fullmatch(r"[=+\-*/(),.<>|!:]", value):
+        if re.fullmatch(r"[=+\-*/(),.<>|!:;]", value):
             return value
     raise ConversionError("unsupported_token:" + tag)
+
+
+def apply_tex_class(node, latex):
+    tex_class = node.get("data-mjx-texclass")
+    if tex_class in {None, "ORD"}:
+        return latex
+    if tex_class == "OP" and (latex in LIMIT_OPERATORS or latex.startswith(r"\operatorname{")
+                               or latex in {"\\" + name for name in FUNCTIONS}):
+        return latex
+    return "\\" + TEX_CLASSES[tex_class] + "{" + latex + "}"
+
+
+def wrapper_parts(node):
+    parts = []
+    children = list(node)
+    for index, child in enumerate(children):
+        if local_name(child.tag) == "mo" and (child.text or "").strip() == "\u2061":
+            attributes(child, "mo")
+            if len(child) or index == 0 or index + 1 == len(children):
+                raise ConversionError("ambiguous_function_application")
+            previous, following = children[index - 1], children[index + 1]
+            if (local_name(previous.tag) != "mi" or local_name(following.tag) != "mo"
+                    or (following.text or "").strip() != "("):
+                raise ConversionError("ambiguous_function_application")
+            continue
+        parts.append(render(child))
+    return parts
 
 
 def render(node):
     tag = local_name(node.tag)
     attributes(node, tag)
-    if tag in {"mi", "mn", "mo"}:
-        return token(node, tag)
+    if tag in {"mi", "mn", "mo", "mtext"}:
+        return apply_tex_class(node, token(node, tag))
+    if tag == "mspace":
+        if len(node) or (node.text or "").strip() or node.get("width") not in SPACES:
+            raise ConversionError("unsupported_space")
+        return SPACES[node.get("width")]
     if tag not in WRAPPERS and tag not in ARITY and tag != "msqrt":
         raise ConversionError("unsupported_element:" + tag)
     if (node.text or "").strip() or any((child.tail or "").strip() for child in node):
@@ -215,15 +331,33 @@ def render(node):
         raise ConversionError("invalid_arity:" + tag)
     if not len(node):
         raise ConversionError("empty_container:" + tag)
-    parts = [render(child) for child in node]
     if tag in WRAPPERS:
-        return join(parts)
+        return apply_tex_class(node, join(wrapper_parts(node)))
+    if tag == "mover" and local_name(node[1].tag) == "mo":
+        accent = (node[1].text or "").strip()
+        if accent in ACCENTS:
+            attributes(node[1], "mo")
+            if len(node[1]):
+                raise ConversionError("unexpected_token_children")
+            return "\\" + ACCENTS[accent] + "{" + render(node[0]) + "}"
+    parts = [render(child) for child in node]
+    if tag in {"munder", "mover", "munderover"}:
+        if parts[0] not in LIMIT_OPERATORS:
+            raise ConversionError("unsupported_limit_base:" + tag)
+        base = parts[0] + r"\limits"
+        if tag == "munder":
+            return base + "_{" + parts[1] + "}"
+        if tag == "mover":
+            return base + "^{" + parts[1] + "}"
+        return base + "_{" + parts[1] + "}^{" + parts[2] + "}"
     if tag == "mfrac":
         return r"\frac{" + parts[0] + "}{" + parts[1] + "}"
     if tag == "msqrt":
         return r"\sqrt{" + join(parts) + "}"
     if tag == "mroot":
-        raise ConversionError("unsupported_element:mroot")
+        if not re.fullmatch(r"[A-Za-z]|[0-9]{1,4}", parts[1]):
+            raise ConversionError("unsupported_root_index")
+        return r"\sqrt[" + parts[1] + "]{" + parts[0] + "}"
     base = "{" + parts[0] + "}"
     if tag == "msup":
         return base + "^{" + parts[1] + "}"

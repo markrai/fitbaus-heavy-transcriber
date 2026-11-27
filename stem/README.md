@@ -65,6 +65,13 @@ Converter mathml-subset-v2 adds explicit ASCII identifier style mappings (includ
 
 Diagnostics inventories bounded attribute and token value frequencies across parsed, rejected named MathML records. Counts describe all encountered values in those rows, not exclusively the offending value. The first-rejection summary remains distinct. The report is deterministic, offline, and review-only. A new output path is required.
 
+## Structural MathML expansion (S.0E.2)
+
+Converter mathml-subset-v3 supports common explicit delimiters, set symbols, MathJax atom classes, ASCII operator names, bounded plain mathematical text, selected spacing widths, simple indexed roots, known limit operators and selected accents. Explicit function application is accepted only between an identifier and an opening parenthesis. Operator spacing overrides are approximated by default TeX spacing for the observed allowlisted values; mathematical typography is not pixel-equivalent. Unsupported tables, styled Unicode and other unknown constructs remain rejected. Source rows containing Unicode replacement characters are rejected before conversion, including XML character references, and diagnostics report their row count separately. Never infer the missing characters. The original snapshot is unchanged and all candidates remain review-only.
+
+    python -m stem.prioritize work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v3
+    python -m stem.diagnose work/stem-candidates/<snapshot-sha256> --output work/stem-priority/wikidata-v3/diagnostics.json
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.

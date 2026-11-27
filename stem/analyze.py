@@ -118,7 +118,7 @@ def analyze(directory):
 
     label_collisions = sorted((label, len(formulas)) for label, formulas in label_formulas.items() if len(formulas) > 1)
     multi_entities = sorted((entity, len(formulas)) for entity, formulas in entity_formulas.items() if len(formulas) > 1)
-    approved = COMMANDS | {","}
+    approved = COMMANDS | {",", ";", "!"}
     valid_rows = len(rows) - sum(invalid.values())
     return {
         "schema": SCHEMA,

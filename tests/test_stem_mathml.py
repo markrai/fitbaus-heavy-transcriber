@@ -47,11 +47,11 @@ class MathMLTests(unittest.TestCase):
             "<mfrac linethickness='0'><mi>x</mi><mi>y</mi></mfrac>",
             "<mstyle scriptlevel='1'><mi>x</mi></mstyle>",
             "<mtable><mtr><mtd><mi>x</mi></mtd></mtr></mtable>",
-            "<mroot><mi>x</mi><mn>3</mn></mroot>",
+            "<mroot><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mroot>",
             "<mi>xy</mi>", "<mo>&#x2061;</mo>",
             "<mrow>unexpected<mi>x</mi></mrow>",
             "<mi xmlns='urn:foreign'>x</mi>",
-            "<mrow><mi>x</mi></mrow><mspace width='1em'/>",
+            "<mrow><mi>x</mi></mrow><mspace width='999em'/>",
             "<mo>&#xFFFD;</mo>", "<mi/>",
         )
         for case in cases:
@@ -80,6 +80,31 @@ class MathMLTests(unittest.TestCase):
         self.assertEqual(convert_mathml(math("<mi>A</mi><mo>⊆</mo><mi>B</mi>")),
                          r"A\subseteq B")
 
+    def test_delimiters_and_named_operators(self):
+        self.assertEqual(convert_mathml(math("<mi>ℝ</mi><mo>∖</mo><mo>{</mo><mn>0</mn><mo>}</mo>")),
+                         r"\mathbb{R}\setminus\lbrace0\rbrace")
+        self.assertEqual(convert_mathml(math("<mi data-mjx-texclass='OP'>sgn</mi><mo>&#x2061;</mo><mo>(</mo><mi>x</mi><mo>)</mo>")),
+                         r"\operatorname{sgn}(x)")
+        self.assertEqual(convert_mathml(math("<mrow data-mjx-texclass='INNER'><mi>x</mi></mrow>")),
+                         r"\mathinner{x}")
+
+    def test_limits_accents_roots_and_text(self):
+        self.assertEqual(convert_mathml(math("<munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>")),
+                         r"\sum\limits_{i=1}^{n}")
+        self.assertEqual(convert_mathml(math("<mover><mi>x</mi><mo>¯</mo></mover>")), r"\bar{x}")
+        self.assertEqual(convert_mathml(math("<mroot><mi>x</mi><mn>3</mn></mroot>")), r"\sqrt[3]{x}")
+        self.assertEqual(convert_mathml(math("<mi>x</mi><mspace width='0.167em'/><mtext>if true</mtext>")),
+                         r"x\,\text{if true}")
+
+    def test_rejects_corruption_and_ambiguous_application(self):
+        for body in ("<mi>��</mi>", "<mi>&#xFFFD;</mi>",
+                     "<mi>f</mi><mo>&#x2061;</mo><mi>x</mi>",
+                     "<munder><mi>x</mi><mi>y</mi></munder>",
+                     "<mtext>bad #</mtext>",
+                     "<mspace width='1em'><mi>x</mi></mspace>"):
+            with self.subTest(body=body), self.assertRaises(ConversionError):
+                convert_mathml(math(body))
+
     def test_xml_security_and_bounds(self):
         for source in (
             '<!DOCTYPE math [<!ENTITY x "hello">]>' + math("<mi>&x;</mi>"),
@@ -95,7 +120,7 @@ class MathMLTests(unittest.TestCase):
     def test_snapshot_conversion_is_review_only(self):
         sources = [math("<mi>x</mi><mo>=</mo><mn>1</mn>"),
                    math("<mi>x</mi><mo>=</mo><mn>1</mn>"),
-                   math("<mtext>unknown</mtext>"), "x=2"]
+                   math("<mtext>unknown #</mtext>"), "x=2"]
         rows = [{"item": {"value": f"http://www.wikidata.org/entity/Q{i+1}"},
                  "itemLabel": {"value": "Example"}, "formula": {"value": source}}
                 for i, source in enumerate(sources)]
@@ -111,7 +136,7 @@ class MathMLTests(unittest.TestCase):
             self.assertEqual(report["representation_rows"], {"mathml": 3, "latex_candidate": 1})
             self.assertEqual(report["candidate_rows_written"], 3)
             self.assertEqual(report["unique_candidate_latex"], 2)
-            self.assertEqual(report["row_outcomes"]["unsupported_element:mtext"], 1)
+            self.assertEqual(report["row_outcomes"]["unsupported_text"], 1)
             self.assertEqual(report["spoken_aliases_verified"], 0)
             candidates = [json.loads(line) for line in out.getvalue().splitlines()]
             self.assertEqual([c["row_index"] for c in candidates], [0, 1, 3])
