@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.energy_momentum",
+  "name": "Relativistic energy-momentum relation",
+  "discipline": "physics",
+  "subject": "relativity",
+  "tags": [
+    "special_relativity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "E^2=p^2c^2+m^2c^4",
+      "conditions": [
+        "Free particle in special relativity; E total energy, p momentum magnitude, m invariant mass; SI-compatible units."
+      ],
+      "symbols": {
+        "E": "Total relativistic energy",
+        "p": "Momentum magnitude",
+        "c": "Speed of light in vacuum",
+        "m": "Invariant mass"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

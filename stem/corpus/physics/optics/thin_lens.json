@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.thin_lens",
+  "name": "Thin-lens equation",
+  "discipline": "physics",
+  "subject": "optics",
+  "tags": [
+    "imaging"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{1}{f}=\\frac{1}{d_o}+\\frac{1}{d_i}",
+      "conditions": [
+        "Thin lens and paraxial rays in same surrounding medium on both sides; real object and image distances positive, virtual distances negative, converging focal length positive; finite nonzero distances."
+      ],
+      "symbols": {
+        "f": "Signed focal length",
+        "d_o": "Signed object distance",
+        "d_i": "Signed image distance"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/2-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

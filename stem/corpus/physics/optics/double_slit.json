@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.double_slit",
+  "name": "Double-slit interference maxima",
+  "discipline": "physics",
+  "subject": "optics",
+  "tags": [
+    "interference"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "d\\sin\\theta=m\\lambda",
+      "conditions": [
+        "Two coherent in-phase narrow slits separated by d; far-field monochromatic interference maxima, integer order m with physically accessible angle."
+      ],
+      "symbols": {
+        "d": "Slit separation",
+        "\\theta": "Observation angle from central axis",
+        "m": "Integer interference order",
+        "\\lambda": "Wavelength in surrounding medium"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

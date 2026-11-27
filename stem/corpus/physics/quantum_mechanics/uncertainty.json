@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.uncertainty",
+  "name": "Position-momentum uncertainty relation",
+  "discipline": "physics",
+  "subject": "quantum_mechanics",
+  "tags": [
+    "quantum_measurement"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\sigma_x\\sigma_p\\geq\\frac{\\hbar}{2}",
+      "conditions": [
+        "Quantum state with finite position and corresponding momentum standard deviations in one Cartesian direction; canonical conjugate operators."
+      ],
+      "symbols": {
+        "\\sigma_x": "Position standard deviation",
+        "\\sigma_p": "Momentum standard deviation",
+        "\\hbar": "Reduced Planck constant"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

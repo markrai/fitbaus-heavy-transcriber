@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.snell",
+  "name": "Snell's law",
+  "discipline": "physics",
+  "subject": "optics",
+  "tags": [
+    "refraction"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2",
+      "conditions": [
+        "Refraction at interface of ordinary homogeneous isotropic media in geometrical optics, transmitted propagating ray exists; angles measured from interface normal."
+      ],
+      "symbols": {
+        "n_1": "Incident medium refractive index",
+        "n_2": "Transmitted medium refractive index",
+        "\\theta_1": "Incident angle",
+        "\\theta_2": "Refracted angle"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/1-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

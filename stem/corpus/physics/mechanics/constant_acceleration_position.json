@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.constant_acceleration_position",
+  "name": "Position under constant acceleration",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "kinematics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "x=x_0+v_0t+\\frac{1}{2}at^2",
+      "conditions": [
+        "One-dimensional motion in an inertial frame with constant signed acceleration; initial state at elapsed time zero."
+      ],
+      "symbols": {
+        "x": "Position",
+        "x_0": "Initial position",
+        "v_0": "Initial velocity component",
+        "a": "Acceleration component",
+        "t": "Elapsed time"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.constant_acceleration_velocity",
+  "name": "Velocity under constant acceleration",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "kinematics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "v=v_0+at",
+      "conditions": [
+        "One-dimensional motion in an inertial frame with constant signed acceleration; t is elapsed time since the initial state."
+      ],
+      "symbols": {
+        "v": "Final velocity component",
+        "v_0": "Initial velocity component",
+        "a": "Constant acceleration component",
+        "t": "Elapsed time"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

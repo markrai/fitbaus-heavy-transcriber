@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.first_law",
+  "name": "First law of thermodynamics",
+  "discipline": "physics",
+  "subject": "thermodynamics",
+  "tags": [
+    "energy"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\Delta U=Q-W",
+      "conditions": [
+        "Closed system with no net change in bulk kinetic or external potential energy; heat into system positive, work done by system positive."
+      ],
+      "symbols": {
+        "\\Delta U": "Change in internal energy",
+        "Q": "Net heat entering system",
+        "W": "Net work done by system"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

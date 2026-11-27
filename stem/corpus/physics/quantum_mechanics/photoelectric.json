@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.photoelectric",
+  "name": "Photoelectric energy balance",
+  "discipline": "physics",
+  "subject": "quantum_mechanics",
+  "tags": [
+    "photons"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "K_{\\max}=hf-\\phi",
+      "conditions": [
+        "Single-photon photoemission from material with work function phi, frequency above or at threshold; neglect recoil and additional energy losses for maximum kinetic energy."
+      ],
+      "symbols": {
+        "K_{\\max}": "Maximum emitted electron kinetic energy",
+        "h": "Planck constant",
+        "f": "Incident photon frequency",
+        "\\phi": "Material work function"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

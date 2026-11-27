@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.faraday",
+  "name": "Faraday's law of induction",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "magnetism"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\mathcal E=-\\frac{d\\Phi_B}{dt}",
+      "conditions": [
+        "Single stationary conducting loop or fixed closed contour; magnetic flux through its spanning surface; loop orientation follows the right-hand rule for surface normal."
+      ],
+      "symbols": {
+        "\\mathcal E": "Induced electromotive force",
+        "\\Phi_B": "Oriented magnetic flux",
+        "t": "Time"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/13-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

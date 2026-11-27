@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.gauss_electric",
+  "name": "Gauss's law for electricity",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "electrostatics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\oint_S\\mathbf E\\cdot d\\mathbf A=\\frac{Q_{\\mathrm{enc}}}{\\epsilon_0}",
+      "conditions": [
+        "Closed orientable surface in classical electromagnetism, SI units; outward area elements, total enclosed charge including bound charges."
+      ],
+      "symbols": {
+        "S": "Closed surface",
+        "\\mathbf E": "Electric field vector",
+        "d\\mathbf A": "Outward vector area element",
+        "Q_{\\mathrm{enc}}": "Total enclosed charge",
+        "\\epsilon_0": "Vacuum permittivity"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/6-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

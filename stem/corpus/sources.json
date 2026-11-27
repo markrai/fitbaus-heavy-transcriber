@@ -87,6 +87,27 @@
       "title": "Principles of Data Science",
       "url": "https://openstax.org/books/principles-data-science/pages/1-introduction",
       "notes": "Reference only for independently authored mathematical facts. Source admission and edition-specific attribution or license obligations remain pending."
+    },
+    {
+      "id": "openstax_university_physics_1",
+      "status": "pending_review",
+      "title": "University Physics Volume 1",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/preface",
+      "notes": "Reference locator for independently authored standard mathematical facts only. No textbook prose, figures or templates imported. Current web edition identifies its textbook content as Attribution-NonCommercial-ShareAlike; exact edition, rights and any attribution obligations must be checked before source admission. Do not treat as a permissive corpus license."
+    },
+    {
+      "id": "openstax_university_physics_2",
+      "status": "pending_review",
+      "title": "University Physics Volume 2",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/preface",
+      "notes": "Reference locator for independently authored standard mathematical facts only. No textbook prose, figures or templates imported. Current web edition identifies its textbook content as Attribution-NonCommercial-ShareAlike; exact edition, rights and any attribution obligations must be checked before source admission. Do not treat as a permissive corpus license."
+    },
+    {
+      "id": "openstax_university_physics_3",
+      "status": "pending_review",
+      "title": "University Physics Volume 3",
+      "url": "https://openstax.org/books/university-physics-volume-3/pages/preface",
+      "notes": "Reference locator for independently authored standard mathematical facts only. No textbook prose, figures or templates imported. Current web edition identifies its textbook content as Attribution-NonCommercial-ShareAlike; exact edition, rights and any attribution obligations must be checked before source admission. Do not treat as a permissive corpus license."
     }
   ]
 }

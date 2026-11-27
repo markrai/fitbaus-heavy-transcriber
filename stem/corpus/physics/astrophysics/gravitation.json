@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.gravitation",
+  "name": "Newton's law of universal gravitation",
+  "discipline": "physics",
+  "subject": "astrophysics",
+  "tags": [
+    "gravity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "F=G\\frac{m_1m_2}{r^2}",
+      "conditions": [
+        "Magnitude of attractive Newtonian force between point masses, or nonoverlapping spherically symmetric masses; positive separation."
+      ],
+      "symbols": {
+        "F": "Gravitational force magnitude",
+        "G": "Newtonian gravitational constant",
+        "m_1": "First mass",
+        "m_2": "Second mass",
+        "r": "Center-to-center separation"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/13-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

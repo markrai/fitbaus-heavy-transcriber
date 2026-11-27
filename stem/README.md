@@ -23,6 +23,12 @@ The structured corpus includes 49 additional independently authored mathematics 
 
 The legacy 20-entry seed and matcher are unchanged. S.0F.2D will independently verify the mathematics, source locators and source admission, including the known pitfalls from the earlier corpora. Rendering and spoken-alias qualification are later steps.
 
+## Physics expansion (S.0F.2C)
+
+Add 33 independently authored physics concepts (34 representations) across mechanics, gravitation, fluid dynamics, thermodynamics, electromagnetism, optics, relativity and quantum mechanics. Each representation states its physical domain, sign conventions, assumptions and symbol meanings where applicable, with a University Physics chapter-equation reference lead. In particular, the thermodynamic first law defines work done by the system as positive; gravitational force is a magnitude; uncertainty uses standard deviations; the Lorentz force has separate full and magnetic-only representations.
+
+The textbook reference sources remain pending_review. The current OpenStax web editions identify their content as noncommercial/share-alike; do not copy or treat textbook prose, illustrations or templates as permissively licensed corpus data. Only independently authored standard mathematical facts and notation are included. All new review records remain pending, and new aliases are intentionally empty. The legacy seed, runtime matcher, renderer and normal transcription workflow are unchanged. Independent mathematics/physics verification, source admission, reference checking, rendering and recognition qualification remain separate gates.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

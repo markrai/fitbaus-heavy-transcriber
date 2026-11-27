@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.gravitational_potential",
+  "name": "Newtonian gravitational potential energy",
+  "discipline": "physics",
+  "subject": "astrophysics",
+  "tags": [
+    "gravity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "U=-\\frac{GMm}{r}",
+      "conditions": [
+        "Two point masses or nonoverlapping spherical masses in Newtonian gravity; zero potential energy at infinite separation."
+      ],
+      "symbols": {
+        "U": "Mutual gravitational potential energy",
+        "G": "Gravitational constant",
+        "M": "First mass",
+        "m": "Second mass",
+        "r": "Separation"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/13-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

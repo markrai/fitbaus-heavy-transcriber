@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.time_dilation",
+  "name": "Special-relativistic time dilation",
+  "discipline": "physics",
+  "subject": "relativity",
+  "tags": [
+    "special_relativity"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\Delta t=\\gamma\\Delta\\tau",
+      "conditions": [
+        "Two inertial frames at constant relative speed v<c; events occur at the same spatial point in the clock rest frame; gamma=(1-v^2/c^2)^(-1/2)."
+      ],
+      "symbols": {
+        "\\Delta t": "Coordinate time interval in observing frame",
+        "\\Delta\\tau": "Proper time interval on moving clock",
+        "\\gamma": "Lorentz factor"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_3",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/5-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

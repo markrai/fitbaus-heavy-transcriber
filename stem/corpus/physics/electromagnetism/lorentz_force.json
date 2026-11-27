@@ -1,0 +1,78 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.lorentz_force",
+  "name": "Lorentz force law",
+  "discipline": "physics",
+  "subject": "electromagnetism",
+  "tags": [
+    "magnetism"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\mathbf F=q(\\mathbf E+\\mathbf v\\times\\mathbf B)",
+      "conditions": [
+        "Classical electromagnetic force on a point charge; SI units, fields and particle velocity evaluated in the same inertial frame at the particle."
+      ],
+      "symbols": {
+        "\\mathbf F": "Electromagnetic force vector",
+        "q": "Signed charge",
+        "\\mathbf E": "Electric field",
+        "\\mathbf v": "Particle velocity",
+        "\\mathbf B": "Magnetic flux density"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    },
+    {
+      "id": "magnetic_only",
+      "latex": "\\mathbf F=q\\mathbf v\\times\\mathbf B",
+      "conditions": [
+        "Magnetic contribution to the force on a point charge; SI units and common inertial frame."
+      ],
+      "symbols": {
+        "\\mathbf F": "Magnetic force",
+        "q": "Signed charge",
+        "\\mathbf v": "Particle velocity",
+        "\\mathbf B": "Magnetic flux density"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_2",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

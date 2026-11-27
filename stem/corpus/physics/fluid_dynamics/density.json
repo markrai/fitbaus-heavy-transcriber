@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.density",
+  "name": "Mass density",
+  "discipline": "physics",
+  "subject": "fluid_dynamics",
+  "tags": [
+    "fluids"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\rho=\\frac{m}{V}",
+      "conditions": [
+        "Average mass density of a sample with positive volume, or uniform density throughout the sample."
+      ],
+      "symbols": {
+        "\\rho": "Mass density",
+        "m": "Sample mass",
+        "V": "Sample volume"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/14-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

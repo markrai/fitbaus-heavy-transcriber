@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "physics.rotational_energy",
+  "name": "Rotational kinetic energy",
+  "discipline": "physics",
+  "subject": "mechanics",
+  "tags": [
+    "rotation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "K=\\frac{1}{2}I\\omega^2",
+      "conditions": [
+        "Rigid body rotating about a fixed axis in classical mechanics; I evaluated about that axis."
+      ],
+      "symbols": {
+        "K": "Rotational kinetic energy",
+        "I": "Moment of inertia about the rotation axis",
+        "\\omega": "Angular speed"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_university_physics_1",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/10-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
