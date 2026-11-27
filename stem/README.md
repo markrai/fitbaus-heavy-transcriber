@@ -38,6 +38,16 @@ Use a new output directory for each report. The analyzer verifies the source man
 
 Wikidata formulas are candidates, not spoken aliases. Lexical acceptance is not proof of correct mathematics or safe rendering. Label collisions are review signals, not verified spoken ambiguity. Raw string sizes are not a compiled database estimate. No automatic admission is performed.
 
+## MathML conversion (S.0C)
+
+    python -m stem.convert work/stem-candidates/<snapshot-sha256> --output work/stem-conversion/<snapshot-sha256>
+
+The first full Wikidata snapshot contained 113,049 MathML rows and no annotation elements, according to the operator's preliminary inventory. This explicit offline command verifies the snapshot and writes conversion.json and candidates.jsonl. Each candidate retains the source snapshot digest, source formula digest, row index, entity and converter version. Nothing is admitted to the runtime dictionary.
+
+The initial converter handles simple identifiers, numbers, selected operators and Greek symbols, presentation wrappers, fractions, superscripts, subscripts, combined scripts and square roots. XML parsing rejects declarations, DTDs, foreign namespaces, excessive depth, node counts and document size. Unsupported attributes, tokens and structures fail closed. Matrices, text, spacing elements, under/over notation, nth roots, styled identifiers and additional symbols are deferred. Presentation wrapper styles supported by the converter may be discarded; output is not promised to reproduce exact typography. The existing restricted LaTeX screen remains in force. Conversion does not prove mathematical equivalence, safety of a future renderer, or suitability as a spoken alias.
+
+The report inventories parsed MathML elements and separates original representation from conversion outcomes, including explicit rejection reasons. The original corpus remains immutable. Reports are local work artifacts. No GPU, network, or external package is required.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
