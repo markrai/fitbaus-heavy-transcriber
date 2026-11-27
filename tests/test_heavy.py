@@ -44,7 +44,7 @@ class HeavyTest(unittest.TestCase):
     @patch("heavy.decode", return_value=b"audio")
     def test_checkpoints_survive_failed_publish_and_avoid_redownload(self, decode):
         source = FakeSource()
-        library = SimpleNamespace(source=source, token="token")
+        library = SimpleNamespace(source=source, authorized=lambda action: action("token"))
         vega = FakeVega()
         calls = []
         engine = SimpleNamespace(transcribe=lambda pcm, start, end: (
