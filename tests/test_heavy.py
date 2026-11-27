@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 from contextlib import contextmanager
 
-from heavy import PROFILE_PREFIX, Vega, process_book
+from heavy import PROFILE_PREFIX, Vega, process_book, require_ffmpeg, WorkbenchError, decode
 from transcriber.contract import AudioIdentity, Cue
 from transcriber.audiobookshelf import Manifest, Track
 
@@ -41,8 +41,9 @@ class FakeVega:
 
 
 class HeavyTest(unittest.TestCase):
+    @patch("heavy.require_ffmpeg", return_value="ffmpeg")
     @patch("heavy.decode", return_value=b"audio")
-    def test_checkpoints_survive_failed_publish_and_avoid_redownload(self, decode):
+    def test_checkpoints_survive_failed_publish_and_avoid_redownload(self, decode, ffmpeg):
         source = FakeSource()
         library = SimpleNamespace(source=source, authorized=lambda action: action("token"))
         vega = FakeVega()
@@ -73,3 +74,21 @@ class HeavyTest(unittest.TestCase):
             token, raw = payload.split(b"\n", 1)
             self.assertEqual(token, b"secret")
             self.assertEqual(json.loads(raw), bundle)
+
+    @patch("heavy.shutil.which", return_value=None)
+    def test_missing_ffmpeg_fails_before_fetching_audio(self, which):
+        with self.assertRaisesRegex(WorkbenchError, "FFmpeg executable not found on PATH"):
+            require_ffmpeg()
+        source = FakeSource()
+        library = SimpleNamespace(source=source, authorized=lambda action: action("token"))
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(WorkbenchError, "FFmpeg executable not found on PATH"):
+                process_book(library, FakeVega(), None, PROFILE_PREFIX + "auto", "book",
+                             Path(directory), lambda *args: None)
+        self.assertEqual(source.downloads, 0)
+
+    @patch("heavy.require_ffmpeg", return_value="ffmpeg")
+    @patch("heavy.subprocess.run", side_effect=FileNotFoundError)
+    def test_decoder_launch_failure_is_actionable(self, run, ffmpeg):
+        with self.assertRaisesRegex(WorkbenchError, "FFmpeg executable disappeared"):
+            decode(Path("audio"), 0, 1000)
