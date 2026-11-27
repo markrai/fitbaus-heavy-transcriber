@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch pinned transcript contract
+        shell: pwsh
+        run: |
+          git clone https://github.com/markrai/fitbaus-transcriber.git .upstream
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          git -C .upstream checkout --detach adb1e9530ef8f03758138703ebd737ff8e2bfe24
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - run: python -m compileall -q app.py heavy.py tests
+      - run: python -m unittest discover -s tests -v
