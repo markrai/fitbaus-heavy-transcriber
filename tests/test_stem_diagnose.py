@@ -19,13 +19,16 @@ class DiagnosticsTests(unittest.TestCase):
             binding(1, "Rejected formula", '<mi mathvariant="bold-italic">x</mi><mo>∴</mo>'),
             binding(2, "Accepted formula", '<mi mathvariant="bold">y</mi>'),
             binding(3, "123", '<mi mathvariant="bold-italic">z</mi>'),
+            binding(4, "Corrupted formula", '<mi>&#xFFFD;</mi>'),
         ]
         raw = json.dumps({"results": {"bindings": rows}}).encode()
         with tempfile.TemporaryDirectory() as root:
             manifest = store_snapshot(root, raw, acquisition="local_export")
             path = Path(root) / manifest["sha256"]
             report = diagnose(path)
-            self.assertEqual(report["rejected_named_mathml_rows"], 1)
+            self.assertEqual(report["rejected_named_mathml_rows"], 2)
+            self.assertEqual(report["parsed_rejected_rows"], 1)
+            self.assertEqual(report["source_replacement_character_rows"], 1)
             self.assertEqual(report["attribute_values"]["mi:mathvariant"], {"bold-italic": 1})
             self.assertEqual(report["token_values"]["mo"], {"∴": 1})
             self.assertEqual(report["token_values"]["mi"], {"x": 1})

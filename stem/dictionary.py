@@ -27,6 +27,16 @@ COMMANDS = frozenset({
     "simeq", "sinh", "subset", "subseteq", "sup", "supset", "supseteq",
     "tanh", "tau", "upsilon", "varepsilon", "varphi", "varrho", "varsigma",
     "vartheta", "xi", "zeta",
+    "Longleftrightarrow", "Longrightarrow", "Pr", "Vert", "aleph", "arg", "bar",
+    "because", "bigcap", "bigcup", "dagger", "ddot", "ddots", "deg",
+    "dim", "dot", "downarrow", "ell", "geqslant", "hat", "hom",
+    "iiint", "iint", "ker", "langle", "lbrace", "lbrack", "lceil",
+    "leqslant", "lfloor", "lg", "limits", "mapsto", "mathbin", "mathclose",
+    "mathinner", "mathop", "mathopen", "mathord", "mathpunct", "mathrel", "models",
+    "nexists", "notin", "ominus", "operatorname", "overline", "prec", "preceq",
+    "qquad", "quad", "rangle", "rbrace", "rbrack", "rceil", "rfloor",
+    "setminus", "star", "subsetneq", "succ", "succeq", "text", "therefore",
+    "top", "uparrow", "vdash", "vdots", "vec",
 })
 
 
@@ -44,7 +54,7 @@ def normalize_alias(text):
 def validate_latex(text):
     if not isinstance(text, str) or not 1 <= len(text) <= 512:
         raise ValueError("Invalid LaTeX length")
-    if not re.fullmatch(r"[A-Za-z0-9{}_^=+\-*/().,<>| !:\\]+", text):
+    if not re.fullmatch(r"[A-Za-z0-9{}\[\]_^=+\-*/().,<>| !:;\\]+", text):
         raise ValueError("Unsupported LaTeX character")
     depth = 0
     for char in text:
@@ -59,7 +69,7 @@ def validate_latex(text):
     if depth:
         raise ValueError("Unbalanced LaTeX braces")
     for match in re.finditer(r"\\([A-Za-z]+|.)?", text):
-        if match.group(1) not in COMMANDS and match.group(1) != ",":
+        if match.group(1) not in COMMANDS and match.group(1) not in {",", ";", "!"}:
             raise ValueError("Unsupported LaTeX command")
     return text
 
