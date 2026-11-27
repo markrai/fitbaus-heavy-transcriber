@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "8fd0c147bc0882f3ee1309366c353db8144037d72843e1f0302e26163593098a",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Divide the sine addition identity by the cosine addition identity, then divide numerator and denominator by cos(a)cos(b). The stated nonzero cosine conditions justify both divisions and imply 1-tan(a)tan(b) is nonzero.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

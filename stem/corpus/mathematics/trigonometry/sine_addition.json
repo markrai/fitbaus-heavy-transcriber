@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f594e0aca6f27853ce3b8e505a005c248704b10a466707b24012ce3288f61025",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Compose the planar rotation matrices for angles a and b. Their bottom-left product entry is sin(a)cos(b)+cos(a)sin(b), which equals the bottom-left entry sin(a+b) of the combined rotation.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-2-sum-and-difference-identities. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

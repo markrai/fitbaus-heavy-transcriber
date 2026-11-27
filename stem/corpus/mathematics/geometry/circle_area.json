@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "A=\\pi r^2",
       "conditions": [
-        "Euclidean circle of nonnegative radius."
+        "Area enclosed by a Euclidean circle with positive radius; the zero-radius degenerate disk has zero area."
       ],
       "symbols": {
         "A": "Area",
@@ -30,13 +30,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#geometry.circle_area"
+        },
+        {
+          "source_id": "openstax_precalculus_2e_reference",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/5-1-angles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "296cfa5e9d34e7512e2dc48bf4cceab771c253780bd9cbef60ebbcc035ea8cf8",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "In polar coordinates the area element is rho d rho d theta. Integrate rho from zero to r and theta from zero to 2 pi; the result is 2 pi times r^2/2. At r=0 the disk has zero area.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/5-1-angles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

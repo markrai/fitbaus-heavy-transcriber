@@ -21,15 +21,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "35b46761103e35b6a6795f0e5338582f75df4eb6fcafa6634518216cc79518c8",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Set both angles equal to x in the cosine addition identity, giving cos(2x)=cos(x)^2-sin(x)^2.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
@@ -50,15 +56,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "95af0f4091c2a4cc0f5c3583d14efee43af9c32dab003a7eca1405d0b9d11a49",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Substitute sin(x)^2=1-cos(x)^2 into cos(2x)=cos(x)^2-sin(x)^2 and simplify.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
@@ -79,15 +91,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "3318b18d7c055ba5f9954cda8440b8b465cee856c8dede2186b8c64fc5543ce5",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Substitute cos(x)^2=1-sin(x)^2 into cos(2x)=cos(x)^2-sin(x)^2 and simplify.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/precalculus-2e/pages/7-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

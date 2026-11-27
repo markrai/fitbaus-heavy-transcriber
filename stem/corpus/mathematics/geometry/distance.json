@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
       "conditions": [
-        "Two points in a Euclidean plane with Cartesian coordinates."
+        "Two points in an orthonormal Cartesian coordinate system in a Euclidean plane; coincident points are allowed."
       ],
       "symbols": {
         "d": "Distance",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_intermediate_algebra_2e",
+          "source_id": "openstax_intermediate_algebra_2e_reference",
           "locator": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "198547bd35e0ada250b66147d52238f00e276f998e828a30464e3786b012790d",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The coordinate differences are perpendicular components of the displacement. Apply the Pythagorean theorem and take the nonnegative square root. The same formula gives zero for coincident points and the absolute component difference when one component vanishes.",
+          "Reference cross-check of the standard relationship: https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
