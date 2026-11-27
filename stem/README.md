@@ -29,6 +29,12 @@ Add 33 independently authored physics concepts (34 representations) across mecha
 
 The textbook reference sources remain pending_review. The current OpenStax web editions identify their content as noncommercial/share-alike; do not copy or treat textbook prose, illustrations or templates as permissively licensed corpus data. Only independently authored standard mathematical facts and notation are included. All new review records remain pending, and new aliases are intentionally empty. The legacy seed, runtime matcher, renderer and normal transcription workflow are unchanged. Independent mathematics/physics verification, source admission, reference checking, rendering and recognition qualification remain separate gates.
 
+## Algebra mathematical review (S.0F.2D.1)
+
+Review the 13 algebra concepts and their 14 representations by direct derivation and textbook cross-check. The mathematical review records contain original derivations, exact content digests and reference locators. The quadratic formula conditions explicitly cover complex roots and the real-discriminant criterion. Recognition review remains pending for every representation. No renderer or runtime approval is implied.
+
+Reference-only registry entries use a separate _reference ID, admitted solely for bibliographic citation to independently authored mathematical facts. The corresponding original textbook source records remain pending_review for any content reuse. This is not permission to redistribute textbook content. Other subjects retain their existing pending reviews.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

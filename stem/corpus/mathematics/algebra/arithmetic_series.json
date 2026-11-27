@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
+          "source_id": "openstax_precalculus_2e_reference",
           "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "702d81eb82a630fb863abf12e8e733f3c9f18f1db7f99ce57fd4bfaa77c1dd29",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Pair the forward sum with its reverse. Each of the n paired terms equals a_1+a_n by the constant-difference property; divide the doubled sum by two.",
+          "Reference cross-check of the standard identity: https://openstax.org/books/precalculus-2e/pages/11-key-equations. Checked 2026-11-27. Approval is a maintainer review candidate, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

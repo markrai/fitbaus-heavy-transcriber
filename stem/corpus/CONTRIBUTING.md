@@ -11,6 +11,8 @@ Use schema.json as the structural schema and run `python -m stem.corpus_model` f
 - Use alternate_names and tags for discovery only. Names are not recognition triggers. Spoken aliases must be recitations of the exact representation; generic mentions, invented equations and ambiguous aliases must not match. Pending representations may have no spoken aliases. Existing normalization is conservative and ASCII-only.
 - Reference precise sources (edition, chapter, equation number, URL or other stable locator). Register sources in sources.json. Imported or adapted data requires pinned provenance, redistribution rights and attribution before admission. A candidate source is not an approved source. The migrated seed references its original file solely for provenance, not independent verification.
 
+Reference-only sources may be separately registered with an admitted _reference ID for bibliographic citations to independently authored facts. Record the scope and source locator explicitly; never use such admission as permission to import or adapt copyrighted content. Leave the corresponding content source pending until redistribution rights are established.
+
 ## Review
 
 Every representation has separate mathematical_review and recognition_review records. New entries start pending with null digest, empty method and evidence lists. Approved or rejected records require the matching content digest, nonempty methods and concrete evidence (e.g. reference and section, derivation or test identifier). A mathematical approval requires admitted references; recognition approval additionally requires mathematical approval and at least one alias. A status field is an assertion to review, not a proof or an authorization mechanism.
