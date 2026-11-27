@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "probability.binomial_distribution",
+  "name": "Binomial probability mass function",
+  "discipline": "mathematics",
+  "subject": "probability",
+  "tags": [
+    "distributions"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}",
+      "conditions": [
+        "n independent Bernoulli trials with identical success probability p, 0<p<1; k integer from zero to n."
+      ],
+      "symbols": {
+        "P": "Probability measure",
+        "X": "Number of successes",
+        "k": "Specified success count",
+        "n": "Trial count",
+        "p": "Success probability"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-formula-review"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.geometric_sequence",
+  "name": "Geometric sequence",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "sequences"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "a_n=a_1r^{n-1}",
+      "conditions": [
+        "Positive integer n; constant multiplier r; zeroth power interpreted as one."
+      ],
+      "symbols": {
+        "a_n": "Term at index n",
+        "a_1": "First term",
+        "r": "Common multiplier",
+        "n": "Term index"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_precalculus_2e",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

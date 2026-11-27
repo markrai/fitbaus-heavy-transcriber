@@ -1,0 +1,42 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.sine_derivative",
+  "name": "Derivative of sine",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{d}{dx}\\sin x=\\cos x",
+      "conditions": [
+        "Real x in radians."
+      ],
+      "symbols": {
+        "x": "Angle in radians"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

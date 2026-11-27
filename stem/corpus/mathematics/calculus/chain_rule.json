@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.chain_rule",
+  "name": "Chain rule of differentiation",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)",
+      "conditions": [
+        "g differentiable at x and f differentiable at g(x)."
+      ],
+      "symbols": {
+        "f": "Outer function",
+        "g": "Inner function",
+        "x": "Variable"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

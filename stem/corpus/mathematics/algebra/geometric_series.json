@@ -1,0 +1,74 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.geometric_series",
+  "name": "Geometric series",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "sequences"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\sum_{k=0}^{n}r^k=\\frac{1-r^{n+1}}{1-r}",
+      "conditions": [
+        "n nonnegative integer; r not equal to one; zeroth power interpreted as one."
+      ],
+      "symbols": {
+        "k": "Summation index",
+        "n": "Last exponent",
+        "r": "Common ratio"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_2",
+          "locator": "https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    },
+    {
+      "id": "infinite",
+      "latex": "\\sum_{k=0}^{\\infty}r^k=\\frac{1}{1-r}",
+      "conditions": [
+        "Absolute value of real or complex r strictly less than one; zeroth power is one."
+      ],
+      "symbols": {
+        "k": "Summation index",
+        "r": "Common ratio"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_2",
+          "locator": "https://openstax.org/books/calculus-volume-2/pages/5-2-infinite-series"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

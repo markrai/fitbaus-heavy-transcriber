@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "statistics.sample_variance",
+  "name": "Sample variance",
+  "discipline": "mathematics",
+  "subject": "statistics",
+  "tags": [
+    "descriptive_statistics"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "s^2=\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})^2",
+      "conditions": [
+        "At least two real observations; x-bar is their arithmetic mean. Unbiased estimation of population variance requires independent identically distributed observations with finite variance."
+      ],
+      "symbols": {
+        "s": "Sample standard deviation",
+        "n": "Sample size",
+        "i": "Summation index",
+        "x_i": "Observation",
+        "\\bar{x}": "Sample mean"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/2-7-measures-of-the-spread-of-the-data"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

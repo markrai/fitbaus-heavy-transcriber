@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "algebra.difference_squares",
+  "name": "Difference of squares",
+  "discipline": "mathematics",
+  "subject": "algebra",
+  "tags": [
+    "polynomials"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "a^2-b^2=(a-b)(a+b)",
+      "conditions": [
+        "Commuting real or complex scalars."
+      ],
+      "symbols": {
+        "a": "First scalar",
+        "b": "Second scalar"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_college_algebra_2e",
+          "locator": "https://openstax.org/books/college-algebra-2e/pages/1-5-factoring-polynomials"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

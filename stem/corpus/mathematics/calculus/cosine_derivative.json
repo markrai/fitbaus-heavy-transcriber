@@ -1,0 +1,42 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.cosine_derivative",
+  "name": "Derivative of cosine",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{d}{dx}\\cos x=-\\sin x",
+      "conditions": [
+        "Real x in radians."
+      ],
+      "symbols": {
+        "x": "Angle in radians"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "probability.bayes",
+  "name": "Bayes' theorem",
+  "discipline": "mathematics",
+  "subject": "probability",
+  "tags": [
+    "events"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}",
+      "conditions": [
+        "A and B events on the same probability space; P(A)>0 and P(B)>0."
+      ],
+      "symbols": {
+        "P": "Probability measure",
+        "A": "Event of interest",
+        "B": "Observed event"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_data_science",
+          "locator": "https://openstax.org/books/principles-data-science/pages/3-4-probability-theory"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

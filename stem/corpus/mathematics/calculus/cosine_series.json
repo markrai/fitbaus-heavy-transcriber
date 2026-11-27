@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.cosine_series",
+  "name": "Cosine power series",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "series"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\cos x=\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{2n}}{(2n)!}",
+      "conditions": [
+        "Every real x in radians; zeroth power is one."
+      ],
+      "symbols": {
+        "x": "Angle in radians",
+        "n": "Summation index"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_2",
+          "locator": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "statistics.discrete_expectation",
+  "name": "Discrete expected value",
+  "discipline": "mathematics",
+  "subject": "statistics",
+  "tags": [
+    "moments"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "E[X]=\\sum_{i=1}^{n}x_iP(X=x_i)",
+      "conditions": [
+        "Random variable X takes the listed distinct values x_i, which exhaust its finite support."
+      ],
+      "symbols": {
+        "E": "Expectation",
+        "X": "Random variable",
+        "i": "Summation index",
+        "n": "Support size",
+        "x_i": "Possible value",
+        "P": "Probability measure"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

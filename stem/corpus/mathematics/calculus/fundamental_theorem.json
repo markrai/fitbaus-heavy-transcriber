@@ -1,0 +1,78 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.fundamental_theorem",
+  "name": "Fundamental theorem of calculus",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "integration"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a)",
+      "conditions": [
+        "f continuous on [a,b], a less than b, and F an antiderivative on the interval."
+      ],
+      "symbols": {
+        "a": "Lower endpoint",
+        "b": "Upper endpoint",
+        "f": "Integrand",
+        "F": "Antiderivative",
+        "x": "Integration variable"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    },
+    {
+      "id": "accumulation_derivative",
+      "latex": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)",
+      "conditions": [
+        "f continuous on an interval containing a and x, with x interior."
+      ],
+      "symbols": {
+        "a": "Fixed lower endpoint",
+        "x": "Variable upper endpoint",
+        "t": "Integration variable",
+        "f": "Continuous function"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

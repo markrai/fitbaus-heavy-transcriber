@@ -38,6 +38,55 @@
       "url": "https://huggingface.co/datasets/ddrg/named_math_formulas",
       "license": "CC-BY-4.0",
       "notes": "Discovery and research material only. Positive templates contain known errors; no templates imported. Verify pinned revision, attribution and redistribution rights before adaptation."
+    },
+    {
+      "id": "openstax_precalculus_2e",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/precalculus-2e/pages/1-introduction",
+      "title": "Precalculus 2e",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_college_algebra_2e",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/college-algebra-2e/pages/1-introduction",
+      "title": "College Algebra 2e",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_calculus_1",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
+      "title": "Calculus Volume 1",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_calculus_2",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/calculus-volume-2/pages/1-introduction",
+      "title": "Calculus Volume 2",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_statistics_2e",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-introduction",
+      "title": "Introductory Statistics 2e",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_intermediate_algebra_2e",
+      "status": "pending_review",
+      "url": "https://openstax.org/books/intermediate-algebra-2e/pages/1-introduction",
+      "title": "Intermediate Algebra 2e",
+      "notes": "Reference only for independently authored standard mathematical facts and notation. No textbook prose, illustrations or templates imported. Source admission and any applicable edition-specific attribution or license obligations remain to be reviewed before approval."
+    },
+    {
+      "id": "openstax_data_science",
+      "status": "pending_review",
+      "title": "Principles of Data Science",
+      "url": "https://openstax.org/books/principles-data-science/pages/1-introduction",
+      "notes": "Reference only for independently authored mathematical facts. Source admission and edition-specific attribution or license obligations remain pending."
     }
   ]
 }

@@ -1,0 +1,43 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "calculus.power_rule",
+  "name": "Power rule of differentiation",
+  "discipline": "mathematics",
+  "subject": "calculus",
+  "tags": [
+    "differentiation"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "\\frac{d}{dx}x^n=nx^{n-1}",
+      "conditions": [
+        "Real exponent n and real x strictly positive; special integer cases extend further."
+      ],
+      "symbols": {
+        "x": "Variable",
+        "n": "Constant exponent"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_calculus_1",
+          "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

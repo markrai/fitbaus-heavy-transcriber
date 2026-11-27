@@ -1,0 +1,46 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "geometry.distance",
+  "name": "Euclidean distance in the plane",
+  "discipline": "mathematics",
+  "subject": "geometry",
+  "tags": [
+    "coordinates"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
+      "conditions": [
+        "Two points in a Euclidean plane with Cartesian coordinates."
+      ],
+      "symbols": {
+        "d": "Distance",
+        "x_1": "First x coordinate",
+        "x_2": "Second x coordinate",
+        "y_1": "First y coordinate",
+        "y_2": "Second y coordinate"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_intermediate_algebra_2e",
+          "locator": "https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}

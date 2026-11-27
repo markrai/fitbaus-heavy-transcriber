@@ -1,0 +1,47 @@
+{
+  "schema": "fitbaus.stem.concept/v1",
+  "id": "statistics.normal_density",
+  "name": "Normal probability density",
+  "discipline": "mathematics",
+  "subject": "statistics",
+  "tags": [
+    "distributions"
+  ],
+  "alternate_names": [],
+  "representations": [
+    {
+      "id": "standard",
+      "latex": "f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}",
+      "conditions": [
+        "x and mu real; sigma strictly positive; f is a density, not a point probability."
+      ],
+      "symbols": {
+        "f": "Probability density",
+        "x": "Evaluation point",
+        "\\mu": "Mean",
+        "\\sigma": "Standard deviation",
+        "e": "Base of natural logarithms",
+        "\\pi": "Pi"
+      },
+      "spoken_aliases": [],
+      "references": [
+        {
+          "source_id": "openstax_statistics_2e",
+          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/6-introduction"
+        }
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      },
+      "recognition_review": {
+        "status": "pending",
+        "digest": null,
+        "method": [],
+        "evidence": []
+      }
+    }
+  ]
+}
