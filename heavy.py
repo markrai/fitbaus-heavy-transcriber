@@ -165,18 +165,36 @@ def read_window(path, identity, start, end):
     return window.to_json()
 
 
+class WorkbenchError(RuntimeError):
+    pass
+
+
+def require_ffmpeg():
+    executable = shutil.which("ffmpeg")
+    if executable is None:
+        raise WorkbenchError("FFmpeg executable not found on PATH. Install FFmpeg or restore its bin directory, then restart the workbench.")
+    return executable
+
+
 def decode(path, start, end):
     expected = (end - start) * BYTES_PER_MS
-    command = ["ffmpeg", "-nostdin", "-hide_banner", "-loglevel", "error", "-xerror",
+    command = [require_ffmpeg(), "-nostdin", "-hide_banner", "-loglevel", "error", "-xerror",
                "-protocol_whitelist", "file,pipe", "-format_whitelist", FORMATS, "-threads", "1",
                "-ss", f"{start / 1000:.3f}", "-i", str(path), "-t", f"{(end-start)/1000:.3f}",
                "-map", "0:a:0", "-vn", "-sn", "-dn", "-ac", "1", "-ar", "16000",
                "-c:a", "pcm_s16le", "-f", "s16le", "-fs", str(expected + 4096), "pipe:1"]
-    result = subprocess.run(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-                            stderr=subprocess.DEVNULL, check=True, timeout=120)
+    try:
+        result = subprocess.run(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                                stderr=subprocess.DEVNULL, check=True, timeout=120)
+    except FileNotFoundError:
+        raise WorkbenchError("FFmpeg executable disappeared or could not be launched. Check PATH.") from None
+    except subprocess.CalledProcessError:
+        raise WorkbenchError("FFmpeg could not decode the downloaded audio window.") from None
+    except subprocess.TimeoutExpired:
+        raise WorkbenchError("FFmpeg audio decoding timed out.") from None
     pcm = result.stdout
     if not pcm or len(pcm) % 2 or len(pcm) > expected + 4096 or len(pcm) < expected - min(expected // 10, 8000):
-        raise ValueError("Incomplete or invalid decoded audio")
+        raise WorkbenchError("FFmpeg returned incomplete or invalid decoded audio.")
     return pcm[:expected]
 
 
@@ -206,6 +224,8 @@ class GpuEngine:
 
 def process_book(library, vega, engine, profile, item_id, root, report):
     source = library.source
+    report("Checking FFmpeg", 0, 0)
+    require_ffmpeg()
     report("Checking audio revision", 0, 0)
     manifest = library.authorized(lambda token: source.manifest(item_id, token))
     identity, duration = manifest.identity, manifest.duration_ms
@@ -241,8 +261,9 @@ def process_book(library, vega, engine, profile, item_id, root, report):
                                     pass
                         library.authorized(download)
                         files[track.file_id] = destination
-                    report("Transcribing on GPU", start, duration)
+                    report("Decoding audio", start, duration)
                     pcm = decode(files[track.file_id], left - track.offset_ms, right - track.offset_ms)
+                    report("Loading model / transcribing on GPU", start, duration)
                     cues.extend(engine.transcribe(pcm, left, right))
                     previous = right
                 value = TranscriptWindow(identity, start, end, tuple(cues)).to_json()
