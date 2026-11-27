@@ -3,7 +3,6 @@ import getpass
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-import secrets
 import threading
 import webbrowser
 
@@ -149,6 +148,8 @@ def main():
         parser.error("Invalid port")
     if args.abs_url.startswith("http://"):
         print("Audiobookshelf credentials travel over unencrypted HTTP; use only a trusted LAN.")
+        if input("Continue? [y/N]: ").strip().lower() != "y":
+            return
     vega = Vega(args.ssh_host, args.remote_dir)
     config = vega.configuration()
     token = getpass.getpass("Audiobookshelf API key or access token: ")
