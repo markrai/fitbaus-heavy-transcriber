@@ -30,6 +30,14 @@ Then import the local export without any network request:
 
 Local exports are marked as such, with no assertion about the exact query executed. Reimporting identical snapshot bytes reuses an existing consistent snapshot. Neither online nor offline acquisition automatically admits formulas into the curated dictionary.
 
+## Offline corpus analysis (S.0B)
+
+    python -m stem.analyze work/stem-candidates/<snapshot-sha256> --output work/stem-analysis/<snapshot-sha256>
+
+Use a new output directory for each report. The analyzer verifies the source manifest, checksum and row count before producing analysis.json and analysis.md. It counts exact formula and binding duplicates, entity and normalized-label multiplicity, lexical screen outcomes, command frequencies, heuristic complexity and relevance, and the UTF-8 size of distinct formulas. No formula strings are normalized in ways that might change meaning. Example lists are bounded. Results are deterministic and the snapshot is never modified. No network, GPU, LLM or third-party package is used.
+
+Wikidata formulas are candidates, not spoken aliases. Lexical acceptance is not proof of correct mathematics or safe rendering. Label collisions are review signals, not verified spoken ambiguity. Raw string sizes are not a compiled database estimate. No automatic admission is performed.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
