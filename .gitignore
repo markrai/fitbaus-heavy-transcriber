@@ -4,3 +4,5 @@ work/
 __pycache__/
 *.pyc
 .env
+
+stem/renderer/node_modules/

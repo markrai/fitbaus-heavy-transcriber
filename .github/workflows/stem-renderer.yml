@@ -1,0 +1,34 @@
+name: STEM renderer smoke
+on:
+  pull_request:
+    paths:
+      - 'stem/renderer/**'
+      - 'stem/qualify_render.py'
+      - 'stem/dictionary.py'
+      - 'tests/test_stem_qualify_render.py'
+      - '.github/workflows/stem-renderer.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+        working-directory: stem/renderer
+      - run: python -m unittest discover -s tests -p test_stem_qualify_render.py -v
+      - name: Real SVG and PNG smoke
+        run: python -m stem.renderer_smoke
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stem-renderer-package-lock
+          path: stem/renderer/package-lock.json
