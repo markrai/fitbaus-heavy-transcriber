@@ -48,6 +48,14 @@ The initial converter handles simple identifiers, numbers, selected operators an
 
 The report inventories parsed MathML elements and separates original representation from conversion outcomes, including explicit rejection reasons. The original corpus remains immutable. Reports are local work artifacts. No GPU, network, or external package is required.
 
+## Named corpus prioritization (S.0D)
+
+    python -m stem.prioritize work/stem-candidates/<snapshot-sha256> --output work/stem-priority/<snapshot-sha256>
+
+This stage reads the verified original snapshot, not the potentially stale conversion export. It classifies every source row by label, then runs the pinned-in-code current converter only on potentially named records. A label containing a multi-letter word is considered potentially named, numeric labels without letters are deferred, unresolved Q/P identifiers and symbolic/uncertain labels are deferred, and property entities are separate. These are review priorities, not semantic judgments. The heuristic may miss useful single-letter or non-word labels or include named numbers.
+
+The new output directory contains named.jsonl (screened candidates with review flags), rejected-named.jsonl (every named conversion failure, with its reason), deferred.jsonl (source row references for all other records), prioritization.json (counts, converter version and ranked rejection reasons) and prioritization.md (human-readable summary). Every source row belongs to exactly one partition. Original formulas remain in the immutable source snapshot; source digest, formula digest and row index retain provenance. Exact LaTeX duplicates are flagged but never silently merged. Name and entity collision flags cover screened named candidates only. No source formula or alias is admitted, and no GPU, model, network or third-party dependency is required. A new output directory is required after converter upgrades.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
