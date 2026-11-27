@@ -15,6 +15,21 @@ The curated seed has 20 independently authored entries. Each has a stable ID, ca
 
 This explicit online command captures a Wikidata P2534 query response with its exact query and SHA-256 in a content-addressed directory. Results are candidate-only and are never admitted automatically. Wikidata structured data is CC0. Review and author aliases for selected formulas before adding entries. Other sources in corpus/sources.json are not yet approved for redistribution. Do not commit raw datasets or private narration. Keep external source snapshots pinned and record licenses, attribution and per-entry provenance before expanding the admitted source policy.
 
+If Wikidata responds with HTTP 429 or 503, the acquisition command respects Retry-After and uses bounded retries (at most three attempts and 120 seconds of total retry sleep). Longer requested cooldowns stop the command rather than retrying prematurely. If no Retry-After is provided, the fallback delay starts at 60 seconds. Do not repeatedly restart the command while throttled.
+
+Alternatively, open the [Wikidata Query Service](https://query.wikidata.org/) after the cooldown, run the query below, and download the results as SPARQL JSON:
+
+    SELECT DISTINCT ?item ?itemLabel ?formula WHERE {
+      ?item wdt:P2534 ?formula.
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    } ORDER BY ?item ?formula
+
+Then import the local export without any network request:
+
+    python -m stem.acquire work/stem-candidates --from-json path/to/results.json
+
+Local exports are marked as such, with no assertion about the exact query executed. Reimporting identical snapshot bytes reuses an existing consistent snapshot. Neither online nor offline acquisition automatically admits formulas into the curated dictionary.
+
 ## Integration sequence
 
 1. Expand the curated corpus, qualify source rights, analyze collisions and measure false positives.
