@@ -20,7 +20,7 @@ class CIDriverTests(unittest.TestCase):
             self.assertEqual(ci.execute("core", ci.core_steps()), 0)
         prepare.assert_called_once_with()
         self.assertEqual(run.call_args_list, [
-            call(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py",
+            call(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py",
                  "ci.py", "test_suite.py", *(str(path.relative_to(ci.ROOT)) for path in ci.test_paths("core"))),
             call(sys.executable, "test_suite.py", "core"),
         ])

@@ -228,6 +228,14 @@ def preview_visual_timing(library, profile, item_id, file_id, root):
     return preview_retained(library, profile, item_id, file_id, root, preview_timing)
 
 
+def prepare_enrichment(library, profile, item_id, file_id, root):
+    from epub_enrichment import prepare_artifact
+    from epub_timing import collect_timing
+
+    result = preview_retained(library, profile, item_id, file_id, root, collect_timing)
+    return prepare_artifact(root, result)
+
+
 def preview_retained(library, profile, item_id, file_id, root, preview):
     from epub_alignment import AlignmentError
 

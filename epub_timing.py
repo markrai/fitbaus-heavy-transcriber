@@ -92,7 +92,7 @@ def associate(catalogue, sections, alignment):
             "untimed_reasons": dict(reasons)}
 
 
-def preview_timing(stream, windows):
+def collect_timing(stream, windows):
     catalogue = extract_assets(stream)
     locations = defaultdict(set)
     for occurrence in catalogue["occurrences"]:
@@ -108,4 +108,10 @@ def preview_timing(stream, windows):
             "edition_verified": False, "render_qualified": False, "playback_qualified": False,
             "cue_count": alignment["cue_count"], "matched_cue_count": alignment["matched_cue_count"],
             "occurrence_count": catalogue["occurrence_count"], "unique_asset_count": catalogue["unique_asset_count"],
-            "skipped_count": catalogue["skipped_count"], **result}
+            "skipped_count": catalogue["skipped_count"], "assets": catalogue["assets"], **result}
+
+
+def preview_timing(stream, windows):
+    result = collect_timing(stream, windows)
+    result.pop("assets")
+    return result

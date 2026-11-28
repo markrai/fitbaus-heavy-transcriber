@@ -133,9 +133,9 @@ $("companions").addEventListener("click", async () => {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
             result.append(row);
             if (file.format === "epub") {
-                for (const mode of ["inventory", "alignment", "assets", "timing"]) {
-                    const labels = {inventory: "Inspect EPUB", alignment: "Test alignment", assets: "Find visuals", timing: "Test visual timing"};
-                    const inspect = element("button", labels[mode], "secondary");
+                for (const mode of ["inventory", "alignment", "assets", "timing", "enrichment"]) {
+                    const labels = {inventory: "Inspect EPUB", alignment: "Test alignment", assets: "Find visuals", timing: "Test visual timing", enrichment: "Prepare enrichment"};
+                    const inspect = element("button", labels[mode], mode === "enrichment" ? "" : "secondary");
                     inspect.type = "button";
                     const detail = element("p");
                     inspect.addEventListener("click", async () => {
@@ -146,13 +146,21 @@ $("companions").addEventListener("click", async () => {
                         detail.textContent = mode === "inventory" ? "Downloading and inspecting EPUB…" :
                             mode === "alignment" ? "Comparing EPUB with retained narration…" :
                             mode === "assets" ? "Extracting original EPUB visuals…" :
-                            "Associating visuals with narration…";
+                            mode === "timing" ? "Associating visuals with narration…" :
+                            "Preparing local enrichment artifact…";
                         try {
                             const inventory = await api("/api/epub-" + mode, {
                                 method: "POST", headers: {"Content-Type": "application/json"},
                                 body: JSON.stringify({item_id: id, file_id: file.file_id})
                             });
                             if (request !== companionRequest) return;
+                            if (mode === "enrichment") {
+                                detail.textContent = (inventory.reused ? "Existing artifact verified" : "Local artifact prepared") +
+                                    " · " + inventory.timed_count + " timed / " + inventory.untimed_count +
+                                    " untimed visuals · " + inventory.unique_asset_count + " unique assets · " +
+                                    inventory.artifact_id.slice(0, 12) + " · Not published or playback-qualified";
+                                return;
+                            }
                             if (mode === "timing") {
                                 detail.textContent = inventory.timed_count + " / " + inventory.occurrence_count +
                                     " visuals with bounded timing evidence · " + inventory.untimed_count +
