@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/13-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "f436a0c54d3959218fc59c622a165dccbd582b0c0650679b5d10c921bc14062f",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a stationary closed contour, Maxwell-Faraday gives curl E=-partial B/partial t. Apply Stokes' theorem on a fixed spanning surface and interchange time derivative and surface integral for regular fields. The circulation of E equals the negative rate of change of magnetic flux, with matching orientation.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/13-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

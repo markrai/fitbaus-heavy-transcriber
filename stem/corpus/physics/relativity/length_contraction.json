@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "L=\\frac{L_0}{\\gamma}",
       "conditions": [
-        "Inertially moving rod measured along motion with endpoints simultaneous in observing frame; gamma=(1-v^2/c^2)^(-1/2); relative speed below c."
+        "Inertial rod of constant proper length, aligned with its relative motion; endpoint positions measured simultaneously in the observing frame. Relative speed v satisfies 0<=v<c, with gamma the Lorentz factor."
       ],
       "symbols": {
         "L": "Length in observing frame",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
+          "source_id": "openstax_university_physics_3_reference",
           "locator": "https://openstax.org/books/university-physics-volume-3/pages/5-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "be7a358ae3854ec8c29ad0064ae50363a5026ecae4660b361ef2a7be9e4cebb6",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Use the inverse Lorentz transformation x'=gamma(x-vt), with the rod stationary in the primed frame. Observing both endpoints at equal unprimed time gives delta x'=gamma delta x. Their rest separation is L0, while delta x=L in the observing frame, hence L=L0/gamma.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/5-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

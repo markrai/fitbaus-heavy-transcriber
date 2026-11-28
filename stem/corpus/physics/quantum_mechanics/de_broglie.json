@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\lambda=\\frac{h}{p}",
       "conditions": [
-        "Momentum eigenstate or well-defined nonzero momentum magnitude in a specified frame; wavelength measured in same frame."
+        "Nonzero momentum magnitude for a plane-wave component of a free particle in a specified inertial frame; lambda is its spatial phase wavelength. For a wave packet with narrow momentum spread, the central wavelength is an approximation."
       ],
       "symbols": {
         "\\lambda": "De Broglie wavelength",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
+          "source_id": "openstax_university_physics_3_reference",
           "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "189ef3fd6cfa617b058b7ca560e977fa4baadd3152b2727e1863e9c39f2e8d07",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a plane-wave momentum eigenfunction with wave vector k, applying the momentum operator -i hbar grad gives momentum vector hbar k. Its magnitude is hbar times |k|. Since spatial phase repeats after distance 2 pi/|k|, lambda=2 pi hbar/p=h/p. For a narrow momentum distribution the central wavelength is approximate.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/6-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

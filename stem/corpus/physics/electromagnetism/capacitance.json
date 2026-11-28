@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "C=\\frac{Q}{V}",
       "conditions": [
-        "Linear two-conductor capacitor with fixed geometry and dielectric; nonzero potential difference; Q is signed charge of conductor whose potential defines V."
+        "Linear two-conductor capacitor with equal and opposite conductor charges, fixed geometry and linear dielectric; V is nonzero and defined using the same conductor as Q."
       ],
       "symbols": {
         "C": "Capacitance",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/8-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "20b75768f93cc6e8322d4854bad22094af411e73eb4707fe02214e6d0ed2faef",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a linear two-conductor capacitor with equal and opposite plate charges and fixed geometry and dielectric properties, charge is proportional to potential difference. The proportionality constant C is positive; for nonzero voltage, divide Q=CV by V. This is a constitutive definition, not a claim for nonlinear capacitors.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/8-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

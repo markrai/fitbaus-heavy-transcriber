@@ -13,25 +13,31 @@
       "id": "standard",
       "latex": "\\sigma_x\\sigma_p\\geq\\frac{\\hbar}{2}",
       "conditions": [
-        "Quantum state with finite position and corresponding momentum standard deviations in one Cartesian direction; canonical conjugate operators."
+        "Normalized quantum state with finite position and canonical momentum variances in the same Cartesian direction and sufficient operator-domain regularity for the canonical commutator expectation (or weak-form identity) to hold."
       ],
       "symbols": {
         "\\sigma_x": "Position standard deviation",
-        "\\sigma_p": "Momentum standard deviation",
+        "\\sigma_p": "Standard deviation of canonical momentum in the same direction as position",
         "\\hbar": "Reduced Planck constant"
       },
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
-          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+          "source_id": "openstax_university_physics_3_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "58d6199f0fbbaf27c105a933d1b5879b68ea3dc3522e880e567192d84fc1ee7b",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a normalized state psi, let X and P denote centered position and momentum operators. Cauchy-Schwarz gives sigma_x sigma_p=||X psi|| ||P psi|| >= |<X psi,P psi>| >= |Im <X psi,P psi>|. The canonical commutator [x,p]=i hbar implies the last magnitude is hbar/2 when the commutator identity is valid (including its weak form). This bounds intrinsic state standard deviations, not instrument errors.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/7-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -212,6 +212,14 @@
       "url": "https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-fall-2006/resources/heateqni/",
       "provenance": "Bibliographic citation only for independently authored physical facts and review reasoning. No reference content redistribution permission implied.",
       "notes": "Relevant reference sections checked 2026-11-27. Content reuse requires separate rights review."
+    },
+    {
+      "id": "openstax_university_physics_3_reference",
+      "status": "admitted",
+      "title": "University Physics Volume 3",
+      "url": "https://openstax.org/books/university-physics-volume-3/pages/1-introduction",
+      "provenance": "Bibliographic citation only for independently authored physical facts and review reasoning. No reference content redistribution permission implied.",
+      "notes": "Relevant reference sections checked 2026-11-27. Content reuse requires separate rights review."
     }
   ]
 }
