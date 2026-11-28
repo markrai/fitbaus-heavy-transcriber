@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\sigma^2=\\sum_{i=1}^{n}(x_i-\\mu)^2P(X=x_i)",
       "conditions": [
-        "Finite discrete support; mu=E[X], probabilities sum to one."
+        "Real-valued random variable X has finite support consisting of distinct real values x_i, i=1,...,n, with n a positive integer; probabilities sum to one; mu=E[X]."
       ],
       "symbols": {
         "\\sigma": "Population standard deviation",
@@ -27,15 +27,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
+          "source_id": "openstax_statistics_2e_reference",
           "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e8a7c2c6f0501e5f3c243913a6ba9f79974dfd928b6ce7d29d31e2eaadf974cf",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Variance is the expectation of (X-mu)^2 with mu=E[X]. Apply the finite discrete expectation formula to this function of X: each possible value contributes its squared deviation times its probability. This is not the unweighted sample variance.",
+          "Reference cross-check: https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

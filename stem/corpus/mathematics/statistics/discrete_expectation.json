@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "E[X]=\\sum_{i=1}^{n}x_iP(X=x_i)",
       "conditions": [
-        "Random variable X takes the listed distinct values x_i, which exhaust its finite support."
+        "Real-valued random variable X has finite support consisting of the distinct listed real values x_i, i=1,...,n, with n a positive integer."
       ],
       "symbols": {
         "E": "Expectation",
@@ -26,15 +26,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
+          "source_id": "openstax_statistics_2e_reference",
           "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "9c61ee8ada01e54b62bfb2671e7e2e8e178f06d77fbcb170317fd07497704f73",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a finite real-valued random variable, partition the probability space into the disjoint events X=x_i. Integrating X over each event gives x_i P(X=x_i); summing yields the expectation. Finiteness ensures all terms and the mean are finite.",
+          "Reference cross-check: https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
-          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/3-1-terminology"
+          "source_id": "openstax_data_science_reference",
+          "locator": "https://openstax.org/books/principles-data-science/pages/3-4-probability-theory"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "b168d99dd6bd1690dab851c880e7aaf9b10ff7e7e8b24787fbfc67de62b3d379",
+        "method": [
+          "definition_and_verification",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Restrict the probability measure to B and renormalize by its positive mass P(B). The mass of A in this restricted probability space is the mass of A intersection B divided by P(B). This is the definition for conditioning on an event of positive probability.",
+          "Reference cross-check: https://openstax.org/books/principles-data-science/pages/3-4-probability-theory. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

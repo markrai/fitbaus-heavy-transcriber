@@ -26,15 +26,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
-          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/6-introduction"
+          "source_id": "nist_statistics_handbook_reference",
+          "locator": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "522976f5e22104583cde9005d54d1635277136053e4671ec2bd85a2d89a1836a",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a standard normal variable Z the density is exp(-z^2/2)/sqrt(2 pi), normalized by the Gaussian integral. Set X=mu+sigma Z, sigma>0. The change-of-variable factor 1/sigma gives the displayed density. The mean of Z is zero by symmetry and its second moment is one by integration by parts, so X has mean mu and standard deviation sigma.",
+          "Reference cross-check: https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_data_science",
+          "source_id": "openstax_data_science_reference",
           "locator": "https://openstax.org/books/principles-data-science/pages/3-4-probability-theory"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "62e9d55dc9ca9eb56c3eba9702e1a482165028383f260f6872d4539b51b15495",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Conditional probability gives P(A intersection B)=P(A|B)P(B)=P(B|A)P(A). Divide by P(B), which is positive. P(A)>0 ensures that the reverse conditional probability is defined by the usual event ratio.",
+          "Reference cross-check: https://openstax.org/books/principles-data-science/pages/3-4-probability-theory. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
