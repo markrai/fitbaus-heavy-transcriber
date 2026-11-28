@@ -58,6 +58,14 @@ class AlignmentTests(unittest.TestCase):
         self.assertEqual(result["conflicting_cue_count"], 2)
         self.assertEqual([a["cue_index"] for a in result["anchors"]], [2])
 
+    def test_separated_exact_runs_do_not_claim_intervening_mismatch(self):
+        result = match_anchors([Section(0, "a", words(A + " original " + B))],
+                               [window(A + " substituted " + B)])
+        self.assertEqual(result["matched_cue_count"], 1)
+        anchor = result["anchors"][0]
+        self.assertEqual(anchor["ebook_word_start"], 0)
+        self.assertEqual(anchor["ebook_word_end"], len(words(A)))
+
     def test_no_cross_section_anchors(self):
         tokens = words(A)
         result = match_anchors([Section(0, "a", tokens[:4]), Section(1, "b", tokens[4:])], [window(A)])

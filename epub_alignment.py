@@ -136,17 +136,24 @@ def match_anchors(sections, windows):
         diagonal = (section, offset - cue_offset)
         previous = by_cue.get(cue_index)
         if previous is None:
-            by_cue[cue_index] = (diagonal, cue_offset, cue_offset + ANCHOR_WORDS)
+            by_cue[cue_index] = (diagonal, [cue_offset])
         elif previous[0] != diagonal:
             conflicts.add(cue_index)
         else:
-            by_cue[cue_index] = (diagonal, min(previous[1], cue_offset),
-                                 max(previous[2], cue_offset + ANCHOR_WORDS))
+            previous[1].append(cue_offset)
 
     candidates = []
-    for cue_index, (diagonal, first, last) in sorted(by_cue.items()):
+    for cue_index, (diagonal, offsets) in sorted(by_cue.items()):
         if cue_index in conflicts:
             continue
+        offsets.sort()
+        runs = []
+        for offset in offsets:
+            if runs and offset <= runs[-1][1]:
+                runs[-1] = (runs[-1][0], offset + ANCHOR_WORDS)
+            else:
+                runs.append((offset, offset + ANCHOR_WORDS))
+        first, last = max(runs, key=lambda run: (run[1] - run[0], -run[0]))
         section, shift = diagonal
         candidates.append((cue_index, (section, shift + first), (section, shift + last), first, last))
 
