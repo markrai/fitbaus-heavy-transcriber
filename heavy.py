@@ -217,7 +217,19 @@ def checkpoint_directory(root, identity, profile):
 
 
 def preview_alignment(library, profile, item_id, file_id, root):
-    from epub_alignment import AlignmentError, preview
+    from epub_alignment import preview
+
+    return preview_retained(library, profile, item_id, file_id, root, preview)
+
+
+def preview_visual_timing(library, profile, item_id, file_id, root):
+    from epub_timing import preview_timing
+
+    return preview_retained(library, profile, item_id, file_id, root, preview_timing)
+
+
+def preview_retained(library, profile, item_id, file_id, root, preview):
+    from epub_alignment import AlignmentError
 
     identifier(item_id)
     identifier(file_id)
