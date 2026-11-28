@@ -138,6 +138,37 @@ Directly review the remaining 22 representations. Preserve vector directions and
 
 Four subject fixtures add 48 scope-reviewed recitations and 68 negative examples. All 107 representations now have direct recitation scope reviews, comprising 231 aliases and 329 negative examples. Exact normalized alias uniqueness and positive/negative collisions were checked across all 16 fixtures. Recognition approval remains pending; these recitations and counterexamples are not independent blind-review evidence or real ASR measurements. S.1C must qualify the recognition behavior and build the admission evidence before release. No runtime, publication or inference changes.
 
+## Recognition qualification baseline (S.1C.1)
+
+    python -m stem.qualify_recognition --summary
+    python -m stem.qualify_recognition
+
+The maintainer-only harness loads all structured concepts and scope-review fixtures, requires exact formula, mathematical digest and alias parity for every representation, and constructs an isolated qualification dictionary. It does not load the legacy prototype or bypass the production compiler. The actual sentence matcher is evaluated with all authored positive aliases and negative examples, capitalization and whitespace variants, Unicode prefix/source-span checks, prefix and suffix mutations, and adjacent pairs of representations. Metrics count exact representation ID, code-point start/end and LaTeX matches; an incorrect ID or span counts as both a false positive and false negative. Undefined precision/recall is null. Report identity binds corpus, registry, fixtures, per-representation recognition digests, matcher version and implementation source hashes.
+
+Separately evaluate conservative abstention challenges: negated and hypothetical introductions and arbitrary colon prefixes. The current sentence-v1 matcher may accept these because it is a lexical matcher, not a semantic context classifier. Challenge failures are explicit blockers, not silently counted as successes or used to inflate the authored regression metrics. These challenges test a proposed conservative context policy, not a claim that every quoted equation should be suppressed. S.1C.2 must resolve and qualify the context policy before admission. CLI exit zero means the synthetic regression suite passed, not recognition or release approval; a challenge failure does not break the baseline CI. The full report contains case IDs and counts, not narration text. --summary omits detailed failure rows and corpus bindings. No report file is created automatically.
+
+Optional local transcription observations:
+
+    python -m stem.qualify_recognition --observed work/stem-observations.json --summary
+
+The observation JSON schema is fitbaus.stem.recognition-observations/v1 with provenance containing source, transcriber and labeling_method strings, and cases containing unique id, original text and expected annotations (id, start, end). Annotations use stable concept:representation IDs and nonoverlapping Python Unicode code-point offsets into the original text. Use an empty expected array for non-equation examples. Include independently labeled narration and difficult negatives, not just dictionary phrases; a correct equation that is missed should still be annotated. Preserve actual ASR spelling and punctuation. Do not commit private or copyrighted audiobook text. Example schema shape (synthetic, not observed ASR evidence):
+
+    {
+      "schema": "fitbaus.stem.recognition-observations/v1",
+      "provenance": {
+        "source": "local test",
+        "transcriber": "manual example only",
+        "labeling_method": "manual span annotation"
+      },
+      "cases": [
+        {"id": "example-1", "text": "E equals M C squared.",
+         "expected": [{"id": "physics.mass_energy:standard", "start": 0, "end": 20}]},
+        {"id": "example-2", "text": "The chapter discusses energy.", "expected": []}
+      ]
+    }
+
+The optional observation dataset is operator-declared, not independently authenticated, and its scores are separate from synthetic tests. No measured ASR accuracy is claimed until real observations are collected and independently reviewed. There is no automatic approval or threshold tuning in this baseline. Recognition and release qualification remain false. CI runs the deterministic baseline through unit tests without additional files, network, GPU or model calls. No corpus review status, compiler admission rules, legacy matcher or normal transcription behavior is changed.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
