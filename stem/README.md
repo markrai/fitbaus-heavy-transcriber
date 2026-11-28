@@ -230,6 +230,18 @@ The unscoped audiobook wording e to the i pi plus 1 equals 0, ambiguous fraction
 
 Twelve focused tests cover precedence, explicit scope, ambiguous recitations, preserved notation, full consumption, exact source spans and complexity. Existing tokenizer, AST, exact matcher, compiler, corpus approvals and transcription runtime are unchanged. S.1D.4 must connect validated structures to verified identities and specify controlled substitutions and contextual abstention. Development recognition remains unmeasured for this standalone parser; holdout remains untouched.
 
+## Verified structural identity pilot (S.1D.4A)
+
+The separate maintainer-only stem.hybrid module binds three explicitly authored structural rules to the exact mathematical review digests and LaTeX of Euler's identity, Pythagoras and mass-energy equivalence. It builds from the full scope-reviewed qualification dictionary, not the release compiler or legacy prototype. The existing sentence-v2 exact matcher runs first and is unchanged. New paths use the same conservative sentence selection, complete restricted-parser consumption, and exact structural keys. They do not render arbitrary parsed expressions. Stale rules or duplicate structural keys fail closed. Other representations remain exact-alias only.
+
+Named introductions are narrowly anchored: "Euler's identity is" and "The Pythagorean theorem is" (including "is given by" or a colon). The name alone is insufficient. The exact normalized short sequence e to the i pi plus 1 equals 0 is eligible only after the named Euler introduction. This is an explicitly reviewed contextual exception, not a general exponent repair. The ambiguous sequence in ordinary narration remains rejected. Pythagorean substitutions require the named theorem introduction, the exact ordered sum of two squared symbols equal to a third squared symbol, and three distinct lowercase ASCII variables excluding e and i. No reorder, general symbol substitution, simplification or homophone inference is performed. The output preserves those variable names using a fixed safe template, not arbitrary TeX. Fixed-notation rules preserve case and use the reviewed corpus TeX. Exact legacy alias matching retains its existing case-insensitive behavior; it is not a new structural rule. Named-introduction selection and semantic conditions remain conservative lexical evidence, not proof of narrator intent or mathematical truth.
+
+    python -m stem.qualify_hybrid --summary
+    python -m stem.qualify_hybrid --observed work/stem-qualification/development-uniform-observations.json --summary
+    python -m stem.qualify_hybrid --observed work/stem-qualification/development-formula_hint-observations.json --summary
+
+The pilot must preserve the 4,110 existing synthetic cases and adds focused structural, context, notation and stale-rule tests. Reports include separate baseline/hybrid results on the same optional observations, bound policy, corpus and implementation digests. The original observation schema expects canonical representation LaTeX, so renamed Pythagorean examples are not yet supported by that observation format; the targeted unit tests check the actual substituted output. The original labeled audiobook positives do not have the new anchored Euler introduction; no recovery of those mentions is claimed. The next slice must address safe contextual span selection and observation labels for noncanonical notation before broadening structural coverage. No holdout inspection, corpus approval, production matcher or normal transcription changes. No general AST-to-LaTeX renderer, GPU or LLM requirement.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
