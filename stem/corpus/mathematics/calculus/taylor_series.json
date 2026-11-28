@@ -21,7 +21,10 @@
         "x": "Evaluation point",
         "n": "Derivative order and summation index"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f of x equals the sum from n equals zero to infinity of the product of the fraction with numerator the nth derivative of f evaluated at a and denominator n factorial and open parenthesis x minus a close parenthesis raised to the power n",
+        "f of x equals the sum from n equals zero to infinity of the nth derivative of f at a divided by n factorial times the quantity x minus a raised to the power n"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

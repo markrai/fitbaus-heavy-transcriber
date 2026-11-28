@@ -108,6 +108,21 @@
       "scope_review": "The zeroth term is included; the numerator is x to n and the denominator is n factorial."
     },
     {
+      "id": "calculus.fundamental_theorem:accumulation_derivative",
+      "mathematical_sha256": "0ed5bfe3997a829a4598fc4fca179da55da70c56e830d41bb6d21447f8f78fd2",
+      "latex": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)",
+      "aliases": [
+        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of x",
+        "d by d x of the integral from a to x of f of t d t equals f of x"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of the integral from x to a of f of t with respect to t equals f of x",
+        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of t",
+        "accumulation derivative"
+      ],
+      "scope_review": "The derivative acts on the whole integral with fixed lower bound a, variable upper bound x, and dummy variable t; the result is f evaluated at x."
+    },
+    {
       "id": "calculus.fundamental_theorem:standard",
       "mathematical_sha256": "7190091d97d8b17779161f7308d2a313a5c90e57fae82748d6db1a3865f27ecf",
       "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a)",
@@ -123,19 +138,124 @@
       "scope_review": "The integral is of lowercase f; the endpoint evaluations are of uppercase F, its antiderivative, with the upper endpoint first."
     },
     {
-      "id": "calculus.fundamental_theorem:accumulation_derivative",
-      "mathematical_sha256": "0ed5bfe3997a829a4598fc4fca179da55da70c56e830d41bb6d21447f8f78fd2",
-      "latex": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)",
+      "id": "calculus.integration_parts:standard",
+      "mathematical_sha256": "ecfcbc343731babdbaacea6fff9d64f6a0374fa62668e8c87387c515f2836c5c",
+      "latex": "\\int u\\,dv=uv-\\int v\\,du",
       "aliases": [
-        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of x",
-        "d by d x of the integral from a to x of f of t d t equals f of x"
+        "the integral of u d v equals u times v minus the integral of v d u",
+        "the integral of u with respect to v equals the product of u and v minus the integral of v with respect to u"
       ],
       "negative_phrases": [
-        "the derivative with respect to x of the integral from x to a of f of t with respect to t equals f of x",
-        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of t",
-        "accumulation derivative"
+        "the integral of u d v equals u times v plus the integral of v d u",
+        "the integral of u d v equals u times v minus the integral of u d v",
+        "integration by parts"
       ],
-      "scope_review": "The derivative acts on the whole integral with fixed lower bound a, variable upper bound x, and dummy variable t; the result is f evaluated at x."
+      "scope_review": "The differential of v accompanies u on the left, while the differential of u accompanies v in the subtracted integral. The product uv is outside the integral; the expression is interpreted under the source conditions."
+    },
+    {
+      "id": "calculus.power_rule:standard",
+      "mathematical_sha256": "01cd94bcf112323d9958f15f8dea32959667b23c72b0f8d254c2fb8bfa559a81",
+      "latex": "\\frac{d}{dx}x^n=nx^{n-1}",
+      "aliases": [
+        "the derivative with respect to x of x raised to the power n equals n times x raised to the power of open parenthesis n minus one close parenthesis",
+        "d by d x of x to the power n equals n times x to the power of the quantity n minus one end exponent"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of x raised to the power n equals n times x raised to the power n minus one",
+        "the derivative with respect to x of x raised to the power n equals n times x raised to the power of open parenthesis n plus one close parenthesis",
+        "power rule"
+      ],
+      "scope_review": "The derivative lowers the exponent by one; n multiplies the entire resulting power, and the subtraction belongs inside the exponent."
+    },
+    {
+      "id": "calculus.product_rule:standard",
+      "mathematical_sha256": "2f7f1b3fd30fa61e4b874d8c739e5e70842fc29f93043b4002890e8472ac20fc",
+      "latex": "(uv)'=u'v+uv'",
+      "aliases": [
+        "the derivative of the product of u and v equals u prime times v plus u times v prime",
+        "open parenthesis u times v close parenthesis prime equals u prime times v plus u times v prime"
+      ],
+      "negative_phrases": [
+        "the derivative of the product of u and v equals u prime times v prime",
+        "the derivative of the product of u and v equals u prime times v minus u times v prime",
+        "product rule"
+      ],
+      "scope_review": "Differentiate the entire product. Each summand differentiates exactly one factor, and the two products are added."
+    },
+    {
+      "id": "calculus.quotient_rule:standard",
+      "mathematical_sha256": "e0275737e889d65f6ecff54a98db2a9078722bbb3eddd9a4da52437b9b14aad7",
+      "latex": "\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}",
+      "aliases": [
+        "the derivative of the quotient of u divided by v equals the fraction with numerator u prime times v minus u times v prime and denominator v squared",
+        "open parenthesis u divided by v close parenthesis prime equals open parenthesis u prime times v minus u times v prime close parenthesis divided by v squared"
+      ],
+      "negative_phrases": [
+        "the derivative of the quotient of u divided by v equals u prime times v minus u times v prime divided by v squared",
+        "the derivative of the quotient of u divided by v equals the fraction with numerator u times v prime minus u prime times v and denominator v squared",
+        "quotient rule"
+      ],
+      "scope_review": "The derivative acts on the whole quotient. The numerator is u prime times v minus u times v prime, in that order; the entire difference is divided by v squared."
+    },
+    {
+      "id": "calculus.sine_derivative:standard",
+      "mathematical_sha256": "f66a966c49f2f08fb9981530e00a0fe6d16587d596f77c804c8ee8640e303010",
+      "latex": "\\frac{d}{dx}\\sin x=\\cos x",
+      "aliases": [
+        "the derivative with respect to x of sine of x equals cosine of x",
+        "d by d x of sine x equals cosine x"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of sine of x equals negative cosine of x",
+        "the derivative with respect to x of sine of x equals sine of x",
+        "sine derivative"
+      ],
+      "scope_review": "The first derivative of sine is positive cosine at the same argument, with the source condition that x is in radians."
+    },
+    {
+      "id": "calculus.sine_limit:standard",
+      "mathematical_sha256": "f3fb2065e2b571c4018c873608d38247f3164a8d6769bdaf4d7ba84d91a2e197",
+      "latex": "\\lim_{x\\to0}\\frac{\\sin x}{x}=1",
+      "aliases": [
+        "the limit as x approaches zero of sine x divided by x equals one",
+        "the limit as x tends to zero of the fraction with numerator sine of x and denominator x equals one"
+      ],
+      "negative_phrases": [
+        "the limit as x approaches zero of sine x divided by x equals zero",
+        "the limit as x approaches infinity of sine x divided by x equals one",
+        "sine limit"
+      ],
+      "scope_review": "The quotient is inside the limit, with x approaching zero from either side. The numerator is sine of x, not sine of the quotient x divided by x."
+    },
+    {
+      "id": "calculus.sine_series:standard",
+      "mathematical_sha256": "4d5f761f473009373927d9b39831fa371f4bec99a428b9a767b519042f749702",
+      "latex": "\\sin x=\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{2n+1}}{(2n+1)!}",
+      "aliases": [
+        "sine of x equals the sum from n equals zero to infinity of the fraction with numerator open parenthesis negative one close parenthesis raised to the power n times x raised to the power of open parenthesis two n plus one close parenthesis and denominator open parenthesis two n plus one close parenthesis factorial",
+        "sine of x equals the sum from n equals zero to infinity of the fraction with numerator negative one in parentheses raised to the power n times x raised to the power of the quantity two times n plus one end exponent and denominator the factorial of the quantity two times n plus one"
+      ],
+      "negative_phrases": [
+        "sine of x equals the sum from n equals zero to infinity of negative one to the power n times x to the power two n plus one over two n plus one factorial",
+        "sine of x equals the sum from n equals one to infinity of the fraction with numerator negative one in parentheses raised to the power n times x raised to the power of the quantity two times n plus one end exponent and denominator the factorial of the quantity two times n plus one",
+        "sine series"
+      ],
+      "scope_review": "The alternating factor has base negative one, the exponent of x is the whole odd integer 2n+1, and the factorial applies to that same odd integer. The series starts at zero."
+    },
+    {
+      "id": "calculus.taylor_series:standard",
+      "mathematical_sha256": "f02717d8c8dc4f88fdfccc56f09a89da9955d8791907c6945bd193c8bdfe39e6",
+      "latex": "f(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^n",
+      "aliases": [
+        "f of x equals the sum from n equals zero to infinity of the product of the fraction with numerator the nth derivative of f evaluated at a and denominator n factorial and open parenthesis x minus a close parenthesis raised to the power n",
+        "f of x equals the sum from n equals zero to infinity of the nth derivative of f at a divided by n factorial times the quantity x minus a raised to the power n"
+      ],
+      "negative_phrases": [
+        "f of x equals the sum from n equals zero to infinity of f to the power n of a divided by n factorial times the quantity x minus a raised to the power n",
+        "f of x equals the sum from n equals one to infinity of the nth derivative of f at a divided by n factorial times the quantity x minus a raised to the power n",
+        "taylor series"
+      ],
+      "scope_review": "The superscript in parentheses denotes derivative order, not a power of f. Evaluate that derivative at a, divide by n factorial and multiply by the grouped difference x-a to the nth power. Include order zero; convergence conditions remain bound to the source representation."
     }
   ]
 }

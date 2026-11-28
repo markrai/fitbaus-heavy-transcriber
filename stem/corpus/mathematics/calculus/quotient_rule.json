@@ -19,7 +19,10 @@
         "u": "Numerator function",
         "v": "Denominator function"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative of the quotient of u divided by v equals the fraction with numerator u prime times v minus u times v prime and denominator v squared",
+        "open parenthesis u divided by v close parenthesis prime equals open parenthesis u prime times v minus u times v prime close parenthesis divided by v squared"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",
