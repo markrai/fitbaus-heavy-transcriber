@@ -91,10 +91,35 @@ class CorpusModelTests(unittest.TestCase):
             r["id"] = "alternate"
             r["latex"] = "m=E/c^2"
             r["spoken_aliases"] = []
+            for field in ("mathematical_review", "recognition_review"):
+                r[field] = {"status": "pending", "digest": None, "method": [], "evidence": []}
             c["representations"].append(r)
         self.change(edit)
         concepts = load_corpus(self.root)
         self.assertEqual(report(concepts)["representations"], before + 1)
+        mass_energy = next(c for c in concepts if c["id"] == "physics.mass_energy")
+        alternate = next(r for r in mass_energy["representations"] if r["id"] == "alternate")
+        self.assertEqual(alternate["mathematical_review"]["status"], "pending")
+        self.assertEqual(alternate["recognition_review"]["status"], "pending")
+
+    def test_copied_approval_cannot_authorize_new_representation(self):
+        def edit(c):
+            original = c["representations"][0]
+            original["mathematical_review"] = {
+                "status": "approved", "digest": mathematical_digest(c, original),
+                "method": ["reference"], "evidence": ["test fixture only"],
+            }
+            original["recognition_review"] = {
+                "status": "pending", "digest": None, "method": [], "evidence": [],
+            }
+            alternate = copy.deepcopy(original)
+            alternate["id"] = "alternate"
+            alternate["latex"] = "m=E/c^2"
+            alternate["spoken_aliases"] = []
+            c["representations"].append(alternate)
+        self.change(edit)
+        with self.assertRaisesRegex(ValueError, "Stale or incomplete review.*alternate.mathematical_review"):
+            load_corpus(self.root)
 
 
 if __name__ == "__main__":
