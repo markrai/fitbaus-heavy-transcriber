@@ -112,6 +112,16 @@ The same canonical content yields the same filename and is reused only if the ex
 
 E.6 must independently validate the artifact and current source identities at the delivery boundary, qualify safe rendering (never execute extracted SVG/XML), establish playback eligibility and integrate only the approved delivery format. Do not serve these local JSON artifacts directly to the bike.
 
+## Local raster delivery candidates (E.6A.1)
+
+Install the independently pinned raster dependency in the workbench virtual environment: `python -m pip install --only-binary=:all: -r requirements-delivery.txt`. Core CI installs this same dependency, but the normal transcription and E.0–E.5 paths do not import Pillow. Run `python -m epub_delivery <full-enrichment-artifact-id> --work-dir work` to create a local candidate from a prepared E.5 artifact. No audiobook download, model call or publication occurs.
+
+The input file name and canonical contents must agree with the SHA-256 artifact ID; asset digests, timing evidence, summary and provenance are rechecked using the E.5 contract. Only unique raster assets with bounded timing evidence are decoded. Each decode runs in a separate Python isolated-mode subprocess with a 10-second timeout, a pinned Pillow version, restricted formats, 4 MiB input, 8 million source pixels, maximum 8192 source edge, and no animation. Original bytes never go to the consumer: the worker verifies and loads the image, applies EXIF orientation, fits within 1024×600 without upscaling, and writes fresh metadata-free RGBA PNG. The parent independently checks chunk types, CRCs, dimensions, bounded decompression and scanline filters. Output is limited to 1 MiB per PNG, 128 eligible source assets and 16 MiB total unique PNGs. Invalid or unsupported rasters are withheld; an unexpected worker failure or exceeded aggregate budget aborts preparation. This subprocess is not an OS security sandbox.
+
+The versioned fitbaus.epub-delivery-candidate/v1 JSON stores only normalized PNGs, source asset and artifact identities, and original bounded timing evidence for candidate occurrences. Untimed and unsupported occurrences are counted, not delivered. It uses the same atomic content-addressed storage policy under work/delivery (separate limits from enrichment). No raw XML, archive paths or original image metadata are included. No edition, rendering or playback qualification flag is promoted. The format is a local candidate, not a playback schedule or proof that an image is discussed in narration. Real-device memory/decode checks and current source identity validation remain mandatory before VEGA publication.
+
+E.6A.2 will implement a separate restrictive MathML/SVG renderer with its own qualification, preserving mathematical structure without activating the dormant spoken-math research. E.6B onward will handle server ingestion and the bike.
+
 ## Dormant spoken-math research
 
 See [STEM dictionary and corpus acquisition](stem/README.md). All existing research code, corpus, fixtures and evidence formats are retained. The spoken-math engine is suspended, not a production fallback, and is not imported by normal processing. Run ci.bat stem (or ./ci.sh stem) explicitly to exercise its regression suite; renderer qualification is also opt-in. No research data, model downloads or renderer dependencies are required for the new approach.

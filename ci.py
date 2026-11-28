@@ -56,8 +56,10 @@ def prepare_contract(root=ROOT):
 def core_steps():
     return [
         ("[Core] Pinned transcript contract", prepare_contract),
+        ("[Core] Delivery decoder dependency", lambda: run(
+            sys.executable, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-delivery.txt")),
         ("[Core] Python compilation", lambda: run(
-            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py",
+            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py", "epub_delivery.py", "epub_raster_worker.py",
             "ci.py", "test_suite.py", *(str(path.relative_to(ROOT)) for path in test_paths("core")))),
         ("[Core] Unit tests", lambda: run(sys.executable, "test_suite.py", "core")),
     ]
