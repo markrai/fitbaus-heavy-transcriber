@@ -57,6 +57,8 @@ class ArtifactTests(unittest.TestCase):
                 lambda result: result["assets"][0].update(sha256="0" * 64),
                 lambda result: result["occurrences"][0].update(asset_id="missing"),
                 lambda result: result["occurrences"][0]["evidence"].update(latest_ms=31000),
+                lambda result: result["occurrences"][0]["evidence"].update(cue_indices=[0, 0]),
+                lambda result: result["occurrences"][0].update(ebook_word_position=999),
                 lambda result: result.update(timed_count=7),
                 lambda result: result.update(playback_qualified=True)):
             result = collected()

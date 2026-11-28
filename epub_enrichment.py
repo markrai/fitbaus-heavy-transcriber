@@ -8,7 +8,7 @@ import re
 import tempfile
 
 from epub_assets import MAX_ASSET_BYTES, MAX_TOTAL_BYTES, MAX_OCCURRENCES, RASTER
-from epub_timing import MAX_INTERVAL_MS, POLICY, SCHEMA as TIMING_SCHEMA
+from epub_timing import MAX_INTERVAL_MS, MAX_SIDE_WORDS, MIN_INSIDE_WORDS, POLICY, SCHEMA as TIMING_SCHEMA
 
 
 SCHEMA = "fitbaus.epub-enrichment/v1"
@@ -90,6 +90,23 @@ def build_artifact(result):
                 or not 0 <= start < end <= identity["duration_ms"] or end - start > MAX_INTERVAL_MS
                 or type(row["ebook_word_position"]) is not int or row["ebook_word_position"] < 0):
             raise EnrichmentError("Invalid bounded timing evidence")
+        indices, ranges = evidence["cue_indices"], evidence["anchor_word_ranges"]
+        expected = 1 if method == "within_exact_cue" else 2
+        if (len(indices) != expected or len(ranges) != expected
+                or any(type(i) is not int or not 0 <= i < result["cue_count"] for i in indices)
+                or any(len(pair) != 2 or any(type(n) is not int for n in pair)
+                       or not 0 <= pair[0] < pair[1] for pair in ranges)):
+            raise EnrichmentError("Invalid supporting anchor coordinates")
+        position = row["ebook_word_position"]
+        if expected == 1:
+            left, right = ranges[0]
+            valid = min(position - left, right - position) >= MIN_INSIDE_WORDS
+        else:
+            valid = (indices[1] == indices[0] + 1
+                     and 0 <= position - ranges[0][1] <= MAX_SIDE_WORDS
+                     and 0 <= ranges[1][0] - position <= MAX_SIDE_WORDS)
+        if not valid:
+            raise EnrichmentError("Supporting anchors do not satisfy timing policy")
         methods[method] += 1
     summary = {"occurrence_count": len(occurrences), "unique_asset_count": len(asset_ids),
                "timed_count": sum(methods.values()), "untimed_count": sum(reasons.values()),
