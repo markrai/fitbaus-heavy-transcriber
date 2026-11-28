@@ -63,6 +63,7 @@ class ProseContextTests(unittest.TestCase):
             "Is Euler's identity e to the i pi plus one equals zero?",
             "What is the meaning of Euler's identity written as e to the i pi plus two equals zero?",
             "What is the meaning of Euler's identity written as e to the i pi plus one equals zero? Plus one.",
+            "What is the meaning of Euler's identity written as e to the i pi plus one equals zero? This is incorrect.",
             "Suppose the expression written as E=m*c², where the symbols denote quantities.",
             "The expression E=m*c², which is not true.",
             "The expression E=m*c², plus one.",
@@ -78,6 +79,8 @@ class ProseContextTests(unittest.TestCase):
             ("The theorem is useful.", "Right triangle sides can be written as follows:", anchor),
             ("The Pythagorean theorem concerns right triangle sides.", "Another chapter begins.", anchor),
             ("The Pythagorean theorem concerns right triangle sides.", "Suppose the relation is written as follows:", anchor),
+            ("This is not the Pythagorean theorem for right triangle sides.", "The relation is written as follows:", anchor),
+            ("Suppose the Pythagorean theorem concerns right triangle sides.", "The relation is written as follows:", anchor),
             ("The Pythagorean theorem concerns right triangle sides.", "Ordinary narration.", "Ordinary narration.",
              "The relation is written as follows:", anchor),
         ):

@@ -90,9 +90,9 @@ def named_triangle_clause(cues, index, first, hybrid):
     if not names or not TRIANGLE.search(prior) or not LEAD_IN.search(prior):
         return None
     evidence = prior[names[-1].start():]
-    if (DISQUALIFYING_WORDS.search(evidence) or any(c in evidence for c in "?;")
-            or re.search(r"\b(?:suppose|assume|if|whether|incorrectly|rather[ \t]+than)\b",
-                         evidence, re.IGNORECASE)):
+    if (DISQUALIFYING_WORDS.search(prior) or any(c in evidence for c in "?;")
+            or re.search(r"\b(?:suppose|assume|if|whether|incorrectly|rather[ \t]+than|counterexample)\b",
+                         prior, re.IGNORECASE)):
         return None
     trimmed = text.strip()
     candidates = tuple(sentence_candidates(trimmed))
@@ -111,7 +111,8 @@ def named_triangle_clause(cues, index, first, hybrid):
 def interpretation_question(cues, index, first, hybrid):
     text = cues[index].text
     boundary = BOUNDARY.search(text)
-    if boundary is None or boundary.group() != "?" or CONTINUATION.match(text, boundary.end()):
+    if (boundary is None or boundary.group() != "?" or CONTINUATION.match(text, boundary.end())
+            or DISQUALIFYING_WORDS.search(text[boundary.end():])):
         return None
     fragment = text[:boundary.start()]
     prefixes = [("", index)]
