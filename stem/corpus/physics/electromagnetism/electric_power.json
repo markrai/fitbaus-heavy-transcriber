@@ -13,10 +13,10 @@
       "id": "standard",
       "latex": "P=IV",
       "conditions": [
-        "Instantaneous electrical power with consistent passive sign convention; not necessarily average AC power."
+        "Instantaneous power absorbed by a lumped two-terminal element; current is positive when entering the terminal designated positive for voltage. Average AC power generally requires time averaging."
       ],
       "symbols": {
-        "P": "Instantaneous power",
+        "P": "Instantaneous absorbed electrical power",
         "I": "Instantaneous current",
         "V": "Instantaneous voltage"
       },
@@ -29,13 +29,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.electric_power"
+        },
+        {
+          "source_id": "openstax_university_physics_2_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/9-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "df99e06831d2143335130c8a6d4737f8a8ff2093522b3079d60aadb2f0b095f1",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a two-terminal lumped element under the passive sign convention, energy delivered by charge dq entering the positive terminal is V dq. Divide by dt to obtain V I, with I=dq/dt. A negative value means delivery rather than absorption.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/9-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

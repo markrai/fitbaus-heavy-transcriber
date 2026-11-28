@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "V=IR",
       "conditions": [
-        "Ohmic element at fixed physical conditions; consistent voltage and current sign convention."
+        "Ohmic element with constant resistance at fixed physical conditions, passive sign convention and negligible reactive effects."
       ],
       "symbols": {
         "V": "Voltage across the element",
@@ -29,13 +29,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.ohm"
+        },
+        {
+          "source_id": "openstax_university_physics_2_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/9-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e4fb5e1530bb6724af7b84d75108c95f63b64afe688fb6368d2f1bb4927af061",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "An ideal ohmic element has a linear voltage-current relationship through the origin with constant resistance R under fixed conditions. Its slope is R, giving V=IR, including zero current. This is an empirical constitutive model; a general nonlinear element does not obey a constant-R law.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/9-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

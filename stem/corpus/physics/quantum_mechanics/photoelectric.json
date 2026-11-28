@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "K_{\\max}=hf-\\phi",
       "conditions": [
-        "Single-photon photoemission from material with work function phi, frequency above or at threshold; neglect recoil and additional energy losses for maximum kinetic energy."
+        "Ideal single-photon photoemission from a material with positive work function phi. Frequency at or above threshold phi/h (zero kinetic energy at ideal threshold); neglect recoil and additional losses for the maximum kinetic energy."
       ],
       "symbols": {
         "K_{\\max}": "Maximum emitted electron kinetic energy",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
-          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
+          "source_id": "openstax_university_physics_3_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-2-photoelectric-effect"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "edef82f4ce82491a79063a3bd64be7dcf9dbba8176ffabb256d71af0a509f5ab",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "In the ideal single-photon photoemission model, absorption supplies energy hf. The least energy needed to extract an electron is the work function phi. Electrons escaping with no additional losses have maximum kinetic energy hf-phi. A negative result does not describe emitted electrons; below threshold the ideal single-photon process cannot eject them.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/6-2-photoelectric-effect. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

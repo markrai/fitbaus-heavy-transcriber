@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\mathbf F=q(\\mathbf E+\\mathbf v\\times\\mathbf B)",
       "conditions": [
-        "Classical electromagnetic force on a point charge; SI units, fields and particle velocity evaluated in the same inertial frame at the particle."
+        "External classical electromagnetic force on a point charge, neglecting radiation reaction and self-force; SI units, fields and particle velocity evaluated in the same inertial frame at the particle."
       ],
       "symbols": {
         "\\mathbf F": "Electromagnetic force vector",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
-          "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-key-equations"
+          "source_id": "openstax_university_physics_2_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/16-1-maxwells-equations-and-electromagnetic-waves"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "4ce9f877d7b0cf6f4db2a4239eb6202f165a7fee6a9ec26835fd7aff98543e5b",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The Lorentz force is the classical empirical law for the external electromagnetic force on a point charge. Its electric part is qE and magnetic part q(v cross B). They add as vectors; the magnetic term is perpendicular to velocity. The law is not a mathematical consequence of the Maxwell field equations alone.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/16-1-maxwells-equations-and-electromagnetic-waves. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
@@ -46,7 +52,7 @@
       "id": "magnetic_only",
       "latex": "\\mathbf F=q\\mathbf v\\times\\mathbf B",
       "conditions": [
-        "Magnetic contribution to the force on a point charge; SI units and common inertial frame."
+        "Magnetic contribution to the external electromagnetic force on a point charge, in SI units and a common inertial frame; it equals the total electromagnetic force only if qE is zero."
       ],
       "symbols": {
         "\\mathbf F": "Magnetic force",
@@ -57,15 +63,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/11-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "7b820fc4bf6cc46c48265ff5da96da2ec31c39a1d7c242512defd45df4362ff6",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The magnetic contribution is q(v cross B), as follows by taking the magnetic term of the full Lorentz force. It is perpendicular to velocity and field, and vanishes for parallel velocity and field. It is the entire electromagnetic force only when the electric contribution vanishes.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/11-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

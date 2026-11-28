@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\frac{1}{f}=\\frac{1}{d_o}+\\frac{1}{d_i}",
       "conditions": [
-        "Thin lens and paraxial rays in same surrounding medium on both sides; real object and image distances positive, virtual distances negative, converging focal length positive; finite nonzero distances."
+        "Ideal thin lens in the paraxial approximation, same medium on both sides; real object/image distances positive, virtual distances negative; converging f positive, diverging f negative; finite nonzero f, d_o and d_i."
       ],
       "symbols": {
         "f": "Signed focal length",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
+          "source_id": "openstax_university_physics_3_reference",
           "locator": "https://openstax.org/books/university-physics-volume-3/pages/2-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "075f678633f209c22234cdbd9518e997e7032e165c3172f8c535659fe394ea4d",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "In paraxial optics use the signed ray-height/slope transformation of a thin lens: the outgoing slope equals the incoming slope minus ray height divided by f. A ray from the on-axis object at lens height y has incoming slope y/d_o and outgoing slope -y/d_i. Equating and dividing by nonzero y gives 1/f=1/d_o+1/d_i.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/2-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

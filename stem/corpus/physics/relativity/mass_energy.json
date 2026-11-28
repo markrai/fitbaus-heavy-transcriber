@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "E=mc^2",
       "conditions": [
-        "Rest energy of a body with invariant mass m; c is the vacuum speed of light."
+        "Rest energy of a body with positive invariant mass m, evaluated in its rest frame; c is the vacuum speed of light. E is not the general total energy of a moving massive body."
       ],
       "symbols": {
         "E": "Rest energy",
@@ -30,13 +30,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.mass_energy"
+        },
+        {
+          "source_id": "openstax_university_physics_3_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/5-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "27277ed5f7e4a67ad39b1b7224f8517cdc1cc4d74b9373849c53c26fbbac4849",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a massive body in its rest frame, total relativistic momentum is zero. The invariant energy-momentum equation gives E^2=m^2 c^4. Choosing positive rest energy gives E=mc^2. Equivalently the total energy gamma mc^2 has gamma=1 at rest; total energy in a moving frame is generally greater.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/5-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

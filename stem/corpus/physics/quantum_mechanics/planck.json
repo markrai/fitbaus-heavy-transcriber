@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "E=hf",
       "conditions": [
-        "Photon of frequency f measured in the same frame as its energy."
+        "Photon of positive frequency f; frequency and energy are measured in the same inertial frame."
       ],
       "symbols": {
         "E": "Photon energy",
@@ -29,13 +29,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.planck"
+        },
+        {
+          "source_id": "openstax_university_physics_3_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-3/pages/6-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "af1a993db847175224518ee2eefd0c95f7d91f2220e6405e614dae93306fb905",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The Planck-Einstein relation assigns energy h f to a photon of frequency f. Equivalently the quantum of angular frequency omega has energy hbar omega; omega=2 pi f and h=2 pi hbar give hf. This is a quantum physical law rather than a purely mathematical theorem.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/6-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

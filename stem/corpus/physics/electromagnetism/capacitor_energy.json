@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "U=\\frac{1}{2}CV^2",
       "conditions": [
-        "Linear ideal capacitor with constant capacitance; energy zero at zero charge."
+        "Ideal linear capacitor with fixed positive capacitance and zero stored-energy reference at zero charge."
       ],
       "symbols": {
         "U": "Stored electrostatic energy",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/8-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "715a61c027d4a13818d2916ce399c7ce1ff2487d440589105c9d784348e6845c",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "To charge an ideal linear capacitor reversibly from zero charge to Q, integrate the incremental work V(q)dq=(q/C)dq. The result is Q^2/(2C); substituting Q=CV gives CV^2/2.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/8-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

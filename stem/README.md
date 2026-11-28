@@ -61,6 +61,12 @@ Clarify nonrelativistic and constant-mass assumptions, positive mass and separat
 
 Cumulative proposed mathematical approvals: 85 of 107 representations; 22 remain in electromagnetism, optics, relativity and quantum mechanics. Recognition and rendering remain unqualified; the runtime matcher and legacy seed remain unchanged.
 
+## Electromagnetism, optics and modern physics mathematical review (S.0F.2D.6)
+
+Review the remaining 21 concepts and 22 representations: nine electromagnetic concepts (ten forms), three optics, five relativity and four quantum mechanics. Distinguish empirical laws and constitutive models from mathematical derivations, and add independently authored review evidence tied to exact content digests. Correct the full Lorentz-force reference to University Physics Volume 2 section 16.1 and retain the magnetic-only form's separate chapter reference. Check the uncertainty principle against Volume 3 chapter 7, and clarify canonical operator domains and intrinsic state standard deviations. Specify rest versus total energy, simultaneous endpoint measurements, photon frequency/frame, ideal photoemission threshold, paraxial and far-field approximations, and electrical sign conventions.
+
+Cumulative proposed mathematical approvals: 107 of 107 representations across 102 concepts. No new formulas, aliases, or runtime changes. Bibliographic-only source admission does not authorize copying reference content; the content source records remain pending. Approval is an authoring-level review record, not independent human certification, rendering qualification, recognition qualification or production release approval. S.1A is next: a deterministic compiler with explicit admission gates and stable representation identities.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

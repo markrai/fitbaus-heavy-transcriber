@@ -26,15 +26,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/5-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "63d20bbe49f700b875f3492e7588c948d73ecd220713c1ae82e0a44c81a87ac2",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The electrostatic inverse-square force law is empirical. Taking the magnitude of its vector form removes the sign of the charge product because the radial unit vector has unit magnitude. The charge signs still determine attraction or repulsion. The SI prefactor is 1/(4 pi epsilon_0).",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/5-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

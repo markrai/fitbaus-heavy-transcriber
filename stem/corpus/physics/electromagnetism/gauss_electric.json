@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\oint_S\\mathbf E\\cdot d\\mathbf A=\\frac{Q_{\\mathrm{enc}}}{\\epsilon_0}",
       "conditions": [
-        "Closed orientable surface in classical electromagnetism, SI units; outward area elements, total enclosed charge including bound charges."
+        "Closed surface bounding a volume in classical electromagnetism, SI units; outward area elements; total enclosed charge including bound charges. Fields and charge distributions permit the flux law, with no singular point charge on the surface."
       ],
       "symbols": {
         "S": "Closed surface",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/6-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "dd090e53ff7f497369e597d18ba58122d61847e7b756cea5fab3eb6ca97306ac",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Starting from the differential Maxwell equation div E=rho/epsilon_0, integrate over the volume bounded by S and use the divergence theorem. The volume integral of total charge density is Q_enc. This is the integral form of the physical law, including bound charge where present.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/6-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

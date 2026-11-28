@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "d\\sin\\theta=m\\lambda",
       "conditions": [
-        "Two coherent in-phase narrow slits separated by d; far-field monochromatic interference maxima, integer order m with physically accessible angle."
+        "Two coherent in-phase ideal narrow slits separated by positive d, far-field approximation in a uniform medium, monochromatic wavelength lambda>0, integer order m with |m lambda|<=d. Finite slit envelopes may suppress maxima."
       ],
       "symbols": {
         "d": "Slit separation",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_3",
+          "source_id": "openstax_university_physics_3_reference",
           "locator": "https://openstax.org/books/university-physics-volume-3/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e9e2d9a9c94d21ab532334c3140137ca1b4f7223fde39523f80dacc051ae267c",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "In the far-field approximation the signed geometric path-length difference in a uniform medium is d sin(theta). Coherent in-phase equal-frequency waves have constructive interference when this difference is an integer multiple of wavelength. This gives the bright-fringe condition for ideal narrow slits; finite slit diffraction can suppress orders.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-3/pages/3-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
