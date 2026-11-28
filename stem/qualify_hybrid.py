@@ -5,7 +5,8 @@ from pathlib import Path
 
 from .corpus_model import ROOT, digest
 from .hybrid import HYBRID_VERSION, build_hybrid
-from .qualify_recognition import FIXTURES, context_challenges, evaluate, load_observations, synthetic_cases
+from .observation_labels import load_hybrid_observations
+from .qualify_recognition import FIXTURES, context_challenges, evaluate, synthetic_cases
 
 SCHEMA = "fitbaus.stem.hybrid-qualification/v1"
 
@@ -21,7 +22,7 @@ def qualify(root=ROOT, fixtures=FIXTURES, observed=None):
     challenges = evaluate(context_challenges(dictionary), dictionary, recognizer=recognize)
     observations = None
     if observed is not None:
-        cases, metadata = load_observations(observed, dictionary)
+        cases, metadata = load_hybrid_observations(observed, dictionary)
         observations = {**metadata, "baseline": evaluate(cases, dictionary),
                         "hybrid": evaluate(cases, dictionary, recognizer=recognize)}
     payload = {
@@ -30,7 +31,8 @@ def qualify(root=ROOT, fixtures=FIXTURES, observed=None):
         "implementation_sha256": {
             name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
             for name in ("hybrid.py", "qualify_hybrid.py", "qualify_recognition.py", "matcher.py",
-                         "dictionary.py", "corpus_model.py", "tokenizer.py", "parser.py", "expression.py")
+                         "dictionary.py", "corpus_model.py", "tokenizer.py", "parser.py", "expression.py",
+                         "identity_context.py", "observation_labels.py")
         },
         "structural_rule_count": len(hybrid.rules), "regression": regression,
         "context_challenges": challenges, "observations": observations,
