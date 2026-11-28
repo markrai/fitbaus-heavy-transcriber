@@ -1,12 +1,13 @@
 import copy
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from app import Workbench
-from companions import discover
-from heavy import Library, PROFILE_PREFIX
+from app import Handler, Workbench
+from companions import CompanionError, choose_epub, discover
+from heavy import Library, PROFILE_PREFIX, SourceError
 
 
 def file(ino, filename, supplementary=None):
@@ -38,6 +39,31 @@ class CompanionTests(unittest.TestCase):
         data["libraryFiles"] = []
         self.assertEqual(discover(data, "book"), ())
 
+    def test_actual_primary_shape_and_millisecond_timestamp(self):
+        data = item()
+        primary = copy.deepcopy(data["media"]["ebookFile"])
+        primary.pop("fileType")
+        primary.pop("isSupplementary")
+        primary["metadata"].update(size=2748451, mtimeMs=1688589442000)
+        data["libraryFiles"][0]["metadata"] = dict(primary["metadata"])
+        data["media"]["ebookFile"] = primary
+        self.assertEqual(choose_epub(discover(data, "book")).file_id, "42")
+
+    def test_companion_http_errors_are_specific_and_redacted(self):
+        handler = object.__new__(Handler)
+        handler.path = "/api/companions/book"
+        handler.server = SimpleNamespace(workbench=SimpleNamespace())
+        with patch.object(handler, "valid_host", return_value=True), patch.object(handler, "json") as send:
+            for error, status, expected in (
+                    (SourceError("unauthorized"), 502, "Audiobookshelf: unauthorized"),
+                    (CompanionError("Invalid companion identity or metadata"), 422,
+                     "Invalid companion identity or metadata"),
+                    (RuntimeError("private credentials"), 500,
+                     "Unexpected companion discovery failure (RuntimeError)")):
+                with patch.object(handler.server.workbench, "companions", create=True, side_effect=error):
+                    handler.do_GET()
+                send.assert_called_with({"error": expected}, status)
+
     def test_primary_only(self):
         data = item()
         data["libraryFiles"] = []
@@ -65,6 +91,24 @@ class CompanionTests(unittest.TestCase):
         bad["libraryFiles"][1]["metadata"]["filename"] = "../Figures.PDF"
         with self.assertRaises(ValueError):
             discover(bad, "book")
+
+    def test_primary_preferred_and_ambiguous_epubs_rejected(self):
+        data = item()
+        data["libraryFiles"].append(file("45", "Second.epub", False))
+        self.assertEqual(choose_epub(discover(data, "book")).file_id, "42")
+        data["media"]["ebookFile"] = None
+        with self.assertRaisesRegex(ValueError, "Multiple EPUB"):
+            choose_epub(discover(data, "book"))
+
+    def test_minified_hint_does_not_fetch_expanded_metadata(self):
+        library = Library("https://example.test", "home", "token")
+        rows = {"results": [
+            {"id": "book", "media": {"metadata": {"title": "Measurement"}, "ebookFormat": "epub"}},
+            {"id": "other", "media": {"metadata": {"title": "Other"}}}]}
+        with patch.object(library, "get_json", side_effect=[
+                {"libraries": [{"id": "lib", "mediaType": "book"}]}, rows]) as get:
+            self.assertEqual([row["ebook_format"] for row in library.books()], ["epub", None])
+            self.assertEqual(get.call_count, 2)
 
     def test_library_fetches_only_expanded_item(self):
         library = Library("https://example.test", "home", "token")

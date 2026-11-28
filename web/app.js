@@ -29,13 +29,16 @@ function duration(seconds) {
 function updateActions() {
     $("count").textContent = selected.size + " selected";
     $("start").disabled = running || companionBusy || !selected.size || selected.size > 32;
-    $("companions").disabled = running || companionBusy || selected.size !== 1;
+    $("include-ebook").disabled = running;
 }
 
 function clearCompanions() {
     companionRequest++;
     companionBusy = false;
     $("companion-result").replaceChildren();
+    $("companion-summary").textContent = "";
+    $("companion-diagnostics").hidden = true;
+    $("companion-diagnostics").open = false;
 }
 
 function renderBooks() {
@@ -52,6 +55,7 @@ function renderBooks() {
             else selected.delete(book.id);
             clearCompanions();
             updateActions();
+            discoverSelected();
         });
         const cover = element("img");
         cover.src = "/api/cover/" + encodeURIComponent(book.id);
@@ -60,6 +64,7 @@ function renderBooks() {
         const meta = element("span", undefined, "book-meta");
         meta.append(element("span", book.title, "book-title"),
                     element("span", [book.author, duration(book.duration)].filter(Boolean).join(" · "), "book-info"));
+        if (book.ebook_format) meta.append(element("span", book.ebook_format.toUpperCase() + " companion available", "ebook-hint"));
         row.append(box, cover, meta);
         if (book.previously_imported) row.append(element("span", "Previously imported", "imported"));
         fragment.append(row);
@@ -77,6 +82,7 @@ async function refresh() {
         const ids = new Set(books.map(book => book.id));
         selected = new Set([...selected].filter(id => ids.has(id)));
         renderBooks();
+        discoverSelected();
         $("error").textContent = "";
     } catch (error) {
         $("error").textContent = error.message;
@@ -102,6 +108,19 @@ async function status() {
             progress.value = job.done || 0;
             row.append(head, progress);
             if (job.error) row.append(element("p", job.error + " · select again to retry from checkpoints"));
+            if (job.enrichment_state) row.append(element("p", "Ebook: " + job.enrichment_state));
+            if (job.enrichment_error) row.append(element("p", job.enrichment_error, "enrichment-error"));
+            if (job.enrichment_artifact) {
+                const artifact = job.enrichment_artifact;
+                row.append(element("p", artifact.timed_count + " timed / " + artifact.untimed_count +
+                    " untimed visuals · Enrichment ID: " + artifact.artifact_id, "artifact-detail"));
+            }
+            if (job.delivery_candidate) {
+                const delivery = job.delivery_candidate;
+                row.append(element("p", delivery.candidate_count + " delivery candidates · " +
+                    delivery.withheld_count + " withheld · Delivery ID: " + delivery.artifact_id +
+                    " · Not published", "artifact-detail"));
+            }
             fragment.append(row);
         }
         if (!jobs.length) fragment.append(element("p", "Select books to get started.", "muted"));
@@ -117,18 +136,24 @@ async function status() {
 
 $("search").addEventListener("input", renderBooks);
 $("refresh").addEventListener("click", refresh);
-$("companions").addEventListener("click", async () => {
+async function discoverSelected() {
     if (running || companionBusy || selected.size !== 1) return;
     const [id] = selected;
     const request = ++companionRequest;
     companionBusy = true;
     updateActions();
     const result = $("companion-result");
-    result.replaceChildren(element("p", "Checking attached files…"));
+    $("companion-summary").textContent = "Checking companion ebook…";
     try {
         const data = await api("/api/companions/" + encodeURIComponent(id));
         if (request !== companionRequest || !selected.has(id) || selected.size !== 1) return;
-        result.replaceChildren(element("p", data.files.length ? "Companion files detected (edition not verified)" : "No companion ebooks detected."));
+        const epubs = data.files.filter(file => file.format === "epub");
+        $("companion-summary").textContent = epubs.length ?
+            epubs.length + " EPUB companion" + (epubs.length === 1 ? "" : "s") +
+                " detected · Edition not verified" :
+            data.files.length ? "Companion ebook found, but no supported EPUB" : "No companion ebooks detected";
+        $("companion-diagnostics").hidden = !data.files.length;
+        result.replaceChildren();
         for (const file of data.files) {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
             result.append(row);
@@ -203,19 +228,20 @@ $("companions").addEventListener("click", async () => {
             }
         }
     } catch (error) {
-        if (request === companionRequest) result.replaceChildren(element("p", "Companion discovery failed. Check Audiobookshelf access."));
+        if (request === companionRequest) $("companion-summary").textContent =
+            "Companion discovery failed: " + error.message;
     } finally {
         if (request === companionRequest) {
             companionBusy = false;
             updateActions();
         }
     }
-});
+}
 $("start").addEventListener("click", async () => {
     $("start").disabled = true;
     try {
         await api("/api/start", {method: "POST", headers: {"Content-Type": "application/json"},
-                                body: JSON.stringify({ids: [...selected]})});
+                                body: JSON.stringify({ids: [...selected], include_ebook: $("include-ebook").checked})});
         running = true;
         selected.clear();
         clearCompanions();
