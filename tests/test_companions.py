@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 
 from app import Workbench
-from companions import discover
+from companions import choose_epub, discover
 from heavy import Library, PROFILE_PREFIX
 
 
@@ -65,6 +65,24 @@ class CompanionTests(unittest.TestCase):
         bad["libraryFiles"][1]["metadata"]["filename"] = "../Figures.PDF"
         with self.assertRaises(ValueError):
             discover(bad, "book")
+
+    def test_primary_preferred_and_ambiguous_epubs_rejected(self):
+        data = item()
+        data["libraryFiles"].append(file("45", "Second.epub", False))
+        self.assertEqual(choose_epub(discover(data, "book")).file_id, "42")
+        data["media"]["ebookFile"] = None
+        with self.assertRaisesRegex(ValueError, "Multiple EPUB"):
+            choose_epub(discover(data, "book"))
+
+    def test_minified_hint_does_not_fetch_expanded_metadata(self):
+        library = Library("https://example.test", "home", "token")
+        rows = {"results": [
+            {"id": "book", "media": {"metadata": {"title": "Measurement"}, "ebookFormat": "epub"}},
+            {"id": "other", "media": {"metadata": {"title": "Other"}}}]}
+        with patch.object(library, "get_json", side_effect=[
+                {"libraries": [{"id": "lib", "mediaType": "book"}]}, rows]) as get:
+            self.assertEqual([row["ebook_format"] for row in library.books()], ["epub", None])
+            self.assertEqual(get.call_count, 2)
 
     def test_library_fetches_only_expanded_item(self):
         library = Library("https://example.test", "home", "token")

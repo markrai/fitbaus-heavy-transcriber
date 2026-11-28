@@ -11,6 +11,8 @@ from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, Sou
 from epub_alignment import AlignmentError
 from epub_assets import AssetError
 from epub_enrichment import EnrichmentError
+from epub_delivery import DeliveryError, prepare_delivery
+from companions import CompanionError, choose_epub
 
 
 class Workbench:
@@ -78,7 +80,9 @@ class Workbench:
                 raise ValueError("Unknown book")
         return self.library.cover(item)
 
-    def start(self, ids):
+    def start(self, ids, include_ebook=True):
+        if type(include_ebook) is not bool:
+            raise ValueError("Invalid enrichment preference")
         with self.lock:
             if self.running or self.inspecting_epub:
                 raise ValueError("Workbench is busy")
@@ -86,17 +90,38 @@ class Workbench:
                     any(not isinstance(item, str) or item not in self.catalog for item in ids) or
                     len(set(ids)) != len(ids)):
                 raise ValueError("Select between 1 and 32 known books")
-            self.jobs = {item: {"title": self.catalog[item]["title"], "state": "Queued", "done": 0, "total": 0}
+            self.jobs = {item: {"title": self.catalog[item]["title"], "state": "Queued", "done": 0, "total": 0,
+                                "enrichment_state": "Pending discovery" if include_ebook else "Disabled"}
                          for item in ids}
             self.running = True
-        threading.Thread(target=self.run, args=(ids,), daemon=False).start()
+        threading.Thread(target=self.run, args=(ids, include_ebook), daemon=False).start()
 
-    def run(self, ids):
+    def enrichment_update(self, item, state, **fields):
+        with self.lock:
+            self.jobs[item].update(enrichment_state=state, **fields)
+
+    @staticmethod
+    def enrichment_error(error):
+        if isinstance(error, SourceError):
+            return "Audiobookshelf: " + error.code
+        if isinstance(error, (CompanionError, AlignmentError, AssetError, EnrichmentError, DeliveryError)):
+            return str(error)
+        return "Unexpected enrichment failure (" + type(error).__name__ + ")"
+
+    def run(self, ids, include_ebook=True):
         try:
             for item in ids:
                 def report(state, done, total):
                     with self.lock:
                         self.jobs[item].update(state=state, done=done, total=total)
+                candidate = None
+                if include_ebook:
+                    self.enrichment_update(item, "Checking companion ebook")
+                    try:
+                        candidate = choose_epub(self.library.companions(item))
+                        self.enrichment_update(item, "Waiting for narration" if candidate else "No supported EPUB")
+                    except Exception as error:
+                        self.enrichment_update(item, "Failed", enrichment_error=self.enrichment_error(error))
                 try:
                     process_book(self.library, self.vega, self.engine, self.profile, item, self.root, report)
                     with self.lock:
@@ -116,6 +141,20 @@ class Workbench:
                         message = stage + ": " + detail
                         self.jobs[item].update(state="Failed", error=message)
                     print("Transcription failed: " + message, flush=True)
+                    if candidate is not None:
+                        self.enrichment_update(item, "Skipped: transcription failed")
+                    continue
+                if candidate is not None:
+                    try:
+                        self.enrichment_update(item, "Preparing enrichment")
+                        artifact = prepare_enrichment(self.library, self.profile, item, candidate.file_id, self.root)
+                        self.enrichment_update(item, "Rendering visuals", enrichment_artifact=artifact)
+                        delivery = prepare_delivery(self.root, artifact["artifact_id"])
+                        self.enrichment_update(item, "Prepared locally", delivery_candidate=delivery)
+                    except Exception as error:
+                        message = self.enrichment_error(error)
+                        self.enrichment_update(item, "Failed", enrichment_error=message)
+                        print("Enrichment failed: " + message, flush=True)
         finally:
             with self.lock:
                 self.running = False
@@ -163,7 +202,17 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path == "/api/status":
                 self.json(self.server.workbench.status())
             elif self.path.startswith("/api/companions/"):
-                self.json(self.server.workbench.companions(self.path.removeprefix("/api/companions/")))
+                try:
+                    self.json(self.server.workbench.companions(self.path.removeprefix("/api/companions/")))
+                except SourceError as error:
+                    self.json({"error": "Audiobookshelf: " + error.code}, 502)
+                except CompanionError as error:
+                    self.json({"error": str(error)}, 422)
+                except ValueError:
+                    self.json({"error": "Invalid or unknown book selection or source response"}, 400)
+                except Exception as error:
+                    print("Companion discovery failed: " + type(error).__name__, flush=True)
+                    self.json({"error": "Unexpected companion discovery failure (" + type(error).__name__ + ")"}, 500)
             elif self.path.startswith("/api/cover/"):
                 kind, cover = self.server.workbench.cover(self.path.removeprefix("/api/cover/"))
                 self.send(200, kind, cover)
@@ -195,9 +244,9 @@ class Handler(BaseHTTPRequestHandler):
                           "/api/epub-enrichment": self.server.workbench.epub_enrichment}[self.path]
                 self.json(action(value["item_id"], value["file_id"]))
             else:
-                if set(value) != {"ids"}:
+                if set(value) not in ({"ids"}, {"ids", "include_ebook"}):
                     raise ValueError()
-                self.server.workbench.start(value["ids"])
+                self.server.workbench.start(value["ids"], value.get("include_ebook", True))
                 self.json({"accepted": True}, 202)
         except (AlignmentError, AssetError, EnrichmentError) as error:
             self.json({"error": str(error)}, 400)

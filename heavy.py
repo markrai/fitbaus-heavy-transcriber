@@ -108,6 +108,8 @@ class Library:
         return self.authorized(fetch)
 
     def books(self):
+        from companions import FORMATS
+
         result = {}
         for library in self.get_json("/api/libraries")["libraries"]:
             if library.get("mediaType") != "book":
@@ -127,7 +129,10 @@ class Library:
                     tracks = media.get("numTracks", media.get("numAudioTracks"))
                     if tracks == 0:
                         continue
+                    ebook_format = media.get("ebookFormat")
+                    ebook_format = ebook_format.lower().removeprefix(".") if isinstance(ebook_format, str) else None
                     result[item_id] = {"id": item_id, "title": str(meta.get("title") or item_id)[:300],
+                                       "ebook_format": ebook_format if ebook_format in FORMATS else None,
                                        "author": str(meta.get("authorName") or "")[:200],
                                        "duration": media.get("duration") or 0}
                 if len(rows) < 100 or (page + 1) * 100 >= data.get("total", float("inf")):
