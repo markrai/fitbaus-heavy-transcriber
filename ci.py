@@ -5,6 +5,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+import time
 
 ROOT = Path(__file__).resolve().parent
 UPSTREAM_URL = "https://github.com/markrai/fitbaus-transcriber.git"
@@ -23,6 +24,7 @@ def output(*args, cwd=ROOT):
 def require_python():
     if sys.version_info[:2] != (3, 12):
         raise ValueError(f"CI requires Python 3.12; found {sys.version.split()[0]}")
+    print(f"Python {sys.version.split()[0]}", flush=True)
 
 
 def prepare_contract(root=ROOT):
@@ -49,53 +51,95 @@ def prepare_contract(root=ROOT):
         raise ValueError("Pinned upstream contract checkout mismatch")
 
 
-def core():
-    print("[Core] Pinned transcript contract", flush=True)
-    prepare_contract()
-    print("[Core] Python compilation", flush=True)
-    run(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "stem", "tests", "ci.py")
-    print("[Core] Corpus validation", flush=True)
-    run(sys.executable, "-m", "stem.corpus_model")
-    print("[Core] Unit tests", flush=True)
-    run(sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v")
+def core_steps():
+    return [
+        ("[Core] Pinned transcript contract", prepare_contract),
+        ("[Core] Python compilation", lambda: run(
+            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "stem", "tests", "ci.py")),
+        ("[Core] Corpus validation", lambda: run(sys.executable, "-m", "stem.corpus_model")),
+        ("[Core] Unit tests", lambda: run(sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v")),
+    ]
 
 
-def renderer():
-    print("[Renderer] Node.js 22 and npm", flush=True)
-    version = output("node", "--version")
-    if not re.fullmatch(r"v22\.\d+\.\d+", version):
-        raise ValueError(f"CI requires Node.js 22; found {version}")
+def npm_command():
     npm = shutil.which("npm.cmd" if sys.platform == "win32" else "npm")
     if not npm:
         raise ValueError("npm must be installed and on PATH")
-    print("[Renderer] Install dependencies", flush=True)
-    run(npm, "install", "--ignore-scripts", "--no-audit", "--no-fund",
-        cwd=ROOT / "stem" / "renderer")
-    print("[Renderer] Policy tests", flush=True)
-    run(sys.executable, "-m", "unittest", "discover", "-s", "tests",
-        "-p", "test_stem_qualify_render.py", "-v")
-    print("[Renderer] Real SVG and PNG smoke", flush=True)
-    run(sys.executable, "-m", "stem.renderer_smoke")
+    return npm
+
+
+def require_node():
+    version = output("node", "--version")
+    if not re.fullmatch(r"v24\.\d+\.\d+", version):
+        raise ValueError(f"CI requires Node.js 24; found {version}")
+    print(f"Node.js {version}", flush=True)
+    npm_command()
+
+
+def renderer_steps():
+    return [
+        ("[Renderer] Node.js 24 and npm", require_node),
+        ("[Renderer] Install dependencies", lambda: run(
+            npm_command(), "install", "--ignore-scripts", "--no-audit", "--no-fund",
+            cwd=ROOT / "stem" / "renderer")),
+        ("[Renderer] Policy tests", lambda: run(
+            sys.executable, "-m", "unittest", "discover", "-s", "tests",
+            "-p", "test_stem_qualify_render.py", "-v")),
+        ("[Renderer] Real SVG and PNG smoke", lambda: run(sys.executable, "-m", "stem.renderer_smoke")),
+    ]
+
+
+def print_summary(suite, results, elapsed, code, reason):
+    width = max(len(label) for label, _, _ in results)
+    counts = {status: sum(row[1] == status for row in results) for status in ("PASS", "FAIL", "SKIP")}
+    print("\n" + "=" * 72)
+    print(f"CI SUMMARY ({suite})")
+    print("-" * 72)
+    for label, status, duration in results:
+        timing = f"{duration:.2f}s" if duration is not None else "-"
+        print(f"{label:<{width}}  {status:>4}  {timing:>9}")
+    print("-" * 72)
+    print(f"Checks: {counts['PASS']} passed, {counts['FAIL']} failed, {counts['SKIP']} skipped")
+    print(f"Elapsed: {elapsed:.2f}s")
+    if reason:
+        print(f"Failure: {reason}")
+    print(f"RESULT: {'PASS' if code == 0 else 'FAIL'} (exit code {code})")
+    print("=" * 72, flush=True)
+
+
+def execute(suite, steps):
+    started = time.monotonic()
+    results = [(label, "SKIP", None) for label, _ in steps]
+    code, reason = 0, None
+    for index, (label, action) in enumerate(steps):
+        print(label, flush=True)
+        step_start = time.monotonic()
+        try:
+            action()
+        except subprocess.CalledProcessError as error:
+            code = error.returncode if error.returncode > 0 else 1
+            reason = str(error)
+        except (OSError, ValueError) as error:
+            code, reason = 1, str(error)
+        except KeyboardInterrupt:
+            code, reason = 130, "Interrupted by user"
+        results[index] = (label, "FAIL" if code else "PASS", time.monotonic() - step_start)
+        if code:
+            break
+    print_summary(suite, results, time.monotonic() - started, code, reason)
+    return code
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Run the same checks as GitHub Actions")
     parser.add_argument("suite", choices=("all", "core", "renderer"), nargs="?", default="all")
     args = parser.parse_args(argv)
-    try:
-        require_python()
-        if args.suite in ("all", "core"):
-            core()
-        if args.suite in ("all", "renderer"):
-            renderer()
-    except subprocess.CalledProcessError as error:
-        print(f"CI failed: {error}", file=sys.stderr)
-        return error.returncode if error.returncode > 0 else 1
-    except (OSError, ValueError) as error:
-        print(f"CI failed: {error}", file=sys.stderr)
-        return 1
-    print(f"CI passed: {args.suite}", flush=True)
-    return 0
+    steps = [("[Setup] Python 3.12", require_python)]
+    if args.suite in ("all", "core"):
+        steps.extend(core_steps())
+    if args.suite in ("all", "renderer"):
+        steps.extend(renderer_steps())
+    return execute(args.suite, steps)
 
 
 if __name__ == "__main__":

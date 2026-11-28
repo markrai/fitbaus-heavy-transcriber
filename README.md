@@ -40,7 +40,7 @@ VEGA's existing prepared-transcript quotas still apply. Full-book imports are li
 
 ## Verification
 
-Run the same checks used by GitHub Actions from a local checkout. Requires Git, Python 3.12, and Node.js 22 with npm for the renderer suite. No CUDA runtime, model weights, Audiobookshelf credentials, or VEGA connection is needed.
+Run the same checks used by GitHub Actions from a local checkout. Requires Git, Python 3.12, and Node.js 24 with npm for the renderer suite. No CUDA runtime, model weights, Audiobookshelf credentials, or VEGA connection is needed.
 
 Windows (Command Prompt):
 
@@ -58,7 +58,7 @@ Linux/macOS:
 ./ci.sh renderer
 ```
 
-With no argument, both suites run, stopping at the first failure. The two optional suite arguments select the corresponding GitHub workflow. Both launchers and both Actions workflows use the same `ci.py` driver. Core CI clones the pinned transcript contract if missing, reuses a clean checkout when available, checks out the exact required commit, compiles Python, validates the corpus and runs the full unit test suite. It refuses a dirty or invalid upstream checkout rather than discarding local work. Renderer CI installs the same npm dependencies as Actions, runs policy tests and performs real SVG/PNG rendering. The first dependency setup may require network access.
+With no argument, both suites run, stopping at the first failure. A terminal-only summary reports elapsed time, passed, failed and skipped checks, failure reason and exit code. No additional report or log files are generated. The two optional suite arguments select the corresponding GitHub workflow. Both launchers and both Actions workflows use the same `ci.py` driver. Core CI clones the pinned transcript contract if missing, reuses a clean checkout when available, checks out the exact required commit, compiles Python, validates the corpus and runs the full unit test suite. It refuses a dirty or invalid upstream checkout rather than discarding local work. Renderer CI installs the same npm dependencies as Actions, runs policy tests and performs real SVG/PNG rendering. The first dependency setup may require network access.
 
 The GitHub workflow also provisions the toolchains and uploads the generated renderer package-lock artifact. Local runs leave that lockfile in `stem/renderer/`. Until the renderer lockfile is committed, transitive npm resolution is not guaranteed identical between fresh installs. The scripts reproduce the checks and version requirements, not the hosted runner image or exact Python/Node patch versions. GitHub currently executes both suites on Windows; Linux/macOS runs are useful local checks but not proof of Windows compatibility.
 
