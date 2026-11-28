@@ -265,6 +265,16 @@ Hybrid qualification now evaluates six additional deterministic cases per struct
 
 No change to corpus approvals, original matcher, parser grammar, observation schemas or production transcription. The expansion does not permit arbitrary expression rendering. Development and untouched holdout qualification remain outstanding; S.1D.5 addresses bounded adjacent-cue recognition.
 
+## Bounded adjacent-cue recognition (S.1D.5)
+
+The standalone, qualification-only stem.cue_recognition.recognize_window(window, hybrid) accepts one validated pinned-contract TranscriptWindow and a built hybrid recognizer. It returns immutable WindowRecognition/CueMatch/CueSpan records containing the hashed audio identity, window bounds, hybrid policy hash, representation ID, approved/template notation, exact per-cue source slices and inclusive evidence cue indices. Offsets are Python Unicode code points relative to each original cue. Timestamps are the original whole-cue intervals, not inferred word-level timings. Joining uses only virtual spaces; the source checkpoints are never modified.
+
+Adjacent cues within a single window can form a connected continuation run if an explicit operator, relation, power/scope marker, opening group, anchored identity introduction or comma-delimited restatement/explanatory marker links the boundary. The maximum inter-cue silence is 1,000 ms; a run may contain at most three cues, 30 seconds of audio and 3,602 characters. No joining across windows, gaps above the limit, audio revisions or profiles. The full linked run is considered as a unit; oversized runs abstain rather than allowing an incomplete prefix to produce a match. Internal terminal sentence punctuation, multiple candidate sentences, embedded line breaks, failed/ambiguous recognition or multiple matches in an assembled run also cause abstention. Unlinked cues retain the existing single-cue matcher behavior. This sacrifices recall in mixed prose/math cues and does not try to repair Whisper punctuation.
+
+An introduction or corroborating restatement in another cue can be evidence without being part of the annotation span. Evidence indices cover the entire linked run, while source slices cover only the matched equation. Single-cue results also use the same immutable span records. No arbitrary substring extraction, word insertion, audio inference, or independent cross-cue confidence claim is made.
+
+Eleven focused tests exercise two/three-cue equations, named introductions, corroborating restatements, substituted notation, exact offsets/timestamps, independent matches, unsafe continuations, time limits, window boundaries and invalid inputs. Existing hybrid qualification suites are unchanged. S.1D.6 must extend observation/export tooling to preserve real neighboring cues and compare exact multi-cue slices and evidence context on the original development partition, then freeze the policy before inspecting holdout. No checkpoint sampling, private narration upload, admission, rendering, production matcher or transcription runtime change is made in this slice.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
