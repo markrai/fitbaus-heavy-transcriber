@@ -196,6 +196,16 @@ Partitions are disjoint by window, not independent by audiobook; nearby content 
 
 Packs are written only to the ignored work/stem-qualification directory, using a new simple JSON filename; existing output is never overwritten. The terminal prints metadata and counts, not cue text. The pack contains private audiobook text: do not commit it, publish it, or share material you are not permitted to share. An interrupted write can leave an incomplete file; use a new filename and validate the pack digest. The sampler never modifies checkpoints. A subsequent review phase must label the cue text, check source and annotation fidelity, and convert completed annotations to the observation schema. No production dictionary admission or ASR accuracy claim is made here.
 
+## Source-mapped mathematical tokenization (S.1D.1)
+
+The development observations exposed the limits of whole-sentence aliases: all 4,110 synthetic cases passed, but the three labeled target mentions in the sampled audiobook were missed. The data covers only one audiobook and one exact target representation, not broad ASR accuracy. Holdout remains untouched.
+
+The standalone stem.tokenizer module introduces a bounded, lossless lexical representation. tokenize(text) returns immutable typed tokens with a canonical lexical value, spoken/symbolic/raw form, original source substring and Python Unicode code-point start/end offsets. Concatenating all source substrings reconstructs the exact input, including whitespace, punctuation and unknown characters. Longest explicit spoken phrases take precedence over individual words and never cross line breaks. Digits and individual spoken number words share lexical values; superscript digits and squared/cubed share exponent tokens. Greek symbols retain case, named Greek letters are lexical candidates, and multi-letter words such as mc remain intact. Decimal spelling, variable case and unsupported Unicode are not silently normalized.
+
+Tokenization is not recognition. Ordinary words such as a, I, one, over, equal and to the can have nonmathematical meanings. The latter is a POWER_HINT, not an asserted exponent boundary. No multiplication, number composition, variable renaming, homophone correction, exponent grouping, punctuation removal or equation inference is performed. Unknown words and symbols remain in the stream; they must not be skipped to create a match. Uppercase/lowercase spoken modifiers are separate tokens and not applied until structural interpretation. A parser must account for the complete selected span and abstain when meaning or scope is uncertain. Input is bounded to 32,768 code points and 8,192 tokens, rejecting NUL and surrogate code points. No external dependency, renderer, GPU or language model is needed.
+
+Next: S.1D.2 typed expression AST and structural validation; S.1D.3 restricted spoken parser; S.1D.4 dictionary integration and controlled substitution; S.1D.5 bounded cross-cue assembly; S.1D.6 development and untouched holdout qualification. Existing matcher, compiler, corpus approvals, observation format and normal transcription pipeline remain unchanged. The tokenizer alone does not improve recognition scores or admit representations.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
