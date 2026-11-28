@@ -9,8 +9,9 @@ from .parser import MAX_PARSE_CHARS, ParseError, parse_expression
 from .qualify_recognition import FIXTURES, build_review_dictionary
 from .tokenizer import Kind, tokenize
 from .structural_rules import EXPANDED_RULES
+from .prose_context import PROSE_CONTEXT_VERSION
 
-HYBRID_VERSION = "verified-identity-expanded-v1"
+HYBRID_VERSION = "verified-identity-expanded-v2"
 MAX_NARRATION_CHARS = 32768
 
 EULER = "algebra.euler:standard"
@@ -159,6 +160,7 @@ def build_hybrid(root=ROOT, fixtures=FIXTURES):
         raise ValueError("Conflicting structural identity rules")
     policy = digest({"version": HYBRID_VERSION, "dictionary": dictionary.digest, "rules": RULES,
                      "named_intro": NAMED_INTRO.pattern, "context_version": CONTEXT_VERSION,
+                     "prose_context_version": PROSE_CONTEXT_VERSION,
                      "euler_short": [(kind.value, value) for kind, value in EULER_SHORT],
                      "substitution": "named-pythagoras-distinct-lowercase-ascii-except-e-i"})
     return HybridRecognizer(dictionary, tuple(rules), policy), rows, binding
