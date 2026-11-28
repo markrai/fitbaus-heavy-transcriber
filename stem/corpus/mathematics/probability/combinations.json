@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
-          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+          "source_id": "openstax_precalculus_2e_reference",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-5-counting-principles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "33cf403a4dcbef511314a4eca2620705b1ac9c5469193ed110202bf7be59d8c0",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "There are n!/(n-k)! ordered selections of k distinct items. Each unordered selection occurs in exactly k! orders, so division gives the binomial coefficient. The empty selection has one ordering and one subset, using 0!=1.",
+          "Reference cross-check: https://openstax.org/books/precalculus-2e/pages/11-5-counting-principles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

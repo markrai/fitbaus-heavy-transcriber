@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "z=\\frac{x-\\mu}{\\sigma}",
       "conditions": [
-        "Finite population mean and strictly positive finite standard deviation; normality not required for standardization."
+        "Real observation x; reference population has finite mean and strictly positive finite standard deviation. Normality is not required for standardization; a standardized nonnormal variable is not necessarily normally distributed."
       ],
       "symbols": {
         "z": "Standard score",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
+          "source_id": "openstax_statistics_2e_reference",
           "locator": "https://openstax.org/books/introductory-statistics-2e/pages/6-formula-review"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "4df731b65a02021d2aaedff238a22f9a6078afecc8930bbf04eefd175802a4f0",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Subtract the population mean from X and divide by its positive finite standard deviation. Linearity of expectation gives mean zero, and the variance scaling law gives variance one. For a specified observed x the quotient measures signed distance from mu in units of sigma. This does not make a nonnormal distribution normal.",
+          "Reference cross-check: https://openstax.org/books/introductory-statistics-2e/pages/6-formula-review. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

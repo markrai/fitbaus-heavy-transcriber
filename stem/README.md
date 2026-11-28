@@ -47,6 +47,12 @@ Review 17 concepts and 18 representations using direct derivations or explicit r
 
 Cumulative proposed mathematical approvals: 49 of 107 representations. Recognition and rendering remain unqualified. Bibliographic-only reference admission does not grant content reuse rights.
 
+## Linear algebra, probability and statistics mathematical review (S.0F.2D.4)
+
+Review the remaining 13 mathematics concepts and representations. Include direct derivations or definition-based checks, reference cross-checks and content-bound mathematical review records. Verify matrix inverse by multiplication in both orders, binomial and Poisson normalization, the normal density change of variables and the unbiasedness of the corrected sample variance under iid finite-variance sampling. Clarify finite real-valued support, nonnegative integer trial count, positive conditioning probabilities and the distinction between standardization and normality. Preserve all LaTeX, stable IDs and spoken aliases. Use precise OpenStax sections and NIST statistical handbook distribution references; bibliographic admission does not authorize copying textbook content.
+
+All 62 mathematics representations now have proposed mathematical approvals, leaving 45 physics representations pending. Recognition and rendering remain unqualified; the legacy runtime is unchanged.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

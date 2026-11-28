@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
-          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-formula-review"
+          "source_id": "nist_statistics_handbook_reference",
+          "locator": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "c9da5db713e09f719cf217e64ec95009c734b31a27d56b692205ace3b9249b36",
+        "method": [
+          "definition_and_verification",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The stated mass function is the Poisson definition. All terms are nonnegative for lambda>0; the sum over k>=0 is exp(-lambda)exp(lambda)=1 by the exponential series. Multiplying each term by k and reindexing k-1 gives mean lambda. This checks normalization and the stated parameter meaning.",
+          "Reference cross-check: https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

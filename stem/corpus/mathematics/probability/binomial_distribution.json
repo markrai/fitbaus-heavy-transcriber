@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}",
       "conditions": [
-        "n independent Bernoulli trials with identical success probability p, 0<p<1; k integer from zero to n."
+        "n is a nonnegative integer; n independent Bernoulli trials have identical success probability p with 0<p<1; k is an integer satisfying 0<=k<=n."
       ],
       "symbols": {
         "P": "Probability measure",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_statistics_2e",
-          "locator": "https://openstax.org/books/introductory-statistics-2e/pages/4-formula-review"
+          "source_id": "nist_statistics_handbook_reference",
+          "locator": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "5144f1751f6febbfd832a86cc60b515d770281f92dc91e98895936442df0bdd9",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Each ordered sequence containing k successes and n-k failures has probability p^k(1-p)^(n-k) by independence. Exactly C(n,k) mutually exclusive sequences have that success count. Summing their probabilities gives the formula. The binomial theorem shows the probabilities sum to one.",
+          "Reference cross-check: https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

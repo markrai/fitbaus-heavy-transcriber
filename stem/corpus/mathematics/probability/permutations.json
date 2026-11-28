@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_precalculus_2e",
-          "locator": "https://openstax.org/books/precalculus-2e/pages/11-key-equations"
+          "source_id": "openstax_precalculus_2e_reference",
+          "locator": "https://openstax.org/books/precalculus-2e/pages/11-5-counting-principles"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "5d627c87a64e06307c27418ea0ff958b496d8a611913d762a7d46848e1a301b9",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The first position has n choices, the second n-1, and the kth n-k+1. The multiplication principle gives their product, n!/(n-k)!. For k=0 the empty product is one, including n=0.",
+          "Reference cross-check: https://openstax.org/books/precalculus-2e/pages/11-5-counting-principles. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
