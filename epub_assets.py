@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 from epub_alignment import XHTML
-from epub_inventory import EpubError, archive_members, inspect_epub, read_xml, resolve_href
+from epub_inventory import EpubError, XML_BASE, archive_members, inspect_epub, read_xml, resolve_href
 
 
 SCHEMA = "fitbaus.epub-assets-preview/v1"
@@ -114,6 +114,8 @@ class Catalogue:
         body = root.find(XHTML + "body")
         if root.tag != XHTML + "html" or body is None:
             raise AssetError("Unsupported XHTML reading-order document")
+        if any(XML_BASE in node.attrib or node.tag == XHTML + "base" for node in root.iter()):
+            raise AssetError("XHTML base overrides are unsupported")
         stack = [(body, (), None)]
         while stack:
             node, path, figure = stack.pop()

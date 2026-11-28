@@ -89,6 +89,15 @@ class VisualTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             extract_assets(book("<p>&undefined;</p>"))
 
+    def test_base_overrides_are_rejected_instead_of_resolving_wrong_image(self):
+        with self.assertRaisesRegex(AssetError, "base overrides"):
+            extract_assets(book("<div xml:base='other/'><img src='figure.png'/></div>"))
+        with self.assertRaisesRegex(AssetError, "base overrides"):
+            extract_assets(book("<base href='other/'/><img src='figure.png'/>"))
+        package = PACKAGE.replace(b"<manifest>", b"<manifest xml:base='other/'>")
+        with self.assertRaisesRegex(ValueError, "base overrides"):
+            extract_assets(book("", package=package))
+
     def test_inventory_does_not_expose_resource_map_by_default(self):
         self.assertNotIn("resources", inspect_epub(book("")))
         result = inspect_epub(book(""), include_resources=True)

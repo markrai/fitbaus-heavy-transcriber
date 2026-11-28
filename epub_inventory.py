@@ -16,6 +16,7 @@ MAX_MEMBERS = 4096
 CONTAINER = "{urn:oasis:names:tc:opendocument:xmlns:container}"
 OPF = "{http://www.idpf.org/2007/opf}"
 DC = "{http://purl.org/dc/elements/1.1/}"
+XML_BASE = "{http://www.w3.org/XML/1998/namespace}base"
 
 
 class EpubError(ValueError):
@@ -31,7 +32,8 @@ def member_name(name):
 
 
 def resolve_href(package, href):
-    if not href or re.search(r"%(?![0-9a-fA-F]{2})", href):
+    if (not href or href != href.strip() or any(ord(c) < 32 or ord(c) == 127 for c in href)
+            or re.search(r"%(?![0-9a-fA-F]{2})", href)):
         raise EpubError("Invalid EPUB manifest reference")
     try:
         parsed = urlsplit(href)
@@ -112,6 +114,8 @@ def package_inventory(archive, members, *, include_resources=False):
         raise EpubError("Unsupported EPUB package type")
     package = member_name(roots[0].get("full-path", ""))
     opf = read_xml(archive, members, package)
+    if any(XML_BASE in node.attrib for node in opf.iter()):
+        raise EpubError("EPUB package base overrides are unsupported")
     version = opf.get("version", "")
     if opf.tag != OPF + "package" or version not in ("2.0", "3.0", "3.1", "3.2", "3.3"):
         raise EpubError("Unsupported EPUB package version")

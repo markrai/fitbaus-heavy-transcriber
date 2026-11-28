@@ -9,6 +9,7 @@ import webbrowser
 
 from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg, preview_alignment
 from epub_alignment import AlignmentError
+from epub_assets import AssetError
 
 
 class Workbench:
@@ -187,7 +188,7 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError()
                 self.server.workbench.start(value["ids"])
                 self.json({"accepted": True}, 202)
-        except AlignmentError as error:
+        except (AlignmentError, AssetError) as error:
             self.json({"error": str(error)}, 400)
         except SourceError as error:
             self.json({"error": "Audiobookshelf: " + error.code}, 502)
