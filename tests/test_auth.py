@@ -6,7 +6,7 @@ from heavy import Library, SourceError
 
 
 class AuthenticationTest(unittest.TestCase):
-    address = "https://vega.example"
+    address = "https://server.example"
     source_id = "home"
 
     @patch("app.getpass.getpass", return_value="password")
