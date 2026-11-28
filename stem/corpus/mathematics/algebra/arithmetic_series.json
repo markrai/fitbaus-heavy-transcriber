@@ -21,7 +21,11 @@
         "a_n": "Last term in sum",
         "n": "Term count"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "s sub n equals n times open parenthesis a sub one plus a sub n close parenthesis divided by two",
+        "s sub n equals n times the sum of a sub one and a sub n all divided by two",
+        "s sub n equals one half times n times open parenthesis a sub 1 plus a sub n close parenthesis"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

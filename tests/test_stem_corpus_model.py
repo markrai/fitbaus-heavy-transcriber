@@ -22,7 +22,7 @@ class CorpusModelTests(unittest.TestCase):
         edit(concept)
         path.write_text(json.dumps(concept), encoding="utf-8")
 
-    def test_seed_migration_parity(self):
+    def test_seed_mathematical_identity_parity(self):
         concepts = load_corpus(self.root)
         seed = json.loads(CURATED.read_text(encoding="utf-8"))["entries"]
         by_id = {c["id"]: c for c in concepts}
@@ -31,7 +31,6 @@ class CorpusModelTests(unittest.TestCase):
             rep = next(r for r in concept["representations"] if r["id"] == "standard")
             self.assertEqual(concept["name"], entry["name"])
             self.assertEqual(rep["latex"], entry["latex"])
-            self.assertEqual(rep["spoken_aliases"], entry["aliases"])
         summary = report(concepts)
         self.assertGreaterEqual(summary["concepts"], 20)
         self.assertFalse(summary["release_qualified"])

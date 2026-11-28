@@ -1,0 +1,89 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "algebra.arithmetic_sequence:standard",
+      "mathematical_sha256": "07c38b8d08bbebf05c8285232a7aad10f0ef3d5ad0e2a8b8226cf9c237796b30",
+      "latex": "a_n=a_1+(n-1)d",
+      "aliases": [
+        "a sub n equals a sub one plus open parenthesis n minus one close parenthesis times d",
+        "a sub n equals a sub 1 plus open parenthesis n minus 1 close parenthesis times d",
+        "a sub n equals a sub one plus the product of the quantity n minus one and d"
+      ],
+      "negative_phrases": [
+        "a n equals a 1 plus open parenthesis n minus 1 close parenthesis times d",
+        "a sub n equals a sub one plus n minus one times d",
+        "a sub n equals a sub one plus open parenthesis n plus one close parenthesis times d",
+        "arithmetic sequence"
+      ],
+      "scope_review": "The subscript markers distinguish indexed terms from multiplication. The quantity n minus one is one factor, and the entire product with d is added to a sub one."
+    },
+    {
+      "id": "algebra.arithmetic_series:standard",
+      "mathematical_sha256": "702d81eb82a630fb863abf12e8e733f3c9f18f1db7f99ce57fd4bfaa77c1dd29",
+      "latex": "S_n=\\frac{n(a_1+a_n)}{2}",
+      "aliases": [
+        "s sub n equals n times open parenthesis a sub one plus a sub n close parenthesis divided by two",
+        "s sub n equals n times the sum of a sub one and a sub n all divided by two",
+        "s sub n equals one half times n times open parenthesis a sub 1 plus a sub n close parenthesis"
+      ],
+      "negative_phrases": [
+        "s n equals n times open parenthesis a 1 plus a n close parenthesis over 2",
+        "s sub n equals n times a sub one plus a sub n divided by two",
+        "s sub n equals n times the sum of a sub one and a sub n all divided by three",
+        "arithmetic series"
+      ],
+      "scope_review": "The numerator contains n multiplied by the whole sum of first and last terms. Division by two, or multiplication by one half, applies to that product. All indexed terms are explicit."
+    },
+    {
+      "id": "algebra.binomial_theorem:standard",
+      "mathematical_sha256": "65190083de2e50ba82e66c7febf86f6b03d58d4b1c87186bd8f37917fb982dfb",
+      "latex": "(a+b)^n=\\sum_{k=0}^{n}\\binom{n}{k}a^{n-k}b^k",
+      "aliases": [
+        "open parenthesis a plus b close parenthesis raised to the power n equals the sum from k equals zero to n of n choose k times a raised to the power open parenthesis n minus k close parenthesis times b raised to the power k",
+        "the quantity a plus b raised to the power n equals the sum from k equals zero to n of the product of n choose k and a raised to the power of open parenthesis n minus k close parenthesis and b raised to the power k"
+      ],
+      "negative_phrases": [
+        "a plus b to the power of n equals the sum from k equals zero to n of the binomial coefficient n choose k times a to the power of n minus k times b to the power of k",
+        "open parenthesis a plus b close parenthesis raised to the power n equals the sum from k equals one to n of n choose k times a raised to the power open parenthesis n minus k close parenthesis times b raised to the power k",
+        "binomial theorem"
+      ],
+      "scope_review": "The left exponent applies to the sum a plus b. The summation runs over k from zero through n. Each summand is the product of the binomial coefficient, a to the grouped exponent n minus k, and b to exponent k."
+    },
+    {
+      "id": "algebra.difference_squares:standard",
+      "mathematical_sha256": "734f9b978b7f07c666d4eabdf5b300512de7adf008d749854735dfee50a3ba22",
+      "latex": "a^2-b^2=(a-b)(a+b)",
+      "aliases": [
+        "a squared minus b squared equals open parenthesis a minus b close parenthesis times open parenthesis a plus b close parenthesis",
+        "a squared minus b squared equals the product of the difference of a and b and the sum of a and b",
+        "the difference of a squared and b squared equals the product of the difference of a and b and the sum of a and b"
+      ],
+      "negative_phrases": [
+        "a squared minus b squared equals a minus b times a plus b",
+        "a squared minus b squared equals the product of the sum of a and b and the sum of a and b",
+        "difference of squares"
+      ],
+      "scope_review": "The left side subtracts the two separately squared variables. The right side multiplies two complete factors, a minus b and a plus b."
+    },
+    {
+      "id": "algebra.euler:standard",
+      "mathematical_sha256": "a4e3a8c63be4bd411a2319baa72c998beb52782ffa2494e528ac12f6b5ea0775",
+      "latex": "e^{i\\pi}+1=0",
+      "aliases": [
+        "e raised to the power of open parenthesis i times pi close parenthesis plus one equals zero",
+        "e to the power of the quantity i times pi end exponent plus one equals zero",
+        "e raised to the power of open parenthesis i pi close parenthesis plus one equals zero"
+      ],
+      "negative_phrases": [
+        "e raised to the power of i pi plus one equals zero",
+        "e to the power of i pi plus one equals zero",
+        "e raised to the power of i times pi plus one equals zero",
+        "e raised to the power of open parenthesis i times pi plus one close parenthesis equals zero",
+        "euler identity"
+      ],
+      "scope_review": "The exponential argument ends after i times pi. The one is added outside the exponential. Both former structured-corpus aliases omitted that boundary and are now explicit negative examples."
+    }
+  ]
+}

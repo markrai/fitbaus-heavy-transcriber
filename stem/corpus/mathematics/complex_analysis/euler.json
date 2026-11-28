@@ -21,8 +21,9 @@
         "\\pi": "Pi"
       },
       "spoken_aliases": [
-        "e raised to the power of i pi plus one equals zero",
-        "e to the power of i pi plus one equals zero"
+        "e raised to the power of open parenthesis i times pi close parenthesis plus one equals zero",
+        "e to the power of the quantity i times pi end exponent plus one equals zero",
+        "e raised to the power of open parenthesis i pi close parenthesis plus one equals zero"
       ],
       "references": [
         {
