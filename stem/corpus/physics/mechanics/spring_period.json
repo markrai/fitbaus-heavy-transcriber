@@ -21,7 +21,10 @@
         "k": "Spring constant",
         "\\pi": "Pi"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "t equals two times pi times the square root of open parenthesis m divided by k close parenthesis",
+        "oscillation period equals two pi times the square root of the ratio of mass to spring constant"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

@@ -21,7 +21,10 @@
         "L_0": "Initial length",
         "\\Delta T": "Temperature change"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "delta l equals alpha times l sub zero times delta t",
+        "change in length equals the linear thermal expansion coefficient times initial length times the change in temperature"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

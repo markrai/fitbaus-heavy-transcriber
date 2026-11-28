@@ -24,7 +24,8 @@
       },
       "spoken_aliases": [
         "p v equals n r t",
-        "pv equals nrt"
+        "pv equals nrt",
+        "absolute pressure times volume equals amount in moles times the molar gas constant times absolute temperature"
       ],
       "references": [
         {

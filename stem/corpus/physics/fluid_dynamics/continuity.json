@@ -21,7 +21,10 @@
         "v_1": "First downstream-oriented mean normal velocity",
         "v_2": "Second downstream-oriented mean normal velocity"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "a sub one times v sub one equals a sub two times v sub two",
+        "first cross sectional area times first mean normal velocity equals second cross sectional area times second mean normal velocity"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

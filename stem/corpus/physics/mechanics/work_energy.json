@@ -19,7 +19,10 @@
         "W_{\\mathrm{net}}": "Total work by all forces",
         "\\Delta K": "Final minus initial kinetic energy"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "w sub net equals delta k",
+        "net work equals the change in kinetic energy"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

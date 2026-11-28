@@ -20,7 +20,10 @@
         "k": "Positive spring constant",
         "x": "Signed extension from unstretched length"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "u equals one half times k times x squared",
+        "elastic potential energy equals half the spring constant times the square of the extension"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

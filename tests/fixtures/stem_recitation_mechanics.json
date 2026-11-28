@@ -1,0 +1,192 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.constant_acceleration_position:standard",
+      "mathematical_sha256": "1b16b0cb13c2050d0841412071a301d6bab476c3833b5862c4980f996ce5cbf6",
+      "latex": "x=x_0+v_0t+\\frac{1}{2}at^2",
+      "aliases": [
+        "x equals x sub zero plus v sub zero times t plus one half times a times t squared",
+        "position equals initial position plus initial velocity times elapsed time plus one half times acceleration times elapsed time squared"
+      ],
+      "negative_phrases": [
+        "x equals x sub zero plus v sub zero times t plus one half times a squared times t",
+        "x equals x sub zero plus v sub zero times t minus one half times a times t squared",
+        "constant acceleration position"
+      ],
+      "scope_review": "The initial position is added to the initial velocity times elapsed time and half the acceleration times the square of elapsed time. The acceleration is a signed component."
+    },
+    {
+      "id": "physics.constant_acceleration_velocity:standard",
+      "mathematical_sha256": "b86180783ef086cdbf9f0c91ddbf35cdc1ed380f6367a741e0ab9c4227635b43",
+      "latex": "v=v_0+at",
+      "aliases": [
+        "v equals v sub zero plus a times t",
+        "final velocity equals initial velocity plus acceleration times elapsed time"
+      ],
+      "negative_phrases": [
+        "v equals v sub zero minus a times t",
+        "v equals v sub zero plus a times t squared",
+        "constant acceleration velocity"
+      ],
+      "scope_review": "The initial velocity and acceleration are signed components. Add the product of the acceleration and elapsed time to the initial velocity."
+    },
+    {
+      "id": "physics.frequency:standard",
+      "mathematical_sha256": "23f7e36186a35d6e83a0a7995e6a9b8367b24d567dddc81d4942ed8d14e2969d",
+      "latex": "v=f\\lambda",
+      "aliases": [
+        "v equals f lambda",
+        "v equals frequency times wavelength",
+        "phase speed equals frequency times wavelength"
+      ],
+      "negative_phrases": [
+        "wave speed equals frequency times wavelength",
+        "group speed equals frequency times wavelength",
+        "phase speed equals frequency divided by wavelength",
+        "wave frequency formula"
+      ],
+      "scope_review": "The stored relation uses phase-speed magnitude rather than arbitrary wave or group speed. Retain the literal symbols and an explicit phase-speed reading; defer the generic inherited wave-speed phrase."
+    },
+    {
+      "id": "physics.hooke:standard",
+      "mathematical_sha256": "cfaa343c5c8ae4ecc4aef46eaa915a0a6ad7379bc8068870a70e1a9c6bf58842",
+      "latex": "F=-kx",
+      "aliases": [
+        "f equals negative k times x",
+        "spring force equals negative spring constant times signed extension"
+      ],
+      "negative_phrases": [
+        "f equals k times x",
+        "spring force equals spring constant times signed extension",
+        "hookes law"
+      ],
+      "scope_review": "The negative sign applies to the product of the positive spring constant and signed extension from unstretched length. The force is the spring force component, not necessarily the net force."
+    },
+    {
+      "id": "physics.kinetic_energy:standard",
+      "mathematical_sha256": "252fd86f06b61aa36bd6360198caacda4da1b84937bbd9d42955399df781a223",
+      "latex": "K=\\frac{1}{2}mv^2",
+      "aliases": [
+        "k equals one half m v squared",
+        "kinetic energy equals one half times mass times speed squared",
+        "translational kinetic energy equals half the mass times the square of the speed"
+      ],
+      "negative_phrases": [
+        "kinetic energy equals one half mass times velocity squared",
+        "kinetic energy equals one half times mass squared times speed",
+        "kinetic energy equals mass times speed squared",
+        "kinetic energy formula"
+      ],
+      "scope_review": "Only speed is squared. Half the mass multiplies that square. The scalar speed wording avoids ambiguity about squaring a velocity vector."
+    },
+    {
+      "id": "physics.momentum:standard",
+      "mathematical_sha256": "c7d8fbcedb93582b2b9df4cca7a633dd73bd8aeb51e82cd45904f585f06d4b42",
+      "latex": "p=mv",
+      "aliases": [
+        "p equals m v",
+        "p equals mv",
+        "momentum component equals mass times the velocity component"
+      ],
+      "negative_phrases": [
+        "momentum equals mass times velocity",
+        "momentum component equals mass divided by the velocity component",
+        "momentum formula"
+      ],
+      "scope_review": "The expression is a scalar component relation along one axis; the literal readings preserve the symbols. Explicit component names avoid implying a vector notation not present in the stored formula."
+    },
+    {
+      "id": "physics.newton_second:standard",
+      "mathematical_sha256": "e2ffd42f43f7f750ba9d47fdf7a02a0bade70553dd7c04218d9ceb18d551f350",
+      "latex": "F=ma",
+      "aliases": [
+        "f equals m a",
+        "f equals ma",
+        "net force component equals mass times acceleration component"
+      ],
+      "negative_phrases": [
+        "force equals mass times acceleration",
+        "net force component equals mass times acceleration component squared",
+        "newtons second law"
+      ],
+      "scope_review": "The force is the net force component in the same direction as the acceleration component; mass is constant. Generic force wording is deferred to avoid mistaking an individual force for the net force."
+    },
+    {
+      "id": "physics.rotational_energy:standard",
+      "mathematical_sha256": "7781a4cdf3f77d11dafbc5b56c2127b175c84438a68166479a2eda7ca9c00273",
+      "latex": "K=\\frac{1}{2}I\\omega^2",
+      "aliases": [
+        "k equals one half times capital i times omega squared",
+        "rotational kinetic energy equals one half times moment of inertia times angular speed squared"
+      ],
+      "negative_phrases": [
+        "rotational kinetic energy equals one half times moment of inertia squared times angular speed",
+        "rotational kinetic energy equals one half times mass times speed squared",
+        "rotational kinetic energy formula"
+      ],
+      "scope_review": "Square angular speed, not the moment of inertia. Capital I is the moment of inertia about the same axis of rotation."
+    },
+    {
+      "id": "physics.spring_energy:standard",
+      "mathematical_sha256": "e04507c7d3380ef1340f0cc855c4e860a011d11c89389e17df137fc57ed65dd3",
+      "latex": "U=\\frac{1}{2}kx^2",
+      "aliases": [
+        "u equals one half times k times x squared",
+        "elastic potential energy equals half the spring constant times the square of the extension"
+      ],
+      "negative_phrases": [
+        "u equals one half times k squared times x",
+        "elastic potential energy equals the spring constant times the square of the extension",
+        "spring energy formula"
+      ],
+      "scope_review": "The spring extension is squared; half the spring constant multiplies this square. The reference length and zero energy are fixed by the stored conditions."
+    },
+    {
+      "id": "physics.spring_period:standard",
+      "mathematical_sha256": "267d16d20bb02367b0db1283b6b533a68b96ae7d39113241770ecaaa8cf5c21b",
+      "latex": "T=2\\pi\\sqrt{\\frac{m}{k}}",
+      "aliases": [
+        "t equals two times pi times the square root of open parenthesis m divided by k close parenthesis",
+        "oscillation period equals two pi times the square root of the ratio of mass to spring constant"
+      ],
+      "negative_phrases": [
+        "t equals two times pi times the square root of m divided by k",
+        "oscillation period equals two pi times the square root of the ratio of spring constant to mass",
+        "spring period formula"
+      ],
+      "scope_review": "The radical covers the whole ratio m/k; two pi multiplies the radical from outside. The physical quantity T is the period."
+    },
+    {
+      "id": "physics.work:standard",
+      "mathematical_sha256": "072ecb0be6bc8323852aa2f4eef2cd2be3b7c3bc72025372fb4dc8119698ab8b",
+      "latex": "W=Fd\\cos\\theta",
+      "aliases": [
+        "w equals f times d times cosine of theta",
+        "work equals force magnitude times displacement magnitude times cosine of the angle between them"
+      ],
+      "negative_phrases": [
+        "work equals force magnitude times displacement magnitude times sine of the angle between them",
+        "work equals force magnitude times displacement magnitude",
+        "work formula"
+      ],
+      "scope_review": "The product includes the cosine of the included angle, which permits negative, positive or zero work. The force and displacement are magnitudes."
+    },
+    {
+      "id": "physics.work_energy:standard",
+      "mathematical_sha256": "8459729f8781eca50984370983aefa6c337c38c0f153efc6eb41a7634ee39a00",
+      "latex": "W_{\\mathrm{net}}=\\Delta K",
+      "aliases": [
+        "w sub net equals delta k",
+        "net work equals the change in kinetic energy"
+      ],
+      "negative_phrases": [
+        "work equals the change in kinetic energy",
+        "net work equals the change in potential energy",
+        "work energy theorem"
+      ],
+      "scope_review": "The net subscript is essential. Delta K is the final minus initial translational kinetic energy; net work includes all forces."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.first_law:standard",
+      "mathematical_sha256": "e2a19d439c3b594cecdaeeafa07ccb8f69d9c2d6b10e629507522d4b0b1bb7aa",
+      "latex": "\\Delta U=Q-W",
+      "aliases": [
+        "delta u equals q minus w",
+        "change in internal energy equals net heat entering the system minus net work done by the system"
+      ],
+      "negative_phrases": [
+        "delta u equals q plus w",
+        "change in internal energy equals net heat entering the system minus net work done on the system",
+        "first law of thermodynamics"
+      ],
+      "scope_review": "The sign convention is heat entering positive and work done by the system positive. Do not substitute a work-on-system convention without changing the sign."
+    },
+    {
+      "id": "physics.heat_equation:standard",
+      "mathematical_sha256": "b84728202835bf44d03823b0bd8c2c382e9acf0016906024e2fdebf7a2dee8d4",
+      "latex": "\\frac{\\partial u}{\\partial t}=\\alpha\\frac{\\partial^2u}{\\partial x^2}",
+      "aliases": [
+        "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x",
+        "the first partial derivative of temperature with respect to time equals thermal diffusivity times the second partial derivative of temperature with respect to position"
+      ],
+      "negative_phrases": [
+        "the partial derivative of u with respect to t equals alpha times the first partial derivative of u with respect to x",
+        "the partial derivative of u with respect to t equals alpha times the square of the partial derivative of u with respect to x",
+        "heat equation"
+      ],
+      "scope_review": "The time derivative is first order and the spatial derivative is second order, not the square of a first derivative. Alpha is thermal diffusivity, not conductivity alone."
+    },
+    {
+      "id": "physics.ideal_gas:standard",
+      "mathematical_sha256": "3db1bbf63ebb9fc9de770e99954741f9b869fdd3b2828cf7c100b29fe16687d3",
+      "latex": "PV=nRT",
+      "aliases": [
+        "p v equals n r t",
+        "pv equals nrt",
+        "absolute pressure times volume equals amount in moles times the molar gas constant times absolute temperature"
+      ],
+      "negative_phrases": [
+        "p v equals n r divided by t",
+        "absolute pressure times volume equals mass times the molar gas constant times absolute temperature",
+        "ideal gas law"
+      ],
+      "scope_review": "Pressure times volume equals the product of molar amount, molar gas constant and absolute temperature. The literal aliases retain familiar spoken forms."
+    },
+    {
+      "id": "physics.monatomic_internal_energy:standard",
+      "mathematical_sha256": "6627ae54745c6becf0f7649f8b481181cb55adb272812b0e36617c96d14c36be",
+      "latex": "U=\\frac{3}{2}nRT",
+      "aliases": [
+        "u equals three halves times n times r times t",
+        "internal energy equals three halves times amount in moles times the molar gas constant times absolute temperature"
+      ],
+      "negative_phrases": [
+        "u equals five halves times n times r times t",
+        "u equals three halves times n times r divided by t",
+        "monatomic ideal gas internal energy"
+      ],
+      "scope_review": "The factor is three halves, multiplying the amount in moles, molar gas constant and absolute temperature. This is the stored monatomic translational model, not an assertion for arbitrary gases."
+    },
+    {
+      "id": "physics.sensible_heat:standard",
+      "mathematical_sha256": "2bae10ffba122dc78130365a2a39ecf5b04f6c9c03fc9f999359b04279fc43f7",
+      "latex": "Q=mc\\Delta T",
+      "aliases": [
+        "q equals m times c times delta t",
+        "heat transferred equals mass times specific heat capacity times the change in temperature"
+      ],
+      "negative_phrases": [
+        "q equals m times c times t",
+        "heat transferred equals mass times specific heat capacity divided by the change in temperature",
+        "sensible heat formula"
+      ],
+      "scope_review": "The temperature factor is the signed temperature change, not absolute temperature. Use the process-specific heat capacity specified by the mathematical conditions."
+    },
+    {
+      "id": "physics.thermal_expansion:standard",
+      "mathematical_sha256": "8f11aeddb3c0e81d9dca530158710f7e1196b8f718d54f63a324a90be1a2bab8",
+      "latex": "\\Delta L=\\alpha L_0\\Delta T",
+      "aliases": [
+        "delta l equals alpha times l sub zero times delta t",
+        "change in length equals the linear thermal expansion coefficient times initial length times the change in temperature"
+      ],
+      "negative_phrases": [
+        "delta l equals alpha times l sub zero times t",
+        "change in length equals the volumetric thermal expansion coefficient times initial length times the change in temperature",
+        "linear thermal expansion"
+      ],
+      "scope_review": "The product uses the linear coefficient, initial length and signed temperature change. The equality retains its first-order approximation conditions."
+    }
+  ]
+}

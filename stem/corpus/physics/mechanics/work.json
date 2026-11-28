@@ -21,7 +21,10 @@
         "d": "Displacement magnitude",
         "\\theta": "Angle between force and displacement"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "w equals f times d times cosine of theta",
+        "work equals force magnitude times displacement magnitude times cosine of the angle between them"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

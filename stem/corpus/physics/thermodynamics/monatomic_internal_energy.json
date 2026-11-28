@@ -21,7 +21,10 @@
         "R": "Molar gas constant",
         "T": "Absolute temperature"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "u equals three halves times n times r times t",
+        "internal energy equals three halves times amount in moles times the molar gas constant times absolute temperature"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

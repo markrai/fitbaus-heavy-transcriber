@@ -126,6 +126,12 @@ Complete direct scope review of the remaining 13 mathematics representations. Di
 
 The linear algebra, probability and statistics fixtures add 26 recitations and 39 counterexamples. All 62 mathematics representations now have direct recitation scope reviews, comprising 132 aliases and 190 negative examples. The existing fixture-driven matcher tests discover these additions. Recognition approval remains pending; this is not independent blind review or measured ASR performance. No runtime or inference changes.
 
+## Classical physics recitation review (S.1B.6)
+
+Directly review all 23 representations in mechanics, Newtonian gravity, fluid dynamics and thermodynamics. Preserve the exact formula strings, stable identities, conditions and mathematical review digests. Distinguish signed scalar components from vectors, phase speed from group speed, net force and net work from individual forces, gravitational constant G from acceleration g, force magnitude from potential energy, and heat entering the system from work done by the system. Preserve radical and denominator boundaries, initial-state indices, temperature differences and partial derivative orders. Literal spoken symbols remain supported where unambiguous within the stored representation. Withhold several underspecified inherited physical descriptions from the structured corpus; the legacy prototype remains unchanged.
+
+Four subject fixtures add 51 scope-reviewed recitations and 71 negative examples. Cumulative review covers 85 of 107 representations, 183 aliases and 261 negative examples. Existing fixture-driven tests exercise the exact matcher against these cases. Recognition approval remains pending; this is not independent blind review or measured speech-transcription qualification. No runtime, publication or inference changes.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

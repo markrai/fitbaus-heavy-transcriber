@@ -1,0 +1,36 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.gravitation:standard",
+      "mathematical_sha256": "9ffae205649d22f7951148f3027b41c83d5bcdf02e37d4077d45d1e3501a3476",
+      "latex": "F=G\\frac{m_1m_2}{r^2}",
+      "aliases": [
+        "f equals capital g times the fraction with numerator m sub one times m sub two and denominator r squared",
+        "gravitational force magnitude equals the gravitational constant times the product of the two masses divided by the square of their separation"
+      ],
+      "negative_phrases": [
+        "f equals capital g times the fraction with numerator m sub one times m sub two and denominator r",
+        "gravitational force magnitude equals the gravitational constant times the sum of the two masses divided by the square of their separation",
+        "newtons law of gravitation"
+      ],
+      "scope_review": "The force magnitude is positive for positive masses. Multiply the two masses and G, then divide by the square of center separation; distinguish G from local gravitational acceleration g."
+    },
+    {
+      "id": "physics.gravitational_potential:standard",
+      "mathematical_sha256": "d2b955391bef1280c5f0cfff58d3a490a3a610b8042ea27392a559041a873469",
+      "latex": "U=-\\frac{GMm}{r}",
+      "aliases": [
+        "u equals negative the fraction with numerator capital g times capital m times lowercase m and denominator r",
+        "gravitational potential energy equals negative the product of the gravitational constant and the two masses divided by their separation"
+      ],
+      "negative_phrases": [
+        "u equals the fraction with numerator capital g times capital m times lowercase m and denominator r",
+        "u equals negative the fraction with numerator capital g times capital m times lowercase m and denominator r squared",
+        "gravitational potential energy formula"
+      ],
+      "scope_review": "The whole quotient is negative, with the first power of separation in the denominator. Capital M and lowercase m are distinct masses. U is mutual potential energy, not potential per unit mass."
+    }
+  ]
+}

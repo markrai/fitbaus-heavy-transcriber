@@ -21,7 +21,10 @@
         "a": "Constant acceleration component",
         "t": "Elapsed time"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "v equals v sub zero plus a times t",
+        "final velocity equals initial velocity plus acceleration times elapsed time"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

@@ -22,7 +22,8 @@
         "\\alpha": "Thermal diffusivity, conductivity divided by volumetric heat capacity"
       },
       "spoken_aliases": [
-        "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x"
+        "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x",
+        "the first partial derivative of temperature with respect to time equals thermal diffusivity times the second partial derivative of temperature with respect to position"
       ],
       "references": [
         {

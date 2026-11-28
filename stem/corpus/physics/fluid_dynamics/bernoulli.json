@@ -22,7 +22,10 @@
         "g": "Gravitational acceleration magnitude",
         "h": "Elevation relative to a datum"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "p plus one half times rho times v squared plus rho times g times h equals a constant",
+        "static pressure plus one half times fluid density times flow speed squared plus fluid density times gravitational acceleration magnitude times elevation equals a constant"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

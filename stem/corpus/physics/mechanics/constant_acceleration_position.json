@@ -22,7 +22,10 @@
         "a": "Acceleration component",
         "t": "Elapsed time"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "x equals x sub zero plus v sub zero times t plus one half times a times t squared",
+        "position equals initial position plus initial velocity times elapsed time plus one half times acceleration times elapsed time squared"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",
