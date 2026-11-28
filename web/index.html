@@ -15,7 +15,8 @@
 <div class="section-header"><h2>Audiobook library</h2><button id="refresh" class="secondary">Refresh</button></div>
 <label class="search"><span>Find a book</span><input id="search" type="search" placeholder="Search title or author"></label>
 <div id="books" aria-live="polite"><p>Loading library…</p></div>
-<div class="actions"><span id="count">0 selected</span><button id="start" disabled>Transcribe selected</button></div>
+<div class="actions"><span id="count">0 selected</span><button id="companions" class="secondary" disabled>Check companion files</button><button id="start" disabled>Transcribe selected</button></div>
+<div id="companion-result" aria-live="polite"></div>
 <p id="error" role="alert"></p>
 </section>
 <section><div class="section-header"><h2>Current batch</h2><span id="batch-state">Idle</span></div><div id="jobs"><p class="muted">Select books to get started.</p></div></section>

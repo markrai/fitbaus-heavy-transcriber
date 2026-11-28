@@ -2,6 +2,8 @@ const $ = id => document.getElementById(id);
 let books = [];
 let selected = new Set();
 let running = false;
+let companionRequest = 0;
+let companionBusy = false;
 
 function element(tag, text, className) {
     const node = document.createElement(tag);
@@ -27,6 +29,13 @@ function duration(seconds) {
 function updateActions() {
     $("count").textContent = selected.size + " selected";
     $("start").disabled = running || !selected.size || selected.size > 32;
+    $("companions").disabled = running || companionBusy || selected.size !== 1;
+}
+
+function clearCompanions() {
+    companionRequest++;
+    companionBusy = false;
+    $("companion-result").replaceChildren();
 }
 
 function renderBooks() {
@@ -41,6 +50,7 @@ function renderBooks() {
         box.addEventListener("change", () => {
             if (box.checked) selected.add(book.id);
             else selected.delete(book.id);
+            clearCompanions();
             updateActions();
         });
         const cover = element("img");
@@ -63,6 +73,7 @@ async function refresh() {
     $("refresh").disabled = true;
     try {
         books = await api("/api/books");
+        clearCompanions();
         const ids = new Set(books.map(book => book.id));
         selected = new Set([...selected].filter(id => ids.has(id)));
         renderBooks();
@@ -106,6 +117,30 @@ async function status() {
 
 $("search").addEventListener("input", renderBooks);
 $("refresh").addEventListener("click", refresh);
+$("companions").addEventListener("click", async () => {
+    if (running || companionBusy || selected.size !== 1) return;
+    const [id] = selected;
+    const request = ++companionRequest;
+    companionBusy = true;
+    updateActions();
+    const result = $("companion-result");
+    result.replaceChildren(element("p", "Checking attached files…"));
+    try {
+        const data = await api("/api/companions/" + encodeURIComponent(id));
+        if (request !== companionRequest || !selected.has(id) || selected.size !== 1) return;
+        result.replaceChildren(element("p", data.files.length ? "Companion files detected (edition not verified)" : "No companion ebooks detected."));
+        for (const file of data.files) {
+            result.append(element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role));
+        }
+    } catch (error) {
+        if (request === companionRequest) result.replaceChildren(element("p", "Companion discovery failed. Check Audiobookshelf access."));
+    } finally {
+        if (request === companionRequest) {
+            companionBusy = false;
+            updateActions();
+        }
+    }
+});
 $("start").addEventListener("click", async () => {
     $("start").disabled = true;
     try {
@@ -113,6 +148,7 @@ $("start").addEventListener("click", async () => {
                                 body: JSON.stringify({ids: [...selected]})});
         running = true;
         selected.clear();
+        clearCompanions();
         renderBooks();
         $("error").textContent = "";
     } catch (error) {

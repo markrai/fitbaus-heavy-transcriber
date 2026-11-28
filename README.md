@@ -47,7 +47,9 @@ Windows (Command Prompt):
 ```bat
 ci.bat
 ci.bat core
+ci.bat stem
 ci.bat renderer
+ci.bat all
 ```
 
 Linux/macOS:
@@ -55,15 +57,23 @@ Linux/macOS:
 ```sh
 ./ci.sh
 ./ci.sh core
+./ci.sh stem
 ./ci.sh renderer
+./ci.sh all
 ```
 
-With no argument, both suites run, stopping at the first failure. A terminal-only summary reports elapsed time, passed, failed and skipped checks, failure reason and exit code. No additional report or log files are generated. The two optional suite arguments select the corresponding GitHub workflow. Both launchers and both Actions workflows use the same `ci.py` driver. Core CI clones the pinned transcript contract if missing, reuses a clean checkout when available, checks out the exact required commit, compiles Python, validates the corpus and runs the full unit test suite. It refuses a dirty or invalid upstream checkout rather than discarding local work. Renderer CI installs the same npm dependencies as Actions, runs policy tests and performs real SVG/PNG rendering. The first dependency setup may require network access.
+With no argument, only core CI runs, matching the required ordinary GitHub workflow. Core prepares the pinned contract, compiles active Python modules and runs all current top-level tests except test_stem*.py. The opt-in stem suite prepares the same contract, compiles the dormant STEM modules, validates the corpus and runs all test_stem*.py tests. The renderer suite installs npm dependencies and performs policy and real rendering checks. Both research workflows are manual dispatch only. Use all explicitly to run all three suites, stopping at the first failure. The shared test selector keeps core and STEM discovery disjoint; new top-level test modules are included automatically by naming convention. All suites report elapsed time, pass/fail/skip counts and exit status. Core refuses dirty or invalid upstream checkouts. No Node.js, renderer dependency, GPU, or research corpus download is required for core CI.
 
-The GitHub workflow also provisions the toolchains and uploads the generated renderer package-lock artifact. Local runs leave that lockfile in `stem/renderer/`. Until the renderer lockfile is committed, transitive npm resolution is not guaranteed identical between fresh installs. The scripts reproduce the checks and version requirements, not the hosted runner image or exact Python/Node patch versions. GitHub currently executes both suites on Windows; Linux/macOS runs are useful local checks but not proof of Windows compatibility.
+The GitHub workflow also provisions the toolchains and uploads the generated renderer package-lock artifact. Local runs leave that lockfile in `stem/renderer/`. Until the renderer lockfile is committed, transitive npm resolution is not guaranteed identical between fresh installs. The scripts reproduce the checks and version requirements, not the hosted runner image or exact Python/Node patch versions. GitHub currently executes these suites on Windows; Linux/macOS runs are useful local checks but not proof of Windows compatibility.
 
 Tests use fake source, inference and SSH adapters; they do not need GPU weights or your audiobook library. Actual NVIDIA runtime, SSH transport and audiobook playback must be qualified on the target workstation.
 
-## Experimental STEM foundation
+## Ebook-assisted enrichment (E.0)
 
-See [STEM dictionary and corpus acquisition](stem/README.md) for the offline recognition foundation. This is a development component; normal transcription and publishing are unchanged.
+Select exactly one audiobook in the Workbench and click **Check companion files**. The Workbench uses the existing authenticated Audiobookshelf session to fetch the expanded item and list the primary ebook and attached/supplementary ebook files, deduplicated by file ID. This is explicit read-only metadata discovery: library refresh, ordinary transcription, and publication make no additional companion requests. No ebook contents are downloaded, no server paths or credentials are returned to the browser, and an attachment is not proof of a matching edition. EPUB is the first planned extraction format; PDF and other recognized attachments are listed for future work. Permission, malformed metadata, and unavailable-item errors remain distinct from a successful empty result in the UI. The current server's metadata shape must be qualified using an actual attached ebook.
+
+Next: bounded EPUB acquisition, format/edition validation, alignment of retained narration with ebook text, original equation/figure extraction, and independently versioned enrichment artifacts.
+
+## Dormant spoken-math research
+
+See [STEM dictionary and corpus acquisition](stem/README.md). All existing research code, corpus, fixtures and evidence formats are retained. The spoken-math engine is suspended, not a production fallback, and is not imported by normal processing. Run ci.bat stem (or ./ci.sh stem) explicitly to exercise its regression suite; renderer qualification is also opt-in. No research data, model downloads or renderer dependencies are required for the new approach.
