@@ -102,6 +102,12 @@ Authoring rubric: say explicit subscripts; preserve the base and end of compound
 
 Recognition reviews remain pending; S.1C still requires actual transcription coverage, broader negative cases and release gates. No GPU, Ollama, additional API account or model download is needed for the direct authoring path. The optional existing generator is retained unchanged for reproducing the pilot.
 
+## Algebra recitation review (S.1B.2)
+
+Complete direct scope review for the remaining nine algebra concepts (ten representations), including both geometric series forms, logarithm identities, the quadratic formula and squares of sums and differences. The structured quadratic alias is replaced because its radical and denominator boundaries were implicit; the legacy prototype remains unchanged. Explicitly distinguish logarithm bases from arguments, the finite and infinite summation bounds, exponent grouping and the signs of the middle polynomial terms.
+
+The tracked tests/fixtures/stem_recitation_algebra.json holds 21 reviewed recitations and 31 counterexamples. The fixture-driven matcher tests discover all stem_recitation_*.json fixtures, check unique representation coverage, exact formula and mathematical digest bindings, and exercise positive spans and negative rejection across the combined test dictionary. Cumulative scope-reviewed coverage: 15 of 107 representations, with all 14 algebra representations plus Euler's identity reviewed. Recognition approval is still pending. No runtime or inference changes.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
