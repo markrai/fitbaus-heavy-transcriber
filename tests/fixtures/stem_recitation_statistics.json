@@ -1,0 +1,81 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "statistics.discrete_expectation:standard",
+      "mathematical_sha256": "9c61ee8ada01e54b62bfb2671e7e2e8e178f06d77fbcb170317fd07497704f73",
+      "latex": "E[X]=\\sum_{i=1}^{n}x_iP(X=x_i)",
+      "aliases": [
+        "the expected value of random variable x equals the sum from i equals one to n of x sub i times the probability that random variable x equals x sub i",
+        "expectation of x equals the sum from i equals one to n of the product of x sub i and the probability that x equals x sub i"
+      ],
+      "negative_phrases": [
+        "the expected value of random variable x equals the sum from i equals one to n of the probability that random variable x equals x sub i",
+        "the expected value of random variable x equals the sum from i equals zero to n of x sub i times the probability that random variable x equals x sub i",
+        "discrete expectation"
+      ],
+      "scope_review": "Each support value multiplies its own probability; summation runs from one through n. The random variable X is distinguished from the indexed possible value x_i."
+    },
+    {
+      "id": "statistics.discrete_variance:standard",
+      "mathematical_sha256": "e8a7c2c6f0501e5f3c243913a6ba9f79974dfd928b6ce7d29d31e2eaadf974cf",
+      "latex": "\\sigma^2=\\sum_{i=1}^{n}(x_i-\\mu)^2P(X=x_i)",
+      "aliases": [
+        "sigma squared equals the sum from i equals one to n of open parenthesis x sub i minus mu close parenthesis squared times the probability that random variable x equals x sub i",
+        "population variance equals the sum from i equals one to n of the product of the square of the difference between x sub i and mu and the probability that x equals x sub i"
+      ],
+      "negative_phrases": [
+        "sigma squared equals the sum from i equals one to n of x sub i minus mu squared times the probability that random variable x equals x sub i",
+        "sigma squared equals the sum from i equals one to n of open parenthesis x sub i minus mu close parenthesis squared",
+        "discrete variance"
+      ],
+      "scope_review": "Square the entire deviation from the population mean and multiply it by the probability of that support value. Sum over all listed support values; the probability is not inside the square."
+    },
+    {
+      "id": "statistics.normal_density:standard",
+      "mathematical_sha256": "522976f5e22104583cde9005d54d1635277136053e4671ec2bd85a2d89a1836a",
+      "latex": "f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}",
+      "aliases": [
+        "f of x equals one divided by open parenthesis sigma times the square root of open parenthesis two times pi close parenthesis close parenthesis times e raised to the power of open parenthesis negative of the fraction with numerator open parenthesis x minus mu close parenthesis squared and denominator two times sigma squared close parenthesis",
+        "the density f of x equals the reciprocal of the product of sigma and the square root of the quantity two pi multiplied by e raised to the power of negative open parenthesis the square of the difference of x and mu divided by open parenthesis two times sigma squared close parenthesis close parenthesis end exponent"
+      ],
+      "negative_phrases": [
+        "f of x equals one divided by sigma times the square root of two pi times e raised to the power of negative x minus mu squared divided by two sigma squared",
+        "f of x equals one divided by open parenthesis sigma times the square root of open parenthesis two times pi close parenthesis close parenthesis times e raised to the power of open parenthesis the fraction with numerator open parenthesis x minus mu close parenthesis squared and denominator two times sigma squared close parenthesis",
+        "normal distribution"
+      ],
+      "scope_review": "The prefactor is the reciprocal of sigma times sqrt(2 pi); the exponential base is e and its entire exponent is the negative quotient of the squared deviation by twice sigma squared. The expression is a density, not a point probability."
+    },
+    {
+      "id": "statistics.sample_variance:standard",
+      "mathematical_sha256": "f4983a65a1d39da3ed829fb7f339247a5f3cc93d67627ffc59b334f9fc872277",
+      "latex": "s^2=\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})^2",
+      "aliases": [
+        "s squared equals one divided by open parenthesis n minus one close parenthesis times the sum from i equals one to n of open parenthesis x sub i minus x bar close parenthesis squared",
+        "sample variance equals the reciprocal of the quantity n minus one multiplied by the sum from i equals one to n of the square of the difference between observation x sub i and the sample mean x bar"
+      ],
+      "negative_phrases": [
+        "s squared equals one divided by n times the sum from i equals one to n of open parenthesis x sub i minus x bar close parenthesis squared",
+        "s squared equals one divided by n minus one times the sum from i equals one to n of x sub i minus x bar squared",
+        "sample variance"
+      ],
+      "scope_review": "The reciprocal uses n-1, not n. Every observation's full deviation from x bar is squared; the sum is multiplied by the reciprocal. The sample mean and the population mean are not interchangeable."
+    },
+    {
+      "id": "statistics.z_score:standard",
+      "mathematical_sha256": "4df731b65a02021d2aaedff238a22f9a6078afecc8930bbf04eefd175802a4f0",
+      "latex": "z=\\frac{x-\\mu}{\\sigma}",
+      "aliases": [
+        "z equals open parenthesis x minus mu close parenthesis divided by sigma",
+        "z score equals the fraction with numerator x minus mu and denominator sigma"
+      ],
+      "negative_phrases": [
+        "z equals x minus mu divided by sigma",
+        "z equals open parenthesis x minus mu close parenthesis divided by sigma squared",
+        "z score"
+      ],
+      "scope_review": "Subtract the population mean first and divide the whole difference by the population standard deviation, not the variance. No assumption of normality is added."
+    }
+  ]
+}

@@ -22,7 +22,10 @@
         "x_i": "Observation",
         "\\bar{x}": "Sample mean"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "s squared equals one divided by open parenthesis n minus one close parenthesis times the sum from i equals one to n of open parenthesis x sub i minus x bar close parenthesis squared",
+        "sample variance equals the reciprocal of the quantity n minus one multiplied by the sum from i equals one to n of the square of the difference between observation x sub i and the sample mean x bar"
+      ],
       "references": [
         {
           "source_id": "openstax_statistics_2e_reference",

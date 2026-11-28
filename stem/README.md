@@ -120,6 +120,12 @@ Directly scope-review 17 calculus representations in 16 concepts. Preserve the o
 
 The calculus fixture adds 34 reviewed recitations and 51 counterexamples. Cumulative scope review covers 49 of 107 representations, 106 aliases and 151 negative examples. Existing fixture discovery tests check positive recognition and negative rejection. No recognition approvals, runtime changes or external inference are introduced.
 
+## Linear algebra, probability and statistics recitation review (S.1B.5)
+
+Complete direct scope review of the remaining 13 mathematics representations. Distinguish matrices from their entries, preserve row order and signs in the two-by-two inverse, distinguish conditional from joint probabilities and combinations from ordered selections, and explicitly identify random variables, support indices, factorial arguments, weighted squared deviations, sample versus population quantities and both grouped factors of the normal density. The original mathematical definitions, conditions, LaTeX and mathematical approval digests remain unchanged.
+
+The linear algebra, probability and statistics fixtures add 26 recitations and 39 counterexamples. All 62 mathematics representations now have direct recitation scope reviews, comprising 132 aliases and 190 negative examples. The existing fixture-driven matcher tests discover these additions. Recognition approval remains pending; this is not independent blind review or measured ASR performance. No runtime or inference changes.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

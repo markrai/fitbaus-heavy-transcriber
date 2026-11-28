@@ -21,7 +21,10 @@
         "\\mu": "Population mean",
         "\\sigma": "Population standard deviation"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "z equals open parenthesis x minus mu close parenthesis divided by sigma",
+        "z score equals the fraction with numerator x minus mu and denominator sigma"
+      ],
       "references": [
         {
           "source_id": "openstax_statistics_2e_reference",

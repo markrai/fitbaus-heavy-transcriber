@@ -24,7 +24,10 @@
         "n": "Support size",
         "P": "Probability measure"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "sigma squared equals the sum from i equals one to n of open parenthesis x sub i minus mu close parenthesis squared times the probability that random variable x equals x sub i",
+        "population variance equals the sum from i equals one to n of the product of the square of the difference between x sub i and mu and the probability that x equals x sub i"
+      ],
       "references": [
         {
           "source_id": "openstax_statistics_2e_reference",
