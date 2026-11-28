@@ -31,6 +31,12 @@ class Workbench:
             self.catalog = {book["id"]: book for book in books}
             return [{**book, "previously_imported": book["id"] in self.history} for book in books]
 
+    def companions(self, item):
+        with self.lock:
+            if item not in self.catalog:
+                raise ValueError("Unknown book")
+        return {"item_id": item, "files": [row.public() for row in self.library.companions(item)]}
+
     def cover(self, item):
         with self.lock:
             if item not in self.catalog:
@@ -121,6 +127,8 @@ class Handler(BaseHTTPRequestHandler):
                 self.json(self.server.workbench.books())
             elif self.path == "/api/status":
                 self.json(self.server.workbench.status())
+            elif self.path.startswith("/api/companions/"):
+                self.json(self.server.workbench.companions(self.path.removeprefix("/api/companions/")))
             elif self.path.startswith("/api/cover/"):
                 kind, cover = self.server.workbench.cover(self.path.removeprefix("/api/cover/"))
                 self.send(200, kind, cover)

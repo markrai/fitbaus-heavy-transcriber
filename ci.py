@@ -7,6 +7,8 @@ import subprocess
 import sys
 import time
 
+from test_suite import test_paths
+
 ROOT = Path(__file__).resolve().parent
 UPSTREAM_URL = "https://github.com/markrai/fitbaus-transcriber.git"
 UPSTREAM_SHA = "adb1e9530ef8f03758138703ebd737ff8e2bfe24"
@@ -55,9 +57,19 @@ def core_steps():
     return [
         ("[Core] Pinned transcript contract", prepare_contract),
         ("[Core] Python compilation", lambda: run(
-            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "stem", "tests", "ci.py")),
-        ("[Core] Corpus validation", lambda: run(sys.executable, "-m", "stem.corpus_model")),
-        ("[Core] Unit tests", lambda: run(sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v")),
+            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py",
+            "ci.py", "test_suite.py", *(str(path.relative_to(ROOT)) for path in test_paths("core")))),
+        ("[Core] Unit tests", lambda: run(sys.executable, "test_suite.py", "core")),
+    ]
+
+
+def stem_steps():
+    return [
+        ("[STEM] Python compilation", lambda: run(
+            sys.executable, "-m", "compileall", "-q", "stem",
+            *(str(path.relative_to(ROOT)) for path in test_paths("stem")))),
+        ("[STEM] Corpus validation", lambda: run(sys.executable, "-m", "stem.corpus_model")),
+        ("[STEM] Unit tests", lambda: run(sys.executable, "test_suite.py", "stem")),
     ]
 
 
@@ -132,11 +144,15 @@ def execute(suite, steps):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Run the same checks as GitHub Actions")
-    parser.add_argument("suite", choices=("all", "core", "renderer"), nargs="?", default="all")
+    parser.add_argument("suite", choices=("all", "core", "stem", "renderer"), nargs="?", default="core")
     args = parser.parse_args(argv)
     steps = [("[Setup] Python 3.12", require_python)]
     if args.suite in ("all", "core"):
         steps.extend(core_steps())
+    if args.suite == "stem":
+        steps.append(("[STEM] Pinned transcript contract", prepare_contract))
+    if args.suite in ("all", "stem"):
+        steps.extend(stem_steps())
     if args.suite in ("all", "renderer"):
         steps.extend(renderer_steps())
     return execute(args.suite, steps)

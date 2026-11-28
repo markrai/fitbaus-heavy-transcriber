@@ -1,5 +1,7 @@
 # Optional STEM enrichment foundation
 
+**Development suspended:** spoken-math recognition is preserved as research, not invoked by the application. Run `python ci.py stem` or `python ci.py renderer` explicitly. Ordinary CI excludes dormant STEM tests. Ebook-assisted enrichment is the active approach; the renderer may be reused after independent qualification.
+
 This package is independent of the normal transcription workflow. No corpus is downloaded, loaded or consulted by app.py or heavy.py. No LLM, GPU, renderer or external dependency is needed for dictionary inspection.
 
 ## Local inspection

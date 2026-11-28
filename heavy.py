@@ -136,6 +136,13 @@ class Library:
                 raise ValueError("Library page limit exceeded")
         return sorted(result.values(), key=lambda book: book["title"].casefold())
 
+    def companions(self, item_id):
+        from companions import discover
+
+        identifier(item_id)
+        item = self.get_json(f"/api/items/{item_id}?expanded=1")
+        return discover(item, item_id)
+
     def cover(self, item_id):
         identifier(item_id)
         def fetch(token):

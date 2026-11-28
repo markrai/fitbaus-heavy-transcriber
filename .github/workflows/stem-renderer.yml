@@ -1,17 +1,5 @@
 name: STEM renderer smoke
 on:
-  pull_request:
-    paths:
-      - 'stem/renderer/**'
-      - 'stem/qualify_render.py'
-      - 'stem/renderer_smoke.py'
-      - 'stem/dictionary.py'
-      - 'tests/test_stem_qualify_render.py'
-      - 'tests/test_ci_driver.py'
-      - 'ci.py'
-      - 'ci.bat'
-      - 'ci.sh'
-      - '.github/workflows/stem-renderer.yml'
   workflow_dispatch:
 permissions:
   contents: read
