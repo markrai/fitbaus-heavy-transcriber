@@ -57,7 +57,7 @@ def core_steps():
     return [
         ("[Core] Pinned transcript contract", prepare_contract),
         ("[Core] Python compilation", lambda: run(
-            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py",
+            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py",
             "ci.py", "test_suite.py", *(str(path.relative_to(ROOT)) for path in test_paths("core")))),
         ("[Core] Unit tests", lambda: run(sys.executable, "test_suite.py", "core")),
     ]

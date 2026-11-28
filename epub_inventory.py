@@ -16,6 +16,7 @@ MAX_MEMBERS = 4096
 CONTAINER = "{urn:oasis:names:tc:opendocument:xmlns:container}"
 OPF = "{http://www.idpf.org/2007/opf}"
 DC = "{http://purl.org/dc/elements/1.1/}"
+XML_BASE = "{http://www.w3.org/XML/1998/namespace}base"
 
 
 class EpubError(ValueError):
@@ -31,7 +32,8 @@ def member_name(name):
 
 
 def resolve_href(package, href):
-    if not href or re.search(r"%(?![0-9a-fA-F]{2})", href):
+    if (not href or href != href.strip() or any(ord(c) < 32 or ord(c) == 127 for c in href)
+            or re.search(r"%(?![0-9a-fA-F]{2})", href)):
         raise EpubError("Invalid EPUB manifest reference")
     try:
         parsed = urlsplit(href)
@@ -99,7 +101,7 @@ def metadata_text(metadata, tag):
     return " ".join("".join(node.itertext()).split())[:300] or None
 
 
-def package_inventory(archive, members):
+def package_inventory(archive, members, *, include_resources=False):
     mime = members.get("mimetype")
     if (mime is None or mime.file_size != 20 or mime.compress_type != zipfile.ZIP_STORED
             or archive.read(mime) != b"application/epub+zip"):
@@ -112,6 +114,8 @@ def package_inventory(archive, members):
         raise EpubError("Unsupported EPUB package type")
     package = member_name(roots[0].get("full-path", ""))
     opf = read_xml(archive, members, package)
+    if any(XML_BASE in node.attrib for node in opf.iter()):
+        raise EpubError("EPUB package base overrides are unsupported")
     version = opf.get("version", "")
     if opf.tag != OPF + "package" or version not in ("2.0", "3.0", "3.1", "3.2", "3.3"):
         raise EpubError("Unsupported EPUB package version")
@@ -144,15 +148,18 @@ def package_inventory(archive, members):
         raise EpubError("Missing or oversized EPUB spine")
     counts = Counter(kind for _, kind in resources.values())
     metadata = opf.find(OPF + "metadata")
-    return {"version": version, "title": metadata_text(metadata, "title"),
+    result = {"version": version, "title": metadata_text(metadata, "title"),
             "creator": metadata_text(metadata, "creator"),
             "manifest_count": len(resources), "spine_count": len(ordered),
             "xhtml_count": counts["application/xhtml+xml"],
             "image_count": sum(count for kind, count in counts.items() if kind.startswith("image/")),
             "spine": ordered}
+    if include_resources:
+        result["resources"] = {path: kind for path, kind in resources.values()}
+    return result
 
 
-def inspect_epub(stream):
+def inspect_epub(stream, *, include_resources=False):
     stream.seek(0, 2)
     size = stream.tell()
     if not 0 < size <= MAX_EPUB_BYTES:
@@ -164,7 +171,7 @@ def inspect_epub(stream):
     stream.seek(0)
     try:
         with zipfile.ZipFile(stream) as archive:
-            inventory = package_inventory(archive, archive_members(archive))
+            inventory = package_inventory(archive, archive_members(archive), include_resources=include_resources)
     except (zipfile.BadZipFile, NotImplementedError, RuntimeError, EOFError, OSError) as error:
         raise EpubError("Invalid or unsupported EPUB archive") from None
     return {"schema": "fitbaus.epub-inventory/v1", "sha256": digest.hexdigest(),

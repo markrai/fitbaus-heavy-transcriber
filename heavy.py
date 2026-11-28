@@ -148,6 +148,11 @@ class Library:
 
         return self.inspect_companion(item_id, file_id, inspect_epub)
 
+    def epub_assets(self, item_id, file_id):
+        from epub_assets import extract_assets
+
+        return self.inspect_companion(item_id, file_id, extract_assets)
+
     def inspect_companion(self, item_id, file_id, inspect):
         from epub_inventory import MAX_EPUB_BYTES
 
