@@ -13,25 +13,31 @@
       "id": "standard",
       "latex": "U=\\frac{1}{2}kx^2",
       "conditions": [
-        "Ideal linear spring; potential energy chosen as zero at equilibrium."
+        "Ideal linear spring, x measured from the unstretched length, with elastic potential energy zero at x=0."
       ],
       "symbols": {
         "U": "Elastic potential energy",
         "k": "Positive spring constant",
-        "x": "Displacement from equilibrium"
+        "x": "Signed extension from unstretched length"
       },
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/8-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "e04507c7d3380ef1340f0cc855c4e860a011d11c89389e17df137fc57ed65dd3",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For the ideal spring force -kx, the potential derivative is kx. Integrating from equilibrium x=0 with U(0)=0 yields kx^2/2.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/8-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

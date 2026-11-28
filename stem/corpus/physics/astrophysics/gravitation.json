@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "F=G\\frac{m_1m_2}{r^2}",
       "conditions": [
-        "Magnitude of attractive Newtonian force between point masses, or nonoverlapping spherically symmetric masses; positive separation."
+        "Positive point masses or nonoverlapping spherically symmetric positive masses in Newtonian gravity; r is positive center separation; F is force magnitude."
       ],
       "symbols": {
         "F": "Gravitational force magnitude",
@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/13-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "9ffae205649d22f7951148f3027b41c83d5bcdf02e37d4077d45d1e3501a3476",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Empirical Newtonian inverse-square law; take the magnitude of the central attractive force. For spherical nonoverlapping positive masses the shell theorem gives the same exterior force as point masses at their centers. This is a model-law check, not a derivation of gravitation from mathematics.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/13-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

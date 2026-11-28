@@ -25,15 +25,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "1b16b0cb13c2050d0841412071a301d6bab476c3833b5862c4980f996ce5cbf6",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Integrate dv/dt=a from zero to t to obtain v=v0+at. Integrate dx/dt=v over the same interval and apply x(0)=x0, giving the stated quadratic.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/3-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

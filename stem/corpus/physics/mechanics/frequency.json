@@ -13,10 +13,10 @@
       "id": "standard",
       "latex": "v=f\\lambda",
       "conditions": [
-        "Periodic wave with wavelength and frequency measured in the same frame; v is phase speed."
+        "Traveling periodic wave component with positive wavelength and frequency measured in the same frame; v denotes phase-speed magnitude, not group speed."
       ],
       "symbols": {
-        "v": "Phase speed",
+        "v": "Phase-speed magnitude",
         "f": "Frequency",
         "\\lambda": "Wavelength"
       },
@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.frequency"
+        },
+        {
+          "source_id": "openstax_university_physics_1_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/16-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "23f7e36186a35d6e83a0a7995e6a9b8367b24d567dddc81d4942ed8d14e2969d",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a traveling periodic wave, a fixed phase advances one wavelength during one period T. Its phase-speed magnitude is lambda/T; with f=1/T this gives f lambda. It does not generally give group velocity in a dispersive medium.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/16-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

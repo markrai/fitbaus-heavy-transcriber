@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "b86180783ef086cdbf9f0c91ddbf35cdc1ed380f6367a741e0ab9c4227635b43",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Integrate dv/dt=a with constant signed a from zero to elapsed time t; v(t)-v(0)=at.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/3-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

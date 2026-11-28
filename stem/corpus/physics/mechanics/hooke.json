@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "F=-kx",
       "conditions": [
-        "Ideal linear spring within its elastic range; displacement measured from equilibrium along spring axis."
+        "Ideal linear spring; x is signed extension relative to its unstretched length; F is the spring force along the same axis. No assertion about the net force from other loads."
       ],
       "symbols": {
         "F": "Restoring force component",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
-          "locator": "https://openstax.org/books/university-physics-volume-1/pages/15-key-equations"
+          "source_id": "openstax_university_physics_1_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "cfaa343c5c8ae4ecc4aef46eaa915a0a6ad7379bc8068870a70e1a9c6bf58842",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The linear spring model defines positive stiffness k and restoring force opposite the extension x. Thus F=-kx; the sign restores equilibrium and k has force-per-length units. This is a constitutive law valid within its linear elastic regime.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

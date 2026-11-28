@@ -13,26 +13,32 @@
       "id": "standard",
       "latex": "A_1v_1=A_2v_2",
       "conditions": [
-        "Steady incompressible flow in a single conduit with no leaks or branches; speeds are cross-section-averaged normal speeds."
+        "Steady constant-density flow in a single conduit with no leaks or branches; v1 and v2 are net cross-section-averaged normal velocities oriented downstream."
       ],
       "symbols": {
         "A_1": "First cross-sectional area",
         "A_2": "Second cross-sectional area",
-        "v_1": "First mean flow speed",
-        "v_2": "Second mean flow speed"
+        "v_1": "First downstream-oriented mean normal velocity",
+        "v_2": "Second downstream-oriented mean normal velocity"
       },
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/14-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "94014b4468826b26544e7fadf3fa7534e13f42938edddd507e29b64ad6da610c",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Mass conservation in a fixed control volume bounded by impermeable walls and two cross sections gives equal incoming and outgoing mass rates in steady flow. With the same constant density at both sections, cancel density to obtain A1 v1=A2 v2.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/14-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

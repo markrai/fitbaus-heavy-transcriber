@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "W=Fd\\cos\\theta",
       "conditions": [
-        "Constant force acting during a straight displacement; theta is the angle between force and displacement."
+        "Constant nonzero force and nonzero straight displacement, with theta their included angle; zero force or zero displacement gives zero work separately."
       ],
       "symbols": {
         "W": "Work done by the force",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "072ecb0be6bc8323852aa2f4eef2cd2be3b7c3bc72025372fb4dc8119698ab8b",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Integrating a constant force along a straight displacement gives the dot product of the force and displacement. The dot product is the product of their magnitudes times the cosine of their included angle.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/7-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

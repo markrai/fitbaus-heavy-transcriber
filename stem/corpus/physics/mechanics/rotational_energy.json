@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/10-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "7781a4cdf3f77d11dafbc5b56c2127b175c84438a68166479a2eda7ca9c00273",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Each mass element of a rigid body rotating about a fixed axis has speed omega times its perpendicular distance r from that axis. Summing its classical kinetic energy gives omega^2/2 times the mass-weighted sum of r^2, which is the moment of inertia.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/10-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

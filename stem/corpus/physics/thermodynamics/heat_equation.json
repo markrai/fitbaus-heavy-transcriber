@@ -13,13 +13,13 @@
       "id": "standard",
       "latex": "\\frac{\\partial u}{\\partial t}=\\alpha\\frac{\\partial^2u}{\\partial x^2}",
       "conditions": [
-        "One spatial dimension, constant thermal diffusivity, no internal heat source, homogeneous medium."
+        "Stationary homogeneous medium with one-dimensional conduction, constant positive conductivity, density and specific heat, no internal heat source or transverse heat loss; temperature sufficiently differentiable. Initial and boundary data are needed to specify a solution."
       ],
       "symbols": {
         "u": "Temperature field",
         "t": "Time",
         "x": "Spatial coordinate",
-        "\\alpha": "Thermal diffusivity"
+        "\\alpha": "Thermal diffusivity, conductivity divided by volumetric heat capacity"
       },
       "spoken_aliases": [
         "the partial derivative of u with respect to t equals alpha times the second partial derivative of u with respect to x"
@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.heat_equation"
+        },
+        {
+          "source_id": "mit_ocw_heat_equation_reference",
+          "locator": "https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-fall-2006/d11b374a85c3fde55ec971fe587f8a50_heateqni.pdf"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "b84728202835bf44d03823b0bd8c2c382e9acf0016906024e2fdebf7a2dee8d4",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a fixed homogeneous rod with constant properties, Fourier conduction gives heat flux q=-k u_x. Local energy conservation gives rho c u_t=-q_x. Substitute the flux and divide by positive rho c to get u_t=(k/(rho c))u_xx. The coefficient has dimensions length squared per time.",
+          "Reference checked 2026-11-27: https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-fall-2006/d11b374a85c3fde55ec971fe587f8a50_heateqni.pdf (section 1.1, equations 2 and 3). Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
