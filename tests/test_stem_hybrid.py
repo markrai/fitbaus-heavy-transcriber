@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from stem.hybrid import EULER, MASS_ENERGY, PYTHAGORAS, build_hybrid
+from stem.hybrid import EULER, MASS_ENERGY, PYTHAGORAS, RULES, build_hybrid
 from stem.qualify_hybrid import qualify
 from stem.qualify_recognition import build_review_dictionary
 
@@ -89,7 +89,11 @@ class HybridRecognitionTests(unittest.TestCase):
         report = qualify()
         self.assertTrue(report["regression"]["pass"], report["regression"]["failures"])
         self.assertTrue(report["context_challenges"]["pass"], report["context_challenges"]["failures"])
-        self.assertEqual(report["structural_rule_count"], 3)
+        self.assertEqual(report["structural_rule_count"], 56)
+        self.assertEqual(report["structural_rule_count"], len(RULES))
+        self.assertTrue(report["structural"]["pass"], report["structural"]["failures"])
+        self.assertEqual(report["structural"]["expected_representation_coverage"], len(RULES))
+        self.assertEqual(report["structural"]["total"]["cases"], 6 * len(RULES))
         self.assertEqual(report, qualify())
         self.assertFalse(report["recognition_qualified"])
         self.assertFalse(report["release_qualified"])

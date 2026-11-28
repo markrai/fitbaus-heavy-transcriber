@@ -255,6 +255,16 @@ Hybrid qualification accepts the existing observation v1 format and a v2 format 
 
 Seven additional focused tests cover equivalent restatement, named explanatory clauses, abstention, notation scoring, missed labels, invalid input and v1 compatibility. Existing 4,110 regression/context cases remain mandatory. No private audiobook text or observation files are committed; synthetic fixtures exercise the general rule. Policy and implementation hashes include the new context and label modules. No corpus approval, production integration, arbitrary expression rendering or inference. S.1D.4C expands structural coverage; S.1D.5 addresses adjacent cue context; S.1D.6 qualifies on development and untouched holdout data.
 
+## Expanded structural coverage (S.1D.4C)
+
+The qualification-only hybrid now includes 56 structural identity rules (53 added to the three pilot rules). Each new rule in stem.structural_rules is an explicitly authored parser-compatible expression, bound to the exact reviewed representation ID, mathematical digest and TeX. The expressions preserve operand order, variable case, relation direction and grouping; products use explicit multiplication and compound fractions use explicit grouping. This is not a general TeX parser or automatic formula conversion. Both duplicate IDs and structural collisions fail closed. All other representations remain available through the existing exact-alias path. No new renaming or context exceptions are introduced. Unsupported calculus binders, vectors, matrices, multi-argument functions, general indexed notation and other unsupported structures are deferred.
+
+Hybrid qualification now evaluates six additional deterministic cases per structural rule: bare and introduced positive expressions, questions, negated introductions, arithmetic extensions and sentence continuations. These 336 cases are reported separately from the existing 4,110 alias regression and context challenges, and all three suites must pass for CLI success. The implementation hash includes the explicit rule module. Focused tests additionally cover spoken/symbolic variants, changed operators, signs, variable case, unsupported expressions and duplicate rule rejection. The canonical examples are authored fixtures, not independent mathematical or ASR evidence.
+
+    python -m stem.qualify_hybrid --summary
+
+No change to corpus approvals, original matcher, parser grammar, observation schemas or production transcription. The expansion does not permit arbitrary expression rendering. Development and untouched holdout qualification remain outstanding; S.1D.5 addresses bounded adjacent-cue recognition.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
