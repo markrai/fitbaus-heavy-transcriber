@@ -183,12 +183,18 @@ def score(pack, originals, labels, hybrid, *, label_pack=None, strata=STRATA,
     supplied = pack if label_pack is None else label_pack
     verify_context(supplied, pack, requalify=label_pack is not None)
     reviewed = read_labels(labels, supplied, hybrid)
+    strata = tuple(strata)
+    if not strata or len(set(strata)) != len(strata) or any(
+            not isinstance(name, str) or not name for name in strata):
+        raise ValueError("Invalid scoring strata")
+    if any(anchor["stratum"] not in strata for row in pack["windows"] for anchor in row["anchors"]):
+        raise ValueError("Unknown anchor scoring stratum")
     groups = {name: Counter(anchors=0, excluded=0, scored=0, expected_matches=0,
                             actual_matches=0, true_positive=0, false_positive=0,
                             false_negative=0, invalid_evidence=0, cross_cue_expected=0,
                             cross_cue_true_positive=0) for name in strata}
     failures = []
-    coverage = {name: set() for name in STRATA}
+    coverage = {name: set() for name in strata}
     for row in pack["windows"]:
         window = originals[row["id"]]
         result = recognizer(window, hybrid)

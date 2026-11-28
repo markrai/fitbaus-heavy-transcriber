@@ -93,6 +93,11 @@ class DevelopmentExpansionTests(unittest.TestCase):
         labels = {"schema": LABEL_SCHEMA, "context_sha256": pack["context_sha256"],
                   "labeling_method": "authored test fixture", "cases": cases}
         report = compare(pack, originals, pack, labels, self.hybrid)
+        for result in (report["single_cue"], report["contextual"]):
+            self.assertEqual(set(result["groups"]), set(STRATA))
+            self.assertEqual(result["groups"]["boundary_hint"]["expected_representation_coverage"], 1)
+            self.assertEqual(result["groups"]["equation_hint"]["expected_representation_coverage"], 1)
+            self.assertEqual(result["groups"]["hard_negative_hint"]["expected_representation_coverage"], 0)
         group = report["contextual"]["groups"]["boundary_hint"]
         self.assertGreater(group["cross_cue_expected"], 0)
         self.assertEqual(group["cross_cue_expected"], group["cross_cue_true_positive"])
