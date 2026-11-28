@@ -143,6 +143,34 @@ class Library:
         item = self.get_json(f"/api/items/{item_id}?expanded=1")
         return discover(item, item_id)
 
+    def epub_inventory(self, item_id, file_id):
+        from epub_inventory import inspect_epub, MAX_EPUB_BYTES
+
+        identifier(item_id)
+        identifier(file_id)
+        candidate = next((row for row in self.companions(item_id) if row.file_id == file_id), None)
+        if candidate is None or candidate.format != "epub":
+            raise ValueError("Unknown EPUB companion")
+        if candidate.size > MAX_EPUB_BYTES:
+            raise SourceError("size_limit")
+
+        def fetch(token):
+            with tempfile.TemporaryFile() as target:
+                with self.source._get(f"/api/items/{item_id}/file/{file_id}", token) as response:
+                    length = response.headers.get("Content-Length")
+                    if length is not None and length != str(candidate.size):
+                        raise SourceError("stale_revision")
+                    for chunk in self.source._chunks(response, candidate.size, time.monotonic() + 120):
+                        target.write(chunk)
+                if target.tell() != candidate.size:
+                    raise SourceError("incomplete_epub")
+                current = next((row for row in self.companions(item_id) if row.file_id == file_id), None)
+                if current != candidate:
+                    raise SourceError("stale_revision")
+                return inspect_epub(target)
+
+        return {"item_id": item_id, "file_id": file_id, **self.authorized(fetch)}
+
     def cover(self, item_id):
         identifier(item_id)
         def fetch(token):

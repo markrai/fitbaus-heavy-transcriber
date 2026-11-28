@@ -72,7 +72,13 @@ Tests use fake source, inference and SSH adapters; they do not need GPU weights 
 
 Select exactly one audiobook in the Workbench and click **Check companion files**. The Workbench uses the existing authenticated Audiobookshelf session to fetch the expanded item and list the primary ebook and attached/supplementary ebook files, deduplicated by file ID. This is explicit read-only metadata discovery: library refresh, ordinary transcription, and publication make no additional companion requests. No ebook contents are downloaded, no server paths or credentials are returned to the browser, and an attachment is not proof of a matching edition. EPUB is the first planned extraction format; PDF and other recognized attachments are listed for future work. Permission, malformed metadata, and unavailable-item errors remain distinct from a successful empty result in the UI. The current server's metadata shape must be qualified using an actual attached ebook.
 
-Next: bounded EPUB acquisition, format/edition validation, alignment of retained narration with ebook text, original equation/figure extraction, and independently versioned enrichment artifacts.
+## EPUB inventory (E.1)
+
+After checking companion files, click **Inspect EPUB** next to an EPUB attachment. The workbench revalidates its item/file identity and metadata, streams the authenticated file into a temporary file, checks the byte count and metadata again, then computes SHA-256 and inventories the package and ordered spine. The browser receives counts, basic bibliographic metadata and the content digest, not internal paths, raw ebook text or images. No persistent ebook copy, external network resource, model call, or VEGA publication is created. Ordinary transcription remains independent.
+
+This conservative first reader accepts UTF-8 XML in a single EPUB 2/3 package, with local XHTML/SVG spine resources. It rejects encrypted/obfuscated archives, remote manifest references, unsafe paths, duplicate entries and unsupported compression. Limits: 64 MiB download, 256 MiB declared expanded size, 32 MiB per member, 2 MiB per metadata XML document, 4,096 ZIP entries, and 120 seconds for the transfer (subject to the existing per-read socket timeout). Only package metadata is inflated; other member contents, CRCs, and actual expanded sizes are not yet qualified. The archive is never extracted or rendered. An inventory is not a full EPUB conformance check or proof of an audiobook edition match. The actual Audiobookshelf file endpoint and supported EPUB variants still need target-workstation qualification.
+
+Next: E.2 alignment feasibility using retained narration and ebook reading order; E.3 original equations, figures and diagrams; later timestamp/confidence validation and enrichment delivery.
 
 ## Dormant spoken-math research
 
