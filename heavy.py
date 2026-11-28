@@ -23,7 +23,7 @@ MAX_BUNDLE = 32 * 1024 * 1024
 MAX_BOOK_MS = 100 * 60 * 60 * 1000
 
 
-class Vega:
+class TranscriberServer:
     def __init__(self, host, remote_dir):
         import shlex
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.@-]{0,127}", host):
@@ -37,7 +37,7 @@ class Vega:
         result = subprocess.run(self.prefix + [self.remote + command], input=data,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
         if result.returncode != 0:
-            raise RuntimeError("VEGA command failed; check SSH, Compose and importer availability")
+            raise RuntimeError("transcriber server command failed; check SSH, Compose and importer availability")
         return json.loads(result.stdout)
 
     def configuration(self):
@@ -49,7 +49,7 @@ class Vega:
         identifier(value["source_id"])
         profile = value["profile"]
         if not re.fullmatch(re.escape(PROFILE_PREFIX) + r"(auto|[a-z]{2})", profile):
-            raise ValueError("Incompatible VEGA heavy profile")
+            raise ValueError("Incompatible transcriber server heavy profile")
         return value
 
     def publish(self, token, bundle):
@@ -130,6 +130,11 @@ class Library:
                     if tracks == 0:
                         continue
                     ebook_format = media.get("ebookFormat")
+                    if not ebook_format and isinstance(media.get("ebookFile"), dict):
+                        ebook = media["ebookFile"]
+                        metadata = ebook.get("metadata")
+                        ebook_format = ebook.get("ebookFormat") or (
+                            metadata.get("ext") if isinstance(metadata, dict) else None)
                     ebook_format = ebook_format.lower().removeprefix(".") if isinstance(ebook_format, str) else None
                     result[item_id] = {"id": item_id, "title": str(meta.get("title") or item_id)[:300],
                                        "ebook_format": ebook_format if ebook_format in FORMATS else None,
@@ -330,7 +335,7 @@ class GpuEngine:
         return normalize_segments(segments, start, end, audio_duration_ms=len(pcm) // BYTES_PER_MS)
 
 
-def process_book(library, vega, engine, profile, item_id, root, report):
+def process_book(library, server, engine, profile, item_id, root, report):
     source = library.source
     report("Checking FFmpeg", 0, 0)
     require_ffmpeg()
@@ -382,7 +387,7 @@ def process_book(library, vega, engine, profile, item_id, root, report):
             for track in manifest.tracks:
                 if track.offset_ms + track.duration_ms <= end and track.file_id in files:
                     files.pop(track.file_id).unlink()
-    report("Publishing to VEGA", duration, duration)
+    report("Publishing to transcriber server", duration, duration)
     bundle = {"schema": BUNDLE_SCHEMA, "profile": profile, "source_id": identity.source_id,
               "item_id": identity.item_id, "audio_revision": identity.audio_revision,
               "duration_ms": duration, "windows": windows}
@@ -390,7 +395,7 @@ def process_book(library, vega, engine, profile, item_id, root, report):
         current = source.manifest(item_id, token)
         if current.identity != identity or current.duration_ms != duration:
             raise ValueError("Audio revision changed; select the book again")
-        return vega.publish(token, bundle)
+        return server.publish(token, bundle)
     result = library.authorized(publish)
     atomic_json(directory / "published.json", result)
     report("Imported", duration, duration)

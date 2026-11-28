@@ -1,9 +1,83 @@
 const $ = id => document.getElementById(id);
 let books = [];
+let bookIndex = new Map();
 let selected = new Set();
 let running = false;
 let companionRequest = 0;
 let companionBusy = false;
+let companionCache = new Map();
+let renderedHints = new Map();
+let visibleBooks = new Set();
+let observer = null;
+let visibleWorker = false;
+
+function updateHint(id) {
+    const hint = renderedHints.get(id);
+    if (!hint) return;
+    const book = bookIndex.get(id);
+    const entry = companionCache.get(id);
+    const files = entry?.data?.files;
+    if (files) {
+        const formats = [...new Set(files.map(file => file.format.toUpperCase()))];
+        hint.textContent = formats.length ? formats.join(" / ") + " companion available" : "";
+    } else if (book?.ebook_format) {
+        hint.textContent = book.ebook_format.toUpperCase() + " companion available";
+    } else {
+        hint.textContent = entry?.error ? "Ebook availability unknown" : entry ? "Checking ebook…" : "";
+    }
+    hint.classList.toggle("ebook-unknown", !!entry?.error && !book?.ebook_format);
+}
+
+function lookupCompanions(id) {
+    const existing = companionCache.get(id);
+    if (existing?.promise) return existing.promise;
+    const cache = companionCache;
+    const entry = {};
+    entry.promise = api("/api/companions/" + encodeURIComponent(id)).then(data => {
+        if (data.item_id !== id || !Array.isArray(data.files)) throw new Error("Invalid companion response");
+        entry.data = data;
+        return data;
+    }).catch(error => {
+        entry.error = error;
+        throw error;
+    }).finally(() => {
+        if (companionCache === cache) updateHint(id);
+    });
+    cache.set(id, entry);
+    updateHint(id);
+    return entry.promise;
+}
+
+async function scanVisibleBooks() {
+    if (visibleWorker || running) return;
+    visibleWorker = true;
+    try {
+        while (!running) {
+            const id = [...visibleBooks].find(key => !companionCache.has(key));
+            if (!id) break;
+            try {
+                await lookupCompanions(id);
+            } catch {}
+        }
+    } finally {
+        visibleWorker = false;
+    }
+}
+
+function observeBooks(rows) {
+    observer?.disconnect();
+    visibleBooks = new Set();
+    if (typeof IntersectionObserver !== "function") return;
+    observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+            const id = entry.target.dataset.bookId;
+            if (entry.isIntersecting) visibleBooks.add(id);
+            else visibleBooks.delete(id);
+        }
+        scanVisibleBooks();
+    });
+    for (const row of rows) observer.observe(row);
+}
 
 function element(tag, text, className) {
     const node = document.createElement(tag);
@@ -45,8 +119,12 @@ function renderBooks() {
     const query = $("search").value.toLowerCase();
     const rows = books.filter(book => (book.title + " " + book.author).toLowerCase().includes(query));
     const fragment = document.createDocumentFragment();
+    renderedHints = new Map();
+    const observed = [];
     for (const book of rows) {
         const row = element("label", undefined, "book");
+        row.dataset.bookId = book.id;
+        observed.push(row);
         const box = element("input");
         box.type = "checkbox";
         box.checked = selected.has(book.id);
@@ -64,12 +142,16 @@ function renderBooks() {
         const meta = element("span", undefined, "book-meta");
         meta.append(element("span", book.title, "book-title"),
                     element("span", [book.author, duration(book.duration)].filter(Boolean).join(" · "), "book-info"));
-        if (book.ebook_format) meta.append(element("span", book.ebook_format.toUpperCase() + " companion available", "ebook-hint"));
+        const hint = element("span", "", "ebook-hint");
+        renderedHints.set(book.id, hint);
+        meta.append(hint);
+        updateHint(book.id);
         row.append(box, cover, meta);
         if (book.previously_imported) row.append(element("span", "Previously imported", "imported"));
         fragment.append(row);
     }
     $("books").replaceChildren(fragment);
+    observeBooks(observed);
     if (!rows.length) $("books").append(element("p", "No matching audiobooks."));
     updateActions();
 }
@@ -78,6 +160,8 @@ async function refresh() {
     $("refresh").disabled = true;
     try {
         books = await api("/api/books");
+        bookIndex = new Map(books.map(book => [book.id, book]));
+        companionCache = new Map();
         clearCompanions();
         const ids = new Set(books.map(book => book.id));
         selected = new Set([...selected].filter(id => ids.has(id)));
@@ -145,7 +229,7 @@ async function discoverSelected() {
     const result = $("companion-result");
     $("companion-summary").textContent = "Checking companion ebook…";
     try {
-        const data = await api("/api/companions/" + encodeURIComponent(id));
+        const data = await lookupCompanions(id);
         if (request !== companionRequest || !selected.has(id) || selected.size !== 1) return;
         const epubs = data.files.filter(file => file.format === "epub");
         $("companion-summary").textContent = epubs.length ?
@@ -228,8 +312,10 @@ async function discoverSelected() {
             }
         }
     } catch (error) {
-        if (request === companionRequest) $("companion-summary").textContent =
-            "Companion discovery failed: " + error.message;
+        if (request === companionRequest) {
+            $("companion-summary").textContent = "Companion discovery failed: " +
+                (error.message === "Not found" ? "Workbench API unavailable. Restart the Python application after updating." : error.message);
+        }
     } finally {
         if (request === companionRequest) {
             companionBusy = false;

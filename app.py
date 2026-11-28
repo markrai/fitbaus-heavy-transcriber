@@ -2,12 +2,13 @@ import argparse
 import getpass
 import warnings
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import threading
 import webbrowser
 
-from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg, preview_alignment, preview_visual_timing, prepare_enrichment
+from heavy import Library, TranscriberServer, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg, preview_alignment, preview_visual_timing, prepare_enrichment
 from epub_alignment import AlignmentError
 from epub_assets import AssetError
 from epub_enrichment import EnrichmentError
@@ -16,9 +17,9 @@ from companions import CompanionError, choose_epub
 
 
 class Workbench:
-    def __init__(self, library, vega, profile, root):
+    def __init__(self, library, server, profile, root):
         self.library = library
-        self.vega = vega
+        self.server = server
         self.profile = profile
         self.root = root
         root.mkdir(parents=True, exist_ok=True)
@@ -123,7 +124,7 @@ class Workbench:
                     except Exception as error:
                         self.enrichment_update(item, "Failed", enrichment_error=self.enrichment_error(error))
                 try:
-                    process_book(self.library, self.vega, self.engine, self.profile, item, self.root, report)
+                    process_book(self.library, self.server, self.engine, self.profile, item, self.root, report)
                     with self.lock:
                         self.history[item] = True
                         atomic_json(self.history_path, self.history)
@@ -164,6 +165,13 @@ class Workbench:
             return {"running": self.running, "jobs": {k: dict(v) for k, v in self.jobs.items()}}
 
 
+def load_static_assets():
+    return {route: (kind + "; charset=utf-8", (ROOT / "web" / path).read_bytes())
+            for route, (path, kind) in {"/": ("index.html", "text/html"),
+                                        "/app.js": ("app.js", "text/javascript"),
+                                        "/style.css": ("style.css", "text/css")}.items()}
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
@@ -194,9 +202,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.json({"error": "Invalid host"}, 403)
         try:
             if self.path in ("/", "/app.js", "/style.css"):
-                path, kind = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
-                              "/style.css": ("style.css", "text/css")}[self.path]
-                self.send(200, kind + "; charset=utf-8", (ROOT / "web" / path).read_bytes())
+                kind, raw = self.server.static_assets[self.path]
+                self.send(200, kind, raw)
             elif self.path == "/api/books":
                 self.json(self.server.workbench.books())
             elif self.path == "/api/status":
@@ -217,7 +224,7 @@ class Handler(BaseHTTPRequestHandler):
                 kind, cover = self.server.workbench.cover(self.path.removeprefix("/api/cover/"))
                 self.send(200, kind, cover)
             else:
-                self.json({"error": "Not found"}, 404)
+                self.json({"error": "Unknown workbench route; restart the application after updating"}, 404)
         except Exception:
             self.json({"error": "Request failed; check Audiobookshelf access"}, 502)
 
@@ -280,11 +287,15 @@ def authenticate(address, source_id):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--abs-url", required=True)
-    parser.add_argument("--ssh-host", default="vega")
-    parser.add_argument("--remote-dir", default="/home/vega/dev/project/fitbaus-transcriber")
+    parser.add_argument("--ssh-host", default=os.environ.get("FITBAUS_SSH_HOST"),
+                        help="SSH host or alias (or FITBAUS_SSH_HOST)")
+    parser.add_argument("--remote-dir", default=os.environ.get("FITBAUS_REMOTE_DIR"),
+                        help="Absolute remote Compose directory (or FITBAUS_REMOTE_DIR)")
     parser.add_argument("--port", type=int, default=8780)
     parser.add_argument("--work-dir", type=Path, default=ROOT / "work")
     args = parser.parse_args()
+    if not args.ssh_host or not args.remote_dir:
+        parser.error("Configure --ssh-host and --remote-dir, or their FITBAUS environment variables")
     if not 1 <= args.port <= 65535:
         parser.error("Invalid port")
     if args.abs_url.startswith("http://"):
@@ -296,8 +307,8 @@ def main():
     except WorkbenchError as error:
         print(str(error))
         return 1
-    vega = Vega(args.ssh_host, args.remote_dir)
-    config = vega.configuration()
+    destination = TranscriberServer(args.ssh_host, args.remote_dir)
+    config = destination.configuration()
     try:
         library = authenticate(args.abs_url, config["source_id"])
         library.authorized(library.source.check_access)
@@ -306,7 +317,8 @@ def main():
         return 1
     with ThreadingHTTPServer(("127.0.0.1", args.port), Handler) as server:
         server.host = f"127.0.0.1:{args.port}"
-        server.workbench = Workbench(library, vega, config["profile"], args.work_dir.resolve())
+        server.workbench = Workbench(library, destination, config["profile"], args.work_dir.resolve())
+        server.static_assets = load_static_assets()
         address = "http://" + server.host
         print("Workbench: " + address)
         webbrowser.open(address)

@@ -104,10 +104,11 @@ class CompanionTests(unittest.TestCase):
         library = Library("https://example.test", "home", "token")
         rows = {"results": [
             {"id": "book", "media": {"metadata": {"title": "Measurement"}, "ebookFormat": "epub"}},
-            {"id": "other", "media": {"metadata": {"title": "Other"}}}]}
+            {"id": "other", "media": {"metadata": {"title": "Other"},
+                                       "ebookFile": {"metadata": {"ext": ".pdf"}}}}]}
         with patch.object(library, "get_json", side_effect=[
                 {"libraries": [{"id": "lib", "mediaType": "book"}]}, rows]) as get:
-            self.assertEqual([row["ebook_format"] for row in library.books()], ["epub", None])
+            self.assertEqual([row["ebook_format"] for row in library.books()], ["epub", "pdf"])
             self.assertEqual(get.call_count, 2)
 
     def test_library_fetches_only_expanded_item(self):
