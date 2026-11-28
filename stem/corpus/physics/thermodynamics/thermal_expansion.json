@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\Delta L=\\alpha L_0\\Delta T",
       "conditions": [
-        "Free unconstrained expansion along a direction; small relative length change and approximately constant linear expansion coefficient."
+        "Free unconstrained expansion in the specified direction, with small fractional length change and approximately constant linear thermal expansion coefficient. The equality denotes the first-order linear approximation, not an exact finite-temperature law."
       ],
       "symbols": {
         "\\Delta L": "Length change",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/1-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "8f11aeddb3c0e81d9dca530158710f7e1196b8f718d54f63a324a90be1a2bab8",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The linear expansion coefficient is the fractional length derivative with temperature under the specified mechanical conditions. Linearizing the length about its initial temperature gives delta L approximately alpha L0 delta T; higher-order terms are neglected.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/1-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

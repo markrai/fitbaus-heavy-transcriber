@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "Q=mc\\Delta T",
       "conditions": [
-        "Fixed mass, no phase change or other energy transfer affecting temperature, relevant specific heat approximately constant over interval; choose appropriate process heat capacity."
+        "Fixed mass, no phase change, specified heating process with relevant specific heat capacity approximately constant over the temperature interval; use the appropriate process heat capacity. Q is net heat into the sample; the product is exact for constant process heat capacity."
       ],
       "symbols": {
         "Q": "Heat transferred to sample",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/1-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "2bae10ffba122dc78130365a2a39ecf5b04f6c9c03fc9f999359b04279fc43f7",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a specified heating process, the heat capacity per unit mass is the heat increment per mass per temperature increment. Integrate m c dT with fixed m and constant c to get m c times the temperature change. If c varies, the integral rather than the product is required.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/1-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

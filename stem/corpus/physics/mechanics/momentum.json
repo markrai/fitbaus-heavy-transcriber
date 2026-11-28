@@ -29,13 +29,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.momentum"
+        },
+        {
+          "source_id": "openstax_university_physics_1_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/9-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "c7d8fbcedb93582b2b9df4cca7a633dd73bd8aeb51e82cd45904f585f06d4b42",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Classical linear momentum is defined as the product of mass and velocity. Project onto one fixed axis to obtain p=mv; both components have the same sign for positive mass. Relativistic momentum is not represented by this form.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/9-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

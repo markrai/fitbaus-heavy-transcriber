@@ -28,13 +28,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.kinetic_energy"
+        },
+        {
+          "source_id": "openstax_university_physics_1_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-1/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "252fd86f06b61aa36bd6360198caacda4da1b84937bbd9d42955399df781a223",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a constant-mass nonrelativistic particle, dW=m v dot dv=d(m |v|^2/2). Choose kinetic energy zero at rest to get K=m v^2/2, where v denotes speed.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/7-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

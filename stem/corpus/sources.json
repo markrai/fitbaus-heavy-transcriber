@@ -188,6 +188,30 @@
       "url": "https://www.itl.nist.gov/div898/handbook/",
       "provenance": "Bibliographic citation only; independently authored mathematical facts and review evidence. No permission to import or redistribute reference content is implied.",
       "notes": "Reference-only admission; relevant sections checked 2026-11-27. Any content reuse requires separate rights review."
+    },
+    {
+      "id": "openstax_university_physics_1_reference",
+      "status": "admitted",
+      "title": "University Physics Volume 1",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/preface",
+      "provenance": "Bibliographic citation only for independently authored physical facts and review reasoning. No reference content redistribution permission implied.",
+      "notes": "Relevant reference sections checked 2026-11-27. Content reuse requires separate rights review."
+    },
+    {
+      "id": "openstax_university_physics_2_reference",
+      "status": "admitted",
+      "title": "University Physics Volume 2",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/preface",
+      "provenance": "Bibliographic citation only for independently authored physical facts and review reasoning. No reference content redistribution permission implied.",
+      "notes": "Relevant reference sections checked 2026-11-27. Content reuse requires separate rights review."
+    },
+    {
+      "id": "mit_ocw_heat_equation_reference",
+      "status": "admitted",
+      "title": "MIT 18.303, Matthew J. Hancock, The 1-D Heat Equation (2006)",
+      "url": "https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-fall-2006/resources/heateqni/",
+      "provenance": "Bibliographic citation only for independently authored physical facts and review reasoning. No reference content redistribution permission implied.",
+      "notes": "Relevant reference sections checked 2026-11-27. Content reuse requires separate rights review."
     }
   ]
 }

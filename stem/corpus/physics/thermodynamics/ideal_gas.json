@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "PV=nRT",
       "conditions": [
-        "Ideal gas in equilibrium; absolute temperature and pressure, consistent units."
+        "Classical ideal gas at equilibrium with positive absolute pressure, volume and absolute temperature; n is positive and units are consistent."
       ],
       "symbols": {
         "P": "Absolute pressure",
@@ -30,13 +30,23 @@
         {
           "source_id": "curated",
           "locator": "stem/corpus/curated.json#physics.ideal_gas"
+        },
+        {
+          "source_id": "openstax_university_physics_2_reference",
+          "locator": "https://openstax.org/books/university-physics-volume-2/pages/2-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "3db1bbf63ebb9fc9de770e99954741f9b869fdd3b2828cf7c100b29fe16687d3",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "The classical ideal-gas equation of state is pV=N k_B T. The particle count satisfies N=n N_A and R=N_A k_B. Substitution gives pV=nRT. The equation is an idealized constitutive model, not a law for arbitrary dense or interacting gases.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/2-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

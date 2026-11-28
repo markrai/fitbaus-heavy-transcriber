@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_2",
+          "source_id": "openstax_university_physics_2_reference",
           "locator": "https://openstax.org/books/university-physics-volume-2/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "6627ae54745c6becf0f7649f8b481181cb55adb272812b0e36617c96d14c36be",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Classical equipartition assigns mean energy k_B T/2 to each of the three translational quadratic degrees of freedom per particle. Multiply by N=n N_A and use R=N_A k_B, with other internal contributions absent or excluded by the reference convention.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-2/pages/3-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

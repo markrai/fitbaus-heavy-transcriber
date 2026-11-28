@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "\\rho=\\frac{m}{V}",
       "conditions": [
-        "Average mass density of a sample with positive volume, or uniform density throughout the sample."
+        "Sample of positive volume; rho is its average mass density, equal to local density everywhere for a uniform sample."
       ],
       "symbols": {
         "\\rho": "Mass density",
@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/14-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "ba6a22e658735cc67921817f07d35d09f1a0df1e4c8d183984040f9cd70b1a80",
+        "method": [
+          "model_or_definition_check",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Average density is mass divided by occupied volume by definition. When density is spatially uniform, integrating it over volume gives m=rho V, so the average equals the local density.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/14-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

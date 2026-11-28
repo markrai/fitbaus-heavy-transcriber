@@ -53,6 +53,14 @@ Review the remaining 13 mathematics concepts and representations. Include direct
 
 All 62 mathematics representations now have proposed mathematical approvals, leaving 45 physics representations pending. Recognition and rendering remain unqualified; the legacy runtime is unchanged.
 
+## Classical physics mathematical review (S.0F.2D.5)
+
+Review 23 representations in mechanics, gravitation, fluid dynamics and thermodynamics. Distinguish empirical model laws and definitions from mathematical derivations. Cross-check the classical physics equations against University Physics Volumes 1 and 2 and the one-dimensional conduction equation against MIT 18.303, The 1-D Heat Equation, section 1.1. Record the derivations and content-bound review digests, with bibliography-only source admission.
+
+Clarify nonrelativistic and constant-mass assumptions, positive mass and separation, constant-density streamline flow, phase speed versus group speed, spring extension conventions, conduction-only heat transfer, thermodynamic work sign, process heat capacity and the first-order thermal expansion approximation. Preserve formula strings, IDs and spoken aliases. No textbook prose or figures imported.
+
+Cumulative proposed mathematical approvals: 85 of 107 representations; 22 remain in electromagnetism, optics, relativity and quantum mechanics. Recognition and rendering remain unqualified; the runtime matcher and legacy seed remain unchanged.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

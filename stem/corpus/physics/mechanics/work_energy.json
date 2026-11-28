@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "W_{\\mathrm{net}}=\\Delta K",
       "conditions": [
-        "Classical particle mechanics in an inertial frame; net work by all forces and change in translational kinetic energy."
+        "Constant-mass nonrelativistic particle in an inertial frame; include work by every force and the change in translational kinetic energy."
       ],
       "symbols": {
         "W_{\\mathrm{net}}": "Total work by all forces",
@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/7-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "8459729f8781eca50984370983aefa6c337c38c0f153efc6eb41a7634ee39a00",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "For a constant-mass classical particle, net force is m dv/dt. Dot it with velocity to obtain instantaneous net power equal to d(m v dot v/2)/dt. Integrating over the motion gives the net work equal to final minus initial kinetic energy.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/7-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

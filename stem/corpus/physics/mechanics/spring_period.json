@@ -13,7 +13,7 @@
       "id": "standard",
       "latex": "T=2\\pi\\sqrt{\\frac{m}{k}}",
       "conditions": [
-        "Undamped ideal linear oscillator with positive mass and spring constant."
+        "Undriven, undamped ideal linear mass-spring oscillator with positive effective oscillating mass and spring constant; nonzero oscillation amplitude within the linear range."
       ],
       "symbols": {
         "T": "Oscillation period",
@@ -24,15 +24,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_university_physics_1",
+          "source_id": "openstax_university_physics_1_reference",
           "locator": "https://openstax.org/books/university-physics-volume-1/pages/15-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "267d16d20bb02367b0db1283b6b533a68b96ae7d39113241770ecaaa8cf5c21b",
+        "method": [
+          "physical_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Newton's law and the linear restoring force give m x''=-kx. Nonzero oscillations solve this equation with angular frequency sqrt(k/m). A complete cycle advances phase by 2 pi, giving the stated period.",
+          "Reference checked 2026-11-27: https://openstax.org/books/university-physics-volume-1/pages/15-key-equations. Proposed maintainer approval, not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",
