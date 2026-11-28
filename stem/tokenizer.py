@@ -225,7 +225,7 @@ def tokenize(text: str) -> tuple[Token, ...]:
                     kind, value, form = Kind.SYMBOL, word, Form.SYMBOLIC
                 else:
                     kind, value = Kind.WORD, word
-        elif text[start:start + 2] in _SYMBOLS:
+        elif start + 2 <= len(text) and text[start:start + 2] in _SYMBOLS:
             end = start + 2
             kind, value = _SYMBOLS[text[start:end]]
             form = Form.SYMBOLIC

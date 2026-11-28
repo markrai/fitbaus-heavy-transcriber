@@ -80,6 +80,16 @@ class TokenizerTests(unittest.TestCase):
         ])
         self.assertEqual(math_tokens("open parenthesis x"), [(Kind.GROUP, "("), (Kind.SYMBOL, "x")])
 
+    def test_terminal_symbol_spans_and_two_character_relations(self):
+        for text in ("+", "=", "≥", "√", "x=", "x<=", "x!=", "x>="):
+            with self.subTest(text=text):
+                tokens = tokenize(text)
+                self.assertEqual(tokens[-1].end, len(text))
+                self.assertEqual("".join(t.source_text for t in tokens), text)
+        self.assertEqual(math_tokens("x<=2"), [
+            (Kind.SYMBOL, "x"), (Kind.RELATION, "<="), (Kind.NUMBER, "2"),
+        ])
+
     def test_bounds_and_invalid_input(self):
         self.assertEqual(tokenize(""), ())
         for value in (None, 4, "x\x00y", "\ud800", " " * (MAX_SOURCE_CHARS + 1), "+" * (MAX_TOKENS + 1)):
