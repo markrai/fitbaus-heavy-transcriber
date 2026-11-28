@@ -132,6 +132,12 @@ Directly review all 23 representations in mechanics, Newtonian gravity, fluid dy
 
 Four subject fixtures add 51 scope-reviewed recitations and 71 negative examples. Cumulative review covers 85 of 107 representations, 183 aliases and 261 negative examples. Existing fixture-driven tests exercise the exact matcher against these cases. Recognition approval remains pending; this is not independent blind review or measured speech-transcription qualification. No runtime, publication or inference changes.
 
+## Electromagnetism, optics, relativity and quantum mechanics recitation review (S.1B.7)
+
+Directly review the remaining 22 representations. Preserve vector directions and ordered cross products, the absolute value and vacuum permittivity in Coulomb's force magnitude, closed-surface electric flux, the sign of Faraday's derivative, optical indices and reciprocal distances, the rest-versus-total energy distinction, proper-time and coordinate-time intervals, Planck versus reduced Planck constant, and the inequality between position and canonical momentum standard deviations. Keep the full and magnetic-only Lorentz force representations distinct. Withhold underspecified inherited aliases in the structured corpus; preserve the legacy prototype and all exact mathematical content.
+
+Four subject fixtures add 48 scope-reviewed recitations and 68 negative examples. All 107 representations now have direct recitation scope reviews, comprising 231 aliases and 329 negative examples. Exact normalized alias uniqueness and positive/negative collisions were checked across all 16 fixtures. Recognition approval remains pending; these recitations and counterexamples are not independent blind-review evidence or real ASR measurements. S.1C must qualify the recognition behavior and build the admission evidence before release. No runtime, publication or inference changes.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
