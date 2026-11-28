@@ -158,7 +158,8 @@ $("companions").addEventListener("click", async () => {
                                 detail.textContent = (inventory.reused ? "Existing artifact verified" : "Local artifact prepared") +
                                     " · " + inventory.timed_count + " timed / " + inventory.untimed_count +
                                     " untimed visuals · " + inventory.unique_asset_count + " unique assets · " +
-                                    inventory.artifact_id.slice(0, 12) + " · Not published or playback-qualified";
+                                    inventory.artifact_id + " · Not published or playback-qualified";
+                                detail.style.overflowWrap = "anywhere";
                                 return;
                             }
                             if (mode === "timing") {

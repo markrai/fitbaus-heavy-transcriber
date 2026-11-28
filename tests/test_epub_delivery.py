@@ -4,6 +4,7 @@ import io
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -55,6 +56,20 @@ class DeliveryTests(unittest.TestCase):
             output, reason = normalize_raster({"media_type": mime, "payload": payload})
             self.assertIsNone(output)
             self.assertEqual(reason, "unsupported_or_invalid_raster")
+
+    def test_metadata_removed_and_timeout_withholds(self):
+        from PIL.PngImagePlugin import PngInfo
+
+        metadata = PngInfo()
+        metadata.add_text("private", "discard this")
+        output, reason = normalize_raster({"media_type": "image/png",
+                                          "payload": image_bytes(pnginfo=metadata)})
+        self.assertIsNone(reason)
+        with Image.open(io.BytesIO(base64.b64decode(output["payload_base64"]))) as image:
+            self.assertEqual(image.info, {})
+        with patch("epub_delivery.subprocess.run", side_effect=subprocess.TimeoutExpired("worker", 10)):
+            self.assertEqual(normalize_raster({"media_type": "image/png", "payload": b"x"}),
+                             (None, "decode_timeout"))
 
     def test_png_validator_rejects_trailing_and_corrupt_data(self):
         output, _ = normalize_raster({"media_type": "image/png", "payload": image_bytes()})

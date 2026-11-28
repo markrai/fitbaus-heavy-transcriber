@@ -55,7 +55,7 @@ def read_source(root, artifact_id):
                   "occurrences": artifact["occurrences"],
                   **{key: artifact[key] for key in
                      ("edition_verified", "render_qualified", "playback_qualified")}}
-        if build_artifact(result) != artifact:
+        if canonical(build_artifact(result)) != raw:
             raise ValueError()
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError, RecursionError):
         raise DeliveryError("Invalid enrichment artifact contract") from None
