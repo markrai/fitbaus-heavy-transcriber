@@ -8,8 +8,9 @@ from .matcher import INTRO, Match, recognize, sentence_candidates
 from .parser import MAX_PARSE_CHARS, ParseError, parse_expression
 from .qualify_recognition import FIXTURES, build_review_dictionary
 from .tokenizer import Kind, tokenize
+from .structural_rules import EXPANDED_RULES
 
-HYBRID_VERSION = "verified-identity-pilot-v2"
+HYBRID_VERSION = "verified-identity-expanded-v1"
 MAX_NARRATION_CHARS = 32768
 
 EULER = "algebra.euler:standard"
@@ -23,7 +24,7 @@ RULES = (
      "a^2+b^2=c^2", "a^2+b^2=c^2"),
     (MASS_ENERGY, "27277ed5f7e4a67ad39b1b7224f8517cdc1cc4d74b9373849c53c26fbbac4849",
      "E=mc^2", "E=m*c^2"),
-)
+) + EXPANDED_RULES
 
 NAMED_INTRO = re.compile(
     r"(?:(?:euler['’]s identity)|(?:the pythagorean theorem))"
@@ -152,6 +153,8 @@ def build_hybrid(root=ROOT, fixtures=FIXTURES):
             raise ValueError("Stale structural identity rule: " + identity)
         key = structural_key(parse_expression(canonical), canonical)
         rules.append(IdentityRule(identity, latex, key, expected_digest))
+    if len({rule.id for rule in rules}) != len(rules):
+        raise ValueError("Duplicate structural representation rule")
     if len({rule.key for rule in rules}) != len(rules):
         raise ValueError("Conflicting structural identity rules")
     policy = digest({"version": HYBRID_VERSION, "dictionary": dictionary.digest, "rules": RULES,
