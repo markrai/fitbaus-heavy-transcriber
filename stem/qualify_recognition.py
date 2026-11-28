@@ -212,12 +212,12 @@ def load_observations(path, dictionary):
                     "provenance_verified": False}
 
 
-def evaluate(cases, dictionary):
+def evaluate(cases, dictionary, *, recognizer=recognize):
     groups, failures = {}, []
     covered = set()
     for case in cases:
         stats = groups.setdefault(case.group, Counter())
-        matches = recognize(case.text, dictionary)
+        matches = recognizer(case.text, dictionary)
         actual = Counter(Expected(match.dictionary_id, match.start, match.end, match.latex) for match in matches)
         expected = Counter(case.expected)
         invalid_spans = sum(not (0 <= match.start < match.end <= len(case.text)
