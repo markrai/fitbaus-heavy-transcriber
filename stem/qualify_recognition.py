@@ -218,7 +218,10 @@ def evaluate(cases, dictionary):
         if fp or fn or invalid_spans:
             failures.append({"case_id": case.id, "group": case.group, "false_positive": fp,
                              "false_negative": fn, "invalid_spans": invalid_spans})
-    total = sum(groups.values(), Counter())
+    total = Counter()
+    for stats in groups.values():
+        total.update(stats)
+
     def summarize(stats):
         return {**dict(stats), "precision": (stats["true_positive"] / (stats["true_positive"] + stats["false_positive"])
                                              if stats["true_positive"] + stats["false_positive"] else None),
