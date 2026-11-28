@@ -22,15 +22,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "2f7f1b3fd30fa61e4b874d8c739e5e70842fc29f93043b4002890e8472ac20fc",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Write the increment of uv as u times the increment of v plus v times the increment of u plus their increment product, evaluated at the base point. Divide by h. Differentiability makes both increments O(h), so the product term divided by h tends to zero, giving u v'+v u'.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-3-differentiation-rules. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-key-equations"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "207a06b28836e2281a50e4b614c8a4e849ba7fc0226ec3e74959332a5f5a8e6a",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "Write the increment of g as g'(x)h+o(h). Differentiability of f at g(x) gives the increment of f as f'(g(x)) times the increment of g plus a remainder little-o of that increment. Since the increment of g is O(h), the total increment is f'(g(x))g'(x)h+o(h). This argument also covers vanishing increments.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-key-equations. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

@@ -41,6 +41,12 @@ Review 15 concepts and 17 representations, with independently written derivation
 
 The cumulative proposed mathematical approvals are 31 of 107 representations. Recognition and rendering remain unqualified. Bibliographic-only reference admission does not grant permission to reuse textbook content.
 
+## Calculus and complex analysis mathematical review (S.0F.2D.3)
+
+Review 17 concepts and 18 representations using direct derivations or explicit reference evaluation, external reference cross-checks and content-bound mathematical review records. Preserve all existing LaTeX, stable IDs and spoken aliases. Taylor series equality now requires analyticity on a connected interval and evaluation strictly inside the convergence radius. Clarify continuity at endpoints for the definite-integral theorem and the common variable and additive constant for integration by parts. The Basel sum uses the exact NIST DLMF zeta definition and value rather than claiming a new derivation; Euler's identity is cross-checked against DLMF 4.14.3. The four migrated seed concepts retain original provenance with added external references.
+
+Cumulative proposed mathematical approvals: 49 of 107 representations. Recognition and rendering remain unqualified. Bibliographic-only reference admission does not grant content reuse rights.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

@@ -23,15 +23,21 @@
       "spoken_aliases": [],
       "references": [
         {
-          "source_id": "openstax_calculus_1",
+          "source_id": "openstax_calculus_1_reference",
           "locator": "https://openstax.org/books/calculus-volume-1/pages/3-1-defining-the-derivative"
         }
       ],
       "mathematical_review": {
-        "status": "pending",
-        "digest": null,
-        "method": [],
-        "evidence": []
+        "status": "approved",
+        "digest": "5fb53ef2df360839f39fa0195ddd212ae29b00cf3de403dba6d9fa9b9c60d985",
+        "method": [
+          "direct_derivation",
+          "reference_cross_check"
+        ],
+        "evidence": [
+          "This is the definition of a finite ordinary two-sided derivative: the limit of the slopes between (x,f(x)) and (x+h,f(x+h)) as nonzero h tends to zero. The open interval and finite-limit conditions ensure that this definition applies.",
+          "Reference cross-check: https://openstax.org/books/calculus-volume-1/pages/3-1-defining-the-derivative. Checked 2026-11-27. Proposed maintainer approval; not independent human certification."
+        ]
       },
       "recognition_review": {
         "status": "pending",

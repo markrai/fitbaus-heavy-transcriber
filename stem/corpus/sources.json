@@ -148,6 +148,22 @@
       "url": "https://openstax.org/books/prealgebra-2e/pages/preface",
       "provenance": "Bibliographic citation only; independently authored standard mathematical facts and proofs. No permission to import or redistribute textbook content is implied.",
       "notes": "Reference-only admission, checked 2026-11-27. Any content reuse requires separate rights review."
+    },
+    {
+      "id": "openstax_calculus_1_reference",
+      "status": "admitted",
+      "title": "Calculus Volume 1",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/1-introduction",
+      "provenance": "Bibliographic citation only; independently authored standard mathematical facts and review evidence. No permission to import or redistribute reference content is implied.",
+      "notes": "Reference-only admission, checked 2026-11-27. Any content reuse requires separate rights review."
+    },
+    {
+      "id": "nist_dlmf_reference",
+      "status": "admitted",
+      "title": "NIST Digital Library of Mathematical Functions",
+      "url": "https://dlmf.nist.gov/",
+      "provenance": "Bibliographic citation only; independently authored standard mathematical facts and review evidence. No permission to import or redistribute reference content is implied.",
+      "notes": "Reference-only admission, checked 2026-11-27. Any content reuse requires separate rights review."
     }
   ]
 }
