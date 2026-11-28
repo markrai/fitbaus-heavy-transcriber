@@ -75,6 +75,16 @@ class CueRecognitionTests(unittest.TestCase):
             text = (first, second)[part.cue_index]
             self.assertEqual(text[part.start:part.end], part.source_text)
 
+    def test_trailing_horizontal_whitespace_preserves_sentence_boundary(self):
+        for suffix in ("", " ", "\t", "  \t"):
+            with self.subTest(suffix=suffix):
+                matches = self.recognize("a squared plus", "b squared equals c squared." + suffix)
+                self.assertEqual(len(matches), 1)
+                self.assertEqual(matches[0].spans[-1].source_text, "b squared equals c squared")
+        for suffix in (". Another sentence. ", "? ", "... ", ". Plus one. "):
+            with self.subTest(suffix=suffix):
+                self.assertEqual(self.recognize("a squared plus", "b squared equals c squared" + suffix), ())
+
     def test_unlinked_single_cue_matches_unchanged(self):
         texts = ("A chapter begins.", "E=m*c².", "a²+b²=c².", "Ordinary narration.")
         matches = self.recognize(*texts)

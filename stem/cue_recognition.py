@@ -92,7 +92,8 @@ def project(match, cues, positions, first):
 
 
 def single_candidate(source):
-    candidates = tuple(sentence_candidates(source))
+    candidates = tuple((offset, fragment) for offset, fragment in sentence_candidates(source)
+                       if fragment.strip())
     if len(candidates) != 1 or candidates[0][0] != 0:
         return False
     fragment = candidates[0][1]
