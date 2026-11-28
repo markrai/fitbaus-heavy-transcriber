@@ -23,7 +23,10 @@
         "B": "Angle opposite b",
         "C": "Angle opposite c"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "side a divided by sine of angle a equals side b divided by sine of angle b equals side c divided by sine of angle c",
+        "the ratio of side a to sine of angle a equals the ratio of side b to sine of angle b equals the ratio of side c to sine of angle c"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",
