@@ -20,7 +20,10 @@
         "g": "Inner function",
         "x": "Variable"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative with respect to x of f composed with g evaluated at x equals f prime evaluated at g of x times g prime evaluated at x",
+        "d by d x of f of open parenthesis g of x close parenthesis equals f prime of open parenthesis g of x close parenthesis times g prime of x"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",

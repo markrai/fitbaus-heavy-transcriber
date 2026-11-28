@@ -20,7 +20,10 @@
         "x": "Exponent",
         "n": "Summation index"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "e raised to the power x equals the sum from n equals zero to infinity of x to the power n divided by n factorial",
+        "e to the power of x equals the sum from n equals zero to infinity of the fraction with numerator x raised to the power n and denominator n factorial"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

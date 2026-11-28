@@ -1,0 +1,141 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "calculus.basel:standard",
+      "mathematical_sha256": "51da8db613c946be4d7e2c648b0eb124535908e352f56f6c119f130c601a0fec",
+      "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^2}=\\frac{\\pi^2}{6}",
+      "aliases": [
+        "the sum from n equals one to infinity of one over n squared equals pi squared over six",
+        "the sum from n equals one to infinity of one divided by n squared equals pi squared divided by six"
+      ],
+      "negative_phrases": [
+        "the sum from n equals zero to infinity of one over n squared equals pi squared over six",
+        "the sum from n equals one to infinity of one over n squared equals pi over six",
+        "basel problem"
+      ],
+      "scope_review": "The summation starts at one, not zero; each denominator is n squared and the right numerator is pi squared."
+    },
+    {
+      "id": "calculus.chain_rule:standard",
+      "mathematical_sha256": "207a06b28836e2281a50e4b614c8a4e849ba7fc0226ec3e74959332a5f5a8e6a",
+      "latex": "\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)",
+      "aliases": [
+        "the derivative with respect to x of f composed with g evaluated at x equals f prime evaluated at g of x times g prime evaluated at x",
+        "d by d x of f of open parenthesis g of x close parenthesis equals f prime of open parenthesis g of x close parenthesis times g prime of x"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of f composed with g evaluated at x equals f prime evaluated at x times g prime evaluated at x",
+        "the derivative with respect to x of f composed with g evaluated at x equals f prime evaluated at g of x",
+        "chain rule"
+      ],
+      "scope_review": "Differentiate the composition; evaluate the outer derivative at the inner value, and multiply by the inner derivative at x."
+    },
+    {
+      "id": "calculus.cosine_derivative:standard",
+      "mathematical_sha256": "f7fa5ea9f302160744279e7091a20a97f872f5a02685fd7a65d077a03f46bfd3",
+      "latex": "\\frac{d}{dx}\\cos x=-\\sin x",
+      "aliases": [
+        "the derivative with respect to x of cosine of x equals negative sine of x",
+        "d by d x of cosine x equals minus sine x"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of cosine of x equals sine of x",
+        "the derivative with respect to x of cosine of x equals negative cosine of x",
+        "cosine derivative"
+      ],
+      "scope_review": "The first derivative is the negative of sine evaluated at x, not positive sine or a negative angle."
+    },
+    {
+      "id": "calculus.cosine_series:standard",
+      "mathematical_sha256": "074b143ca481b40b6158cd22e21149d072cc5fa5ff38aa8506432ae6d98c8be8",
+      "latex": "\\cos x=\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{2n}}{(2n)!}",
+      "aliases": [
+        "cosine of x equals the sum from n equals zero to infinity of the fraction with numerator open parenthesis negative one close parenthesis raised to the power n times x raised to the power of open parenthesis two n close parenthesis and denominator open parenthesis two n close parenthesis factorial",
+        "cosine of x equals the sum from n equals zero to infinity of the fraction with numerator negative one in parentheses to the power n times x to the power of twice n and denominator the factorial of twice n"
+      ],
+      "negative_phrases": [
+        "cosine of x equals the sum from n equals zero to infinity of negative one to the power n times x to the power two n over two n factorial",
+        "cosine of x equals the sum from n equals one to infinity of the fraction with numerator negative one in parentheses to the power n times x to the power of twice n and denominator the factorial of twice n",
+        "cosine series"
+      ],
+      "scope_review": "The alternating factor is negative one raised to n, the power of x is 2n, and the factorial applies to 2n as a whole. The series starts at zero."
+    },
+    {
+      "id": "calculus.derivative_definition:standard",
+      "mathematical_sha256": "5fb53ef2df360839f39fa0195ddd212ae29b00cf3de403dba6d9fa9b9c60d985",
+      "latex": "f'(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}{h}",
+      "aliases": [
+        "f prime of x equals the limit as h approaches zero of the fraction with numerator f of open parenthesis x plus h close parenthesis minus f of x and denominator h",
+        "the derivative of f at x equals the limit as h tends to zero of open parenthesis f of the quantity x plus h minus f of x close parenthesis all divided by h"
+      ],
+      "negative_phrases": [
+        "f prime of x equals the limit as h approaches zero of f of x plus h minus f of x divided by h",
+        "f prime of x equals the limit as h approaches zero of the fraction with numerator f of open parenthesis x plus h close parenthesis plus f of x and denominator h",
+        "definition of derivative"
+      ],
+      "scope_review": "The input to the first function value is x+h; the numerator subtracts f(x), and the quotient by h is inside the two-sided limit. The second wording groups the entire numerator."
+    },
+    {
+      "id": "calculus.exponential_integral:standard",
+      "mathematical_sha256": "9c56167258688a7dfd08eab7c146e473d62cc1b076ee8ff8fe3308ff241fa977",
+      "latex": "\\int_0^\\infty e^{-x}\\,dx=1",
+      "aliases": [
+        "the integral from zero to infinity of e to the power of negative x d x equals one",
+        "integral from zero to infinity of e raised to the power of open parenthesis negative x close parenthesis with respect to x equals one"
+      ],
+      "negative_phrases": [
+        "the integral from zero to infinity of e to the power of x d x equals one",
+        "the integral from one to infinity of e to the power of negative x d x equals one",
+        "exponential integral"
+      ],
+      "scope_review": "The lower bound is zero, upper bound infinity, integrand is exp(-x) and the integration variable is x."
+    },
+    {
+      "id": "calculus.exponential_series:standard",
+      "mathematical_sha256": "aa1d8869184272e31150554cf725f09bf23cbe682b120fedf8039893d184ce5a",
+      "latex": "e^x=\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}",
+      "aliases": [
+        "e raised to the power x equals the sum from n equals zero to infinity of x to the power n divided by n factorial",
+        "e to the power of x equals the sum from n equals zero to infinity of the fraction with numerator x raised to the power n and denominator n factorial"
+      ],
+      "negative_phrases": [
+        "e raised to the power x equals the sum from n equals one to infinity of x to the power n divided by n factorial",
+        "e raised to the power x equals the sum from n equals zero to infinity of x to the power n divided by n",
+        "exponential series"
+      ],
+      "scope_review": "The zeroth term is included; the numerator is x to n and the denominator is n factorial."
+    },
+    {
+      "id": "calculus.fundamental_theorem:standard",
+      "mathematical_sha256": "7190091d97d8b17779161f7308d2a313a5c90e57fae82748d6db1a3865f27ecf",
+      "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a)",
+      "aliases": [
+        "the integral from a to b of f of x with respect to x equals capital f of b minus capital f of a",
+        "the integral from a to b of lowercase f of x d x equals uppercase f of b minus uppercase f of a"
+      ],
+      "negative_phrases": [
+        "the integral from a to b of f of x with respect to x equals capital f of a minus capital f of b",
+        "the integral from a to b of lowercase f of x d x equals lowercase f of b minus lowercase f of a",
+        "fundamental theorem of calculus"
+      ],
+      "scope_review": "The integral is of lowercase f; the endpoint evaluations are of uppercase F, its antiderivative, with the upper endpoint first."
+    },
+    {
+      "id": "calculus.fundamental_theorem:accumulation_derivative",
+      "mathematical_sha256": "0ed5bfe3997a829a4598fc4fca179da55da70c56e830d41bb6d21447f8f78fd2",
+      "latex": "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)",
+      "aliases": [
+        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of x",
+        "d by d x of the integral from a to x of f of t d t equals f of x"
+      ],
+      "negative_phrases": [
+        "the derivative with respect to x of the integral from x to a of f of t with respect to t equals f of x",
+        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of t",
+        "accumulation derivative"
+      ],
+      "scope_review": "The derivative acts on the whole integral with fixed lower bound a, variable upper bound x, and dummy variable t; the result is f evaluated at x."
+    }
+  ]
+}

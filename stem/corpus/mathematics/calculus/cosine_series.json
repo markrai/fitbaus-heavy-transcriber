@@ -19,7 +19,10 @@
         "x": "Angle in radians",
         "n": "Summation index"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "cosine of x equals the sum from n equals zero to infinity of the fraction with numerator open parenthesis negative one close parenthesis raised to the power n times x raised to the power of open parenthesis two n close parenthesis and denominator open parenthesis two n close parenthesis factorial",
+        "cosine of x equals the sum from n equals zero to infinity of the fraction with numerator negative one in parentheses to the power n times x to the power of twice n and denominator the factorial of twice n"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

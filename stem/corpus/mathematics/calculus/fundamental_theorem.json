@@ -22,7 +22,10 @@
         "F": "Antiderivative",
         "x": "Integration variable"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the integral from a to b of f of x with respect to x equals capital f of b minus capital f of a",
+        "the integral from a to b of lowercase f of x d x equals uppercase f of b minus uppercase f of a"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",
@@ -60,7 +63,10 @@
         "t": "Integration variable",
         "f": "Continuous function"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative with respect to x of the integral from a to x of f of t with respect to t equals f of x",
+        "d by d x of the integral from a to x of f of t d t equals f of x"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",
