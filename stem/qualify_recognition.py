@@ -14,7 +14,7 @@ FIXTURES = Path(__file__).resolve().parent.parent / "tests" / "fixtures"
 FIXTURE_SCHEMA = "fitbaus.stem.recitation-review-fixture/v1"
 OBSERVED_SCHEMA = "fitbaus.stem.recognition-observations/v1"
 REPORT_SCHEMA = "fitbaus.stem.recognition-qualification/v1"
-HARNESS_VERSION = "1"
+HARNESS_VERSION = "2"
 MAX_OBSERVED_BYTES = 16 * 1024 * 1024
 MAX_CASES = 10000
 MAX_TEXT = 32768
@@ -126,6 +126,8 @@ def synthetic_cases(dictionary, rows):
             key = entry.id + ":alias:" + str(index)
             yield positive(key + ":plain", "authored_positive", entry, alias)
             yield positive(key + ":intro", "context_positive", entry, alias.upper(), "The formula is ", ".")
+            yield positive(key + ":colon", "context_positive", entry, alias, "Equation: ", ".")
+            yield positive(key + ":given_by", "context_positive", entry, alias, "The equation is given by ", ".")
             yield positive(key + ":unicode", "context_positive", entry, alias.replace(" ", "  "),
                            "Résumé of the chapter.  ", "! ")
             yield Case(key + ":prefix", "mutation_negative", "x plus " + alias, ())
@@ -148,12 +150,23 @@ def synthetic_cases(dictionary, rows):
 def context_challenges(dictionary):
     for entry in dictionary.entries:
         alias = entry.aliases[0]
-        for kind, prefix in (
-            ("negated_intro", "It is not true that the formula is "),
-            ("hypothetical_intro", "Suppose the incorrect formula is "),
-            ("arbitrary_colon", "Unrelated text to ignore: "),
+        for kind, text in (
+            ("negated_intro", "It is not true that the formula is " + alias + "."),
+            ("hypothetical_intro", "Suppose the incorrect formula is " + alias + "."),
+            ("arbitrary_colon", "Unrelated text to ignore: " + alias + "."),
+            ("nested_intro", "The formula is equation is " + alias + "."),
+            ("negated_colon", "Incorrect equation: " + alias + "."),
+            ("question", "The formula is " + alias + "?"),
+            ("semicolon_suffix", alias + "; plus one."),
+            ("newline_suffix", alias + "\nplus one."),
+            ("period_continuation", alias + ". Plus one."),
+            ("operator_continuation", alias + ". + one."),
+            ("incomplete_prefix", "x plus. " + alias + "."),
+            ("ellipsis", alias + "..."),
+            ("attached_decimal", alias + ".5"),
+            ("quoted", '"' + alias + '."'),
         ):
-            yield Case(entry.id + ":challenge:" + kind, "conservative_abstention", prefix + alias + ".", ())
+            yield Case(entry.id + ":challenge:" + kind, "conservative_abstention", text, ())
 
 
 def load_observations(path, dictionary):
@@ -281,7 +294,7 @@ def main(argv=None):
                 },
             }
         print(json.dumps(report, indent=2, sort_keys=True))
-        return 0 if report["regression"]["pass"] else 1
+        return 0 if report["regression"]["pass"] and report["context_challenges"]["pass"] else 1
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.exit(1, "Recognition qualification failed: " + str(error) + "\n")
 
