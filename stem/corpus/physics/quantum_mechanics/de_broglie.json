@@ -20,7 +20,10 @@
         "h": "Planck constant",
         "p": "Momentum magnitude"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "lambda equals h divided by p",
+        "de broglie wavelength equals planck constant divided by momentum magnitude"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

@@ -21,7 +21,10 @@
         "f": "Incident photon frequency",
         "\\phi": "Material work function"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "k sub max equals h times f minus phi",
+        "maximum emitted electron kinetic energy equals planck constant times incident photon frequency minus the material work function"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

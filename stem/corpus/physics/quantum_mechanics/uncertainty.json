@@ -20,7 +20,10 @@
         "\\sigma_p": "Standard deviation of canonical momentum in the same direction as position",
         "\\hbar": "Reduced Planck constant"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "sigma sub x times sigma sub p is greater than or equal to h bar divided by two",
+        "position standard deviation times the standard deviation of canonical momentum in the same direction is at least half the reduced planck constant"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",
