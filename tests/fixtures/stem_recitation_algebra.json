@@ -1,0 +1,158 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "algebra.geometric_sequence:standard",
+      "mathematical_sha256": "b578660f9ac6294fa0affd8eb2c19c9588184307097bb36808735355d637cdff",
+      "latex": "a_n=a_1r^{n-1}",
+      "aliases": [
+        "a sub n equals a sub one times r raised to the power of open parenthesis n minus one close parenthesis",
+        "a sub n equals a sub 1 times r to the power of the quantity n minus 1 end exponent"
+      ],
+      "negative_phrases": [
+        "a sub n equals a sub one times r to the power of n minus one",
+        "a sub n equals a sub one times r raised to the power n",
+        "geometric sequence"
+      ],
+      "scope_review": "The first term multiplies r raised to the entire exponent n minus one; the subtraction is not outside the power. Both term indices are explicit."
+    },
+    {
+      "id": "algebra.geometric_series:standard",
+      "mathematical_sha256": "28d0c6edca0a3f30b50c7f61287130e9413bf0c3af780e8bc51310a1282136d6",
+      "latex": "\\sum_{k=0}^{n}r^k=\\frac{1-r^{n+1}}{1-r}",
+      "aliases": [
+        "the sum from k equals zero to n of r raised to the power k equals open parenthesis one minus r raised to the power of open parenthesis n plus one close parenthesis close parenthesis divided by open parenthesis one minus r close parenthesis",
+        "the sum of r to the power k for k from zero through n equals the fraction with numerator one minus r raised to the power of the quantity n plus one end exponent and denominator one minus r"
+      ],
+      "negative_phrases": [
+        "the sum from k equals zero to n of r to the power k equals one minus r to the power of n plus one over one minus r",
+        "the sum from k equals one to n of r raised to the power k equals the fraction with numerator one minus r raised to the power of the quantity n plus one end exponent and denominator one minus r",
+        "finite geometric series"
+      ],
+      "scope_review": "Both variants specify zero through n inclusive. The numerator subtracts r to the grouped exponent n plus one from one; the complete denominator is one minus r."
+    },
+    {
+      "id": "algebra.geometric_series:infinite",
+      "mathematical_sha256": "b1b9dd144d4cece0c8cb27f7e15d9c3513ad98434487d5ea02dc814d9d97d88a",
+      "latex": "\\sum_{k=0}^{\\infty}r^k=\\frac{1}{1-r}",
+      "aliases": [
+        "the sum from k equals zero to infinity of r to the power k equals one divided by open parenthesis one minus r close parenthesis",
+        "the sum of r raised to the power k for k from zero to infinity equals the fraction with numerator one and denominator one minus r"
+      ],
+      "negative_phrases": [
+        "the sum from k equals zero to infinity of r to the power k equals one divided by one minus r",
+        "the sum from k equals one to infinity of r raised to the power k equals the fraction with numerator one and denominator one minus r",
+        "infinite geometric series"
+      ],
+      "scope_review": "The lower bound is zero and the upper bound is infinity, unlike the finite form. The entire difference one minus r is the denominator. Convergence conditions remain in the source metadata, not an inferred narration claim."
+    },
+    {
+      "id": "algebra.log_change_base:standard",
+      "mathematical_sha256": "9aa294b959a1f0318fa74f49bf4632113eebe2d57c912b7d545c3094f0e80546",
+      "latex": "\\log_b x=\\frac{\\ln x}{\\ln b}",
+      "aliases": [
+        "log base b of x equals the natural logarithm of x divided by the natural logarithm of b",
+        "the logarithm of x to base b equals the fraction with numerator natural log of x and denominator natural log of b"
+      ],
+      "negative_phrases": [
+        "log base b of x equals natural log of b divided by natural log of x",
+        "log base b of x equals natural log of x divided by b",
+        "change of base formula"
+      ],
+      "scope_review": "The base of the left logarithm is b; the right side is a quotient of natural logarithms, with x in the numerator and b in the denominator."
+    },
+    {
+      "id": "algebra.log_power:standard",
+      "mathematical_sha256": "0133336f52cf671aaf3bd1e514f56637f1afcdaabbc6159d50939bb7fb96450c",
+      "latex": "\\log_b(x^r)=r\\log_b x",
+      "aliases": [
+        "log base b of open parenthesis x raised to the power r close parenthesis equals r times log base b of x",
+        "the logarithm to base b of the quantity x raised to the power r equals r multiplied by the logarithm of x to base b"
+      ],
+      "negative_phrases": [
+        "log base b of x raised to the power r equals r times log base b of x",
+        "log base b of open parenthesis x raised to the power r close parenthesis equals log base b of x raised to the power r",
+        "logarithm power rule"
+      ],
+      "scope_review": "The power is inside the argument of the left logarithm, not a power of the logarithm itself. On the right r is a multiplier outside the logarithm."
+    },
+    {
+      "id": "algebra.log_product:standard",
+      "mathematical_sha256": "f4ffd267359e809abe98498d1065378987a4c7579db4dd82942bf4bede1a7e3a",
+      "latex": "\\log_b(xy)=\\log_b x+\\log_b y",
+      "aliases": [
+        "log base b of open parenthesis x times y close parenthesis equals log base b of x plus log base b of y",
+        "the logarithm to base b of the product of x and y equals the sum of the logarithm of x to base b and the logarithm of y to base b"
+      ],
+      "negative_phrases": [
+        "log base b of x times y equals log base b of x plus log base b of y",
+        "log base b of open parenthesis x times y close parenthesis equals log base b of x times log base b of y",
+        "logarithm product rule"
+      ],
+      "scope_review": "The left logarithm takes the product xy as one argument; the right side adds two logarithms, both with base b."
+    },
+    {
+      "id": "algebra.log_quotient:standard",
+      "mathematical_sha256": "e3265652cadc4bb09626f59d088b09a34fc3744ee436ee35db0d3386e1ddc209",
+      "latex": "\\log_b(x/y)=\\log_b x-\\log_b y",
+      "aliases": [
+        "log base b of open parenthesis x divided by y close parenthesis equals log base b of x minus log base b of y",
+        "the logarithm to base b of the quotient of x divided by y equals the logarithm of x to base b minus the logarithm of y to base b"
+      ],
+      "negative_phrases": [
+        "log base b of x divided by y equals log base b of x minus log base b of y",
+        "log base b of open parenthesis x divided by y close parenthesis equals log base b of y minus log base b of x",
+        "logarithm quotient rule"
+      ],
+      "scope_review": "The left argument is x divided by y, not log(x) divided by y. The order of subtraction on the right is x's logarithm minus y's logarithm."
+    },
+    {
+      "id": "algebra.quadratic:standard",
+      "mathematical_sha256": "1980d9879849edabddc98d63540f73c9f8d9b54ec3c2d58bb57534e64a419244",
+      "latex": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
+      "aliases": [
+        "x equals open parenthesis negative b plus or minus the square root of open parenthesis b squared minus four times a times c close parenthesis close parenthesis divided by open parenthesis two times a close parenthesis",
+        "x equals the fraction with numerator negative b plus or minus the square root of the quantity b squared minus four times a times c and denominator two times a",
+        "x equals the fraction with numerator minus b plus or minus the square root of open parenthesis b squared minus 4 a c close parenthesis and denominator 2 a"
+      ],
+      "negative_phrases": [
+        "x equals negative b plus or minus the square root of b squared minus four a c all divided by two a",
+        "x equals the fraction with numerator negative b plus the square root of open parenthesis b squared minus four times a times c close parenthesis and denominator two times a",
+        "x equals the fraction with numerator negative b plus or minus the square root of open parenthesis b squared plus four times a times c close parenthesis and denominator two times a",
+        "quadratic formula"
+      ],
+      "scope_review": "The radicand is b squared minus the product 4ac. The plus-or-minus applies to the radical added to negative b, and the entire numerator is divided by the product 2a. The inherited recitation is withheld because its radical and denominator boundaries are implicit."
+    },
+    {
+      "id": "algebra.square_difference:standard",
+      "mathematical_sha256": "35a91aff954e6798b5263d6c3444dd69d4cc5cbf11c691dcb0fa79a2cad4078d",
+      "latex": "(a-b)^2=a^2-2ab+b^2",
+      "aliases": [
+        "open parenthesis a minus b close parenthesis squared equals a squared minus two times a times b plus b squared",
+        "the square of the difference of a and b equals a squared minus twice the product of a and b plus b squared"
+      ],
+      "negative_phrases": [
+        "a minus b squared equals a squared minus two times a times b plus b squared",
+        "open parenthesis a minus b close parenthesis squared equals a squared plus two times a times b plus b squared",
+        "square of a difference"
+      ],
+      "scope_review": "The whole difference is squared on the left. The middle term on the right is negative twice ab, and both outer squared terms are positive."
+    },
+    {
+      "id": "algebra.square_sum:standard",
+      "mathematical_sha256": "a1adb6f089fd340c7047117a038476baec9a20bfe3180669c9e1aa8b56e95890",
+      "latex": "(a+b)^2=a^2+2ab+b^2",
+      "aliases": [
+        "open parenthesis a plus b close parenthesis squared equals a squared plus two times a times b plus b squared",
+        "the square of the sum of a and b equals a squared plus twice the product of a and b plus b squared"
+      ],
+      "negative_phrases": [
+        "a plus b squared equals a squared plus two times a times b plus b squared",
+        "open parenthesis a plus b close parenthesis squared equals a squared minus two times a times b plus b squared",
+        "square of a sum"
+      ],
+      "scope_review": "The entire sum is squared on the left. All three right-hand terms are added, including the positive middle term twice ab."
+    }
+  ]
+}

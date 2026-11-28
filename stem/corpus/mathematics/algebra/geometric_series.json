@@ -20,7 +20,10 @@
         "n": "Last exponent",
         "r": "Common ratio"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the sum from k equals zero to n of r raised to the power k equals open parenthesis one minus r raised to the power of open parenthesis n plus one close parenthesis close parenthesis divided by open parenthesis one minus r close parenthesis",
+        "the sum of r to the power k for k from zero through n equals the fraction with numerator one minus r raised to the power of the quantity n plus one end exponent and denominator one minus r"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",
@@ -56,7 +59,10 @@
         "k": "Summation index",
         "r": "Common ratio"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the sum from k equals zero to infinity of r to the power k equals one divided by open parenthesis one minus r close parenthesis",
+        "the sum of r raised to the power k for k from zero to infinity equals the fraction with numerator one and denominator one minus r"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

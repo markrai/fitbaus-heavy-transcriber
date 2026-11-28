@@ -8,13 +8,15 @@ from stem.corpus_model import load_corpus, mathematical_digest
 from stem.dictionary import Dictionary, Entry, normalize_alias
 from stem.matcher import recognize
 
-FIXTURE = Path(__file__).resolve().parent / "fixtures" / "stem_recitation_pilot.json"
+FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 
 class RecitationReviewTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        cls.fixtures = [json.loads(path.read_text(encoding="utf-8"))
+                        for path in sorted(FIXTURES.glob("stem_recitation_*.json"))]
+        cls.rows = [row for fixture in cls.fixtures for row in fixture["rows"]]
         cls.representations = {}
         entries, aliases = [], {}
         for concept in load_corpus():
@@ -31,10 +33,14 @@ class RecitationReviewTests(unittest.TestCase):
         cls.dictionary = Dictionary(tuple(entries), MappingProxyType(aliases), "test-only")
 
     def test_review_fixture_binds_exact_math_and_aliases(self):
-        self.assertEqual(self.fixture["schema"], "fitbaus.stem.recitation-review-fixture/v1")
-        self.assertEqual(self.fixture["qualification"], "scope_review_only")
+        self.assertTrue(self.fixtures)
+        self.assertTrue(self.rows)
+        for fixture in self.fixtures:
+            self.assertEqual(fixture["schema"], "fitbaus.stem.recitation-review-fixture/v1")
+            self.assertEqual(fixture["qualification"], "scope_review_only")
+            self.assertTrue(fixture["rows"])
         ids = set()
-        for row in self.fixture["rows"]:
+        for row in self.rows:
             with self.subTest(id=row["id"]):
                 self.assertNotIn(row["id"], ids)
                 ids.add(row["id"])
@@ -45,7 +51,7 @@ class RecitationReviewTests(unittest.TestCase):
                 self.assertTrue(row["scope_review"].strip())
 
     def test_positive_recitations_and_source_spans(self):
-        for row in self.fixture["rows"]:
+        for row in self.rows:
             for phrase in row["aliases"]:
                 for text in (phrase, "The formula is " + phrase.upper() + "."):
                     with self.subTest(id=row["id"], text=text):
@@ -58,7 +64,7 @@ class RecitationReviewTests(unittest.TestCase):
                         self.assertEqual(normalize_alias(match.source_text), normalize_alias(phrase))
 
     def test_ambiguous_and_changed_equations_do_not_match(self):
-        for row in self.fixture["rows"]:
+        for row in self.rows:
             for phrase in row["negative_phrases"]:
                 for text in (phrase, "The formula is " + phrase + "."):
                     with self.subTest(id=row["id"], text=text):
@@ -67,7 +73,7 @@ class RecitationReviewTests(unittest.TestCase):
     def test_pending_review_does_not_enter_compiled_candidates(self):
         artifact = compile_corpus()
         eligible = {row["id"] for row in artifact["entries"]}
-        for row in self.fixture["rows"]:
+        for row in self.rows:
             _, rep = self.representations[row["id"]]
             if rep["recognition_review"]["status"] != "approved":
                 self.assertNotIn(row["id"], eligible)
