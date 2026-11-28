@@ -131,40 +131,50 @@ $("companions").addEventListener("click", async () => {
         result.replaceChildren(element("p", data.files.length ? "Companion files detected (edition not verified)" : "No companion ebooks detected."));
         for (const file of data.files) {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
+            result.append(row);
             if (file.format === "epub") {
-                const inspect = element("button", "Inspect EPUB", "secondary");
-                inspect.type = "button";
-                const detail = element("p");
-                inspect.addEventListener("click", async () => {
-                    if (running || companionBusy || request !== companionRequest) return;
-                    companionBusy = true;
-                    inspect.disabled = true;
-                    updateActions();
-                    detail.textContent = "Downloading and inspecting EPUB…";
-                    try {
-                        const inventory = await api("/api/epub-inventory", {
-                            method: "POST", headers: {"Content-Type": "application/json"},
-                            body: JSON.stringify({item_id: id, file_id: file.file_id})
-                        });
-                        if (request !== companionRequest) return;
-                        detail.textContent = "EPUB " + inventory.version + " · " + inventory.spine_count +
-                            " reading-order entries · " + inventory.xhtml_count + " XHTML resources · " +
-                            inventory.image_count + " images · Edition not verified";
-                        if (inventory.title) detail.textContent += " · " + inventory.title;
-                    } catch (error) {
-                        if (request === companionRequest) detail.textContent = error.message;
-                    } finally {
-                        if (request === companionRequest) {
-                            companionBusy = false;
-                            inspect.disabled = false;
-                            updateActions();
+                for (const mode of ["inventory", "alignment"]) {
+                    const inspect = element("button", mode === "inventory" ? "Inspect EPUB" : "Test alignment", "secondary");
+                    inspect.type = "button";
+                    const detail = element("p");
+                    inspect.addEventListener("click", async () => {
+                        if (running || companionBusy || request !== companionRequest) return;
+                        companionBusy = true;
+                        inspect.disabled = true;
+                        updateActions();
+                        detail.textContent = mode === "inventory" ? "Downloading and inspecting EPUB…" :
+                            "Comparing EPUB with retained narration…";
+                        try {
+                            const inventory = await api("/api/epub-" + mode, {
+                                method: "POST", headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({item_id: id, file_id: file.file_id})
+                            });
+                            if (request !== companionRequest) return;
+                            if (mode === "alignment") {
+                                detail.textContent = inventory.matched_cue_count + " / " + inventory.cue_count +
+                                    " narration cues anchored · " + inventory.eligible_cue_count + " eligible · " +
+                                    inventory.matched_section_count + " / " + inventory.section_count +
+                                    " reading-order sections · " + inventory.conflicting_cue_count +
+                                    " conflicting cues · Edition not verified";
+                                return;
+                            }
+                            detail.textContent = "EPUB " + inventory.version + " · " + inventory.spine_count +
+                                " reading-order entries · " + inventory.xhtml_count + " XHTML resources · " +
+                                inventory.image_count + " images · Edition not verified";
+                            if (inventory.title) detail.textContent += " · " + inventory.title;
+                        } catch (error) {
+                            if (request === companionRequest) detail.textContent = error.message;
+                        } finally {
+                            if (request === companionRequest) {
+                                companionBusy = false;
+                                inspect.disabled = false;
+                                updateActions();
+                            }
                         }
-                    }
-                });
-                row.append(inspect);
-                result.append(row, detail);
-            } else {
-                result.append(row);
+                    });
+                    row.append(inspect);
+                    result.append(detail);
+                }
             }
         }
     } catch (error) {
