@@ -177,6 +177,25 @@ A period or exclamation mark followed by whitespace/end can terminate a candidat
 
 The qualification harness (version 2) adds anchored-colon and "is given by" positives for every alias and expands context abstention challenges to 14 per representation. Both the mandatory synthetic regression suite and the separate context challenge suite must pass for the CLI to exit zero. CI asserts both suites pass, including original legacy examples, original source spans, sentence isolation and CLI failure behavior. Synthetic success does not grant recognition approval; real transcription observations and admission criteria remain pending. No corpus aliases, review statuses, renderer, publication or normal transcription pipeline are changed. The legacy inspection CLI intentionally uses the hardened shared matcher.
 
+## Existing checkpoint sampling (S.1C.3A)
+
+Run from the Heavy Transcriber checkout after core CI or setup has provisioned the pinned upstream contract. Stop any active transcription batch before sampling so the checkpoint snapshot is stable. No audio download, model initialization, GPU, network connection or VEGA credentials are needed.
+
+    python -m stem.sample_checkpoints --inventory
+    python -m stem.sample_checkpoints --name development.json --uniform 100 --targeted 100
+
+The inventory scans the existing work directory's audio cache keys and known heavy profile hashes; use --work-dir for a custom checkpoint root. It reports hashed audio identity keys, inferred profile names, window/cue counts and covered milliseconds, not book titles or narration. It validates each checkpoint against the pinned TranscriptWindow contract, cache-key identity, aligned filename, coverage and bounded size. It supports interrupted runs with gaps; covered duration is not proof of a complete book or current library revision. Publication acknowledgements, unrelated work directories and unknown profile hashes are not used. Profile identity is inferred from the directory name, not independently attested. Use repeatable --book CACHE_KEY and optional --profile-key PROFILE_KEY to restrict the population. A malformed compatible checkpoint stops the scan.
+
+Each sampled case preserves an entire original ASR cue, its timestamps, cue index, checkpoint digest, stable opaque ID and cache/profile keys. No text normalization or matching is used to select it. The uniform stratum uses a deterministic seed-based hash ranking across all eligible cues, not a formula filter. The second stratum uses broad mathematical word/symbol hints (including symbolic notation), excludes already sampled cues and is explicitly enriched, not representative of prevalence. Requests are caps, not guaranteed counts; the summary reports the actual sample sizes. Neither stratum has automatically assigned labels: expected is null, not an empty negative annotation. All output is candidate evidence only.
+
+Window-level partitions are fixed by seed and audio cache key plus window start, independent of profile. Approximately one quarter of windows are reserved for holdout. Keep the default seed 42 and book/profile selection fixed between runs. Sample development first; do not inspect or tune against holdout until the alias/matcher policy is frozen:
+
+    python -m stem.sample_checkpoints --partition holdout --name holdout.json --uniform 100 --targeted 100
+
+Partitions are disjoint by window, not independent by audiobook; nearby content or multiple revisions can still correlate. The snapshot digest binds the scanned windows and their hashes. Changing inputs or seed changes the evidence population; compare snapshot identities before using results together. Avoid combining multiple profiles of the same audio for prevalence metrics. Separate strata in evaluation, and do not interpret formula-enriched precision/recall as library-wide rates.
+
+Packs are written only to the ignored work/stem-qualification directory, using a new simple JSON filename; existing output is never overwritten. The terminal prints metadata and counts, not cue text. The pack contains private audiobook text: do not commit it, publish it, or share material you are not permitted to share. An interrupted write can leave an incomplete file; use a new filename and validate the pack digest. The sampler never modifies checkpoints. A subsequent review phase must label the cue text, check source and annotation fidelity, and convert completed annotations to the observation schema. No production dictionary admission or ASR accuracy claim is made here.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
