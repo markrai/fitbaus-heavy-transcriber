@@ -67,6 +67,17 @@ Review the remaining 21 concepts and 22 representations: nine electromagnetic co
 
 Cumulative proposed mathematical approvals: 107 of 107 representations across 102 concepts. No new formulas, aliases, or runtime changes. Bibliographic-only source admission does not authorize copying reference content; the content source records remain pending. Approval is an authoring-level review record, not independent human certification, rendering qualification, recognition qualification or production release approval. S.1A is next: a deterministic compiler with explicit admission gates and stable representation identities.
 
+## Deterministic dictionary compiler (S.1A)
+
+    python -m stem.compiler --summary
+    python -m stem.compiler
+
+The compiler validates the complete structured authoring corpus and its source registry first. It emits a new versioned candidate artifact to standard output (canonical ASCII JSON plus a final newline), or a concise summary with --summary. Explicitly redirect standard output to a local work file if an artifact is needed; the compiler never writes files itself. No network, model, GPU, npm installation or renderer execution is required.
+
+Only representations with current approved mathematical and recognition reviews, admitted references and nonempty explicit spoken aliases can enter the candidate dictionary. Invalid review digests, source admission, global alias collisions or malformed corpus data fail the entire build. Approved entries must also pass the existing renderer TeX preflight; failure is a build error, not a silent omission. That lexical preflight is not rendering qualification or a sandbox. Each candidate retains its stable concept:representation ID, exact TeX, normalized sorted aliases and both review digests. Names, tags and alternate names do not create recognition triggers. Exclusions include precise reasons, which may overlap. The artifact binds the complete validated authoring corpus, source registry metadata, compiler version and matcher version; artifact_sha256 hashes the canonical payload without the artifact_sha256 field or final newline.
+
+All 107 current representations have mathematical review records but recognition is still pending, so the initial candidate dictionary is intentionally empty. An empty candidate build is valid, not a release. release_qualified is always false: rendering evidence, recognition qualification and distribution gates must still be implemented. The old curated.json prototype, matcher and normal transcription path are unchanged. No compiled-candidate artifact is consumed by the runtime. The shared CI unit suite tests the compiler with isolated fixtures and the actual repository corpus, without generating persistent reports.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
