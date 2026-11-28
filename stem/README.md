@@ -78,6 +78,20 @@ Only representations with current approved mathematical and recognition reviews,
 
 All 107 current representations have mathematical review records but recognition is still pending, so the initial candidate dictionary is intentionally empty. An empty candidate build is valid, not a release. release_qualified is always false: rendering evidence, recognition qualification and distribution gates must still be implemented. The old curated.json prototype, matcher and normal transcription path are unchanged. No compiled-candidate artifact is consumed by the runtime. The shared CI unit suite tests the compiler with isolated fixtures and the actual repository corpus, without generating persistent reports.
 
+## Maintainer spoken-alias generation (S.1B)
+
+Run Ollama locally on the maintainer workstation with a locally installed model. Disable Ollama cloud features in the server configuration (OLLAMA_NO_CLOUD=1) for an offline run. The tool talks only to 127.0.0.1:11434 and never downloads a model, sends book text, calls a remote API directly or installs a dependency. Select the exact installed name using ollama list. Use ollama ps separately to verify GPU placement; the generator does not force or certify GPU residency. A model suitable for precise mathematical recitations is preferred.
+
+    ollama list
+    python -m stem.generate_aliases --model qwen2.5-coder:32b --output work/stem-aliases/pilot --max-new 5
+    python -m stem.generate_aliases --model qwen2.5-coder:32b --output work/stem-aliases/pilot
+
+The model name above is an example; use an actual locally installed model. The second command resumes the same plan, completing remaining representations. Default is up to eight proposed aliases per representation; --count accepts 1 through 16 and is part of the plan. Use a new output directory when model, prompt, corpus, source registry or count changes. The native Ollama chat and model-list APIs provide structured JSON and model metadata: https://docs.ollama.com/api/chat and https://docs.ollama.com/api/tags.
+
+The tool creates plan.json, one bounded atomic checkpoint per completed representation under responses/, and candidates.json (the current candidate report). Keep one process per output directory. The immutable plan binds the reviewed mathematical content, source registry, existing aliases, prompt/options, model digest and reported Ollama version. Resume validates checkpoints and checks model identity before and after generation; identity is server-reported, not proof of inference or determinism. A malformed or truncated response stops the run without committing that response. Earlier checkpoints survive. After a failed run, the report may reflect an earlier successful invocation; rerun to refresh it. An incomplete report must not be used for final collision adjudication.
+
+Only mathematically approved representations with pending recognition review are selected. The report classifies normalized aliases, already-existing phrases, duplicates, generic names, missing explicit relation words, invalid aliases and cross-representation collisions (including collisions with existing authored aliases). All accepted-looking proposals remain candidate_only. Exact collision checks are not semantic verification; a candidate can still be mathematically wrong or match ordinary prose. A later recognition qualification phase must independently review recitation fidelity and measure false positives and transcription coverage before any alias is admitted. No source file, review status, legacy dictionary, normal transcript or runtime is changed. CI exercises the workflow with mock responses only, without running Ollama.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
