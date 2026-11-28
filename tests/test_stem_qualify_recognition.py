@@ -1,13 +1,16 @@
 import copy
+import contextlib
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from stem.corpus_model import digest
 from stem.qualify_recognition import (
     Case, Expected, FIXTURES, OBSERVED_SCHEMA, build_review_dictionary, evaluate,
-    load_observations, qualify,
+    load_observations, main, qualify,
 )
 
 
@@ -33,11 +36,23 @@ class RecognitionQualificationTests(unittest.TestCase):
 
     def test_context_challenges_are_separate_from_regression(self):
         report = self.report
-        self.assertEqual(report["context_challenges"]["total"]["cases"], 3 * len(self.dictionary.entries))
+        self.assertEqual(report["context_challenges"]["total"]["cases"], 14 * len(self.dictionary.entries))
         self.assertEqual(report["context_challenges"]["total"]["expected_matches"], 0)
         self.assertIsNone(report["context_challenges"]["total"]["recall"])
-        if not report["context_challenges"]["pass"]:
-            self.assertIn("context_abstention_gaps", report["blockers"])
+        self.assertTrue(report["context_challenges"]["pass"], report["context_challenges"]["failures"])
+        self.assertEqual(report["context_challenges"]["total"]["false_positive"], 0)
+        self.assertNotIn("context_abstention_gaps", report["blockers"])
+
+    def test_cli_requires_regression_and_context_pass(self):
+        for key in ("regression", "context_challenges"):
+            report = copy.deepcopy(self.report)
+            report[key]["pass"] = False
+            with self.subTest(key=key), patch("stem.qualify_recognition.qualify", return_value=report), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(main(["--summary"]), 1)
+        with patch("stem.qualify_recognition.qualify", return_value=self.report), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(main(["--summary"]), 0)
 
     def test_wrong_identity_or_span_counts_as_both_error_types(self):
         first, second = self.dictionary.entries[:2]

@@ -43,6 +43,48 @@ class StemDictionaryTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(recognize(text, self.dictionary), ())
 
+    def test_anchored_introductions_and_source_spans(self):
+        phrase = "E equals M C squared"
+        for prefix in ("The formula is ", "Equation: ", "The equation is given by ",
+                       "Einstein showed that ", "Résumé. \r\n  The formula is\t"):
+            text = prefix + phrase + "."
+            with self.subTest(text=text):
+                matches = recognize(text, self.dictionary)
+                self.assertEqual(len(matches), 1)
+                self.assertEqual(matches[0].start, len(prefix))
+                self.assertEqual(matches[0].end, len(prefix) + len(phrase))
+                self.assertEqual(matches[0].source_text, phrase)
+
+    def test_conservative_boundaries_and_context(self):
+        phrase = "E equals M C squared"
+        for text in (
+            "It is not true that the formula is " + phrase + ".",
+            "Imagine the formula is " + phrase + ".",
+            "Example of a wrong equation: " + phrase + ".",
+            "The formula is equation is " + phrase + ".",
+            "The formula is " + phrase + "?",
+            "The formula is " + phrase + "?!",
+            phrase + "; plus one.",
+            phrase + "\nplus one.",
+            "E equals\nM C squared.",
+            phrase + ". Plus one.",
+            phrase + ". Divided by two.",
+            "X plus. " + phrase + ".",
+            phrase + "...",
+            phrase + ".5",
+            '"' + phrase + '."',
+            "Ignore this; The formula is " + phrase + ".",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(recognize(text, self.dictionary), ())
+
+    def test_independent_sentences_remain_recognizable(self):
+        phrase = "E equals M C squared"
+        text = "Does that make sense? " + phrase + ".\r\nThe formula is F equals M A!"
+        matches = recognize(text, self.dictionary)
+        self.assertEqual([match.source_text for match in matches], [phrase, "F equals M A"])
+        self.assertEqual([match.latex for match in matches], ["E=mc^2", "F=ma"])
+
     def test_reproducible_digest(self):
         value = json.loads(CURATED.read_text(encoding="utf-8"))
         value["entries"].reverse()
