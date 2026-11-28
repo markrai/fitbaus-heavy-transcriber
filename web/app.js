@@ -28,7 +28,7 @@ function duration(seconds) {
 
 function updateActions() {
     $("count").textContent = selected.size + " selected";
-    $("start").disabled = running || !selected.size || selected.size > 32;
+    $("start").disabled = running || companionBusy || !selected.size || selected.size > 32;
     $("companions").disabled = running || companionBusy || selected.size !== 1;
 }
 
@@ -130,7 +130,42 @@ $("companions").addEventListener("click", async () => {
         if (request !== companionRequest || !selected.has(id) || selected.size !== 1) return;
         result.replaceChildren(element("p", data.files.length ? "Companion files detected (edition not verified)" : "No companion ebooks detected."));
         for (const file of data.files) {
-            result.append(element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role));
+            const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
+            if (file.format === "epub") {
+                const inspect = element("button", "Inspect EPUB", "secondary");
+                inspect.type = "button";
+                const detail = element("p");
+                inspect.addEventListener("click", async () => {
+                    if (running || companionBusy || request !== companionRequest) return;
+                    companionBusy = true;
+                    inspect.disabled = true;
+                    updateActions();
+                    detail.textContent = "Downloading and inspecting EPUB…";
+                    try {
+                        const inventory = await api("/api/epub-inventory", {
+                            method: "POST", headers: {"Content-Type": "application/json"},
+                            body: JSON.stringify({item_id: id, file_id: file.file_id})
+                        });
+                        if (request !== companionRequest) return;
+                        detail.textContent = "EPUB " + inventory.version + " · " + inventory.spine_count +
+                            " reading-order entries · " + inventory.xhtml_count + " XHTML resources · " +
+                            inventory.image_count + " images · Edition not verified";
+                        if (inventory.title) detail.textContent += " · " + inventory.title;
+                    } catch (error) {
+                        if (request === companionRequest) detail.textContent = error.message;
+                    } finally {
+                        if (request === companionRequest) {
+                            companionBusy = false;
+                            inspect.disabled = false;
+                            updateActions();
+                        }
+                    }
+                });
+                row.append(inspect);
+                result.append(row, detail);
+            } else {
+                result.append(row);
+            }
         }
     } catch (error) {
         if (request === companionRequest) result.replaceChildren(element("p", "Companion discovery failed. Check Audiobookshelf access."));

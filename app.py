@@ -22,6 +22,7 @@ class Workbench:
         self.catalog = {}
         self.jobs = {}
         self.running = False
+        self.inspecting_epub = False
         self.history_path = root / "history.json"
         self.history = json.loads(self.history_path.read_text("ascii")) if self.history_path.exists() else {}
 
@@ -37,6 +38,20 @@ class Workbench:
                 raise ValueError("Unknown book")
         return {"item_id": item, "files": [row.public() for row in self.library.companions(item)]}
 
+    def epub_inventory(self, item, file_id):
+        with self.lock:
+            if not isinstance(item, str) or item not in self.catalog:
+                raise ValueError("Unknown book")
+            if self.running or self.inspecting_epub:
+                raise ValueError("Workbench is busy")
+            self.inspecting_epub = True
+        try:
+            result = self.library.epub_inventory(item, file_id)
+            return {key: value for key, value in result.items() if key != "spine"}
+        finally:
+            with self.lock:
+                self.inspecting_epub = False
+
     def cover(self, item):
         with self.lock:
             if item not in self.catalog:
@@ -45,8 +60,8 @@ class Workbench:
 
     def start(self, ids):
         with self.lock:
-            if self.running:
-                raise ValueError("A batch is already running")
+            if self.running or self.inspecting_epub:
+                raise ValueError("Workbench is busy")
             if (not isinstance(ids, list) or not 1 <= len(ids) <= 32 or
                     any(not isinstance(item, str) or item not in self.catalog for item in ids) or
                     len(set(ids)) != len(ids)):
@@ -141,19 +156,30 @@ class Handler(BaseHTTPRequestHandler):
         if (not self.valid_host() or self.headers.get_all("Origin") != ["http://" + self.server.host]
                 or self.headers.get_content_type() != "application/json"):
             return self.json({"error": "Request rejected"}, 403)
-        if self.path != "/api/start":
+        if self.path not in ("/api/start", "/api/epub-inventory"):
             return self.json({"error": "Not found"}, 404)
         try:
             size = int(self.headers["Content-Length"])
             if not 0 < size <= 16384 or self.headers.get("Transfer-Encoding"):
                 raise ValueError()
             value = json.loads(self.rfile.read(size))
-            if not isinstance(value, dict) or set(value) != {"ids"}:
+            if not isinstance(value, dict):
                 raise ValueError()
-            self.server.workbench.start(value["ids"])
-            self.json({"accepted": True}, 202)
+            if self.path == "/api/epub-inventory":
+                if set(value) != {"item_id", "file_id"}:
+                    raise ValueError()
+                self.json(self.server.workbench.epub_inventory(value["item_id"], value["file_id"]))
+            else:
+                if set(value) != {"ids"}:
+                    raise ValueError()
+                self.server.workbench.start(value["ids"])
+                self.json({"accepted": True}, 202)
+        except SourceError as error:
+            self.json({"error": "Audiobookshelf: " + error.code}, 502)
         except (ValueError, TypeError, KeyError, OSError):
-            self.json({"error": "Cannot start: select known books and wait for the current batch"}, 400)
+            self.json({"error": "Cannot inspect EPUB: unsupported file, invalid selection or busy workbench"
+                       if self.path == "/api/epub-inventory" else
+                       "Cannot start: select known books and wait for the current batch"}, 400)
 
 
 def authenticate(address, source_id):
