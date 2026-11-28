@@ -22,7 +22,10 @@
         "\\mathbf v": "Particle velocity",
         "\\mathbf B": "Magnetic flux density"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "vector f equals q times open parenthesis vector e plus vector v cross vector b close parenthesis",
+        "electromagnetic force vector equals the signed charge times the sum of the electric field vector and the cross product of particle velocity with magnetic flux density"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",
@@ -60,7 +63,10 @@
         "\\mathbf v": "Particle velocity",
         "\\mathbf B": "Magnetic flux density"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "vector f equals q times open parenthesis vector v cross vector b close parenthesis",
+        "magnetic force vector equals the signed charge times the cross product of particle velocity with magnetic flux density"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

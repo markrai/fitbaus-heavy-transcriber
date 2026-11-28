@@ -1,0 +1,83 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.energy_momentum:standard",
+      "mathematical_sha256": "5467c22ba599c4ef083da1057eba2cc33f0f465cdee122734e120443fdd5db5b",
+      "latex": "E^2=p^2c^2+m^2c^4",
+      "aliases": [
+        "e squared equals p squared times c squared plus m squared times c to the fourth power",
+        "total energy squared equals momentum magnitude squared times the speed of light squared plus invariant mass squared times the speed of light to the fourth power"
+      ],
+      "negative_phrases": [
+        "e squared equals p squared times c squared minus m squared times c to the fourth power",
+        "e squared equals p squared times c squared plus m squared times c squared",
+        "energy momentum relation"
+      ],
+      "scope_review": "The left side is total relativistic energy squared. The two positive terms are momentum magnitude squared times c squared and invariant mass squared times c to the fourth power."
+    },
+    {
+      "id": "physics.length_contraction:standard",
+      "mathematical_sha256": "be7a358ae3854ec8c29ad0064ae50363a5026ecae4660b361ef2a7be9e4cebb6",
+      "latex": "L=\\frac{L_0}{\\gamma}",
+      "aliases": [
+        "l equals l sub zero divided by gamma",
+        "length in the observing frame equals proper length divided by the lorentz factor"
+      ],
+      "negative_phrases": [
+        "l equals l sub zero times gamma",
+        "proper length equals length in the observing frame divided by the lorentz factor",
+        "length contraction"
+      ],
+      "scope_review": "The proper length is the numerator and gamma the denominator. Simultaneous endpoint measurements and the direction of motion remain specified by the source conditions."
+    },
+    {
+      "id": "physics.lorentz:standard",
+      "mathematical_sha256": "c3c15ccdadbcc80019c6aa55d902436a944d204001ea282e89e251e7bd76a123",
+      "latex": "\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^2}{c^2}}}",
+      "aliases": [
+        "gamma equals one divided by the square root of the quantity one minus v squared divided by c squared",
+        "the lorentz factor equals the reciprocal of the square root of open parenthesis one minus the fraction with numerator v squared and denominator c squared close parenthesis"
+      ],
+      "negative_phrases": [
+        "gamma equals one divided by the square root of one minus v squared divided by c squared",
+        "gamma equals the square root of the quantity one minus v squared divided by c squared",
+        "lorentz factor"
+      ],
+      "scope_review": "The reciprocal covers the complete radical, whose radicand subtracts v squared divided by c squared from one. Retain the inherited recitation with its explicit quantity grouping."
+    },
+    {
+      "id": "physics.mass_energy:standard",
+      "mathematical_sha256": "27277ed5f7e4a67ad39b1b7224f8517cdc1cc4d74b9373849c53c26fbbac4849",
+      "latex": "E=mc^2",
+      "aliases": [
+        "e equals m c squared",
+        "e equals mc squared",
+        "rest energy equals invariant mass times the square of the speed of light"
+      ],
+      "negative_phrases": [
+        "e equals m c cubed",
+        "total energy of a moving body equals its invariant mass times the square of the speed of light",
+        "energy equals mass times the speed of light squared",
+        "e equals m c square"
+      ],
+      "scope_review": "The expression denotes rest energy, not general moving-body total energy. Retain the two familiar literal recitations and replace the underspecified physical description; defer the inherited square transcription variant to ASR qualification."
+    },
+    {
+      "id": "physics.time_dilation:standard",
+      "mathematical_sha256": "50382699eb574290e93c3203b6590945b58b6a7b62b4ea4355f8eb6c9896d708",
+      "latex": "\\Delta t=\\gamma\\Delta\\tau",
+      "aliases": [
+        "delta t equals gamma times delta tau",
+        "time interval in the observing frame equals the lorentz factor times the proper time interval"
+      ],
+      "negative_phrases": [
+        "delta tau equals gamma times delta t",
+        "time interval in the observing frame equals the proper time interval divided by the lorentz factor",
+        "time dilation"
+      ],
+      "scope_review": "The coordinate interval is gamma times the proper interval between events occurring at one position in the clock rest frame. Preserve the order and distinguish t from tau."
+    }
+  ]
+}

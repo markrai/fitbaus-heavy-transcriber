@@ -20,7 +20,10 @@
         "Q": "Charge on reference conductor",
         "V": "Potential of reference conductor minus other conductor"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "c equals q divided by v",
+        "capacitance equals the charge on the reference conductor divided by the voltage across the capacitor"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

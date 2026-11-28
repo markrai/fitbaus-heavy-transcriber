@@ -20,7 +20,10 @@
         "L_0": "Proper length",
         "\\gamma": "Lorentz factor"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "l equals l sub zero divided by gamma",
+        "length in the observing frame equals proper length divided by the lorentz factor"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

@@ -20,7 +20,10 @@
         "\\Phi_B": "Oriented magnetic flux",
         "t": "Time"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "electromotive force equals negative the time derivative of magnetic flux",
+        "script e equals negative the derivative of phi sub capital b with respect to t"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

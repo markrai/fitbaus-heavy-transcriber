@@ -1,0 +1,67 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.de_broglie:standard",
+      "mathematical_sha256": "189ef3fd6cfa617b058b7ca560e977fa4baadd3152b2727e1863e9c39f2e8d07",
+      "latex": "\\lambda=\\frac{h}{p}",
+      "aliases": [
+        "lambda equals h divided by p",
+        "de broglie wavelength equals planck constant divided by momentum magnitude"
+      ],
+      "negative_phrases": [
+        "lambda equals p divided by h",
+        "de broglie wavelength equals reduced planck constant divided by momentum magnitude",
+        "de broglie wavelength"
+      ],
+      "scope_review": "The numerator is Planck constant h, not reduced Planck constant. The denominator is the nonzero momentum magnitude; the wavelength is the spatial phase wavelength."
+    },
+    {
+      "id": "physics.photoelectric:standard",
+      "mathematical_sha256": "edef82f4ce82491a79063a3bd64be7dcf9dbba8176ffabb256d71af0a509f5ab",
+      "latex": "K_{\\max}=hf-\\phi",
+      "aliases": [
+        "k sub max equals h times f minus phi",
+        "maximum emitted electron kinetic energy equals planck constant times incident photon frequency minus the material work function"
+      ],
+      "negative_phrases": [
+        "k sub max equals h times f plus phi",
+        "maximum emitted electron kinetic energy equals planck constant times incident photon frequency divided by the material work function",
+        "photoelectric equation"
+      ],
+      "scope_review": "Preserve the maximum-energy subscript and subtract the work function from the photon energy. The threshold and single-photon conditions remain part of the source."
+    },
+    {
+      "id": "physics.planck:standard",
+      "mathematical_sha256": "af1a993db847175224518ee2eefd0c95f7d91f2220e6405e614dae93306fb905",
+      "latex": "E=hf",
+      "aliases": [
+        "e equals h f",
+        "e equals hf",
+        "photon energy equals planck constant times frequency"
+      ],
+      "negative_phrases": [
+        "photon energy equals reduced planck constant times frequency",
+        "e equals h divided by f",
+        "planck relation"
+      ],
+      "scope_review": "Photon energy is Planck constant times ordinary frequency, not angular frequency with reduced Planck constant. The frequency and energy use the same frame."
+    },
+    {
+      "id": "physics.uncertainty:standard",
+      "mathematical_sha256": "58d6199f0fbbaf27c105a933d1b5879b68ea3dc3522e880e567192d84fc1ee7b",
+      "latex": "\\sigma_x\\sigma_p\\geq\\frac{\\hbar}{2}",
+      "aliases": [
+        "sigma sub x times sigma sub p is greater than or equal to h bar divided by two",
+        "position standard deviation times the standard deviation of canonical momentum in the same direction is at least half the reduced planck constant"
+      ],
+      "negative_phrases": [
+        "sigma sub x times sigma sub p equals h bar divided by two",
+        "position standard deviation times the standard deviation of canonical momentum in the same direction is at least half the planck constant",
+        "uncertainty principle"
+      ],
+      "scope_review": "The product of standard deviations, not variances or measurement errors, is bounded below by half h bar. Equality is not asserted in general; the canonical momentum direction matches position."
+    }
+  ]
+}

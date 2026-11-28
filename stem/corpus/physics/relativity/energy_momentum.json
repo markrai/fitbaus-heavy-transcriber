@@ -21,7 +21,10 @@
         "c": "Speed of light in vacuum",
         "m": "Invariant mass"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "e squared equals p squared times c squared plus m squared times c to the fourth power",
+        "total energy squared equals momentum magnitude squared times the speed of light squared plus invariant mass squared times the speed of light to the fourth power"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

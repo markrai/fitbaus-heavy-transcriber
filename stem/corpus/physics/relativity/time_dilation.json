@@ -20,7 +20,10 @@
         "\\Delta\\tau": "Proper time interval on moving clock",
         "\\gamma": "Lorentz factor"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "delta t equals gamma times delta tau",
+        "time interval in the observing frame equals the lorentz factor times the proper time interval"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

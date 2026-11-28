@@ -50,6 +50,9 @@ class RecitationReviewTests(unittest.TestCase):
                 self.assertEqual(sorted(rep["spoken_aliases"]), sorted(row["aliases"]))
                 self.assertTrue(row["scope_review"].strip())
 
+    def test_all_representations_have_scope_review_fixtures(self):
+        self.assertEqual({row["id"] for row in self.rows}, set(self.representations))
+
     def test_positive_recitations_and_source_spans(self):
         for row in self.rows:
             for phrase in row["aliases"]:

@@ -21,7 +21,8 @@
         "c": "Speed of light in vacuum"
       },
       "spoken_aliases": [
-        "gamma equals one divided by the square root of the quantity one minus v squared divided by c squared"
+        "gamma equals one divided by the square root of the quantity one minus v squared divided by c squared",
+        "the lorentz factor equals the reciprocal of the square root of open parenthesis one minus the fraction with numerator v squared and denominator c squared close parenthesis"
       ],
       "references": [
         {

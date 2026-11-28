@@ -23,7 +23,10 @@
         "q_2": "Second charge",
         "r": "Separation"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f equals the reciprocal of the product of four pi and epsilon sub zero times the fraction with numerator the absolute value of q sub one times q sub two and denominator r squared",
+        "electrostatic force magnitude equals the product of the reciprocal of four times pi times vacuum permittivity and the absolute value of the product of the two charges divided by the square of their separation"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",
