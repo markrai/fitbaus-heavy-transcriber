@@ -21,7 +21,7 @@ REPORT_SCHEMA = "fitbaus.stem.context-qualification/v1"
 MAX_CONTEXT_BYTES = MAX_PACK_BYTES
 STRATA = ("uniform", "formula_hint")
 IMPLEMENTATION_FILES = (
-    "context_observations.py", "sample_checkpoints.py", "cue_recognition.py",
+    "context_observations.py", "sample_checkpoints.py", "cue_recognition.py", "development_expansion.py",
     "hybrid.py", "structural_rules.py", "identity_context.py", "matcher.py", "prose_context.py",
     "tokenizer.py", "parser.py", "expression.py", "dictionary.py",
     "corpus_model.py", "observation_labels.py", "qualify_recognition.py",
@@ -178,19 +178,26 @@ def verify_context(supplied, current, requalify=False):
     raise ValueError("Context sample, checkpoints or implementation changed")
 
 
-def score(pack, originals, labels, hybrid, *, label_pack=None):
+def score(pack, originals, labels, hybrid, *, label_pack=None, strata=STRATA,
+          recognizer=recognize_window, diagnostics=False):
     supplied = pack if label_pack is None else label_pack
     verify_context(supplied, pack, requalify=label_pack is not None)
     reviewed = read_labels(labels, supplied, hybrid)
+    strata = tuple(strata)
+    if not strata or len(set(strata)) != len(strata) or any(
+            not isinstance(name, str) or not name for name in strata):
+        raise ValueError("Invalid scoring strata")
+    if any(anchor["stratum"] not in strata for row in pack["windows"] for anchor in row["anchors"]):
+        raise ValueError("Unknown anchor scoring stratum")
     groups = {name: Counter(anchors=0, excluded=0, scored=0, expected_matches=0,
                             actual_matches=0, true_positive=0, false_positive=0,
                             false_negative=0, invalid_evidence=0, cross_cue_expected=0,
-                            cross_cue_true_positive=0) for name in STRATA}
+                            cross_cue_true_positive=0) for name in strata}
     failures = []
-    coverage = {name: set() for name in STRATA}
+    coverage = {name: set() for name in strata}
     for row in pack["windows"]:
         window = originals[row["id"]]
-        result = recognize_window(window, hybrid)
+        result = recognizer(window, hybrid)
         by_anchor = {}
         for match in result.matches:
             parts = tuple((s.cue_index, s.start, s.end) for s in match.spans)
@@ -233,11 +240,28 @@ def score(pack, originals, labels, hybrid, *, label_pack=None):
                          false_negative=fn, invalid_evidence=invalid,
                          cross_cue_expected=sum(count for item, count in expected.items() if len(item[2]) > 1),
                          cross_cue_true_positive=sum(count for item, count in overlap.items() if len(item[2]) > 1))
+            if diagnostics:
+                identity_actual = Counter()
+                identity_expected = Counter()
+                notation_actual = Counter()
+                notation_expected = Counter()
+                for item, count in actual.items():
+                    identity_actual[item[0]] += count
+                    notation_actual[item[:2]] += count
+                for item, count in expected.items():
+                    identity_expected[item[0]] += count
+                    notation_expected[item[:2]] += count
+                stats.update(identity_true_positive=sum((identity_actual & identity_expected).values()),
+                             notation_true_positive=sum((notation_actual & notation_expected).values()),
+                             cross_cue_actual=sum(count for item, count in actual.items() if len(item[2]) > 1))
             if fp or fn or invalid:
                 failures.append({"anchor_id": anchor["id"], "stratum": anchor["stratum"],
                                  "false_positive": fp, "false_negative": fn, "invalid_evidence": invalid})
     summaries = {}
     for name, stats in groups.items():
+        if diagnostics:
+            for metric in ("identity_true_positive", "notation_true_positive", "cross_cue_actual"):
+                stats[metric] += 0
         summaries[name] = {**dict(stats), "expected_representation_coverage": len(coverage[name]),
                            "precision": stats["true_positive"] / stats["actual_matches"] if stats["actual_matches"] else None,
                            "recall": stats["true_positive"] / stats["expected_matches"] if stats["expected_matches"] else None,
