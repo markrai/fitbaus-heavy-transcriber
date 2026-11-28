@@ -22,7 +22,10 @@
         "y_1": "First y coordinate",
         "y_2": "Second y coordinate"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "m equals the ordered pair with first coordinate the sum of x sub one and x sub two all divided by two and second coordinate the sum of y sub one and y sub two all divided by two",
+        "midpoint equals the ordered pair whose first coordinate is the fraction with numerator x sub one plus x sub two and denominator two and whose second coordinate is the fraction with numerator y sub one plus y sub two and denominator two"
+      ],
       "references": [
         {
           "source_id": "openstax_intermediate_algebra_2e_reference",
