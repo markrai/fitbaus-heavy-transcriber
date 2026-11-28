@@ -6,8 +6,9 @@ from transcriber.contract import Cue, TranscriptWindow
 from .hybrid import NAMED_INTRO, HybridRecognizer
 from .matcher import INTRO, sentence_candidates
 from .tokenizer import Kind, tokenize
+from .prose_context import recognize_prose
 
-CUE_RECOGNITION_VERSION = "bounded-cue-assembly-v1"
+CUE_RECOGNITION_VERSION = "bounded-cue-assembly-v2"
 MAX_JOIN_CUES = 3
 MAX_GAP_MS = 1000
 MAX_JOIN_DURATION_MS = 30000
@@ -132,7 +133,14 @@ def recognize_window(window: TranscriptWindow, hybrid: HybridRecognizer) -> Wind
         if index < len(window.cues) and linked(window.cues[index - 1], window.cues[index],
                                                 tokens[index - 1], tokens[index]):
             continue
-        matches.extend(recognize_run(window.cues[first:index], first, hybrid))
+        run_matches = recognize_run(window.cues[first:index], first, hybrid)
+        if not run_matches and index - first == 1:
+            for match, evidence in recognize_prose(window.cues, first, hybrid):
+                part = window.cues[first]
+                source_span = CueSpan(first, match.start, match.end, part.start_ms, part.end_ms,
+                                      part.text[match.start:match.end])
+                run_matches += (CueMatch(match.dictionary_id, match.latex, (source_span,), evidence, first),)
+        matches.extend(run_matches)
         first = index
     return WindowRecognition(window.identity.cache_key(), window.start_ms, window.end_ms,
                              hybrid.policy_sha256, tuple(matches))

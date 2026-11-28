@@ -13,6 +13,7 @@ from .cue_recognition import recognize_window
 from .hybrid import build_hybrid
 from .observation_labels import label_latex
 from .qualify_recognition import fields, text_value
+from .prose_context import MAX_EVIDENCE_CUES, MAX_EVIDENCE_GAP_MS, MAX_EVIDENCE_MS
 
 SCHEMA = "fitbaus.stem.context-sample/v1"
 LABEL_SCHEMA = "fitbaus.stem.context-labels/v1"
@@ -21,7 +22,7 @@ MAX_CONTEXT_BYTES = MAX_PACK_BYTES
 STRATA = ("uniform", "formula_hint")
 IMPLEMENTATION_FILES = (
     "context_observations.py", "sample_checkpoints.py", "cue_recognition.py",
-    "hybrid.py", "structural_rules.py", "identity_context.py", "matcher.py",
+    "hybrid.py", "structural_rules.py", "identity_context.py", "matcher.py", "prose_context.py",
     "tokenizer.py", "parser.py", "expression.py", "dictionary.py",
     "corpus_model.py", "observation_labels.py", "qualify_recognition.py",
 )
@@ -161,8 +162,26 @@ def read_labels(labels, pack, hybrid):
     return reviewed
 
 
-def score(pack, originals, labels, hybrid):
-    reviewed = read_labels(labels, pack, hybrid)
+def verify_context(supplied, current, requalify=False):
+    check_digest(supplied, "context_sha256")
+    if supplied == current:
+        return
+    if requalify:
+        mutable = {"context_sha256", "hybrid_policy_sha256", "implementation_sha256"}
+        if ({k: v for k, v in supplied.items() if k not in mutable}
+                == {k: v for k, v in current.items() if k not in mutable}
+                and all(isinstance(supplied.get(key), str)
+                        and len(supplied[key]) == 64
+                        and all(char in "0123456789abcdef" for char in supplied[key])
+                        for key in mutable)):
+            return
+    raise ValueError("Context sample, checkpoints or implementation changed")
+
+
+def score(pack, originals, labels, hybrid, *, label_pack=None):
+    supplied = pack if label_pack is None else label_pack
+    verify_context(supplied, pack, requalify=label_pack is not None)
+    reviewed = read_labels(labels, supplied, hybrid)
     groups = {name: Counter(anchors=0, excluded=0, scored=0, expected_matches=0,
                             actual_matches=0, true_positive=0, false_positive=0,
                             false_negative=0, invalid_evidence=0, cross_cue_expected=0,
@@ -181,7 +200,12 @@ def score(pack, originals, labels, hybrid):
             valid = (result.book_key == row["book_key"] and result.window_start_ms == window.start_ms
                      and result.window_end_ms == window.end_ms and result.policy_sha256 == hybrid.policy_sha256
                      and 0 <= match.evidence_start_cue <= first <= last <= match.evidence_end_cue < len(window.cues)
-                     and match.evidence_end_cue - match.evidence_start_cue < 3
+                     and match.evidence_end_cue - match.evidence_start_cue < (MAX_EVIDENCE_CUES if len(parts) == 1 else 3)
+                     and (match.evidence_end_cue == match.evidence_start_cue
+                          or window.cues[match.evidence_end_cue].end_ms
+                          - window.cues[match.evidence_start_cue].start_ms <= MAX_EVIDENCE_MS)
+                     and all(window.cues[i + 1].start_ms - window.cues[i].end_ms <= MAX_EVIDENCE_GAP_MS
+                             for i in range(match.evidence_start_cue, match.evidence_end_cue))
                      and all(0 <= s.cue_index < len(window.cues)
                              and 0 <= s.start < s.end <= len(window.cues[s.cue_index].text)
                              and s.source_text == window.cues[s.cue_index].text[s.start:s.end]
@@ -219,7 +243,10 @@ def score(pack, originals, labels, hybrid):
                            "recall": stats["true_positive"] / stats["expected_matches"] if stats["expected_matches"] else None,
                            "pass": bool(stats["scored"]) and not (stats["false_positive"] or stats["false_negative"]
                                                                   or stats["invalid_evidence"])}
-    payload = {"schema": REPORT_SCHEMA, "partition": "development", "context_sha256": pack["context_sha256"],
+    payload = {"schema": REPORT_SCHEMA, "partition": "development", "context_sha256": supplied["context_sha256"],
+               "evaluated_context_sha256": pack["context_sha256"],
+               "label_policy_sha256": supplied["hybrid_policy_sha256"],
+               "label_implementation_sha256": supplied["implementation_sha256"],
                "labels_sha256": digest(labels), "implementation_sha256": pack["implementation_sha256"],
                "hybrid_policy_sha256": hybrid.policy_sha256, "groups": summaries, "failures": failures,
                "provenance_verified": False, "recognition_qualified": False, "release_qualified": False}
@@ -233,7 +260,10 @@ def main(argv=None):
     parser.add_argument("--name", help="New context JSON filename under work/stem-qualification")
     parser.add_argument("--context", type=Path)
     parser.add_argument("--labels", type=Path)
+    parser.add_argument("--requalify", action="store_true", help="Allow old implementation/policy binding only with identical development evidence")
     args = parser.parse_args(argv)
+    if args.requalify and args.name:
+        parser.error("--requalify requires scoring")
     if not ((args.name and not args.context and not args.labels)
             or (not args.name and args.context and args.labels)):
         parser.error("Choose --name for export or --context and --labels for scoring")
@@ -248,10 +278,9 @@ def main(argv=None):
                       "partition": pack["partition"], "recognition_qualified": False}
         else:
             supplied = load_json(args.context)
-            check_digest(supplied, "context_sha256")
-            if supplied != pack:
-                raise ValueError("Context sample, checkpoints or implementation changed")
-            report = score(pack, originals, load_json(args.labels), hybrid)
+            verify_context(supplied, pack, args.requalify)
+            report = score(pack, originals, load_json(args.labels), hybrid,
+                           label_pack=supplied if args.requalify else None)
         print(json.dumps(report, indent=2, sort_keys=True))
         return 0
     except (OSError, ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
