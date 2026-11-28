@@ -23,7 +23,10 @@
         "e": "Base of natural logarithms",
         "\\pi": "Pi"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f of x equals one divided by open parenthesis sigma times the square root of open parenthesis two times pi close parenthesis close parenthesis times e raised to the power of open parenthesis negative of the fraction with numerator open parenthesis x minus mu close parenthesis squared and denominator two times sigma squared close parenthesis",
+        "the density f of x equals the reciprocal of the product of sigma and the square root of the quantity two pi multiplied by e raised to the power of negative open parenthesis the square of the difference of x and mu divided by open parenthesis two times sigma squared close parenthesis close parenthesis end exponent"
+      ],
       "references": [
         {
           "source_id": "nist_statistics_handbook_reference",

@@ -20,7 +20,10 @@
         "A": "Event of interest",
         "B": "Observed event"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the probability of a given b equals the probability of b given a times the probability of a all divided by the probability of b",
+        "probability of a given b equals the fraction with numerator the product of the probability of b given a and the probability of a and denominator the probability of b"
+      ],
       "references": [
         {
           "source_id": "openstax_data_science_reference",

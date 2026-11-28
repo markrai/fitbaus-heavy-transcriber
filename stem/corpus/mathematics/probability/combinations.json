@@ -19,7 +19,10 @@
         "n": "Number of distinct items",
         "k": "Number selected"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "n choose k equals the fraction with numerator n factorial and denominator k factorial times open parenthesis n minus k close parenthesis factorial",
+        "the binomial coefficient n choose k equals n factorial divided by the product of k factorial and the factorial of the quantity n minus k"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

@@ -23,7 +23,10 @@
         "x_i": "Possible value",
         "P": "Probability measure"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the expected value of random variable x equals the sum from i equals one to n of x sub i times the probability that random variable x equals x sub i",
+        "expectation of x equals the sum from i equals one to n of the product of x sub i and the probability that x equals x sub i"
+      ],
       "references": [
         {
           "source_id": "openstax_statistics_2e_reference",

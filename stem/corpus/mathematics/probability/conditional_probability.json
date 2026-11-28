@@ -20,7 +20,10 @@
         "A": "Event of interest",
         "B": "Conditioning event"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the probability of a given b equals the probability of the intersection of a and b divided by the probability of b",
+        "probability of a given b equals the fraction with numerator the probability that both a and b occur and denominator the probability of b"
+      ],
       "references": [
         {
           "source_id": "openstax_data_science_reference",

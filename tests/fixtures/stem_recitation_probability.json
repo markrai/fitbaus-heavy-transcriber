@@ -1,0 +1,96 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "probability.bayes:standard",
+      "mathematical_sha256": "62e9d55dc9ca9eb56c3eba9702e1a482165028383f260f6872d4539b51b15495",
+      "latex": "P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}",
+      "aliases": [
+        "the probability of a given b equals the probability of b given a times the probability of a all divided by the probability of b",
+        "probability of a given b equals the fraction with numerator the product of the probability of b given a and the probability of a and denominator the probability of b"
+      ],
+      "negative_phrases": [
+        "the probability of a given b equals the probability of b given a times the probability of b all divided by the probability of a",
+        "the probability of a given b equals the probability of b given a",
+        "bayes theorem"
+      ],
+      "scope_review": "The conditional probability in the numerator reverses the conditioning order; multiply by the marginal probability of A and divide the whole product by the marginal probability of B."
+    },
+    {
+      "id": "probability.binomial_distribution:standard",
+      "mathematical_sha256": "5144f1751f6febbfd832a86cc60b515d770281f92dc91e98895936442df0bdd9",
+      "latex": "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}",
+      "aliases": [
+        "the probability that random variable x equals k equals n choose k times p to the power k times open parenthesis one minus p close parenthesis raised to the power of open parenthesis n minus k close parenthesis",
+        "the probability that x equals k equals the product of the binomial coefficient n choose k and p raised to the power k and the quantity one minus p raised to the power of the quantity n minus k end exponent"
+      ],
+      "negative_phrases": [
+        "the probability that x equals k equals n choose k times p to the power k times one minus p to the power n minus k",
+        "the probability that random variable x equals k equals n choose k times p to the power n times open parenthesis one minus p close parenthesis raised to the power of open parenthesis n minus k close parenthesis",
+        "binomial distribution"
+      ],
+      "scope_review": "The count probability is the binomial coefficient times two powers, one with base p and exponent k and the other with grouped base 1-p and grouped exponent n-k. The random variable is distinguished from the count k."
+    },
+    {
+      "id": "probability.combinations:standard",
+      "mathematical_sha256": "33cf403a4dcbef511314a4eca2620705b1ac9c5469193ed110202bf7be59d8c0",
+      "latex": "\\binom{n}{k}=\\frac{n!}{k!(n-k)!}",
+      "aliases": [
+        "n choose k equals the fraction with numerator n factorial and denominator k factorial times open parenthesis n minus k close parenthesis factorial",
+        "the binomial coefficient n choose k equals n factorial divided by the product of k factorial and the factorial of the quantity n minus k"
+      ],
+      "negative_phrases": [
+        "n choose k equals n factorial divided by k factorial times n minus k factorial",
+        "n choose k equals n factorial divided by the factorial of the quantity n minus k",
+        "combinations formula"
+      ],
+      "scope_review": "The denominator contains the product of two factorials; the second factorial applies to the whole difference n-k. This distinguishes unordered choices from permutations."
+    },
+    {
+      "id": "probability.conditional_probability:standard",
+      "mathematical_sha256": "b168d99dd6bd1690dab851c880e7aaf9b10ff7e7e8b24787fbfc67de62b3d379",
+      "latex": "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}",
+      "aliases": [
+        "the probability of a given b equals the probability of the intersection of a and b divided by the probability of b",
+        "probability of a given b equals the fraction with numerator the probability that both a and b occur and denominator the probability of b"
+      ],
+      "negative_phrases": [
+        "the probability of a given b equals the probability of the union of a and b divided by the probability of b",
+        "the probability of a given b equals the probability of the intersection of a and b divided by the probability of a",
+        "conditional probability"
+      ],
+      "scope_review": "The numerator is the joint event A intersect B, not the union or product of marginal probabilities. The conditioning event B supplies the denominator."
+    },
+    {
+      "id": "probability.permutations:standard",
+      "mathematical_sha256": "5d627c87a64e06307c27418ea0ff958b496d8a611913d762a7d46848e1a301b9",
+      "latex": "P(n,k)=\\frac{n!}{(n-k)!}",
+      "aliases": [
+        "the number of permutations of n items taken k at a time equals n factorial divided by the factorial of the quantity n minus k",
+        "p of n comma k equals the fraction with numerator n factorial and denominator open parenthesis n minus k close parenthesis factorial"
+      ],
+      "negative_phrases": [
+        "p of n comma k equals n factorial divided by n minus k factorial",
+        "the number of permutations of n items taken k at a time equals n factorial divided by k factorial",
+        "permutations formula"
+      ],
+      "scope_review": "P(n,k) counts ordered selections, not a probability. The denominator is the factorial of the complete difference n-k."
+    },
+    {
+      "id": "probability.poisson_distribution:standard",
+      "mathematical_sha256": "c9da5db713e09f719cf217e64ec95009c734b31a27d56b692205ace3b9249b36",
+      "latex": "P(X=k)=\\frac{e^{-\\lambda}\\lambda^k}{k!}",
+      "aliases": [
+        "the probability that random variable x equals k equals the fraction with numerator e to the power of negative lambda times lambda raised to the power k and denominator k factorial",
+        "the probability that x equals k equals e raised to the power of open parenthesis negative lambda close parenthesis times lambda to the power k all divided by k factorial"
+      ],
+      "negative_phrases": [
+        "the probability that x equals k equals e raised to the power of open parenthesis lambda close parenthesis times lambda to the power k all divided by k factorial",
+        "the probability that x equals k equals e raised to the power of open parenthesis negative lambda close parenthesis times lambda to the power k all divided by k",
+        "poisson distribution"
+      ],
+      "scope_review": "The exponential has negative lambda as its exponent; multiply by lambda to k and divide the complete numerator by k factorial."
+    }
+  ]
+}

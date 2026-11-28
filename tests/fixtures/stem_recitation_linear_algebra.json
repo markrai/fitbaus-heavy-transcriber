@@ -1,0 +1,36 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "linear_algebra.determinant_2x2:standard",
+      "mathematical_sha256": "8e788de74e1c8f8f56680442d60872b05fbad411afe2e524e7c50bce3ef32683",
+      "latex": "\\det A=ad-bc",
+      "aliases": [
+        "the determinant of matrix a equals entry a times entry d minus entry b times entry c",
+        "determinant of matrix a equals the product of entries a and d minus the product of entries b and c"
+      ],
+      "negative_phrases": [
+        "the determinant of matrix a equals entry a times entry d plus entry b times entry c",
+        "the determinant of matrix a equals entry a times entry b minus entry c times entry d",
+        "two by two determinant"
+      ],
+      "scope_review": "A denotes the matrix, while lower-case a through d denote its entries in row order. Subtract the off-diagonal product bc from the diagonal product ad."
+    },
+    {
+      "id": "linear_algebra.inverse_2x2:standard",
+      "mathematical_sha256": "d9da112ba3efdfb24e4b7b5fc3e68c92237f1b62c14069cd110320ac36153a3f",
+      "latex": "A^{-1}=\\frac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}",
+      "aliases": [
+        "the inverse of matrix a equals one divided by open parenthesis entry a times entry d minus entry b times entry c close parenthesis times the matrix with first row entry d and negative entry b and second row negative entry c and entry a",
+        "matrix a inverse equals the fraction with numerator one and denominator the product of entries a and d minus the product of entries b and c multiplied by the matrix whose first row is d followed by negative b and whose second row is negative c followed by a"
+      ],
+      "negative_phrases": [
+        "the inverse of matrix a equals one divided by entry a times entry d minus entry b times entry c times the matrix with first row entry d and negative entry b and second row negative entry c and entry a",
+        "the inverse of matrix a equals one divided by open parenthesis entry a times entry d minus entry b times entry c close parenthesis times the matrix with first row entry d and entry b and second row entry c and entry a",
+        "two by two matrix inverse"
+      ],
+      "scope_review": "The scalar reciprocal of ad-bc multiplies the entire two-row matrix. Swap the diagonal entries and negate the off-diagonal entries, maintaining row order. The determinant must be nonzero."
+    }
+  ]
+}
