@@ -22,7 +22,10 @@
         "\\lambda": "Mean count",
         "e": "Base of natural logarithms"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the probability that random variable x equals k equals the fraction with numerator e to the power of negative lambda times lambda raised to the power k and denominator k factorial",
+        "the probability that x equals k equals e raised to the power of open parenthesis negative lambda close parenthesis times lambda to the power k all divided by k factorial"
+      ],
       "references": [
         {
           "source_id": "nist_statistics_handbook_reference",

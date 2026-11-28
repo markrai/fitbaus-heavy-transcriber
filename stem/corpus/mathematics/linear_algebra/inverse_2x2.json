@@ -22,7 +22,10 @@
         "c": "Bottom left entry",
         "d": "Bottom right entry"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the inverse of matrix a equals one divided by open parenthesis entry a times entry d minus entry b times entry c close parenthesis times the matrix with first row entry d and negative entry b and second row negative entry c and entry a",
+        "matrix a inverse equals the fraction with numerator one and denominator the product of entries a and d minus the product of entries b and c multiplied by the matrix whose first row is d followed by negative b and whose second row is negative c followed by a"
+      ],
       "references": [
         {
           "source_id": "openstax_college_algebra_2e_reference",

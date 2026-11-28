@@ -20,7 +20,10 @@
         "n": "Number of available items",
         "k": "Number selected"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the number of permutations of n items taken k at a time equals n factorial divided by the factorial of the quantity n minus k",
+        "p of n comma k equals the fraction with numerator n factorial and denominator open parenthesis n minus k close parenthesis factorial"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

@@ -22,7 +22,10 @@
         "n": "Trial count",
         "p": "Success probability"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the probability that random variable x equals k equals n choose k times p to the power k times open parenthesis one minus p close parenthesis raised to the power of open parenthesis n minus k close parenthesis",
+        "the probability that x equals k equals the product of the binomial coefficient n choose k and p raised to the power k and the quantity one minus p raised to the power of the quantity n minus k end exponent"
+      ],
       "references": [
         {
           "source_id": "nist_statistics_handbook_reference",
