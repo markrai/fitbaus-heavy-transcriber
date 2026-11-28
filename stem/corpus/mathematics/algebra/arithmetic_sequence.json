@@ -21,7 +21,11 @@
         "n": "Term index",
         "d": "Common difference"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "a sub n equals a sub one plus open parenthesis n minus one close parenthesis times d",
+        "a sub n equals a sub 1 plus open parenthesis n minus 1 close parenthesis times d",
+        "a sub n equals a sub one plus the product of the quantity n minus one and d"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

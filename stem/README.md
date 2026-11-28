@@ -92,6 +92,16 @@ The tool creates plan.json, one bounded atomic checkpoint per completed represen
 
 Only mathematically approved representations with pending recognition review are selected. The report classifies normalized aliases, already-existing phrases, duplicates, generic names, missing explicit relation words, invalid aliases and cross-representation collisions (including collisions with existing authored aliases). All accepted-looking proposals remain candidate_only. Exact collision checks are not semantic verification; a candidate can still be mathematically wrong or match ordinary prose. A later recognition qualification phase must independently review recitation fidelity and measure false positives and transcription coverage before any alias is admitted. No source file, review status, legacy dictionary, normal transcript or runtime is changed. CI exercises the workflow with mock responses only, without running Ollama.
 
+## Direct spoken-recitation vetting (S.1B.1)
+
+The preferred workflow is direct maintainer-assisted recitation authoring and semantic scope review of the verified corpus, not mandatory GPU generation. The five-representation Ollama pilot demonstrated that lexical acceptance does not establish correct grouping. Preserve that experimental baseline; no further inference is necessary for the curated corpus.
+
+The first batch revises arithmetic sequence, arithmetic series, binomial theorem, difference of squares and Euler's identity. It provides 14 deliberately scoped phrases, with exact equations, mathematical review digest bindings, scope reasoning and negative examples in tests/fixtures/stem_recitation_pilot.json. The two ambiguous inherited Euler phrases are replaced only in the structured corpus. The legacy prototype remains unchanged. CI runs the actual matcher against positive and negative fixtures using a test-only dictionary and checks that unqualified rows remain excluded by the candidate compiler.
+
+Authoring rubric: say explicit subscripts; preserve the base and end of compound exponents; identify numerator and denominator scope; group sums and products; state both summation bounds, signs and variable names. Prefer distinct correct recitations over filling a quota. For every phrase, reconstruct the expression and consider an alternative parse. A mathematically plausible alternative is grounds to exclude or rewrite it. A later independent or blind review may catch correlated authoring errors, but this batch does not claim independent inference or formal recognition qualification.
+
+Recognition reviews remain pending; S.1C still requires actual transcription coverage, broader negative cases and release gates. No GPU, Ollama, additional API account or model download is needed for the direct authoring path. The optional existing generator is retained unchanged for reproducing the pilot.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

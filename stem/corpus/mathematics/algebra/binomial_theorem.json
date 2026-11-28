@@ -21,7 +21,10 @@
         "n": "Exponent",
         "k": "Summation index"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "open parenthesis a plus b close parenthesis raised to the power n equals the sum from k equals zero to n of n choose k times a raised to the power open parenthesis n minus k close parenthesis times b raised to the power k",
+        "the quantity a plus b raised to the power n equals the sum from k equals zero to n of the product of n choose k and a raised to the power of open parenthesis n minus k close parenthesis and b raised to the power k"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",
