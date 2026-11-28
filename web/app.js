@@ -132,7 +132,8 @@ $("companions").addEventListener("click", async () => {
         for (const file of data.files) {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
             if (file.format === "epub") {
-                const inspect = element("button", "Inspect EPUB", "secondary");
+                for (const mode of ["inventory", "alignment"]) {
+                const inspect = element("button", mode === "inventory" ? "Inspect EPUB" : "Test alignment", "secondary");
                 inspect.type = "button";
                 const detail = element("p");
                 inspect.addEventListener("click", async () => {
@@ -140,13 +141,22 @@ $("companions").addEventListener("click", async () => {
                     companionBusy = true;
                     inspect.disabled = true;
                     updateActions();
-                    detail.textContent = "Downloading and inspecting EPUB…";
+                    detail.textContent = mode === "inventory" ? "Downloading and inspecting EPUB…" :
+                        "Comparing EPUB with retained narration…";
                     try {
-                        const inventory = await api("/api/epub-inventory", {
+                        const inventory = await api("/api/epub-" + mode, {
                             method: "POST", headers: {"Content-Type": "application/json"},
                             body: JSON.stringify({item_id: id, file_id: file.file_id})
                         });
                         if (request !== companionRequest) return;
+                        if (mode === "alignment") {
+                            detail.textContent = inventory.matched_cue_count + " / " + inventory.cue_count +
+                                " narration cues anchored · " + inventory.eligible_cue_count + " eligible · " +
+                                inventory.matched_section_count + " / " + inventory.section_count +
+                                " reading-order sections · " + inventory.conflicting_cue_count +
+                                " conflicting cues · Edition not verified";
+                            return;
+                        }
                         detail.textContent = "EPUB " + inventory.version + " · " + inventory.spine_count +
                             " reading-order entries · " + inventory.xhtml_count + " XHTML resources · " +
                             inventory.image_count + " images · Edition not verified";
@@ -163,6 +173,7 @@ $("companions").addEventListener("click", async () => {
                 });
                 row.append(inspect);
                 result.append(row, detail);
+                }
             } else {
                 result.append(row);
             }

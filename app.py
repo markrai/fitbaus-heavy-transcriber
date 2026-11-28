@@ -7,7 +7,8 @@ from pathlib import Path
 import threading
 import webbrowser
 
-from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg
+from heavy import Library, Vega, GpuEngine, process_book, ROOT, atomic_json, SourceError, WorkbenchError, require_ffmpeg, preview_alignment
+from epub_alignment import AlignmentError
 
 
 class Workbench:
@@ -39,6 +40,13 @@ class Workbench:
         return {"item_id": item, "files": [row.public() for row in self.library.companions(item)]}
 
     def epub_inventory(self, item, file_id):
+        return self.inspect_companion(item, lambda: self.library.epub_inventory(item, file_id), "spine")
+
+    def epub_alignment(self, item, file_id):
+        return self.inspect_companion(
+            item, lambda: preview_alignment(self.library, self.profile, item, file_id, self.root), "anchors")
+
+    def inspect_companion(self, item, inspect, private_field):
         with self.lock:
             if not isinstance(item, str) or item not in self.catalog:
                 raise ValueError("Unknown book")
@@ -46,8 +54,7 @@ class Workbench:
                 raise ValueError("Workbench is busy")
             self.inspecting_epub = True
         try:
-            result = self.library.epub_inventory(item, file_id)
-            return {key: value for key, value in result.items() if key != "spine"}
+            return {key: value for key, value in inspect().items() if key != private_field}
         finally:
             with self.lock:
                 self.inspecting_epub = False
@@ -156,7 +163,7 @@ class Handler(BaseHTTPRequestHandler):
         if (not self.valid_host() or self.headers.get_all("Origin") != ["http://" + self.server.host]
                 or self.headers.get_content_type() != "application/json"):
             return self.json({"error": "Request rejected"}, 403)
-        if self.path not in ("/api/start", "/api/epub-inventory"):
+        if self.path not in ("/api/start", "/api/epub-inventory", "/api/epub-alignment"):
             return self.json({"error": "Not found"}, 404)
         try:
             size = int(self.headers["Content-Length"])
@@ -165,20 +172,24 @@ class Handler(BaseHTTPRequestHandler):
             value = json.loads(self.rfile.read(size))
             if not isinstance(value, dict):
                 raise ValueError()
-            if self.path == "/api/epub-inventory":
+            if self.path in ("/api/epub-inventory", "/api/epub-alignment"):
                 if set(value) != {"item_id", "file_id"}:
                     raise ValueError()
-                self.json(self.server.workbench.epub_inventory(value["item_id"], value["file_id"]))
+                action = (self.server.workbench.epub_inventory if self.path == "/api/epub-inventory"
+                          else self.server.workbench.epub_alignment)
+                self.json(action(value["item_id"], value["file_id"]))
             else:
                 if set(value) != {"ids"}:
                     raise ValueError()
                 self.server.workbench.start(value["ids"])
                 self.json({"accepted": True}, 202)
+        except AlignmentError as error:
+            self.json({"error": str(error)}, 400)
         except SourceError as error:
             self.json({"error": "Audiobookshelf: " + error.code}, 502)
         except (ValueError, TypeError, KeyError, OSError):
             self.json({"error": "Cannot inspect EPUB: unsupported file, invalid selection or busy workbench"
-                       if self.path == "/api/epub-inventory" else
+                       if self.path in ("/api/epub-inventory", "/api/epub-alignment") else
                        "Cannot start: select known books and wait for the current batch"}, 400)
 
 

@@ -144,7 +144,12 @@ class Library:
         return discover(item, item_id)
 
     def epub_inventory(self, item_id, file_id):
-        from epub_inventory import inspect_epub, MAX_EPUB_BYTES
+        from epub_inventory import inspect_epub
+
+        return self.inspect_companion(item_id, file_id, inspect_epub)
+
+    def inspect_companion(self, item_id, file_id, inspect):
+        from epub_inventory import MAX_EPUB_BYTES
 
         identifier(item_id)
         identifier(file_id)
@@ -167,7 +172,7 @@ class Library:
                 current = next((row for row in self.companions(item_id) if row.file_id == file_id), None)
                 if current != candidate:
                     raise SourceError("stale_revision")
-                return inspect_epub(target)
+                return inspect(target)
 
         return {"item_id": item_id, "file_id": file_id, **self.authorized(fetch)}
 
@@ -189,7 +194,8 @@ def atomic_json(path, data):
 
 
 def read_window(path, identity, start, end):
-    raw = path.read_bytes()
+    with path.open("rb") as stream:
+        raw = stream.read(1024 * 1024 + 1)
     if len(raw) > 1024 * 1024:
         raise ValueError("Checkpoint exceeds result limit")
     value = json.loads(raw)
@@ -198,6 +204,43 @@ def read_window(path, identity, start, end):
     if value != window.to_json():
         raise ValueError("Checkpoint identity or coverage mismatch")
     return window.to_json()
+
+
+def checkpoint_directory(root, identity, profile):
+    key = hashlib.sha256(profile.encode("ascii")).hexdigest()[:16]
+    return root / identity.cache_key() / key
+
+
+def preview_alignment(library, profile, item_id, file_id, root):
+    from epub_alignment import AlignmentError, preview
+
+    identifier(item_id)
+    identifier(file_id)
+    source = library.source
+    manifest = library.authorized(lambda token: source.manifest(item_id, token))
+    identity, duration = manifest.identity, manifest.duration_ms
+    if not 0 < duration <= MAX_BOOK_MS:
+        raise AlignmentError("Audio duration exceeds preview limit")
+    directory = checkpoint_directory(root, identity, profile)
+
+    def windows():
+        for start in range(0, duration, MAX_WINDOW_MS):
+            try:
+                yield read_window(directory / f"{start}.json", identity, start,
+                                  min(start + MAX_WINDOW_MS, duration))
+            except FileNotFoundError:
+                raise AlignmentError("Complete local narration checkpoints are required; transcribe this revision first") from None
+            except (ValueError, TypeError, KeyError, OSError, RecursionError):
+                raise AlignmentError("Retained narration checkpoint is invalid") from None
+
+    if not all((directory / f"{start}.json").is_file() for start in range(0, duration, MAX_WINDOW_MS)):
+        raise AlignmentError("Complete local narration checkpoints are required; transcribe this revision first")
+    result = library.inspect_companion(item_id, file_id, lambda stream: preview(stream, windows()))
+    current = library.authorized(lambda token: source.manifest(item_id, token))
+    if current.identity != identity or current.duration_ms != duration:
+        raise AlignmentError("Audio revision changed during alignment preview")
+    return {**result, "source_id": identity.source_id, "audio_revision": identity.audio_revision,
+            "profile": profile, "duration_ms": duration}
 
 
 class WorkbenchError(RuntimeError):
@@ -266,8 +309,7 @@ def process_book(library, vega, engine, profile, item_id, root, report):
     identity, duration = manifest.identity, manifest.duration_ms
     if not 0 < duration <= MAX_BOOK_MS:
         raise ValueError("Book exceeds import duration limit")
-    key = hashlib.sha256(profile.encode("ascii")).hexdigest()[:16]
-    directory = root / identity.cache_key() / key
+    directory = checkpoint_directory(root, identity, profile)
     directory.mkdir(parents=True, exist_ok=True)
     windows = []
     with tempfile.TemporaryDirectory(dir=directory) as scratch:
