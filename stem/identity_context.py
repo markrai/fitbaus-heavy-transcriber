@@ -8,6 +8,11 @@ NAMED_CLAUSE = re.compile(r",[ \t]+(?:where|which)[ \t]+", re.IGNORECASE | re.AS
 RESTATEMENT = re.compile(r",[ \t]+or[ \t]+", re.IGNORECASE | re.ASCII)
 PROSE_TAIL = re.compile(r",[ \t]+(?:into|in|as|for|with)[ \t]+([a-zA-Z]+(?:[ \t]+[a-zA-Z]+){0,11}),?$",
                         re.IGNORECASE | re.ASCII)
+DISQUALIFYING_WORDS = re.compile(
+    r"\b(?:not|never|false|wrong|incorrect|invalid|untrue|mistaken|hypothetical|"
+    r"allegedly|supposedly|perhaps|maybe|unless|except|instead)\b",
+    re.IGNORECASE | re.ASCII,
+)
 EULER_RESTATEMENT = (
     (Kind.SYMBOL, "e"), (Kind.POWER_HINT, "^"), (Kind.SYMBOL, "i"),
     (Kind.SYMBOL, "pi"), (Kind.RELATION, "="), (Kind.OPERATOR, "-"),
@@ -25,7 +30,8 @@ def signature(text):
 
 def prose_words(text):
     tokens = signature(text)
-    return bool(tokens) and all(kind is Kind.WORD for kind, value in tokens)
+    return (bool(tokens) and DISQUALIFYING_WORDS.search(text) is None
+            and all(kind is Kind.WORD for kind, value in tokens))
 
 
 def named_clause_span(phrase):
@@ -36,7 +42,8 @@ def named_clause_span(phrase):
         return None
     marker = separators[0]
     tail = phrase[marker.end():]
-    if not tail or not tail.strip() or any(c in tail for c in "\r\n;?!"):
+    if (not tail or not tail.strip() or any(c in tail for c in "\r\n;?!")
+            or DISQUALIFYING_WORDS.search(tail)):
         return None
     tokens = signature(tail)
     if not tokens or not any(kind is Kind.WORD for kind, value in tokens):

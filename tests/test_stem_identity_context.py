@@ -51,6 +51,9 @@ class IdentityContextTests(unittest.TestCase):
             first + ", or " + second + ", or " + second,
             "Euler's identity is " + first + ", where x equals 2",
             "Euler's identity is " + first + ", which plus one",
+            "Euler's identity is " + first + ", which is false",
+            "Euler's identity is " + first + ", which is not correct",
+            first + ", or " + second + ", into incorrect notation",
             "The Pythagorean theorem is x²+y²=z², where x + y",
         ):
             with self.subTest(text=text):
