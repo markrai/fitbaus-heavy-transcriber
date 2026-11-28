@@ -1,0 +1,159 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.capacitance:standard",
+      "mathematical_sha256": "20b75768f93cc6e8322d4854bad22094af411e73eb4707fe02214e6d0ed2faef",
+      "latex": "C=\\frac{Q}{V}",
+      "aliases": [
+        "c equals q divided by v",
+        "capacitance equals the charge on the reference conductor divided by the voltage across the capacitor"
+      ],
+      "negative_phrases": [
+        "capacitance equals voltage divided by charge",
+        "c equals q times v",
+        "capacitance formula"
+      ],
+      "scope_review": "Charge and voltage use the same reference conductor and the voltage is nonzero. Capacitance is the ratio of charge to potential difference."
+    },
+    {
+      "id": "physics.capacitor_energy:standard",
+      "mathematical_sha256": "715a61c027d4a13818d2916ce399c7ce1ff2487d440589105c9d784348e6845c",
+      "latex": "U=\\frac{1}{2}CV^2",
+      "aliases": [
+        "u equals one half times c times v squared",
+        "stored electrostatic energy equals half the capacitance times the square of the voltage across the capacitor"
+      ],
+      "negative_phrases": [
+        "u equals one half times c squared times v",
+        "stored electrostatic energy equals capacitance times the square of the voltage across the capacitor",
+        "capacitor energy formula"
+      ],
+      "scope_review": "The voltage is squared and multiplied by half the capacitance; the capacitance is not squared."
+    },
+    {
+      "id": "physics.coulomb:standard",
+      "mathematical_sha256": "63d20bbe49f700b875f3492e7588c948d73ecd220713c1ae82e0a44c81a87ac2",
+      "latex": "F=\\frac{1}{4\\pi\\epsilon_0}\\frac{|q_1q_2|}{r^2}",
+      "aliases": [
+        "f equals the reciprocal of the product of four pi and epsilon sub zero times the fraction with numerator the absolute value of q sub one times q sub two and denominator r squared",
+        "electrostatic force magnitude equals the product of the reciprocal of four times pi times vacuum permittivity and the absolute value of the product of the two charges divided by the square of their separation"
+      ],
+      "negative_phrases": [
+        "f equals the reciprocal of the product of four pi and epsilon sub zero times the fraction with numerator q sub one times q sub two and denominator r squared",
+        "f equals the reciprocal of the product of four pi and epsilon sub zero times the fraction with numerator the absolute value of q sub one times q sub two and denominator r",
+        "coulombs law"
+      ],
+      "scope_review": "This is the vacuum force magnitude, not a signed component. Both denominator groupings are preserved, as is the absolute value of the charge product."
+    },
+    {
+      "id": "physics.electric_field:standard",
+      "mathematical_sha256": "6e808830e2664a32679151d52c2d7b068b764b8c290914c721ef426b9210a7ed",
+      "latex": "\\mathbf E=\\frac{\\mathbf F}{q}",
+      "aliases": [
+        "vector e equals vector f divided by q",
+        "electric field vector equals the external electric force vector on the test charge divided by its signed charge"
+      ],
+      "negative_phrases": [
+        "electric field magnitude equals force magnitude divided by signed charge",
+        "vector e equals vector f times q",
+        "electric field definition"
+      ],
+      "scope_review": "The signed scalar charge divides the external electric force vector. The resulting electric field is a vector; a magnitude-only statement would lose direction."
+    },
+    {
+      "id": "physics.electric_power:standard",
+      "mathematical_sha256": "df99e06831d2143335130c8a6d4737f8a8ff2093522b3079d60aadb2f0b095f1",
+      "latex": "P=IV",
+      "aliases": [
+        "p equals i v",
+        "p equals iv",
+        "instantaneous electrical power equals instantaneous current times instantaneous voltage"
+      ],
+      "negative_phrases": [
+        "power equals current times voltage",
+        "average alternating current power equals current times voltage",
+        "p equals i divided by v",
+        "electrical power formula"
+      ],
+      "scope_review": "The product represents instantaneous absorbed electrical power under the passive sign convention. The inherited generic power description is withheld until context and ASR qualification."
+    },
+    {
+      "id": "physics.faraday:standard",
+      "mathematical_sha256": "f436a0c54d3959218fc59c622a165dccbd582b0c0650679b5d10c921bc14062f",
+      "latex": "\\mathcal E=-\\frac{d\\Phi_B}{dt}",
+      "aliases": [
+        "electromotive force equals negative the time derivative of magnetic flux",
+        "script e equals negative the derivative of phi sub capital b with respect to t"
+      ],
+      "negative_phrases": [
+        "electromotive force equals the time derivative of magnetic flux",
+        "electromotive force equals negative the magnetic flux divided by time",
+        "faradays law"
+      ],
+      "scope_review": "Preserve the negative sign and the derivative of oriented magnetic flux rather than a quotient of flux and elapsed time. The source describes a single fixed contour."
+    },
+    {
+      "id": "physics.gauss_electric:standard",
+      "mathematical_sha256": "dd090e53ff7f497369e597d18ba58122d61847e7b756cea5fab3eb6ca97306ac",
+      "latex": "\\oint_S\\mathbf E\\cdot d\\mathbf A=\\frac{Q_{\\mathrm{enc}}}{\\epsilon_0}",
+      "aliases": [
+        "the closed surface integral over s of vector e dot d vector a equals q sub enc divided by epsilon sub zero",
+        "the integral over closed surface s of the electric field dotted with the outward vector area element equals total enclosed charge divided by vacuum permittivity"
+      ],
+      "negative_phrases": [
+        "the integral over closed surface s of the electric field crossed with the outward vector area element equals total enclosed charge divided by vacuum permittivity",
+        "the integral over closed surface s of the electric field dotted with the outward vector area element equals total enclosed charge times vacuum permittivity",
+        "gauss law for electricity"
+      ],
+      "scope_review": "This is a closed surface flux integral with a dot product and outward area element, not a line integral or cross product. The enclosed total charge is divided by vacuum permittivity."
+    },
+    {
+      "id": "physics.lorentz_force:standard",
+      "mathematical_sha256": "4ce9f877d7b0cf6f4db2a4239eb6202f165a7fee6a9ec26835fd7aff98543e5b",
+      "latex": "\\mathbf F=q(\\mathbf E+\\mathbf v\\times\\mathbf B)",
+      "aliases": [
+        "vector f equals q times open parenthesis vector e plus vector v cross vector b close parenthesis",
+        "electromagnetic force vector equals the signed charge times the sum of the electric field vector and the cross product of particle velocity with magnetic flux density"
+      ],
+      "negative_phrases": [
+        "vector f equals q times vector e plus vector v cross vector b",
+        "vector f equals q times open parenthesis vector e plus vector b cross vector v close parenthesis",
+        "lorentz force law"
+      ],
+      "scope_review": "The signed charge multiplies the entire sum. Cross-product order is velocity then magnetic flux density. Both electric and magnetic terms are present."
+    },
+    {
+      "id": "physics.lorentz_force:magnetic_only",
+      "mathematical_sha256": "7b820fc4bf6cc46c48265ff5da96da2ec31c39a1d7c242512defd45df4362ff6",
+      "latex": "\\mathbf F=q\\mathbf v\\times\\mathbf B",
+      "aliases": [
+        "vector f equals q times open parenthesis vector v cross vector b close parenthesis",
+        "magnetic force vector equals the signed charge times the cross product of particle velocity with magnetic flux density"
+      ],
+      "negative_phrases": [
+        "vector f equals q times open parenthesis vector b cross vector v close parenthesis",
+        "magnetic force vector equals the signed charge times the dot product of particle velocity with magnetic flux density",
+        "magnetic force formula"
+      ],
+      "scope_review": "Only the magnetic contribution is represented. The scalar charge multiplies the ordered cross product of velocity with magnetic flux density; reversing the cross product reverses the sign."
+    },
+    {
+      "id": "physics.ohm:standard",
+      "mathematical_sha256": "e4fb5e1530bb6724af7b84d75108c95f63b64afe688fb6368d2f1bb4927af061",
+      "latex": "V=IR",
+      "aliases": [
+        "v equals i r",
+        "v equals ir",
+        "voltage equals current times resistance"
+      ],
+      "negative_phrases": [
+        "voltage equals current divided by resistance",
+        "v equals i times r squared",
+        "ohms law"
+      ],
+      "scope_review": "Voltage is the product of current and resistance under the stored ohmic and passive-sign conditions; preserve the familiar literal recitations."
+    }
+  ]
+}

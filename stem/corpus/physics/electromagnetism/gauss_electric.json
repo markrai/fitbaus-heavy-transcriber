@@ -22,7 +22,10 @@
         "Q_{\\mathrm{enc}}": "Total enclosed charge",
         "\\epsilon_0": "Vacuum permittivity"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the closed surface integral over s of vector e dot d vector a equals q sub enc divided by epsilon sub zero",
+        "the integral over closed surface s of the electric field dotted with the outward vector area element equals total enclosed charge divided by vacuum permittivity"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

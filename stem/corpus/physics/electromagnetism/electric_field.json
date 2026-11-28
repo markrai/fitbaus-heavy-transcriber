@@ -20,7 +20,10 @@
         "\\mathbf F": "External electric force on test charge",
         "q": "Signed test charge"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "vector e equals vector f divided by q",
+        "electric field vector equals the external electric force vector on the test charge divided by its signed charge"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

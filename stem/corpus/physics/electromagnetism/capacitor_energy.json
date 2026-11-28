@@ -20,7 +20,10 @@
         "C": "Capacitance",
         "V": "Voltage across capacitor"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "u equals one half times c times v squared",
+        "stored electrostatic energy equals half the capacitance times the square of the voltage across the capacitor"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

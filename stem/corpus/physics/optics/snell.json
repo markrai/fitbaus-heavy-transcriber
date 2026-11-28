@@ -21,7 +21,10 @@
         "\\theta_1": "Incident angle",
         "\\theta_2": "Refracted angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "n sub one times sine of theta sub one equals n sub two times sine of theta sub two",
+        "incident medium refractive index times sine of the incident angle equals transmitted medium refractive index times sine of the refracted angle"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

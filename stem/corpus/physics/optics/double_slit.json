@@ -21,7 +21,10 @@
         "m": "Integer interference order",
         "\\lambda": "Wavelength in surrounding medium"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "d times sine of theta equals m times lambda",
+        "slit separation times sine of the observation angle equals interference order times wavelength"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

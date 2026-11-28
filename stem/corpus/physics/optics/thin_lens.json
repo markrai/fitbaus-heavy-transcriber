@@ -20,7 +20,10 @@
         "d_o": "Signed object distance",
         "d_i": "Signed image distance"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "one divided by f equals one divided by d sub letter o plus one divided by d sub letter i",
+        "the reciprocal of the focal length equals the reciprocal of the object distance plus the reciprocal of the image distance"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_3_reference",

@@ -1,0 +1,51 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.double_slit:standard",
+      "mathematical_sha256": "e9e2d9a9c94d21ab532334c3140137ca1b4f7223fde39523f80dacc051ae267c",
+      "latex": "d\\sin\\theta=m\\lambda",
+      "aliases": [
+        "d times sine of theta equals m times lambda",
+        "slit separation times sine of the observation angle equals interference order times wavelength"
+      ],
+      "negative_phrases": [
+        "d times cosine of theta equals m times lambda",
+        "slit separation times sine of the observation angle equals wavelength divided by interference order",
+        "double slit interference"
+      ],
+      "scope_review": "The slit separation multiplies sine of the observation angle. The right side is integer order times wavelength, not a division or cosine."
+    },
+    {
+      "id": "physics.snell:standard",
+      "mathematical_sha256": "dd7508f0f8f7fa1c7eb6f0fc22947e85511ea4072042e856071f3236880389f4",
+      "latex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2",
+      "aliases": [
+        "n sub one times sine of theta sub one equals n sub two times sine of theta sub two",
+        "incident medium refractive index times sine of the incident angle equals transmitted medium refractive index times sine of the refracted angle"
+      ],
+      "negative_phrases": [
+        "n sub one times sine of theta sub two equals n sub two times sine of theta sub one",
+        "n sub one times cosine of theta sub one equals n sub two times cosine of theta sub two",
+        "snells law"
+      ],
+      "scope_review": "Pair each refractive index with its own angle measured from the normal. Preserve both subscripts and the sine functions."
+    },
+    {
+      "id": "physics.thin_lens:standard",
+      "mathematical_sha256": "075f678633f209c22234cdbd9518e997e7032e165c3172f8c535659fe394ea4d",
+      "latex": "\\frac{1}{f}=\\frac{1}{d_o}+\\frac{1}{d_i}",
+      "aliases": [
+        "one divided by f equals one divided by d sub letter o plus one divided by d sub letter i",
+        "the reciprocal of the focal length equals the reciprocal of the object distance plus the reciprocal of the image distance"
+      ],
+      "negative_phrases": [
+        "one divided by f equals one divided by open parenthesis d sub letter o plus d sub letter i close parenthesis",
+        "the reciprocal of the focal length equals the reciprocal of the object distance minus the reciprocal of the image distance",
+        "thin lens equation"
+      ],
+      "scope_review": "Add separate reciprocals of signed object and image distances. The subscript o is a letter, not zero; i identifies image distance."
+    }
+  ]
+}
