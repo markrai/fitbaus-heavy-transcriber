@@ -20,7 +20,10 @@
         "I": "Moment of inertia about the rotation axis",
         "\\omega": "Angular speed"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "k equals one half times capital i times omega squared",
+        "rotational kinetic energy equals one half times moment of inertia times angular speed squared"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

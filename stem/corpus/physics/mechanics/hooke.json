@@ -20,7 +20,10 @@
         "k": "Positive spring constant",
         "x": "Signed displacement from equilibrium"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f equals negative k times x",
+        "spring force equals negative spring constant times signed extension"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",
