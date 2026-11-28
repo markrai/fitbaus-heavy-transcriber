@@ -72,6 +72,20 @@ def serialize(root, namespace):
 
 def mathml(raw):
     root = parse(raw, MATH, "math")
+    for node in list(root.iter()):
+        if node.tag != MATH + "semantics":
+            continue
+        if (node.attrib or (node.text or "").strip() or len(node) < 2
+                or node[0].tag in (MATH + "annotation", MATH + "annotation-xml")):
+            raise VectorRejected("mathml_semantics")
+        for annotation in list(node)[1:]:
+            if (annotation.tag != MATH + "annotation" or len(annotation)
+                    or set(annotation.attrib) != {"encoding"}
+                    or annotation.get("encoding") not in ("application/x-tex", "text/plain")
+                    or (annotation.tail or "").strip()):
+                raise VectorRejected("mathml_annotation")
+            node.remove(annotation)
+        node.tag = MATH + "mrow"
     for node in root.iter():
         tag = node.tag.removeprefix(MATH)
         if tag not in MATH_GROUPS and tag not in MATH_LEAVES and tag not in MATH_ARITY:
@@ -111,6 +125,50 @@ def numbers(value, limit=100000):
     return result
 
 
+def numeric_list(value):
+    if not NUMBERS.fullmatch(value):
+        raise VectorRejected("svg_numeric")
+    parts = re.split(r"[\s,]+", value.strip())
+    if any(not re.fullmatch(NUMBER, part) for part in parts):
+        raise VectorRejected("svg_numeric")
+    return numbers(value)
+
+
+def path_data(value):
+    commands = {"M": 2, "L": 2, "H": 1, "V": 1, "C": 6, "S": 4,
+                "Q": 4, "T": 2, "A": 7, "Z": 0}
+    pattern = re.compile(NUMBER + r"|[MmZzLlHhVvCcSsQqTtAa]")
+    tokens, previous = [], 0
+    for match in pattern.finditer(value):
+        if value[previous:match.start()].strip(" ,\t\n\r"):
+            raise VectorRejected("svg_path_syntax")
+        tokens.append(match.group())
+        previous = match.end()
+    if not tokens or tokens[0] not in ("M", "m") or value[previous:].strip(" ,\t\n\r"):
+        raise VectorRejected("svg_path_syntax")
+    command, params = None, []
+
+    def validate():
+        if command is None:
+            return
+        arity = commands[command.upper()]
+        if (arity == 0 and params) or (arity and (not params or len(params) % arity)):
+            raise VectorRejected("svg_path_arity")
+        if command.upper() == "A":
+            for i in range(0, len(params), 7):
+                if params[i+3] not in ("0", "1") or params[i+4] not in ("0", "1"):
+                    raise VectorRejected("svg_arc_flag")
+
+    for token in tokens:
+        if token.upper() in commands and len(token) == 1:
+            validate()
+            command, params = token, []
+        else:
+            scalar(token)
+            params.append(token)
+    validate()
+
+
 def scalar(value):
     if not re.fullmatch(NUMBER, value):
         raise VectorRejected("svg_numeric")
@@ -122,7 +180,7 @@ def svg(raw, *, generated=False):
     view = root.get("viewBox")
     if view is None or not NUMBERS.fullmatch(view):
         raise VectorRejected("svg_viewbox")
-    box = numbers(view)
+    box = numeric_list(view)
     if len(box) != 4 or box[2] <= 0 or box[3] <= 0:
         raise VectorRejected("svg_viewbox")
     width, height = box[2:]
@@ -163,11 +221,17 @@ def svg(raw, *, generated=False):
             elif key in GEOMETRY:
                 scalar(val)
             elif key == "d" and tag == "path" and PATH.fullmatch(val):
-                numbers(val)
+                path_data(val)
             elif key == "points" and tag in ("polygon", "polyline") and NUMBERS.fullmatch(val):
-                numbers(val)
+                coordinates = numeric_list(val)
+                if len(coordinates) < 4 or len(coordinates) % 2:
+                    raise VectorRejected("svg_points")
             elif key == "transform" and TRANSFORM.fullmatch(val):
-                numbers(re.sub(r"[a-zA-Z]+(?=\()", "", val))
+                arities = {"translate": (1, 2), "scale": (1, 2), "rotate": (1, 3),
+                           "matrix": (6,), "skewX": (1,), "skewY": (1,)}
+                for name, values in re.findall(r"(\w+)\(([^)]+)\)", val):
+                    if len(numeric_list(values)) not in arities[name]:
+                        raise VectorRejected("svg_transform")
             elif key in ("fill", "stroke") and (val in COLORS or COLOR.fullmatch(val)):
                 if val == "currentColor":
                     if not generated:

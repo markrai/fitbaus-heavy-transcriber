@@ -52,6 +52,17 @@ class VectorTests(unittest.TestCase):
                 self.assertTrue(reason)
                 worker.assert_not_called()
 
+    def test_plain_annotation_is_not_sent_to_renderer(self):
+        raw = b'<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>'
+        clean = mathml(raw)
+        self.assertNotIn(b"annotation", clean)
+        self.assertIn(b"<mrow><mi>x</mi></mrow>", clean)
+
+    def test_invalid_path_geometry_is_rejected(self):
+        for path in (b"M 1", b"M 0 0 L", b"M 0 0 X 1 2", b"M 0 0 A 1 1 0 2 0 1 1"):
+            with self.subTest(path=path), self.assertRaises(VectorRejected):
+                svg(SVG.replace(b"M 0 0 L 1200 600", path))
+
     def test_generated_svg_revalidated(self):
         with patch("epub_vector.run_worker", return_value=b'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><script/></svg>') as worker:
             result, reason = normalize_visual({"media_type": "application/mathml+xml", "payload": MATH})
