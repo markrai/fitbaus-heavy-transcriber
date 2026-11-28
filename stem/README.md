@@ -108,6 +108,12 @@ Complete direct scope review for the remaining nine algebra concepts (ten repres
 
 The tracked tests/fixtures/stem_recitation_algebra.json holds 21 reviewed recitations and 31 counterexamples. The fixture-driven matcher tests discover all stem_recitation_*.json fixtures, check unique representation coverage, exact formula and mathematical digest bindings, and exercise positive spans and negative rejection across the combined test dictionary. Cumulative scope-reviewed coverage: 15 of 107 representations, with all 14 algebra representations plus Euler's identity reviewed. Recognition approval is still pending. No runtime or inference changes.
 
+## Geometry and trigonometry recitation review (S.1B.3)
+
+Complete direct scope review of seven geometry and ten trigonometry representations. Keep the existing formulas and mathematical review values unchanged. Make coordinate and radical grouping explicit, distinguish ordered pairs from scalar sums, separate trigonometric function powers from powers of arguments, and preserve each of the three cosine double-angle representations. Use explicit side and angle roles where spoken letter case cannot distinguish the two. The reciprocal law of sines is a valid related identity but is not an alias of the stored form. Defer ambiguous and homophonic circle-area variants to later ASR qualification; the legacy prototype remains unchanged.
+
+The geometry and trigonometry review fixtures add 37 scope-reviewed recitations and 50 negative examples. Cumulative review covers 32 of 107 representations, 72 recitations and 100 negative examples. The existing fixture discovery and matcher tests apply without changes. These are direct scope reviews, not speech-transcription or independent blind-review evidence. Recognition remains pending; no runtime, inference or publication change.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

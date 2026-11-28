@@ -21,7 +21,10 @@
         "c": "Opposite side length",
         "C": "Angle opposite c"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "side c squared equals side a squared plus side b squared minus two times side a times side b times cosine of angle c",
+        "the square of side c equals the sum of the squares of side a and side b minus twice the product of side a and side b and cosine of angle c"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

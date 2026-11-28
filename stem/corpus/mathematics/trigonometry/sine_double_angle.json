@@ -18,7 +18,10 @@
       "symbols": {
         "x": "Angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "sine of twice x equals two times sine of x times cosine of x",
+        "sine of open parenthesis two times x close parenthesis equals twice the product of sine of x and cosine of x"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

@@ -18,7 +18,10 @@
       "symbols": {
         "x": "Angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "sine squared of x plus cosine squared of x equals one",
+        "the square of sine of x plus the square of cosine of x equals one"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

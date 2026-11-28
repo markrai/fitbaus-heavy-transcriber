@@ -1,0 +1,115 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "geometry.circle_area:standard",
+      "mathematical_sha256": "296cfa5e9d34e7512e2dc48bf4cceab771c253780bd9cbef60ebbcc035ea8cf8",
+      "latex": "A=\\pi r^2",
+      "aliases": [
+        "area equals pi r squared",
+        "a equals pi times r squared",
+        "area equals pi times the radius squared"
+      ],
+      "negative_phrases": [
+        "area equals pi r",
+        "area equals pi times r cubed",
+        "area equals pi times the diameter squared",
+        "circle area"
+      ],
+      "scope_review": "The radius alone is squared and multiplied by pi. Retain the explicit pi recitation; defer pie and square transcription variants to ASR qualification."
+    },
+    {
+      "id": "geometry.circle_circumference:standard",
+      "mathematical_sha256": "1d8171df1e399c88758885722c58f14dbd2fbbf49ec222567ba7a5c73957a682",
+      "latex": "C=2\\pi r",
+      "aliases": [
+        "circumference equals two pi r",
+        "c equals two pi r",
+        "circumference equals two times pi times the radius"
+      ],
+      "negative_phrases": [
+        "circumference equals pi r",
+        "circumference equals two pi r squared",
+        "circle circumference"
+      ],
+      "scope_review": "The factors are two, pi and the radius, with no power or diameter substitution."
+    },
+    {
+      "id": "geometry.distance:standard",
+      "mathematical_sha256": "198547bd35e0ada250b66147d52238f00e276f998e828a30464e3786b012790d",
+      "latex": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
+      "aliases": [
+        "d equals the square root of open parenthesis open parenthesis x sub two minus x sub one close parenthesis squared plus open parenthesis y sub two minus y sub one close parenthesis squared close parenthesis",
+        "distance equals the square root of the sum of the square of the difference of x sub two and x sub one and the square of the difference of y sub two and y sub one"
+      ],
+      "negative_phrases": [
+        "d equals the square root of x sub two minus x sub one squared plus y sub two minus y sub one squared",
+        "d equals the square root of open parenthesis open parenthesis x sub two minus x sub one close parenthesis squared minus open parenthesis y sub two minus y sub one close parenthesis squared close parenthesis",
+        "distance formula"
+      ],
+      "scope_review": "Each coordinate difference is squared separately. The radical covers the sum of both squares, and subscripts identify the two endpoints."
+    },
+    {
+      "id": "geometry.heron:standard",
+      "mathematical_sha256": "60478334fdb79e4cb4518de8880b4104771d265de1665c16cbd1eac7f3ceba70",
+      "latex": "A=\\sqrt{s(s-a)(s-b)(s-c)}",
+      "aliases": [
+        "a equals the square root of open parenthesis s times open parenthesis s minus a close parenthesis times open parenthesis s minus b close parenthesis times open parenthesis s minus c close parenthesis close parenthesis",
+        "area equals the square root of the product of the semiperimeter and the three differences s minus a and s minus b and s minus c"
+      ],
+      "negative_phrases": [
+        "area equals the square root of s times s minus a times s minus b times s minus c",
+        "area equals the square root of the product of the semiperimeter and the two differences s minus a and s minus b",
+        "herons formula"
+      ],
+      "scope_review": "The radical includes four factors: s and the three separately grouped differences. The second wording identifies s as the semiperimeter. Lowercase side a and uppercase area A are distinguished by role."
+    },
+    {
+      "id": "geometry.midpoint:standard",
+      "mathematical_sha256": "3cef884b75e4900e3549f9a5bff02d9170b6655be7b7b3089b42a87e83d55409",
+      "latex": "M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)",
+      "aliases": [
+        "m equals the ordered pair with first coordinate the sum of x sub one and x sub two all divided by two and second coordinate the sum of y sub one and y sub two all divided by two",
+        "midpoint equals the ordered pair whose first coordinate is the fraction with numerator x sub one plus x sub two and denominator two and whose second coordinate is the fraction with numerator y sub one plus y sub two and denominator two"
+      ],
+      "negative_phrases": [
+        "m equals x sub one plus x sub two divided by two plus y sub one plus y sub two divided by two",
+        "midpoint equals the ordered pair whose first coordinate is the fraction with numerator x sub one plus y sub one and denominator two and whose second coordinate is the fraction with numerator x sub two plus y sub two and denominator two",
+        "midpoint formula"
+      ],
+      "scope_review": "The result is an ordered pair rather than a scalar sum. The first coordinate averages both x values and the second averages both y values; each entire numerator is divided by two."
+    },
+    {
+      "id": "geometry.pythagoras:standard",
+      "mathematical_sha256": "8ab9fc5c5c1c502f7f8b11726b83adfd27f023521561fa9b7fa600bb95d4301d",
+      "latex": "a^2+b^2=c^2",
+      "aliases": [
+        "a squared plus b squared equals c squared",
+        "the sum of the squares of a and b equals c squared"
+      ],
+      "negative_phrases": [
+        "a plus b squared equals c squared",
+        "a squared minus b squared equals c squared",
+        "pythagorean theorem"
+      ],
+      "scope_review": "The two leg lengths are individually squared, then added. The hypotenuse is squared on the right."
+    },
+    {
+      "id": "geometry.sphere_volume:standard",
+      "mathematical_sha256": "4fa40f006f8e3910e40816a893c52278953428e7d290187fad9780067ae23fce",
+      "latex": "V=\\frac{4}{3}\\pi r^3",
+      "aliases": [
+        "volume equals four thirds pi r cubed",
+        "v equals four thirds pi r cubed",
+        "volume equals four thirds times pi times the radius cubed"
+      ],
+      "negative_phrases": [
+        "volume equals four thirds pi r squared",
+        "volume equals three fourths pi r cubed",
+        "sphere volume"
+      ],
+      "scope_review": "Four thirds and pi multiply the cube of the radius. The exponent applies only to r."
+    }
+  ]
+}

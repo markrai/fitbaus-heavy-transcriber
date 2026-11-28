@@ -1,0 +1,154 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "trigonometry.cosine_addition:standard",
+      "mathematical_sha256": "685541b98fa88eedd37a4822a442963620d0c3127270fe03e90951a751cd1935",
+      "latex": "\\cos(a+b)=\\cos a\\cos b-\\sin a\\sin b",
+      "aliases": [
+        "cosine of open parenthesis a plus b close parenthesis equals cosine of a times cosine of b minus sine of a times sine of b",
+        "cosine of the sum of a and b equals the product of cosine of a and cosine of b minus the product of sine of a and sine of b"
+      ],
+      "negative_phrases": [
+        "cosine of a plus b equals cosine of a times cosine of b minus sine of a times sine of b",
+        "cosine of the sum of a and b equals the product of cosine of a and cosine of b plus the product of sine of a and sine of b",
+        "cosine addition formula"
+      ],
+      "scope_review": "The sum is the argument of cosine on the left. The two products on the right are subtracted in the stated order."
+    },
+    {
+      "id": "trigonometry.cosine_double_angle:standard",
+      "mathematical_sha256": "35b46761103e35b6a6795f0e5338582f75df4eb6fcafa6634518216cc79518c8",
+      "latex": "\\cos(2x)=\\cos^2 x-\\sin^2 x",
+      "aliases": [
+        "cosine of twice x equals cosine squared of x minus sine squared of x",
+        "cosine of open parenthesis two times x close parenthesis equals the square of cosine of x minus the square of sine of x"
+      ],
+      "negative_phrases": [
+        "cosine of two x equals cosine of x squared minus sine of x squared",
+        "cosine of twice x equals cosine squared of x plus sine squared of x",
+        "cosine double angle formula"
+      ],
+      "scope_review": "Cosine acts on twice the angle on the left. On the right the function values, not their arguments, are squared. Subtraction distinguishes this representation from the other two cosine double-angle forms."
+    },
+    {
+      "id": "trigonometry.cosine_double_angle:cosine_only",
+      "mathematical_sha256": "95af0f4091c2a4cc0f5c3583d14efee43af9c32dab003a7eca1405d0b9d11a49",
+      "latex": "\\cos(2x)=2\\cos^2 x-1",
+      "aliases": [
+        "cosine of twice x equals two times cosine squared of x minus one",
+        "cosine of open parenthesis two times x close parenthesis equals twice the square of cosine of x minus one"
+      ],
+      "negative_phrases": [
+        "cosine of twice x equals two times cosine of x squared minus one",
+        "cosine of twice x equals two times cosine squared of x plus one"
+      ],
+      "scope_review": "The multiplier two acts on the squared cosine value, and one is subtracted afterward. This is the cosine-only form."
+    },
+    {
+      "id": "trigonometry.cosine_double_angle:sine_only",
+      "mathematical_sha256": "3318b18d7c055ba5f9954cda8440b8b465cee856c8dede2186b8c64fc5543ce5",
+      "latex": "\\cos(2x)=1-2\\sin^2 x",
+      "aliases": [
+        "cosine of twice x equals one minus two times sine squared of x",
+        "cosine of open parenthesis two times x close parenthesis equals one minus twice the square of sine of x"
+      ],
+      "negative_phrases": [
+        "cosine of twice x equals one minus two times sine of x squared",
+        "cosine of twice x equals one plus two times sine squared of x"
+      ],
+      "scope_review": "Subtract twice the squared sine value from one. The sign, constant and function distinguish this representation from the cosine-only and mixed forms."
+    },
+    {
+      "id": "trigonometry.law_cosines:standard",
+      "mathematical_sha256": "2168e05182e0ca9acd629b02f37991fe7422299f52671412e4149d8c9438f68e",
+      "latex": "c^2=a^2+b^2-2ab\\cos C",
+      "aliases": [
+        "side c squared equals side a squared plus side b squared minus two times side a times side b times cosine of angle c",
+        "the square of side c equals the sum of the squares of side a and side b minus twice the product of side a and side b and cosine of angle c"
+      ],
+      "negative_phrases": [
+        "side c squared equals side a squared plus side b squared plus two times side a times side b times cosine of angle c",
+        "side c squared equals side a squared plus side b squared minus two times side a times side b times sine of angle c",
+        "law of cosines"
+      ],
+      "scope_review": "The side lengths are lower-case symbols and the cosine argument is the included angle C. The product containing cosine is subtracted."
+    },
+    {
+      "id": "trigonometry.law_sines:standard",
+      "mathematical_sha256": "4f75b2e7ab8a4aee74ca4a79dee8bbc79474219d1dc7e0302a402341b90bf50f",
+      "latex": "\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}",
+      "aliases": [
+        "side a divided by sine of angle a equals side b divided by sine of angle b equals side c divided by sine of angle c",
+        "the ratio of side a to sine of angle a equals the ratio of side b to sine of angle b equals the ratio of side c to sine of angle c"
+      ],
+      "negative_phrases": [
+        "side a divided by sine of angle b equals side b divided by sine of angle a equals side c divided by sine of angle c",
+        "sine of angle a divided by side a equals sine of angle b divided by side b equals sine of angle c divided by side c",
+        "law of sines"
+      ],
+      "scope_review": "Each side is the numerator and the sine of its corresponding opposite angle is the denominator. The reciprocal identity may also be true but is not the stored representation and is withheld."
+    },
+    {
+      "id": "trigonometry.pythagorean_identity:standard",
+      "mathematical_sha256": "e812695680192c541ed87a53b9d42a40f895446e96f1a81ac993407f534d50c6",
+      "latex": "\\sin^2 x+\\cos^2 x=1",
+      "aliases": [
+        "sine squared of x plus cosine squared of x equals one",
+        "the square of sine of x plus the square of cosine of x equals one"
+      ],
+      "negative_phrases": [
+        "sine of x squared plus cosine of x squared equals one",
+        "sine squared of x minus cosine squared of x equals one",
+        "trigonometric pythagorean identity"
+      ],
+      "scope_review": "Square each trigonometric function value at the same angle before adding. Neither function receives x squared as its argument."
+    },
+    {
+      "id": "trigonometry.sine_addition:standard",
+      "mathematical_sha256": "f594e0aca6f27853ce3b8e505a005c248704b10a466707b24012ce3288f61025",
+      "latex": "\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b",
+      "aliases": [
+        "sine of open parenthesis a plus b close parenthesis equals sine of a times cosine of b plus cosine of a times sine of b",
+        "sine of the sum of a and b equals the product of sine of a and cosine of b plus the product of cosine of a and sine of b"
+      ],
+      "negative_phrases": [
+        "sine of a plus b equals sine of a times cosine of b plus cosine of a times sine of b",
+        "sine of the sum of a and b equals the product of sine of a and cosine of b minus the product of cosine of a and sine of b",
+        "sine addition formula"
+      ],
+      "scope_review": "The left function takes the grouped sum. The right side adds two cross-products, preserving which function applies to each angle."
+    },
+    {
+      "id": "trigonometry.sine_double_angle:standard",
+      "mathematical_sha256": "0b6bd2570480bcd1e5e855b1eeb8f754ceb146edaffc74a289ffd5af5de5166f",
+      "latex": "\\sin(2x)=2\\sin x\\cos x",
+      "aliases": [
+        "sine of twice x equals two times sine of x times cosine of x",
+        "sine of open parenthesis two times x close parenthesis equals twice the product of sine of x and cosine of x"
+      ],
+      "negative_phrases": [
+        "sine of twice x equals two times sine of x plus cosine of x",
+        "sine of twice x equals two times sine squared of x",
+        "sine double angle formula"
+      ],
+      "scope_review": "The input angle is doubled on the left; two multiplies the product of sine and cosine evaluated at the undoubled angle on the right."
+    },
+    {
+      "id": "trigonometry.tangent_addition:standard",
+      "mathematical_sha256": "8fd0c147bc0882f3ee1309366c353db8144037d72843e1f0302e26163593098a",
+      "latex": "\\tan(a+b)=\\frac{\\tan a+\\tan b}{1-\\tan a\\tan b}",
+      "aliases": [
+        "tangent of open parenthesis a plus b close parenthesis equals the fraction with numerator tangent of a plus tangent of b and denominator one minus tangent of a times tangent of b",
+        "tangent of the sum of a and b equals open parenthesis tangent of a plus tangent of b close parenthesis divided by open parenthesis one minus the product of tangent of a and tangent of b close parenthesis"
+      ],
+      "negative_phrases": [
+        "tangent of a plus b equals tangent of a plus tangent of b divided by one minus tangent of a times tangent of b",
+        "tangent of the sum of a and b equals the fraction with numerator tangent of a plus tangent of b and denominator one plus tangent of a times tangent of b",
+        "tangent addition formula"
+      ],
+      "scope_review": "The input is the sum of the angles. The entire sum of tangents is the numerator, and one minus their product is the entire denominator."
+    }
+  ]
+}

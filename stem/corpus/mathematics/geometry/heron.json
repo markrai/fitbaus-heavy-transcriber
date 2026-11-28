@@ -22,7 +22,10 @@
         "b": "Side length",
         "c": "Side length"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "a equals the square root of open parenthesis s times open parenthesis s minus a close parenthesis times open parenthesis s minus b close parenthesis times open parenthesis s minus c close parenthesis close parenthesis",
+        "area equals the square root of the product of the semiperimeter and the three differences s minus a and s minus b and s minus c"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

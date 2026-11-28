@@ -22,7 +22,10 @@
         "y_1": "First y coordinate",
         "y_2": "Second y coordinate"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "d equals the square root of open parenthesis open parenthesis x sub two minus x sub one close parenthesis squared plus open parenthesis y sub two minus y sub one close parenthesis squared close parenthesis",
+        "distance equals the square root of the sum of the square of the difference of x sub two and x sub one and the square of the difference of y sub two and y sub one"
+      ],
       "references": [
         {
           "source_id": "openstax_intermediate_algebra_2e_reference",

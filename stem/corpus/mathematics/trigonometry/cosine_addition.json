@@ -19,7 +19,10 @@
         "a": "First angle",
         "b": "Second angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "cosine of open parenthesis a plus b close parenthesis equals cosine of a times cosine of b minus sine of a times sine of b",
+        "cosine of the sum of a and b equals the product of cosine of a and cosine of b minus the product of sine of a and sine of b"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",

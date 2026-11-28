@@ -18,7 +18,10 @@
       "symbols": {
         "x": "Angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "cosine of twice x equals cosine squared of x minus sine squared of x",
+        "cosine of open parenthesis two times x close parenthesis equals the square of cosine of x minus the square of sine of x"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",
@@ -53,7 +56,10 @@
       "symbols": {
         "x": "Angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "cosine of twice x equals two times cosine squared of x minus one",
+        "cosine of open parenthesis two times x close parenthesis equals twice the square of cosine of x minus one"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",
@@ -88,7 +94,10 @@
       "symbols": {
         "x": "Angle"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "cosine of twice x equals one minus two times sine squared of x",
+        "cosine of open parenthesis two times x close parenthesis equals one minus twice the square of sine of x"
+      ],
       "references": [
         {
           "source_id": "openstax_precalculus_2e_reference",
