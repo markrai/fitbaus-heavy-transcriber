@@ -21,7 +21,10 @@
         "c": "Specific heat capacity",
         "\\Delta T": "Final minus initial temperature"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "q equals m times c times delta t",
+        "heat transferred equals mass times specific heat capacity times the change in temperature"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

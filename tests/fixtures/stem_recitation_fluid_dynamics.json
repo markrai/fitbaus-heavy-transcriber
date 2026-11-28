@@ -1,0 +1,51 @@
+{
+  "schema": "fitbaus.stem.recitation-review-fixture/v1",
+  "qualification": "scope_review_only",
+  "rows": [
+    {
+      "id": "physics.bernoulli:standard",
+      "mathematical_sha256": "24849a48bb3cbabfb8f573037d74e9911be6ee932c78741e6b9094551349316d",
+      "latex": "p+\\frac{1}{2}\\rho v^2+\\rho gh=\\mathrm{constant}",
+      "aliases": [
+        "p plus one half times rho times v squared plus rho times g times h equals a constant",
+        "static pressure plus one half times fluid density times flow speed squared plus fluid density times gravitational acceleration magnitude times elevation equals a constant"
+      ],
+      "negative_phrases": [
+        "p plus one half times rho times v squared minus rho times g times h equals a constant",
+        "p plus one half times rho squared times v plus rho times g times h equals a constant",
+        "bernoulli equation"
+      ],
+      "scope_review": "The three terms are static pressure, half density times squared flow speed, and density times gravitational acceleration magnitude times elevation. All are added, with no claim beyond the stored streamline conditions."
+    },
+    {
+      "id": "physics.continuity:standard",
+      "mathematical_sha256": "94014b4468826b26544e7fadf3fa7534e13f42938edddd507e29b64ad6da610c",
+      "latex": "A_1v_1=A_2v_2",
+      "aliases": [
+        "a sub one times v sub one equals a sub two times v sub two",
+        "first cross sectional area times first mean normal velocity equals second cross sectional area times second mean normal velocity"
+      ],
+      "negative_phrases": [
+        "a sub one times v sub two equals a sub two times v sub one",
+        "a sub one divided by v sub one equals a sub two divided by v sub two",
+        "continuity equation"
+      ],
+      "scope_review": "Match each area to the downstream-oriented mean normal velocity at the same cross section. The equality is for the constant-density conditions stored in the corpus."
+    },
+    {
+      "id": "physics.density:standard",
+      "mathematical_sha256": "ba6a22e658735cc67921817f07d35d09f1a0df1e4c8d183984040f9cd70b1a80",
+      "latex": "\\rho=\\frac{m}{V}",
+      "aliases": [
+        "rho equals m divided by capital v",
+        "mass density equals mass divided by volume"
+      ],
+      "negative_phrases": [
+        "rho equals capital v divided by m",
+        "mass density equals mass times volume",
+        "density formula"
+      ],
+      "scope_review": "The numerator is sample mass; the denominator is volume, denoted capital V, not velocity. Density means average mass density under the source conditions."
+    }
+  ]
+}

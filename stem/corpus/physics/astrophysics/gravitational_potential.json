@@ -22,7 +22,10 @@
         "m": "Second mass",
         "r": "Separation"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "u equals negative the fraction with numerator capital g times capital m times lowercase m and denominator r",
+        "gravitational potential energy equals negative the product of the gravitational constant and the two masses divided by their separation"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

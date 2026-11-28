@@ -20,7 +20,10 @@
         "Q": "Net heat entering system",
         "W": "Net work done by system"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "delta u equals q minus w",
+        "change in internal energy equals net heat entering the system minus net work done by the system"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_2_reference",

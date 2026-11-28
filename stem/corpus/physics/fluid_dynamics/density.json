@@ -20,7 +20,10 @@
         "m": "Sample mass",
         "V": "Sample volume"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "rho equals m divided by capital v",
+        "mass density equals mass divided by volume"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",

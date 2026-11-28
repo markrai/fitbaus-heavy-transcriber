@@ -22,7 +22,10 @@
         "m_2": "Second mass",
         "r": "Center-to-center separation"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f equals capital g times the fraction with numerator m sub one times m sub two and denominator r squared",
+        "gravitational force magnitude equals the gravitational constant times the product of the two masses divided by the square of their separation"
+      ],
       "references": [
         {
           "source_id": "openstax_university_physics_1_reference",
