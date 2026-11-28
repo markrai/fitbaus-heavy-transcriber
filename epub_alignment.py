@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import hashlib
 import json
 import re
@@ -29,6 +29,7 @@ class Section:
     spine_index: int
     path: str
     words: tuple[str, ...]
+    positions: dict[tuple[int, ...], int] = field(default_factory=dict)
 
 
 def words(text):
@@ -36,8 +37,23 @@ def words(text):
     return tuple(WORD.findall(normalized))
 
 
-def body_text(body):
-    pieces = []
+def project_body_text(body, locations=()):
+    targets = {}
+    for path in locations:
+        node = body
+        for index in path:
+            if not 0 <= index < len(node):
+                raise AlignmentError("Visual location is outside reading-order document")
+            node = node[index]
+        targets[id(node)] = path
+    pieces, offsets = [], {}
+    length = 0
+
+    def append(text):
+        nonlocal length
+        pieces.append(text)
+        length += len(text)
+
     stack = [(body, False)]
     while stack:
         node, leaving = stack.pop()
@@ -45,26 +61,54 @@ def body_text(body):
         block = local in BLOCKS
         if leaving:
             if block:
-                pieces.append(" ")
+                append(" ")
             if node is not body and node.tail:
-                pieces.append(node.tail)
+                append(node.tail)
             continue
-        if (not node.tag.startswith(XHTML) or local in SKIP
-                or "hidden" in node.attrib or node.get("aria-hidden") == "true"):
-            pieces.append(" ")
+        if "hidden" in node.attrib or node.get("aria-hidden") == "true":
+            append(" ")
             if node.tail:
-                pieces.append(node.tail)
+                append(node.tail)
+            continue
+        if id(node) in targets:
+            offsets[targets[id(node)]] = length
+        if not node.tag.startswith(XHTML) or local in SKIP:
+            append(" ")
+            if node.tail:
+                append(node.tail)
             continue
         if block:
-            pieces.append(" ")
+            append(" ")
         if node.text:
-            pieces.append(node.text)
+            append(node.text)
         stack.append((node, True))
         stack.extend((child, False) for child in reversed(node))
-    return "".join(pieces)
+    return "".join(pieces), offsets
 
 
-def read_sections(stream):
+def body_text(body):
+    return project_body_text(body)[0]
+
+
+def body_projection(body, locations=()):
+    text, offsets = project_body_text(body, locations)
+    tokens = words(text)
+    if not offsets:
+        return tokens, {}
+    boundaries = sorted(set(offsets.values()))
+    split_tokens, positions = [], {}
+    previous = 0
+    for boundary in boundaries:
+        split_tokens.extend(words(text[previous:boundary]))
+        positions[boundary] = len(split_tokens)
+        previous = boundary
+    split_tokens.extend(words(text[previous:]))
+    if tuple(split_tokens) != tokens:
+        return tokens, {}
+    return tokens, {path: positions[offset] for path, offset in offsets.items()}
+
+
+def read_sections(stream, *, locations=None):
     inventory = inspect_epub(stream)
     sections = []
     total_bytes = total_words = 0
@@ -82,11 +126,11 @@ def read_sections(stream):
                 body = root.find(XHTML + "body")
                 if root.tag != XHTML + "html" or body is None:
                     raise AlignmentError("Unsupported XHTML reading-order document")
-                tokens = words(body_text(body))
+                tokens, positions = body_projection(body, (locations or {}).get(index, ()))
                 total_words += len(tokens)
                 if total_words > MAX_WORDS:
                     raise AlignmentError("EPUB word count exceeds preview limit")
-                sections.append(Section(index, path, tokens))
+                sections.append(Section(index, path, tokens, positions))
     except (zipfile.BadZipFile, OSError, EOFError, RuntimeError, NotImplementedError):
         raise EpubError("Invalid or unsupported EPUB reading-order archive") from None
     return inventory, sections

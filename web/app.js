@@ -133,8 +133,8 @@ $("companions").addEventListener("click", async () => {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
             result.append(row);
             if (file.format === "epub") {
-                for (const mode of ["inventory", "alignment", "assets"]) {
-                    const labels = {inventory: "Inspect EPUB", alignment: "Test alignment", assets: "Find visuals"};
+                for (const mode of ["inventory", "alignment", "assets", "timing"]) {
+                    const labels = {inventory: "Inspect EPUB", alignment: "Test alignment", assets: "Find visuals", timing: "Test visual timing"};
                     const inspect = element("button", labels[mode], "secondary");
                     inspect.type = "button";
                     const detail = element("p");
@@ -145,13 +145,20 @@ $("companions").addEventListener("click", async () => {
                         updateActions();
                         detail.textContent = mode === "inventory" ? "Downloading and inspecting EPUB…" :
                             mode === "alignment" ? "Comparing EPUB with retained narration…" :
-                            "Extracting original EPUB visuals…";
+                            mode === "assets" ? "Extracting original EPUB visuals…" :
+                            "Associating visuals with narration…";
                         try {
                             const inventory = await api("/api/epub-" + mode, {
                                 method: "POST", headers: {"Content-Type": "application/json"},
                                 body: JSON.stringify({item_id: id, file_id: file.file_id})
                             });
                             if (request !== companionRequest) return;
+                            if (mode === "timing") {
+                                detail.textContent = inventory.timed_count + " / " + inventory.occurrence_count +
+                                    " visuals with bounded timing evidence · " + inventory.untimed_count +
+                                    " untimed · Preview only, not playback-qualified";
+                                return;
+                            }
                             if (mode === "assets") {
                                 detail.textContent = inventory.mathml_count + " MathML equations · " +
                                     inventory.raster_count + " raster images · " + inventory.svg_count +
