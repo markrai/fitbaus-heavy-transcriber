@@ -121,12 +121,14 @@ def build_artifact(result):
             "occurrences": occurrences}
 
 
-def store_artifact(root, artifact):
+def store_artifact(root, artifact, *, store_name="enrichment", schema=SCHEMA):
     raw = canonical(artifact)
     if len(raw) > MAX_ARTIFACT_BYTES:
         raise EnrichmentError("Enrichment artifact exceeds size limit")
     artifact_id = hashlib.sha256(raw).hexdigest()
-    directory = Path(root) / "enrichment"
+    if store_name not in ("enrichment", "delivery"):
+        raise EnrichmentError("Invalid artifact store")
+    directory = Path(root) / store_name
     if directory.is_symlink():
         raise EnrichmentError("Enrichment store must not be a symlink")
     directory.mkdir(parents=True, exist_ok=True)
@@ -163,7 +165,7 @@ def store_artifact(root, artifact):
         finally:
             if temporary is not None:
                 temporary.unlink(missing_ok=True)
-    return {"schema": SCHEMA, "artifact_id": artifact_id, "artifact_bytes": len(raw),
+    return {"schema": schema, "artifact_id": artifact_id, "artifact_bytes": len(raw),
             "reused": reused, "edition_verified": False, "render_qualified": False,
             "playback_qualified": False, **artifact["summary"]}
 

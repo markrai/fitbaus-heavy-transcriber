@@ -20,7 +20,8 @@ class CIDriverTests(unittest.TestCase):
             self.assertEqual(ci.execute("core", ci.core_steps()), 0)
         prepare.assert_called_once_with()
         self.assertEqual(run.call_args_list, [
-            call(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py",
+            call(sys.executable, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-delivery.txt"),
+            call(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py", "epub_delivery.py", "epub_raster_worker.py",
                  "ci.py", "test_suite.py", *(str(path.relative_to(ci.ROOT)) for path in ci.test_paths("core"))),
             call(sys.executable, "test_suite.py", "core"),
         ])
@@ -88,7 +89,7 @@ class CIDriverTests(unittest.TestCase):
         summary = self.stdout.getvalue().split("CI SUMMARY (all)", 1)[1]
         self.assertRegex(summary, r"Pinned transcript contract\s+FAIL")
         self.assertRegex(summary, r"Real SVG and PNG smoke\s+SKIP")
-        self.assertIn("Checks: 1 passed, 1 failed, 9 skipped", summary)
+        self.assertIn("Checks: 1 passed, 1 failed, 10 skipped", summary)
         self.assertIn("RESULT: FAIL (exit code 7)", summary)
 
     def test_wrong_node_version_rejected_before_install(self):
@@ -106,7 +107,7 @@ class CIDriverTests(unittest.TestCase):
                 patch.object(ci, "prepare_contract") as prepare:
             self.assertEqual(ci.main(["core"]), 1)
         prepare.assert_not_called()
-        self.assertIn("Checks: 0 passed, 1 failed, 3 skipped", self.stdout.getvalue())
+        self.assertIn("Checks: 0 passed, 1 failed, 4 skipped", self.stdout.getvalue())
         self.assertIn("Failure: Wrong Python", self.stdout.getvalue())
 
     def test_interrupt_reports_failed_and_skipped_checks(self):
@@ -115,7 +116,7 @@ class CIDriverTests(unittest.TestCase):
                 patch.object(ci, "run") as run:
             self.assertEqual(ci.main(["core"]), 130)
         run.assert_not_called()
-        self.assertIn("Checks: 1 passed, 1 failed, 2 skipped", self.stdout.getvalue())
+        self.assertIn("Checks: 1 passed, 1 failed, 3 skipped", self.stdout.getvalue())
         self.assertIn("Failure: Interrupted by user", self.stdout.getvalue())
         self.assertIn("RESULT: FAIL (exit code 130)", self.stdout.getvalue())
 
@@ -124,8 +125,8 @@ class CIDriverTests(unittest.TestCase):
                 patch.object(ci, "run") as run, patch.object(ci, "renderer_steps") as renderer:
             self.assertEqual(ci.main(["core"]), 0)
         renderer.assert_not_called()
-        self.assertEqual(run.call_count, 2)
-        self.assertIn("Checks: 4 passed, 0 failed, 0 skipped", self.stdout.getvalue())
+        self.assertEqual(run.call_count, 3)
+        self.assertIn("Checks: 5 passed, 0 failed, 0 skipped", self.stdout.getvalue())
         self.assertNotIn("[Renderer]", self.stdout.getvalue())
 
 
