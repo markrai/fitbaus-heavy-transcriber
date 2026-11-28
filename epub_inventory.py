@@ -99,7 +99,7 @@ def metadata_text(metadata, tag):
     return " ".join("".join(node.itertext()).split())[:300] or None
 
 
-def package_inventory(archive, members):
+def package_inventory(archive, members, *, include_resources=False):
     mime = members.get("mimetype")
     if (mime is None or mime.file_size != 20 or mime.compress_type != zipfile.ZIP_STORED
             or archive.read(mime) != b"application/epub+zip"):
@@ -144,15 +144,18 @@ def package_inventory(archive, members):
         raise EpubError("Missing or oversized EPUB spine")
     counts = Counter(kind for _, kind in resources.values())
     metadata = opf.find(OPF + "metadata")
-    return {"version": version, "title": metadata_text(metadata, "title"),
+    result = {"version": version, "title": metadata_text(metadata, "title"),
             "creator": metadata_text(metadata, "creator"),
             "manifest_count": len(resources), "spine_count": len(ordered),
             "xhtml_count": counts["application/xhtml+xml"],
             "image_count": sum(count for kind, count in counts.items() if kind.startswith("image/")),
             "spine": ordered}
+    if include_resources:
+        result["resources"] = {path: kind for path, kind in resources.values()}
+    return result
 
 
-def inspect_epub(stream):
+def inspect_epub(stream, *, include_resources=False):
     stream.seek(0, 2)
     size = stream.tell()
     if not 0 < size <= MAX_EPUB_BYTES:
@@ -164,7 +167,7 @@ def inspect_epub(stream):
     stream.seek(0)
     try:
         with zipfile.ZipFile(stream) as archive:
-            inventory = package_inventory(archive, archive_members(archive))
+            inventory = package_inventory(archive, archive_members(archive), include_resources=include_resources)
     except (zipfile.BadZipFile, NotImplementedError, RuntimeError, EOFError, OSError) as error:
         raise EpubError("Invalid or unsupported EPUB archive") from None
     return {"schema": "fitbaus.epub-inventory/v1", "sha256": digest.hexdigest(),

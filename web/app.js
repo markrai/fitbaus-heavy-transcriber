@@ -133,8 +133,9 @@ $("companions").addEventListener("click", async () => {
             const row = element("p", file.filename + " · " + file.format.toUpperCase() + " · " + file.role + " ");
             result.append(row);
             if (file.format === "epub") {
-                for (const mode of ["inventory", "alignment"]) {
-                    const inspect = element("button", mode === "inventory" ? "Inspect EPUB" : "Test alignment", "secondary");
+                for (const mode of ["inventory", "alignment", "assets"]) {
+                    const labels = {inventory: "Inspect EPUB", alignment: "Test alignment", assets: "Find visuals"};
+                    const inspect = element("button", labels[mode], "secondary");
                     inspect.type = "button";
                     const detail = element("p");
                     inspect.addEventListener("click", async () => {
@@ -143,13 +144,21 @@ $("companions").addEventListener("click", async () => {
                         inspect.disabled = true;
                         updateActions();
                         detail.textContent = mode === "inventory" ? "Downloading and inspecting EPUB…" :
-                            "Comparing EPUB with retained narration…";
+                            mode === "alignment" ? "Comparing EPUB with retained narration…" :
+                            "Extracting original EPUB visuals…";
                         try {
                             const inventory = await api("/api/epub-" + mode, {
                                 method: "POST", headers: {"Content-Type": "application/json"},
                                 body: JSON.stringify({item_id: id, file_id: file.file_id})
                             });
                             if (request !== companionRequest) return;
+                            if (mode === "assets") {
+                                detail.textContent = inventory.mathml_count + " MathML equations · " +
+                                    inventory.raster_count + " raster images · " + inventory.svg_count +
+                                    " SVGs · " + inventory.unique_asset_count + " unique assets · " +
+                                    inventory.skipped_count + " unsupported references · Not timed or render-qualified";
+                                return;
+                            }
                             if (mode === "alignment") {
                                 detail.textContent = inventory.matched_cue_count + " / " + inventory.cue_count +
                                     " narration cues anchored · " + inventory.eligible_cue_count + " eligible · " +
