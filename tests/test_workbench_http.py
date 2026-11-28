@@ -1,14 +1,25 @@
 import json
+import contextlib
+import io
+from unittest.mock import patch
 from http.server import ThreadingHTTPServer
 from types import SimpleNamespace
 import threading
 import unittest
 from urllib.request import urlopen
 
-from app import Handler, load_static_assets
+from app import Handler, load_static_assets, main
 
 
 class WorkbenchHTTPTests(unittest.TestCase):
+    def test_missing_destination_requires_explicit_configuration(self):
+        with patch.dict("os.environ", {}, clear=True), \
+                patch("sys.argv", ["app.py", "--abs-url", "https://example.test"]), \
+                contextlib.redirect_stderr(io.StringIO()) as output, self.assertRaises(SystemExit) as exit:
+            main()
+        self.assertEqual(exit.exception.code, 2)
+        self.assertIn("Configure --ssh-host and --remote-dir", output.getvalue())
+
     def test_actual_companion_route_and_static_snapshot(self):
         book = "book-123"
         with ThreadingHTTPServer(("127.0.0.1", 0), Handler) as server:

@@ -1,6 +1,6 @@
 # FitBaus Heavy Transcriber
 
-A standalone GPU workbench for preparing high-quality audiobook transcripts for FitBaus. Run it manually on a Windows PC with an NVIDIA GPU; your server runs the Audiobookshelf and FitBaus Transcriber server.
+A standalone GPU workbench for preparing high-quality audiobook transcripts for FitBaus. Run it manually on a Windows PC with an NVIDIA GPU; Audiobookshelf and FitBaus Transcriber run on your own server.
 
 ## Setup
 

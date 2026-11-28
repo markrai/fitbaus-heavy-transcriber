@@ -1,5 +1,6 @@
 const $ = id => document.getElementById(id);
 let books = [];
+let bookIndex = new Map();
 let selected = new Set();
 let running = false;
 let companionRequest = 0;
@@ -13,7 +14,7 @@ let visibleWorker = false;
 function updateHint(id) {
     const hint = renderedHints.get(id);
     if (!hint) return;
-    const book = books.find(row => row.id === id);
+    const book = bookIndex.get(id);
     const entry = companionCache.get(id);
     const files = entry?.data?.files;
     if (files) {
@@ -22,7 +23,7 @@ function updateHint(id) {
     } else if (book?.ebook_format) {
         hint.textContent = book.ebook_format.toUpperCase() + " companion available";
     } else {
-        hint.textContent = entry?.error ? "Ebook availability unknown" : "";
+        hint.textContent = entry?.error ? "Ebook availability unknown" : entry ? "Checking ebook…" : "";
     }
     hint.classList.toggle("ebook-unknown", !!entry?.error && !book?.ebook_format);
 }
@@ -43,6 +44,7 @@ function lookupCompanions(id) {
         if (companionCache === cache) updateHint(id);
     });
     cache.set(id, entry);
+    updateHint(id);
     return entry.promise;
 }
 
@@ -158,6 +160,7 @@ async function refresh() {
     $("refresh").disabled = true;
     try {
         books = await api("/api/books");
+        bookIndex = new Map(books.map(book => [book.id, book]));
         companionCache = new Map();
         clearCompanions();
         const ids = new Set(books.map(book => book.id));
@@ -310,7 +313,6 @@ async function discoverSelected() {
         }
     } catch (error) {
         if (request === companionRequest) {
-            companionCache.delete(id);
             $("companion-summary").textContent = "Companion discovery failed: " +
                 (error.message === "Not found" ? "Workbench API unavailable. Restart the Python application after updating." : error.message);
         }
