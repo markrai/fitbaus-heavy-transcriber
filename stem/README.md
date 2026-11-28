@@ -206,6 +206,16 @@ Tokenization is not recognition. Ordinary words such as a, I, one, over, equal a
 
 Next: S.1D.2 typed expression AST and structural validation; S.1D.3 restricted spoken parser; S.1D.4 dictionary integration and controlled substitution; S.1D.5 bounded cross-cue assembly; S.1D.6 development and untouched holdout qualification. Existing matcher, compiler, corpus approvals, observation format and normal transcription pipeline remain unchanged. The tokenizer alone does not improve recognition scores or admit representations.
 
+## Typed mathematical expression tree (S.1D.2)
+
+The standalone stem.expression module defines immutable, source-spanned nodes for numbers, case-preserving symbols, unary and binary operations, powers, simple subscripts, single-argument allowlisted functions, explicit grouping, factorials and root-level relation chains. Fraction structure is represented as division; grouping and power nesting are explicit. Every node carries a half-open Python Unicode code-point span. The tree is a structural representation, not a solver or proof of mathematical validity.
+
+validate(tree, source) enforces the exact node/operator/function types, bounded numeric literals and symbol vocabulary, source bounds, ordered nonoverlapping child spans, containment, prefix/postfix/group boundaries, root-only relations, valid relation arity and limits of 256 nodes and 32 levels. Shared nodes and cycles are rejected. Explicit operator gaps are required for relations and nonmultiplicative binary operations; adjacent children are permitted for multiplication and postfix notation. The validator does not prove token coverage, operator spelling, grouping correctness, semantic types, domain conditions or mathematical truth. Those checks belong to the parser and recognition policy; never use a constructed AST alone as evidence that an equation occurred in narration.
+
+structural_key(tree, source) validates before creating a deterministic, span-independent nested tuple. Redundant grouping wrappers are omitted from that key, but the operand tree, order, signs, case, exact numeric spelling and relation operators remain distinct. No simplification, commutation, algebraic equivalence, variable substitution, numeric evaluation, arbitrary TeX or execution is performed. The AST permits explicit structures for future parsing, including factorials, without claiming the tokenizer currently recognizes every such form. Calculus binders, matrices, vectors, general indexed expressions and other advanced constructs remain dictionary-only or deferred.
+
+Twelve focused tests cover Euler's explicit exponent structure, case and grouping identity, Unicode and spoken postfix spans, relation chains, fractions and function structure, adjacency, invalid types and spans, immutability and complexity limits. S.1D.3 must derive these trees from source-mapped tokens, enforce full token consumption and reject ambiguous scope; the current exact matcher, corpus, compiler, renderer and normal transcription flow are unchanged. No recognition approval or real-world accuracy improvement is claimed. Holdout remains untouched.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
