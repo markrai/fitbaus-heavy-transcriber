@@ -216,6 +216,20 @@ structural_key(tree, source) validates before creating a deterministic, span-ind
 
 Twelve focused tests cover Euler's explicit exponent structure, case and grouping identity, Unicode and spoken postfix spans, relation chains, fractions and function structure, adjacency, invalid types and spans, immutability and complexity limits. S.1D.3 must derive these trees from source-mapped tokens, enforce full token consumption and reject ambiguous scope; the current exact matcher, corpus, compiler, renderer and normal transcription flow are unchanged. No recognition approval or real-world accuracy improvement is claimed. Holdout remains untouched.
 
+## Restricted mathematical parser (S.1D.3)
+
+The standalone stem.parser.parse_expression(source) accepts an already selected mathematical expression span and returns a validated source-spanned AST, or raises ParseError (a ValueError subclass). It is not a narration recognizer and must not be called on arbitrary extracted fragments as proof of a match. All significant tokens must be consumed, and only spaces/tabs may be skipped. The AST root spans the first through last significant token. No introductory prose, trailing sentence punctuation, unknown words, repair or cross-cue assembly is performed. A terminal adjacent exclamation mark within an explicitly selected expression is factorial notation, not evidence that narration actually used a factorial.
+
+The grammar supports relation chains, additive and multiplicative operations, unary signs, right-associative symbolic powers, spoken squared/cubed, explicitly grouped spoken exponents and selected ordinal power phrases, simple subscripts, factorials, case modifiers, explicit groups and allowlisted single-argument functions. Symbolic precedence is conventional. Implicit multiplication is restricted to an adjacent numeric literal followed by a symbolic variable or opening parenthesis, such as 3x or 2(x+1); multi-letter words and whitespace-separated products are not split or inferred. Spoken fractions mixed with other infix operations in the same scope require explicit grouping, as do compound spoken denominators. Bare spoken power/function arguments must end at a scope/relation boundary; ambiguous signs on ungrouped powers or factorials are rejected. Examples:
+
+    x squared plus y squared equals z squared
+    e raised to the power of open parenthesis i times pi close parenthesis plus one equals zero
+    cosine of open parenthesis pi over 2 close parenthesis equals 0
+
+The unscoped audiobook wording e to the i pi plus 1 equals 0, ambiguous fraction a plus b over c and cosine of pi over 2 equals 0 remain rejected. Resolving a known identity from contextual evidence is a separate dictionary integration policy, not a guess made by this parser. No mathematical truth, domain, dimensional, vector or semantic validation is implied. Input is bounded to 4,096 code points, 256 significant tokens and 24 nested parser operations, with the AST's stricter node/depth limits also applied. No arbitrary TeX, rendering, symbolic evaluation, external dependency or inference is used.
+
+Twelve focused tests cover precedence, explicit scope, ambiguous recitations, preserved notation, full consumption, exact source spans and complexity. Existing tokenizer, AST, exact matcher, compiler, corpus approvals and transcription runtime are unchanged. S.1D.4 must connect validated structures to verified identities and specify controlled substitutions and contextual abstention. Development recognition remains unmeasured for this standalone parser; holdout remains untouched.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates
