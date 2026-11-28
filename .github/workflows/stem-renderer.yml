@@ -4,8 +4,13 @@ on:
     paths:
       - 'stem/renderer/**'
       - 'stem/qualify_render.py'
+      - 'stem/renderer_smoke.py'
       - 'stem/dictionary.py'
       - 'tests/test_stem_qualify_render.py'
+      - 'tests/test_ci_driver.py'
+      - 'ci.py'
+      - 'ci.bat'
+      - 'ci.sh'
       - '.github/workflows/stem-renderer.yml'
   workflow_dispatch:
 permissions:
@@ -23,11 +28,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: npm install --ignore-scripts --no-audit --no-fund
-        working-directory: stem/renderer
-      - run: python -m unittest discover -s tests -p test_stem_qualify_render.py -v
-      - name: Real SVG and PNG smoke
-        run: python -m stem.renderer_smoke
+      - name: Renderer CI
+        run: python ci.py renderer
       - uses: actions/upload-artifact@v4
         with:
           name: stem-renderer-package-lock
