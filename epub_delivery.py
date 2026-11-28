@@ -13,10 +13,11 @@ from epub_assets import RASTER
 from epub_enrichment import (DIGEST, EnrichmentError, MAX_ARTIFACT_BYTES, SCHEMA as SOURCE_SCHEMA,
                              build_artifact, canonical, store_artifact)
 from epub_timing import SCHEMA as TIMING_SCHEMA
+from epub_vector import VectorRejected, VectorUnavailable, render_vector
 
 
 SCHEMA = "fitbaus.epub-delivery-candidate/v1"
-POLICY = "static-rgba-png/v1"
+POLICY = "static-rgba-png/v2"
 MAX_PNG = 1024 * 1024
 MAX_WIDTH = 1024
 MAX_HEIGHT = 600
@@ -121,15 +122,27 @@ def normalize_raster(asset):
             "payload_base64": base64.b64encode(result.stdout).decode("ascii")}, None
 
 
+def normalize_visual(asset):
+    if asset["media_type"] in RASTER:
+        return normalize_raster(asset)
+    try:
+        png = render_vector(asset)
+    except VectorRejected as error:
+        return None, str(error)
+    except VectorUnavailable as error:
+        raise DeliveryError(str(error)) from None
+    return normalize_raster({"media_type": "image/png", "payload": png})
+
+
 def build_delivery(artifact_id, artifact, assets):
     timed = {row["asset_id"] for row in artifact["occurrences"] if row["evidence"] is not None}
-    eligible = [asset for asset in assets if asset["asset_id"] in timed and asset["media_type"] in RASTER]
+    eligible = [asset for asset in assets if asset["asset_id"] in timed]
     if len(eligible) > MAX_ASSETS:
-        raise DeliveryError("Timed raster count exceeds delivery candidate limit")
+        raise DeliveryError("Timed visual count exceeds delivery candidate limit")
     rendered, failures, pngs = {}, {}, {}
     total = 0
     for asset in eligible:
-        output, reason = normalize_raster(asset)
+        output, reason = normalize_visual(asset)
         key = asset["asset_id"]
         if output is None:
             failures[key] = reason
@@ -170,7 +183,7 @@ def prepare_delivery(root, artifact_id):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Prepare local raster-only delivery candidate; does not publish")
+    parser = argparse.ArgumentParser(description="Prepare local PNG delivery candidate; does not publish")
     parser.add_argument("artifact_id")
     parser.add_argument("--work-dir", type=Path, default=Path(__file__).resolve().parent / "work")
     args = parser.parse_args(argv)

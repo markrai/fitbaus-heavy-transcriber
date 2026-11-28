@@ -58,8 +58,12 @@ def core_steps():
         ("[Core] Pinned transcript contract", prepare_contract),
         ("[Core] Delivery decoder dependency", lambda: run(
             sys.executable, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-delivery.txt")),
+        ("[Core] Delivery renderer Node.js 24", require_node),
+        ("[Core] Delivery renderer dependencies", lambda: run(
+            npm_command(), "install", "--ignore-scripts", "--no-audit", "--no-fund",
+            cwd=ROOT / "delivery_renderer")),
         ("[Core] Python compilation", lambda: run(
-            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py", "epub_delivery.py", "epub_raster_worker.py",
+            sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "companions.py", "epub_inventory.py", "epub_alignment.py", "epub_assets.py", "epub_timing.py", "epub_enrichment.py", "epub_delivery.py", "epub_raster_worker.py", "epub_vector.py",
             "ci.py", "test_suite.py", *(str(path.relative_to(ROOT)) for path in test_paths("core")))),
         ("[Core] Unit tests", lambda: run(sys.executable, "test_suite.py", "core")),
     ]

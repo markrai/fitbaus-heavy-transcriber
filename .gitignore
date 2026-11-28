@@ -6,3 +6,6 @@ __pycache__/
 .env
 
 stem/renderer/node_modules/
+
+delivery_renderer/node_modules/
+delivery_renderer/package-lock.json
