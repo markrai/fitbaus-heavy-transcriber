@@ -5,8 +5,8 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from app import Workbench
-from epub_alignment import body_projection, words
-from epub_timing import preview_timing
+from epub_alignment import Section, body_projection, words, match_anchors
+from epub_timing import associate, preview_timing
 from heavy import PROFILE_PREFIX, atomic_json, checkpoint_directory
 from test_epub_alignment import A, B, C, window
 from test_epub_assets import MATHML, book
@@ -69,6 +69,16 @@ class TimingTests(unittest.TestCase):
         tokens, positions = body_projection(root, [(0,)])
         self.assertEqual(tokens, ("telescope",))
         self.assertEqual(positions, {})
+
+    def test_never_borrows_evidence_from_another_spine_entry(self):
+        sections = [Section(0, "first", words(A), {(0,): len(words(A))}),
+                    Section(1, "second", words(B))]
+        alignment = match_anchors(sections, [window(A, B)])
+        catalogue = {"occurrences": [{"spine_index": 0, "document": "first",
+                                      "node_path": [0], "figure_path": None, "asset_id": "asset"}]}
+        result = associate(catalogue, sections, alignment)
+        self.assertEqual(result["timed_count"], 0)
+        self.assertEqual(result["untimed_reasons"], {"missing_two_sided_anchor": 1})
 
     def test_repeated_assets_keep_independent_evidence(self):
         body = "<p>" + A + "</p>" + MATHML + "<p>" + B + "</p>" + MATHML
