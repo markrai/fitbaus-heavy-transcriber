@@ -1,3 +1,5 @@
+import contextlib
+import io
 import subprocess
 import sys
 import unittest
@@ -7,9 +9,15 @@ import ci
 
 
 class CIDriverTests(unittest.TestCase):
+    def setUp(self):
+        self.stdout = io.StringIO()
+        self.stderr = io.StringIO()
+        self.enterContext(contextlib.redirect_stdout(self.stdout))
+        self.enterContext(contextlib.redirect_stderr(self.stderr))
+
     def test_core_uses_pinned_contract_and_expected_checks(self):
         with patch.object(ci, "prepare_contract") as prepare, patch.object(ci, "run") as run:
-            ci.core()
+            self.assertEqual(ci.execute("core", ci.core_steps()), 0)
         prepare.assert_called_once_with()
         self.assertEqual(run.call_args_list, [
             call(sys.executable, "-m", "compileall", "-q", "app.py", "heavy.py", "stem", "tests", "ci.py"),
@@ -18,10 +26,10 @@ class CIDriverTests(unittest.TestCase):
         ])
 
     def test_renderer_uses_install_policy_and_real_smoke(self):
-        with patch.object(ci, "output", return_value="v22.15.0"), \
+        with patch.object(ci, "output", return_value="v24.11.0"), \
                 patch.object(ci.shutil, "which", return_value="npm-test"), \
                 patch.object(ci, "run") as run:
-            ci.renderer()
+            self.assertEqual(ci.execute("renderer", ci.renderer_steps()), 0)
         self.assertEqual(run.call_args_list, [
             call("npm-test", "install", "--ignore-scripts", "--no-audit", "--no-fund",
                  cwd=ci.ROOT / "stem" / "renderer"),
@@ -33,23 +41,61 @@ class CIDriverTests(unittest.TestCase):
     def test_default_runs_both_suites_in_order(self):
         order = []
         with patch.object(ci, "require_python"), \
-                patch.object(ci, "core", side_effect=lambda: order.append("core")), \
-                patch.object(ci, "renderer", side_effect=lambda: order.append("renderer")):
+                patch.object(ci, "core_steps", return_value=[("core", lambda: order.append("core"))]), \
+                patch.object(ci, "renderer_steps", return_value=[("renderer", lambda: order.append("renderer"))]):
             self.assertEqual(ci.main([]), 0)
         self.assertEqual(order, ["core", "renderer"])
+        self.assertIn("Checks: 3 passed, 0 failed, 0 skipped", self.stdout.getvalue())
+        self.assertIn("RESULT: PASS (exit code 0)", self.stdout.getvalue())
 
     def test_core_failure_is_propagated_and_stops_all(self):
         with patch.object(ci, "require_python"), \
-                patch.object(ci, "core", side_effect=subprocess.CalledProcessError(7, ["test"])), \
-                patch.object(ci, "renderer") as renderer:
+                patch.object(ci, "prepare_contract", side_effect=subprocess.CalledProcessError(7, ["test"])), \
+                patch.object(ci, "run") as run:
             self.assertEqual(ci.main([]), 7)
-        renderer.assert_not_called()
+        run.assert_not_called()
+        summary = self.stdout.getvalue().split("CI SUMMARY (all)", 1)[1]
+        self.assertRegex(summary, r"Pinned transcript contract\s+FAIL")
+        self.assertRegex(summary, r"Real SVG and PNG smoke\s+SKIP")
+        self.assertIn("Checks: 1 passed, 1 failed, 7 skipped", summary)
+        self.assertIn("RESULT: FAIL (exit code 7)", summary)
 
     def test_wrong_node_version_rejected_before_install(self):
-        with patch.object(ci, "output", return_value="v24.1.0"), patch.object(ci, "run") as run:
-            with self.assertRaisesRegex(ValueError, "requires Node.js 22"):
-                ci.renderer()
+        with patch.object(ci, "require_python"), \
+                patch.object(ci, "output", return_value="v22.1.0"), patch.object(ci, "run") as run:
+            self.assertEqual(ci.main(["renderer"]), 1)
         run.assert_not_called()
+        summary = self.stdout.getvalue().split("CI SUMMARY (renderer)", 1)[1]
+        self.assertIn("CI requires Node.js 24; found v22.1.0", summary)
+        self.assertIn("Checks: 1 passed, 1 failed, 3 skipped", summary)
+        self.assertNotIn("[Core]", summary)
+
+    def test_python_failure_skips_all_selected_checks(self):
+        with patch.object(ci, "require_python", side_effect=ValueError("Wrong Python")), \
+                patch.object(ci, "prepare_contract") as prepare:
+            self.assertEqual(ci.main(["core"]), 1)
+        prepare.assert_not_called()
+        self.assertIn("Checks: 0 passed, 1 failed, 4 skipped", self.stdout.getvalue())
+        self.assertIn("Failure: Wrong Python", self.stdout.getvalue())
+
+    def test_interrupt_reports_failed_and_skipped_checks(self):
+        with patch.object(ci, "require_python"), \
+                patch.object(ci, "prepare_contract", side_effect=KeyboardInterrupt), \
+                patch.object(ci, "run") as run:
+            self.assertEqual(ci.main(["core"]), 130)
+        run.assert_not_called()
+        self.assertIn("Checks: 1 passed, 1 failed, 3 skipped", self.stdout.getvalue())
+        self.assertIn("Failure: Interrupted by user", self.stdout.getvalue())
+        self.assertIn("RESULT: FAIL (exit code 130)", self.stdout.getvalue())
+
+    def test_core_only_does_not_run_or_report_renderer(self):
+        with patch.object(ci, "require_python"), patch.object(ci, "prepare_contract"), \
+                patch.object(ci, "run") as run, patch.object(ci, "renderer_steps") as renderer:
+            self.assertEqual(ci.main(["core"]), 0)
+        renderer.assert_not_called()
+        self.assertEqual(run.call_count, 3)
+        self.assertIn("Checks: 5 passed, 0 failed, 0 skipped", self.stdout.getvalue())
+        self.assertNotIn("[Renderer]", self.stdout.getvalue())
 
 
 if __name__ == "__main__":
