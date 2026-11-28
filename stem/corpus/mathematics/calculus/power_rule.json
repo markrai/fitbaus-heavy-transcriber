@@ -19,7 +19,10 @@
         "x": "Variable",
         "n": "Constant exponent"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative with respect to x of x raised to the power n equals n times x raised to the power of open parenthesis n minus one close parenthesis",
+        "d by d x of x to the power n equals n times x to the power of the quantity n minus one end exponent"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",

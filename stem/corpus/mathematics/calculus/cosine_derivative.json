@@ -18,7 +18,10 @@
       "symbols": {
         "x": "Angle in radians"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative with respect to x of cosine of x equals negative sine of x",
+        "d by d x of cosine x equals minus sine x"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",

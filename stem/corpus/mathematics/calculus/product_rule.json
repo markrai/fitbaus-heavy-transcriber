@@ -19,7 +19,10 @@
         "u": "First function",
         "v": "Second function"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the derivative of the product of u and v equals u prime times v plus u times v prime",
+        "open parenthesis u times v close parenthesis prime equals u prime times v plus u times v prime"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",

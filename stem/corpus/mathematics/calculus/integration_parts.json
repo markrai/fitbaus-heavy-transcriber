@@ -21,7 +21,10 @@
         "du": "Differential of u",
         "dv": "Differential of v"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "the integral of u d v equals u times v minus the integral of v d u",
+        "the integral of u with respect to v equals the product of u and v minus the integral of v with respect to u"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

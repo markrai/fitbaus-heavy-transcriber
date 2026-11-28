@@ -114,6 +114,12 @@ Complete direct scope review of seven geometry and ten trigonometry representati
 
 The geometry and trigonometry review fixtures add 37 scope-reviewed recitations and 50 negative examples. Cumulative review covers 32 of 107 representations, 72 recitations and 100 negative examples. The existing fixture discovery and matcher tests apply without changes. These are direct scope reviews, not speech-transcription or independent blind-review evidence. Recognition remains pending; no runtime, inference or publication change.
 
+## Calculus recitation review (S.1B.4)
+
+Directly scope-review 17 calculus representations in 16 concepts. Preserve the original LaTeX and mathematical review digests. Explicitly distinguish the derivative of a composition from derivatives evaluated at the wrong point, the two fundamental theorem forms, lowercase integrand f from uppercase antiderivative F, limit targets, differential variables, subtraction order and numerator scope. In the Taylor series the parenthesized superscript denotes derivative order, not exponentiation; in sine and cosine series the alternating factor has base negative one and each factorial covers its entire index expression. The exact source conditions remain unchanged.
+
+The calculus fixture adds 34 reviewed recitations and 51 counterexamples. Cumulative scope review covers 49 of 107 representations, 106 aliases and 151 negative examples. Existing fixture discovery tests check positive recognition and negative rejection. No recognition approvals, runtime changes or external inference are introduced.
+
 ## Corpus acquisition
 
     python -m stem.acquire work/stem-candidates

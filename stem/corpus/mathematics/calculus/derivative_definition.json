@@ -20,7 +20,10 @@
         "x": "Evaluation point",
         "h": "Increment"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "f prime of x equals the limit as h approaches zero of the fraction with numerator f of open parenthesis x plus h close parenthesis minus f of x and denominator h",
+        "the derivative of f at x equals the limit as h tends to zero of open parenthesis f of the quantity x plus h minus f of x close parenthesis all divided by h"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_1_reference",

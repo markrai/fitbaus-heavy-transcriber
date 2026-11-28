@@ -19,7 +19,8 @@
         "x": "Angle in radians"
       },
       "spoken_aliases": [
-        "the limit as x approaches zero of sine x divided by x equals one"
+        "the limit as x approaches zero of sine x divided by x equals one",
+        "the limit as x tends to zero of the fraction with numerator sine of x and denominator x equals one"
       ],
       "references": [
         {

@@ -19,7 +19,10 @@
         "x": "Angle in radians",
         "n": "Summation index"
       },
-      "spoken_aliases": [],
+      "spoken_aliases": [
+        "sine of x equals the sum from n equals zero to infinity of the fraction with numerator open parenthesis negative one close parenthesis raised to the power n times x raised to the power of open parenthesis two n plus one close parenthesis and denominator open parenthesis two n plus one close parenthesis factorial",
+        "sine of x equals the sum from n equals zero to infinity of the fraction with numerator negative one in parentheses raised to the power n times x raised to the power of the quantity two times n plus one end exponent and denominator the factorial of the quantity two times n plus one"
+      ],
       "references": [
         {
           "source_id": "openstax_calculus_2_reference",

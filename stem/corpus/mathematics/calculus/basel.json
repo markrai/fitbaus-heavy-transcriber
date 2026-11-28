@@ -20,7 +20,8 @@
         "\\pi": "Pi"
       },
       "spoken_aliases": [
-        "the sum from n equals one to infinity of one over n squared equals pi squared over six"
+        "the sum from n equals one to infinity of one over n squared equals pi squared over six",
+        "the sum from n equals one to infinity of one divided by n squared equals pi squared divided by six"
       ],
       "references": [
         {
