@@ -3,12 +3,13 @@ import re
 
 from .corpus_model import ROOT, digest
 from .expression import structural_key
+from .identity_context import (CONTEXT_VERSION, corroborated_euler_span, named_clause_span)
 from .matcher import INTRO, Match, recognize, sentence_candidates
 from .parser import MAX_PARSE_CHARS, ParseError, parse_expression
 from .qualify_recognition import FIXTURES, build_review_dictionary
 from .tokenizer import Kind, tokenize
 
-HYBRID_VERSION = "verified-identity-pilot-v1"
+HYBRID_VERSION = "verified-identity-pilot-v2"
 MAX_NARRATION_CHARS = 32768
 
 EULER = "algebra.euler:standard"
@@ -124,6 +125,16 @@ class HybridRecognizer:
                 candidates = self.resolve(phrase, named)
             except ValueError:
                 continue
+            if not candidates:
+                try:
+                    boundary = named_clause_span(phrase) if named is not None else corroborated_euler_span(phrase, EULER_SHORT)
+                    if boundary is not None:
+                        shortened = phrase[:boundary]
+                        candidates = self.resolve(shortened, named if named is not None else EULER)
+                        if candidates:
+                            end = start + prefix + boundary
+                except ValueError:
+                    continue
             if len(candidates) == 1:
                 identity, latex = next(iter(candidates))
                 begin = start + prefix
@@ -144,7 +155,7 @@ def build_hybrid(root=ROOT, fixtures=FIXTURES):
     if len({rule.key for rule in rules}) != len(rules):
         raise ValueError("Conflicting structural identity rules")
     policy = digest({"version": HYBRID_VERSION, "dictionary": dictionary.digest, "rules": RULES,
-                     "named_intro": NAMED_INTRO.pattern,
+                     "named_intro": NAMED_INTRO.pattern, "context_version": CONTEXT_VERSION,
                      "euler_short": [(kind.value, value) for kind, value in EULER_SHORT],
                      "substitution": "named-pythagoras-distinct-lowercase-ascii-except-e-i"})
     return HybridRecognizer(dictionary, tuple(rules), policy), rows, binding
